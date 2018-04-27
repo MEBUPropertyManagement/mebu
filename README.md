@@ -1,1 +1,0 @@
-# Real Estate Management Application
