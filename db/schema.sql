@@ -7,23 +7,28 @@ create table bills
   datepaid   varchar(60),
   amount     integer,
   residentid integer
-    constraint bills_resident_fkey
+    constraint bills_residentid_fkey
     references residents
 );
 
 create table owners
 (
-  ownerid  serial not null
+  ownerid     serial not null
     constraint owners_pkey
     primary key,
-  email    varchar(60),
-  password varchar(60)
+  email       varchar(60),
+  password    varchar(60),
+  firstname   varchar(35),
+  lastname    varchar(35),
+  companyname varchar(100)
 );
 
-create table property
+
+
+create table properties
 (
   propertyid serial not null
-    constraint property_pkey
+    constraint properties_pkey
     primary key,
   name       varchar(60),
   photourl   varchar(180),
@@ -32,7 +37,7 @@ create table property
   value      integer,
   expenses   integer,
   ownerid    integer
-    constraint property_ownerid_fkey
+    constraint properties_ownerid_fkey
     references owners
 );
 
@@ -47,13 +52,14 @@ create table residents
   isresident boolean default false,
   propertyid integer
     constraint residents_propertyid_fkey
-    references property,
+    references properties,
   unitid     integer
     constraint residents_unitid_fkey
     references units,
   ownerid    integer
     constraint residents_ownerid_fkey
-    references owners
+    references owners,
+  firstname  varchar(35)
 );
 
 create table units
@@ -68,7 +74,7 @@ create table units
   roomnum    integer,
   propertyid integer
     constraint units_propertyid_fkey
-    references property
+    references properties
 );
 
 create table workorders
@@ -82,7 +88,7 @@ create table workorders
   urgency      varchar(60),
   propertyid   integer
     constraint workorders_propertyid_fkey
-    references property,
+    references properties,
   residentid   integer
     constraint workorders_residentid_fkey
     references residents,
