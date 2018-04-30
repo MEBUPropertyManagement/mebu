@@ -1,0 +1,1 @@
+SELECT * FROM owners WHERE email = $1;
