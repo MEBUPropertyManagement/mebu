@@ -13,17 +13,18 @@ create table bills
 
 create table owners
 (
-  ownerid     serial not null
+  ownerid     serial      not null
     constraint owners_pkey
     primary key,
-  email       varchar(60),
-  password    varchar(60),
-  firstname   varchar(35),
-  lastname    varchar(35),
+  email       varchar(60) not null,
+  password    varchar(60) not null,
+  firstname   varchar(35) not null,
+  lastname    varchar(35) not null,
   companyname varchar(100)
 );
 
-
+create unique index owners_email_uindex
+  on owners (email);
 
 create table properties
 (
@@ -43,12 +44,12 @@ create table properties
 
 create table residents
 (
-  residentid serial not null
+  residentid serial      not null
     constraint residents_pkey
     primary key,
   userkey    varchar(10),
-  email      varchar(60),
-  password   varchar(60),
+  email      varchar(60) not null,
+  password   varchar(60) not null,
   isresident boolean default false,
   propertyid integer
     constraint residents_propertyid_fkey
@@ -59,8 +60,12 @@ create table residents
   ownerid    integer
     constraint residents_ownerid_fkey
     references owners,
-  firstname  varchar(35)
+  firstname  varchar(35) not null,
+  lastname   varchar(35) not null
 );
+
+create unique index residents_email_uindex
+  on residents (email);
 
 create table units
 (
