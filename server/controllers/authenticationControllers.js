@@ -49,9 +49,7 @@ const ownerRegistration = (req, res) => {
 
 const residentLogin = (req, res) => {
   const db = req.app.get('db');
-  const {
-    email, password, firstName, lastName, companyName,
-  } = req.body;
+  const {email, password} = req.body;
 
   db
     .resident_login(email, password)
