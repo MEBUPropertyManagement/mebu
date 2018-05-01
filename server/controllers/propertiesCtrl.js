@@ -21,7 +21,7 @@ const getProperty = (req, res) => {
 const getProperties = (req, res) => {
   const db = req.app.get('db');
   db
-    .getPropertyById([req.session.user.userid])
+    .properties_getProperties([req.session.user.userid])
     .then(response => res.status(200).json(response))
     .catch(err => console.log(err));
 };
