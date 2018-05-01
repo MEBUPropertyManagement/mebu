@@ -13,6 +13,7 @@
     "massive": "^4.7.2",
     "nodemailer": "^4.6.4",
     "random-key": "^0.3.2",
+    "prop-types": "^15.6.1",
     "react": "^16.3.2",
     "react-dom": "^16.3.2",
     "react-redux": "^5.0.7",
@@ -36,5 +37,6 @@
     "eslint-plugin-jsx-a11y": "^6.0.3",
     "eslint-plugin-react": "7.4.0",
     "prettier-eslint": "^8.8.1"
-  }
+  },
+  "proxy": "http://localhost:3001"
 }
