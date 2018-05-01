@@ -5,14 +5,14 @@ const transporter = nodemailer.createTransport({
   newline: 'windows',
 });
 
-const registrationEmail = email =>
+const registrationEmail = (email, password) =>
   transporter.sendMail(
     {
       from: 'kovich@michaelkovich.com',
       to: `${email}`,
       subject: 'Welcome to EMU Property Management!',
       text: 'Plain text content goes here.',
-      html: '<html><p>Hello</p></html>',
+      html: `<html><p>Please login with the following credentials: </p><p>Username: ${email} <br/><br/>Password: ${password}</p></html>`,
     },
     (err, info) => {
       console.log(info.envelope);
