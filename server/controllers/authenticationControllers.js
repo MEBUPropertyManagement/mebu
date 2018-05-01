@@ -17,7 +17,7 @@ const residentRegistration = (req, res) => {
             req.session.user = {email, userid: response[0].residentid || 0};
             return res
               .status(200)
-              .json({authentication: true, email, userid: response[0].residentid || 0});
+              .json({authenticated: true, email, userid: response[0].residentid || 0});
           }
           return res
             .status(200)
