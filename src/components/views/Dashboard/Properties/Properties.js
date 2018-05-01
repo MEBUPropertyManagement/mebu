@@ -3,6 +3,7 @@ import PropertiesTable from './PropertiesTable';
 import './Properties';
 import {connect} from 'react-redux';
 import {getProperties} from '';
+import {Link} from 'react-router-dom';
 
 class Properties extends Component {
   constructor(props) {
@@ -19,6 +20,9 @@ class Properties extends Component {
     return (
       <div className="Properties">
         <div className="Properties__form" />
+        <Link className="" to="/owner/dasboard/properties/new" />
+          Add Property
+        </Link>
       </div>
     );
   }
