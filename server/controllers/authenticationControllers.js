@@ -23,7 +23,7 @@ const residentRegistration = (req, res) => {
             .status(200)
             .json({authenticated: false, email, userid: response[0].residentid || 0});
         })
-        .catch(err => console.log(err));
+        .catch(err => res.status(200).json({authenticated: false, email, userid: 0}));
     });
   });
 };
@@ -49,7 +49,7 @@ const ownerRegistration = (req, res) => {
             .status(200)
             .json({authenticated: false, email, userid: response[0].ownerid || 0});
         })
-        .catch(err => console.log(err));
+        .catch(err => res.status(200).json({authenticated: false, email, userid: 0}));
     });
   });
 };
