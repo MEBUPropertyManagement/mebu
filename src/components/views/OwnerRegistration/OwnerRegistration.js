@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import {Link} from 'react-router-dom';
 import PropTypes from 'prop-types';
+import {createOwner} from '../../../redux/ducks/userReducer';
 import {connect} from 'react-redux';
 // import {createOwner} from '../../../redux/ducks/userReducer';
 import './OwnerRegistration.css';
@@ -36,6 +37,13 @@ class OwnerRegistration extends Component {
     const {
       firstName, lastName, companyName, email, password, confirmPassword,
     } = this.state;
+
+    if (this.props.authenticated) {
+      this.props.history.push('/');
+    }
+
+    console.log(this.props.authenticated);
+
     return (
       <div className="OwnerRegistration">
         <div className="OwnerRegistration__form">
@@ -95,7 +103,19 @@ class OwnerRegistration extends Component {
               value={confirmPassword}
               type="password"
             />
-            <button>Register</button>
+            <button
+              onClick={() =>
+                this.props.createOwner(
+                  this.state.email,
+                  this.state.password,
+                  this.state.firstName,
+                  this.state.lastName,
+                  this.state.companyName,
+                )
+              }
+            >
+              Register
+            </button>
           </form>
           <div className="OwnerRegistration__sign-in">
             Already have an account?{' '}
@@ -113,5 +133,9 @@ OwnerRegistration.propTypes = {
   register: PropTypes.func.isRequired,
 };
 
+const mapStateToProps = state => ({
+  ...state.userReducer,
+});
+
 // export default connect(null, {createOwner})(OwnerRegistration);
-export default OwnerRegistration;
+export default connect(mapStateToProps, {createOwner})(OwnerRegistration);

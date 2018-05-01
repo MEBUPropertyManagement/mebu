@@ -1,6 +1,5 @@
 import React, {Component} from 'react';
-import axios from 'axios';
-import {Link, Redirect} from 'react-router-dom';
+import {Link} from 'react-router-dom';
 import {connect} from 'react-redux';
 import {loginOwner} from '../../../redux/ducks/userReducer';
 
@@ -15,6 +14,7 @@ class OwnerLogin extends Component {
       password: '',
     };
     this.handleChangeEmail = this.handleChangeEmail.bind(this);
+    this.handleChangePassword = this.handleChangePassword.bind(this);
   }
 
   handleChangeEmail(value) {
