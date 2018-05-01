@@ -50,7 +50,10 @@ export function getProperties() {
     type: GET_PROPERTIES,
     payload: axios
       .get('/properties/getProperties')
-      .then(response => response.data)
+      .then((response) => {
+        console.log(response.data);
+        return response.data;
+      })
       .catch(err => err),
   };
 }
@@ -59,7 +62,10 @@ export function createProperty(obj) {
     type: CREATE_PROPERTY,
     payload: axios
       .post('/properties/add', obj)
-      .then(response => response.data)
+      .then((response) => {
+        console.log(response.data);
+        return response.data;
+      })
       .catch(err => err),
   };
 }
