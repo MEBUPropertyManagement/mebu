@@ -85,9 +85,19 @@ const residentLogin = (req, res) => {
               .status(200)
               .json({authenticated: true, email, userid: response[0].residentid || 0});
           }
-          return res
-            .status(200)
-            .json({authenticated: false, email, userid: response[0].residentid || 0});
+          return res.status(200).json({
+            authenticated: false,
+            email,
+            userid: response[0].residentid || 0,
+            error: 'Password is invalid.',
+          });
+        });
+      } else {
+        return res.status(200).json({
+          authenticated: false,
+          email,
+          userid: 0,
+          error: 'User does not exist!',
         });
       }
     })
@@ -116,17 +126,29 @@ const ownerLogin = (req, res) => {
               .status(200)
               .json({authenticated: true, email, userid: response[0].ownerid || 0});
           }
-          return res
-            .status(200)
-            .json({authenticated: false, email, userid: response[0].ownerid || 0});
+          return res.status(200).json({
+            authenticated: false,
+            email,
+            userid: response[0].ownerid || 0,
+            error: 'Password is invalid.',
+          });
         });
       } else {
-        return res
-          .status(200)
-          .json({authenticated: false, email, userid: response[0].ownerid || 0});
+        return res.status(200).json({
+          authenticated: false,
+          email,
+          userid: 0,
+          error: 'User does not exist!',
+        });
       }
     })
-    .catch(err => console.log(err));
+    .catch(err =>
+      res.status(200).json({
+        authenticated: false,
+        email,
+        userid: 0,
+        error: err,
+      }));
 };
 
 const logout = (req, res) => {
