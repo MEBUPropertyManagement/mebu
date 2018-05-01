@@ -9,7 +9,7 @@ const Landing = () => (
       <Link className="Landing__link Landing__link--owner" to="/login/owner/returning">
         Owner Login
       </Link>
-      <Link className="Landing__link Landing__link--resident" to="/">
+      <Link className="Landing__link Landing__link--resident" to="/login/resident/returning">
         Resident Login
       </Link>
     </div>
