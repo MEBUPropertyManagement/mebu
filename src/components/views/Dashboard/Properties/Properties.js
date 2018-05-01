@@ -15,12 +15,24 @@ class Properties extends Component {
   }
 
   render() {
-    // const properties = this.props.properties.map(property => <div />);
+    console.log(this.props);
+    const properties =
+      this.props.properties[0] && this.props.properties.map(property => 
+        <div>
+          <div>{property.name}</div>
+          <div>{property.address}</div>
+          <div>{property.units}</div>
+          <div>{property.value}</div>
+          <div>{property.expenses}</div>
+        </div>
+      );
+    console.log(this.props.properties);
 
     return (
       <div className="Properties">
         <div className="Properties__form" />
-        <Link className="" to="/owner/dasboard/properties/new">
+        {properties}
+        <Link className="" to="/owner/dashboard/properties/new">
           Add Property
         </Link>
       </div>
