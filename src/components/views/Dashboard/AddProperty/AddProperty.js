@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
-import {addProperty} from '../../../../redux/ducks/propertyReducer';
+import {createProperty} from '../../../../redux/ducks/propertyReducer';
 
 import './AddProperty.css';
 
@@ -20,7 +20,18 @@ class AddProperty extends Component {
   }
 
   onSubmitHandler(e) {
+    const {
+      name, address, value, units, expenses, photourl,
+    } = this.state;
     e.preventDefault();
+    this.props.createProperty({
+      name,
+      address,
+      value,
+      units,
+      expenses,
+      photourl,
+    });
   }
 
   onChangeHandler(e) {
@@ -121,4 +132,4 @@ const mapStateToProps = state => ({
   ...state.propertyReducer,
 });
 
-export default connect(mapStateToProps, {addProperty})(AddProperty);
+export default connect(mapStateToProps, {createProperty})(AddProperty);
