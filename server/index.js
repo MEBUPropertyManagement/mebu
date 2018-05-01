@@ -16,13 +16,15 @@ const {
   logout,
 } = require(`${__dirname}/controllers/authenticationControllers`);
 
-const {addProperties, getProperty, getProperties} = require(`${__dirname}/controllers/propertiesCtrl`);
+const {addProperties, getProperty, getProperties} = require(`${__dirname}/controllers/propertiesControllers`);
 
-const {addUnit, getUnitById} = require(`${__dirname}/controllers/unitsCtrl`);
+const {addUnit, getUnitById} = require(`${__dirname}/controllers/unitsControllers`);
 
-const {getResidents} = require(`${__dirname}/controllers/residentsCtrl`)
+const {getResidents} = require(`${__dirname}/controllers/residentsControllers`);
 
-const {workOrderByPropertyId} = require(`${__dirname}/controllers/workorderCtrl`)
+const {workOrderByPropertyId, workOrderByResidentId, addWorkOrder} = require(`${__dirname}/controllers/workorderControllers`);
+
+const {addBill, getBillingHistory, getAllUnpaidBills} = require(`${__dirname}/controllers/billsControllers`);
 
 require('dotenv').config();
 
@@ -65,6 +67,12 @@ app.get('/properties/getProperties', getProperties);
 app.get('/residents/getById/:id', getResidents);
 
 app.get('/workorder/getByPropertyId/:id', workOrderByPropertyId);
+app.get('/workorder/getByResidentId/:id', workOrderByResidentId);
+app.post('/workorder/addWorkorder', addWorkOrder);
+
+app.post('/bills/add', addBill);
+app.get('/bills/getBillingHistory', getBillingHistory);
+app.get('/bills/getAllUnpaidBills', getAllUnpaidBills);
 
 app.listen(port, () => {
   console.log(`Listening on Port: ${port}`);
