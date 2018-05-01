@@ -1,0 +1,97 @@
+:root {
+  --landing-bg-color: #1d1d1d;
+  --left-bg-color: rgba(177, 182, 199, 0.7);
+  --left-button-hover-color: rgba(74, 115, 254, 0.3);
+  --right-bg-color: rgba(74, 115, 254, 0.3);
+  --right-button-hover-color: rgba(177, 182, 199, 0.7);
+  --speed: 1000ms;
+}
+.Landing {
+  padding: 0;
+  margin: 0;
+  width: 100vw;
+  height: 100vh;
+  overflow-x: hidden;
+  position: relative;
+  background: var(--landing-bg-color);
+}
+
+.heading-owners,
+.heading-residents {
+  font-size: 4rem;
+  color: #f3f3f3;
+  position: absolute;
+  left: 50%;
+  top: 20%;
+  transform: translateX(-50%);
+  white-space: nowrap;
+}
+
+.landing-button {
+  display: block;
+  position: absolute;
+  left: 50%;
+  top: 40%;
+  height: 2.5rem;
+  width: 10rem;
+  text-align: center;
+  color: #f3f3f3;
+  background: var(--blue);
+  border: var(--blue) solid 0.2rem;
+  font-size: 1rem;
+  font-weight: bold;
+  text-transform: uppercase;
+  text-decoration: none;
+  transform: translateX(-50%);
+  transition: background-color 100ms linear;
+  border-radius: 9999px;
+}
+
+.split {
+  position: absolute;
+  width: 50vw;
+  height: 100%;
+  overflow: hidden;
+}
+
+.landing-button:hover {
+  background: transparent;
+  color: var(--blue);
+}
+
+.Landing_left-owner {
+  left: 0;
+  background: url('../../../images/architecture-2461454_640.jpg') center center
+    no-repeat;
+  background-size: cover;
+  transition: var(--speed) all ease-in-out;
+}
+
+.Landing_left-owner.split:before {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background: var(--left-bg-color);
+  transition: var(--speed) all ease-in-out;
+}
+
+.Landing_right-resident {
+  right: 0;
+  background: url('../../../images/modern-minimalist-lounge-3100785_640.jpg')
+    center center no-repeat;
+  background-size: cover;
+  transition: var(--speed) all ease-in-out;
+}
+
+.Landing_right-resident.split:before {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background: var(--right-bg-color);
+  transition: var(--speed) all ease-in-out;
+}
+
+.Landing_link {
+  color: var(--white);
+  text-decoration: none;
+}

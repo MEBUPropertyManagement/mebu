@@ -1,19 +1,64 @@
-import React from 'react';
+import React, {Component} from 'react';
 import {Link} from 'react-router-dom';
 import './Landing.css';
 
-const Landing = () => (
-  <div className="Landing">
-    This is the landing page.
-    <div className="Landing__links">
-      <Link className="Landing__link Landing__link--owner" to="/login/owner/returning">
-        Owner Login
-      </Link>
-      <Link className="Landing__link Landing__link--resident" to="/">
-        Resident Login
-      </Link>
-    </div>
-  </div>
-);
+class Landing extends Component {
+  constructor() {
+    super();
+    this.state = {
+      left: null,
+      right: null,
+    };
+  }
+  expand(side, otherside) {
+    if (this.state[side] === side) {
+      return {width: '75vw', zIndex: '3'};
+    } else if (this.state[side] === otherside) {
+      return {width: '25vw', opacity: '0.3', zIndex: '2'};
+    }
+    return {width: '50vw'};
+  }
+  size(first, second) {
+    this.setState({[first]: first, [second]: first});
+  }
+  leave() {
+    this.setState({left: null, right: null});
+  }
+  render() {
+    return (
+      <div className="Landing">
+        <div
+          style={this.expand('left', 'right')}
+          onMouseEnter={() => this.size('left', 'right')}
+          onMouseLeave={() => this.leave()}
+          className="Landing_left-owner split"
+        >
+          <h1 className="heading-owners">Owners</h1>
+          <button className="landing-button">
+            <Link
+              className="Link__none Landing_link Landing_link--owner"
+              to="/login/owner/returning"
+            >
+              Login
+            </Link>
+          </button>
+        </div>
+        <div
+          style={this.expand('right', 'left')}
+          onMouseEnter={() => this.size('right', 'left')}
+          onMouseLeave={() => this.leave()}
+          className="Landing_right-resident split"
+        >
+          <h1 className="heading-residents">Residents</h1>
+          <button className="landing-button">
+            <Link className="Link__none Landing_link Landing_link--resident" to="/">
+              Login
+            </Link>
+          </button>
+        </div>
+      </div>
+    );
+  }
+}
 
 export default Landing;
