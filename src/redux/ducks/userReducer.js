@@ -5,12 +5,12 @@ const CREATE_OWNER = 'CREATE_OWNER';
 const LOGIN_RESIDENT = 'LOGIN_RESIDENT';
 const CREATE_RESIDENT = 'CREATE_RESIDENT';
 
-const initiaState = {
+const initialState = {
   current_user: {},
   authenticated: false,
 };
 
-export default function userReducer(state = initiaState, action) {
+export default function userReducer(state = initialState, action) {
   switch (action.type) {
     case `${LOGIN_OWNER}_FULFILLED`:
       return {
@@ -26,14 +26,18 @@ export default function userReducer(state = initiaState, action) {
         authenticated: action.payload.authenticated,
       };
 
-    case LOGIN_RESIDENT:
+    case `${LOGIN_RESIDENT}_FULFILLED`:
       return {
         ...state,
+        current_user: {userid: action.payload.userid, email: action.payload.email},
+        authenticated: action.payload.authenticated,
       };
 
-    case CREATE_RESIDENT:
+    case `${CREATE_RESIDENT}_FULFILLED`:
       return {
         ...state,
+        current_user: {userid: action.payload.userid, email: action.payload.email},
+        authenticated: action.payload.authenticated,
       };
 
     default:
@@ -93,10 +97,7 @@ export function createResident(email, password, firstName, lastName) {
         firstName,
         lastName,
       })
-      .then((response) => {
-        console.log(response);
-        return response.data;
-      })
+      .then(response => response.data)
       .catch(err => err),
   };
 }

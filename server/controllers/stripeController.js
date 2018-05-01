@@ -14,10 +14,10 @@ const stripeCharge = (req, res) => {
     },
     (error, charge) => {
       if (error) {
-        return res.status(200).json({charged: false});
+        return res.status(200).json({charged: false, charge: ''});
       }
       return db
-        .billing_add([req.body.billid])
+        .billing_update([req.body.billid])
         .then(response => res.status(200).json({charged: true, charge}))
         .catch(err => console.log(err));
     },

@@ -6,6 +6,8 @@ import OwnerRegistration from './components/views/OwnerRegistration/OwnerRegistr
 import ResidentLogin from './components/views/ResidentLogin/ResidentLogin';
 import ResidentRegistration from './components/views/ResidentRegistration/ResidentRegistration';
 import Dashboard from './components/views/Dashboard/Dashboard';
+import AddProperty from './components/views/Dashboard/AddProperty/AddProperty';
+import Properties from './components/views/Dashboard/Properties/Properties';
 
 export default (
   <Switch>
@@ -14,6 +16,16 @@ export default (
     <Route path="/login/owner/new" component={OwnerRegistration} />
     <Route path="/login/resident/returning" component={ResidentLogin} />
     <Route path="/login/resident/new" component={ResidentRegistration} />
-    <Route path="/owner/dashboard" component={Dashboard} />
+    <Route
+      path="/owner/dashboard"
+      render={() => (
+        <Dashboard>
+          <Switch>
+            <Route exact path="/owner/dashboard/properties" component={Properties} />
+            <Route path="/owner/dashboard/properties/new" component={AddProperty} />
+          </Switch>
+        </Dashboard>
+      )}
+    />
   </Switch>
 );

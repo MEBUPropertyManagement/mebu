@@ -51,7 +51,10 @@ class Landing extends Component {
         >
           <h1 className="heading-residents">Residents</h1>
           <button className="landing-button">
-            <Link className="Link__none Landing_link Landing_link--resident" to="/">
+            <Link
+              className="Link__none Landing_link Landing_link--resident"
+              to="/login/resident/returning"
+            >
               Login
             </Link>
           </button>
