@@ -43,7 +43,7 @@ const ownerRegistration = (req, res) => {
             req.session.user = {email, userid: response[0].ownerid || 0};
             return res
               .status(200)
-              .json({authentication: true, email, userid: response[0].ownerid || 0});
+              .json({authenticated: true, email, userid: response[0].ownerid || 0});
           }
           return res
             .status(200)
