@@ -2,7 +2,7 @@ import React, {Component} from 'react';
 import {Link} from 'react-router-dom';
 import PropTypes from 'prop-types';
 import {connect} from 'react-redux';
-import {createOwner} from '../../../redux/ducks/users';
+// import {createOwner} from '../../../redux/ducks/userReducer';
 import './OwnerRegistration.css';
 
 class OwnerRegistration extends Component {
@@ -27,7 +27,9 @@ class OwnerRegistration extends Component {
 
   onSubmitHandler(e) {
     e.preventDefault();
-    this.props.register({...this.state});
+    if (this.state.password === this.state.confirmPassword) {
+      // this.props.register({...this.state});
+    }
   }
 
   render() {
@@ -111,4 +113,5 @@ OwnerRegistration.propTypes = {
   register: PropTypes.func.isRequired,
 };
 
-export default connect(null, {createOwner})(OwnerRegistration);
+// export default connect(null, {createOwner})(OwnerRegistration);
+export default OwnerRegistration;
