@@ -8,16 +8,20 @@ const residentRegistration = (req, res) => {
     email, password, firstName, lastName,
   } = req.body;
 
-  bcrypt.genSalt(saltRounds, (err, salt) => {
-    bcrypt.hash(password, salt, (err, hash) => {
+  bcrypt.genSalt(saltRounds, (saltError, salt) => {
+    bcrypt.hash(password, salt, (hashError, hash) => {
       db
         .resident_registration([email, hash, firstName, lastName])
         .then((response) => {
           if (response.length > 0) {
-            req.session.user = email;
-            return res.status(200).json({authentication: true, email});
+            req.session.user = {email, userid: response[0].residentid || 0};
+            return res
+              .status(200)
+              .json({authentication: true, email, userid: response[0].residentid || 0});
           }
-          return res.status(200).json({authenticated: false, email});
+          return res
+            .status(200)
+            .json({authenticated: false, email, userid: response[0].residentid || 0});
         })
         .catch(err => console.log(err));
     });
@@ -30,17 +34,21 @@ const ownerRegistration = (req, res) => {
     email, password, firstName, lastName, companyName,
   } = req.body;
 
-  bcrypt.genSalt(saltRounds, (err, salt) => {
-    bcrypt.hash(password, salt, (err, hash) => {
+  bcrypt.genSalt(saltRounds, (saltError, salt) => {
+    bcrypt.hash(password, salt, (hashError, hash) => {
       db
         .owner_registration([email, hash, firstName, lastName, companyName])
         .then((response) => {
           console.log(response);
           if (response.length > 0) {
-            req.session.user = email;
-            return res.status(200).json({authentication: true, email});
+            req.session.user = {email, userid: response[0].ownerid || 0};
+            return res
+              .status(200)
+              .json({authentication: true, email, userid: response[0].ownerid || 0});
           }
-          return res.status(200).json({authenticated: false, email});
+          return res
+            .status(200)
+            .json({authenticated: false, email, userid: response[0].ownerid || 0});
         })
         .catch(err => console.log(err));
     });
@@ -58,9 +66,13 @@ const residentLogin = (req, res) => {
         const hash = response[0].password;
         bcrypt.compare(password, hash, (err, result) => {
           if (result === true) {
-            return res.status(200).json({authenticated: true, email});
+            return res
+              .status(200)
+              .json({authenticated: true, email, userid: response[0].residentid || 0});
           }
-          return res.status(200).json({authenticated: false, email});
+          return res
+            .status(200)
+            .json({authenticated: false, email, userid: response[0].residentid || 0});
         });
       }
     })
@@ -79,21 +91,26 @@ const ownerLogin = (req, res) => {
         bcrypt.compare(password, hash, (err, result) => {
           console.log(result);
           if (result === true) {
-            return res.status(200).json({authenticated: true, email});
+            return res
+              .status(200)
+              .json({authenticated: true, email, userid: response[0].ownerid || 0});
           }
-          return res.status(200).json({authenticated: false, email});
+          return res
+            .status(200)
+            .json({authenticated: false, email, userid: response[0].ownerid || 0});
         });
       } else {
-        return res.status(200).json({authenticated: false, email});
+        return res
+          .status(200)
+          .json({authenticated: false, email, userid: response[0].ownerid || 0});
       }
     })
     .catch(err => console.log(err));
 };
 
 const logout = (req, res) => {
-  const {email} = req.body;
   req.session.destroy();
-  return res.status(200).json({authenticated: false, email});
+  return res.status(200).json({authenticated: false, email: null});
 };
 
 module.exports = {
