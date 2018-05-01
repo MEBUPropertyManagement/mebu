@@ -1,9 +1,8 @@
 import React, {Component} from 'react';
 import axios from 'axios';
 import {Link, Redirect} from 'react-router-dom';
-import {timingSafeEqual} from 'crypto';
-import {loginOwner} from '../../../redux/ducks/users';
 import {connect} from 'react-redux';
+import {loginOwner} from '../../../redux/ducks/userReducer';
 
 import './OwnerLogin';
 
@@ -14,7 +13,6 @@ class OwnerLogin extends Component {
     this.state = {
       email: '',
       password: '',
-      authenticated: false,
     };
     this.handleChangeEmail = this.handleChangeEmail.bind(this);
   }
@@ -28,6 +26,10 @@ class OwnerLogin extends Component {
   }
 
   render() {
+    if (this.props.authenticated) {
+      this.props.history.push('/');
+    }
+
     return (
       <div>
         This is the owner login page.

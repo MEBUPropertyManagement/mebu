@@ -8,10 +8,10 @@
     "body-parser": "^1.18.2",
     "cors": "^2.8.4",
     "dotenv": "^5.0.1",
-    "e": "0.0.4",
     "express": "^4.16.3",
     "express-session": "^1.15.6",
     "massive": "^4.7.2",
+    "prop-types": "^15.6.1",
     "react": "^16.3.2",
     "react-dom": "^16.3.2",
     "react-redux": "^5.0.7",
@@ -34,5 +34,5 @@
     "eslint-plugin-react": "7.4.0",
     "prettier-eslint": "^8.8.1"
   },
-  "proxy":"http://localhost:3001"
+  "proxy": "http://localhost:3001"
 }
