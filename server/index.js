@@ -16,6 +16,10 @@ const {
   logout,
 } = require(`${__dirname}/controllers/authenticationControllers`);
 
+const {addProperties, getPropertyById} = require(`${__dirname}/controllers/propertiesCtrl`);
+
+const {addUnit} = require(`${__dirname}/controllers/unitsCtrl`);
+
 require('dotenv').config();
 
 const app = express();
@@ -46,6 +50,11 @@ app.post('/users/resident-login', residentLogin);
 app.post('/users/owner-registration', ownerRegistration);
 app.post('/users/owner-login', ownerLogin);
 app.post('/users/logout', logout);
+
+app.post('/unit/add', addUnit);
+
+app.post('/properties/add', addProperties);
+// app.get('/properties/getById', getPropertyById);
 
 app.listen(port, () => {
   console.log(`Listening on Port: ${port}`);
