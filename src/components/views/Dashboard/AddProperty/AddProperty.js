@@ -121,4 +121,4 @@ const mapStateToProps = state => ({
   ...state.propertyReducer,
 });
 
-export default connect(mapStateToProps, {addProperty})(AddProperty);
+export default connect(mapStateToProps, null)(AddProperty);

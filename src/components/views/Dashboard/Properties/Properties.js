@@ -2,7 +2,7 @@ import React, {Component} from 'react';
 import PropertiesTable from './PropertiesTable';
 import './Properties';
 import {connect} from 'react-redux';
-import {getProperties} from '';
+import {getProperties} from '../../../../redux/ducks/propertyReducer';
 import {Link} from 'react-router-dom';
 
 class Properties extends Component {
@@ -15,12 +15,12 @@ class Properties extends Component {
   }
 
   render() {
-    const properties = this.props.properties.map(property => <div />);
+    // const properties = this.props.properties.map(property => <div />);
 
     return (
       <div className="Properties">
         <div className="Properties__form" />
-        <Link className="" to="/owner/dasboard/properties/new" />
+        <Link className="" to="/owner/dasboard/properties/new">
           Add Property
         </Link>
       </div>
