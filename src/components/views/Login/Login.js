@@ -9,7 +9,7 @@ const Login = () => (
       <Link className="Login__link Login__link--owner" to="/login/owner/returning">
         Owner
       </Link>
-      <Link className="Login__link Login__link--resident" to="/">
+      <Link className="Login__link Login__link--resident" to="/login/resident/returning">
         Resident
       </Link>
     </div>
