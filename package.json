@@ -11,6 +11,7 @@
     "express": "^4.16.3",
     "express-session": "^1.15.6",
     "massive": "^4.7.2",
+    "prop-types": "^15.6.1",
     "react": "^16.3.2",
     "react-dom": "^16.3.2",
     "react-redux": "^5.0.7",
