@@ -27,7 +27,7 @@ class OwnerLogin extends Component {
 
   render() {
     if (this.props.authenticated) {
-      this.props.history.push('/');
+      this.props.history.push('/owner/dashboard');
     }
 
     return (

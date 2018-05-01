@@ -78,10 +78,7 @@ export function createOwner(email, password, firstName, lastName, companyName) {
         lastName,
         companyName,
       })
-      .then((response) => {
-        console.log(response);
-        return response.data;
-      })
+      .then(response => response.data)
       .catch(err => err),
   };
 }
