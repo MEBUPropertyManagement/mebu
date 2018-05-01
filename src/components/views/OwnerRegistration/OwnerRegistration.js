@@ -1,9 +1,8 @@
 import React, {Component} from 'react';
 import {Link} from 'react-router-dom';
 import PropTypes from 'prop-types';
-import {createOwner} from '../../../redux/ducks/userReducer';
 import {connect} from 'react-redux';
-// import {createOwner} from '../../../redux/ducks/userReducer';
+import {createOwner} from '../../../redux/ducks/userReducer';
 import './OwnerRegistration.css';
 
 class OwnerRegistration extends Component {
@@ -39,10 +38,8 @@ class OwnerRegistration extends Component {
     } = this.state;
 
     if (this.props.authenticated) {
-      this.props.history.push('/');
+      this.props.history.push('/owner/dashboard');
     }
-
-    console.log(this.props.authenticated);
 
     return (
       <div className="OwnerRegistration">
@@ -130,7 +127,8 @@ class OwnerRegistration extends Component {
 }
 
 OwnerRegistration.propTypes = {
-  register: PropTypes.func.isRequired,
+  createOwner: PropTypes.func.isRequired,
+  authenticated: PropTypes.bool.isRequired,
 };
 
 const mapStateToProps = state => ({
