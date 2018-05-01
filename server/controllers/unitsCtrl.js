@@ -9,6 +9,15 @@ const addUnit = (req, res) => {
     .catch(err => console.log(err));
 };
 
+const getUnitById = (req, res) => {
+  const db = req.app.get('db');
+  db
+    .getUnitById([req.params.id])
+    .then(response => res.status(200).json(response))
+    .catch(err => console.log(err));
+};
+
 module.exports = {
   addUnit,
+  getUnitById,
 };

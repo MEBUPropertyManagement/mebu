@@ -16,9 +16,13 @@ const {
   logout,
 } = require(`${__dirname}/controllers/authenticationControllers`);
 
-const {addProperties, getPropertyById} = require(`${__dirname}/controllers/propertiesCtrl`);
+const {addProperties, getProperty, getProperties} = require(`${__dirname}/controllers/propertiesCtrl`);
 
-const {addUnit} = require(`${__dirname}/controllers/unitsCtrl`);
+const {addUnit, getUnitById} = require(`${__dirname}/controllers/unitsCtrl`);
+
+const {getResidents} = require(`${__dirname}/controllers/residentsCtrl`)
+
+const {workOrderByPropertyId} = require(`${__dirname}/controllers/workorderCtrl`)
 
 require('dotenv').config();
 
@@ -52,9 +56,15 @@ app.post('/users/owner-login', ownerLogin);
 app.post('/users/logout', logout);
 
 app.post('/unit/add', addUnit);
+app.get('/units/getById/:id', getUnitById);
 
 app.post('/properties/add', addProperties);
-// app.get('/properties/getById', getPropertyById);
+app.get('/properties/getProperty/:id', getProperty);
+app.get('/properties/getProperties', getProperties);
+
+app.get('/residents/getById/:id', getResidents);
+
+app.get('/workorder/getByPropertyId/:id', workOrderByPropertyId);
 
 app.listen(port, () => {
   console.log(`Listening on Port: ${port}`);
