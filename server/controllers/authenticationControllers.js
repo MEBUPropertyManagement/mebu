@@ -108,6 +108,7 @@ const ownerLogin = (req, res) => {
     .catch(err => console.log(err));
 };
 
+
 const logout = (req, res) => {
   req.session.destroy();
   return res.status(200).json({authenticated: false, email: null});
