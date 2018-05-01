@@ -18,11 +18,13 @@ class Properties extends Component {
     console.log(this.props);
     const properties =
       this.props.properties[0] && this.props.properties.map(property => 
-        <div>{property.name}</div>
-        <div>{property.address}</div>
-        <div>{property.units}</div>
-        <div>{property.value}</div>
-        <div>{property.expenses}</div>
+        <div>
+          <div>{property.name}</div>
+          <div>{property.address}</div>
+          <div>{property.units}</div>
+          <div>{property.value}</div>
+          <div>{property.expenses}</div>
+        </div>
       );
     console.log(this.props.properties);
 
