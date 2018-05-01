@@ -28,7 +28,6 @@ class AddProperty extends Component {
   }
 
   render() {
-    console.log(this.state);
     const {
       name, address, value, units, expenses, photourl,
     } = this.state;
@@ -119,7 +118,7 @@ class AddProperty extends Component {
 }
 
 const mapStateToProps = state => ({
-  ...state.userReducer,
+  ...state.propertyReducer,
 });
 
 export default connect(mapStateToProps, {addProperty})(AddProperty);
