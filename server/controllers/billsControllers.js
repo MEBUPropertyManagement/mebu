@@ -1,33 +1,33 @@
-const addProperties = (req, res) => {
+const addBill = (req, res) => {
   const db = req.app.get('db');
   const {
-    name, photourl, address, units, value, expenses, ownerid,
+    paid, datepaid, amount, residentid,
   } = req.body;
 
   db
-    .addProperties([name, photourl, address, units, value, expenses, ownerid])
+    .addBill([paid, datepaid, amount, residentid])
     .then(response => res.status(200).json(response))
     .catch(err => console.log(err));
 };
 
-const getProperty = (req, res) => {
+const getBillingHistory = (req, res) => {
   const db = req.app.get('db');
   db
-    .getPropertyById([req.params.id])
+    .getBillingHistory([req.session.user.userid])
     .then(response => res.status(200).json(response))
     .catch(err => console.log(err));
 };
 
-const getProperties = (req, res) => {
+const getAllUnpaidBills = (req, res) => {
   const db = req.app.get('db');
   db
-    .properties_getProperties([req.session.user.userid])
+    .getAllUnpaidBills([req.session.user.userid])
     .then(response => res.status(200).json(response))
     .catch(err => console.log(err));
 };
 
 module.exports = {
-  addProperties,
-  getProperty,
-  getProperties,
+  addBill,
+  getBillingHistory,
+  getAllUnpaidBills,
 };
