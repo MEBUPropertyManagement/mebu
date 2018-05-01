@@ -8,6 +8,7 @@
     "body-parser": "^1.18.2",
     "cors": "^2.8.4",
     "dotenv": "^5.0.1",
+    "e": "0.0.4",
     "express": "^4.16.3",
     "express-session": "^1.15.6",
     "massive": "^4.7.2",
@@ -32,5 +33,6 @@
     "eslint-plugin-jsx-a11y": "^6.0.3",
     "eslint-plugin-react": "7.4.0",
     "prettier-eslint": "^8.8.1"
-  }
+  },
+  "proxy":"http://localhost:3001"
 }
