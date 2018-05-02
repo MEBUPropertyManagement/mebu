@@ -13,18 +13,31 @@ const {
   ownerRegistration,
   residentLogin,
   ownerLogin,
+  addResident,
   logout,
 } = require(`${__dirname}/controllers/authenticationControllers`);
 
-const {addProperties, getProperty, getProperties} = require(`${__dirname}/controllers/propertiesControllers`);
+const {
+  addProperties,
+  getProperty,
+  getProperties,
+} = require(`${__dirname}/controllers/propertiesControllers`);
 
 const {addUnit, getUnitById} = require(`${__dirname}/controllers/unitsControllers`);
 
 const {getResidents} = require(`${__dirname}/controllers/residentsControllers`);
 
-const {workOrderByPropertyId, workOrderByResidentId, addWorkOrder} = require(`${__dirname}/controllers/workorderControllers`);
+const {
+  workOrderByPropertyId,
+  workOrderByResidentId,
+  addWorkOrder,
+} = require(`${__dirname}/controllers/workorderControllers`);
 
-const {addBill, getBillingHistory, getAllUnpaidBills} = require(`${__dirname}/controllers/billsControllers`);
+const {
+  addBill,
+  getBillingHistory,
+  getAllUnpaidBills,
+} = require(`${__dirname}/controllers/billsControllers`);
 
 require('dotenv').config();
 
@@ -55,6 +68,7 @@ app.post('/users/resident-registration', residentRegistration);
 app.post('/users/resident-login', residentLogin);
 app.post('/users/owner-registration', ownerRegistration);
 app.post('/users/owner-login', ownerLogin);
+app.post('/users/add', addResident);
 app.post('/users/logout', logout);
 
 app.post('/unit/add', addUnit);

@@ -1,2 +1,2 @@
 select * from bills 
-WHERE residentid = $1 and paid = "false";
+WHERE residentid = $1 and paid = false;

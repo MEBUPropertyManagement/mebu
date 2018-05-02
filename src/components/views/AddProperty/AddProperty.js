@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
-import {createProperty} from '../../../../redux/ducks/propertyReducer';
+import {createProperty} from '../../../redux/ducks/propertyReducer';
 
 import './AddProperty.css';
 
@@ -32,7 +32,7 @@ class AddProperty extends Component {
       expenses,
       photourl,
     });
-    this.props.history.push('/owner/dashboard/properties');
+    this.props.history.push('/owner/properties');
   }
 
   onChangeHandler(e) {
@@ -46,7 +46,7 @@ class AddProperty extends Component {
 
     return (
       <div>
-        This is the AddProperty route within Dashboard.
+        This is the AddProperty component.
         <form onSubmit={this.onSubmitHandler}>
           <label htmlFor="name">
             Name
