@@ -43,8 +43,9 @@ class OwnerLogin extends Component {
               onChange={e => this.handleChangeEmail(e.target.value)}
             />
           </div>
-          <div className="OwnerLogin__input OwnerLogin__input--password">
+          <div>
             <input
+              className="OwnerLogin__input OwnerLogin__input--password"
               value={this.state.password}
               placeholder="password"
               type="password"
