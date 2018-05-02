@@ -1,3 +1,5 @@
+const moment = require('moment');
+
 const workOrderByPropertyId = (req, res) => {
   const db = req.app.get('db');
   db
@@ -17,10 +19,26 @@ const workOrderByResidentId = (req, res) => {
 const addWorkOrder = (req, res) => {
   const db = req.app.get('db');
   const {
-    datestart, dateend, content, urgency, propertyid, residentid, unitid,
+    content, urgency, propertyid, unitid,
   } = req.body;
   db
-    .addWorkOrder([datestart, dateend, content, urgency, propertyid, residentid, unitid])
+    .addWorkOrder([
+      moment('MM-DD-YYYY'),
+      content,
+      urgency,
+      propertyid,
+      req.session.user.userid,
+      unitid,
+    ])
+    .then(response => res.status(200).json(response))
+    .catch(err => console.log(err));
+};
+
+const closeWorkorder = (req, res) => {
+  const db = req.app.get('db');
+
+  db
+    .addWorkOrder([moment('MM-DD-YYYY'), req.params.id])
     .then(response => res.status(200).json(response))
     .catch(err => console.log(err));
 };
@@ -29,4 +47,5 @@ module.exports = {
   workOrderByPropertyId,
   workOrderByResidentId,
   addWorkOrder,
+  closeWorkorder,
 };
