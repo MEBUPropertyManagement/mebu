@@ -31,34 +31,34 @@ class ResidentLogin extends Component {
     }
 
     return (
-      <div>
+      <div className="ResidentLogin">
         This is the Resident login page.
         <div>
           <input
             value={this.state.email}
             placeholder="email"
-            className=""
+            className="ResidentLogin__input ResidentLogin__input--email"
             type="text"
             onChange={e => this.handleChangeEmail(e.target.value)}
           />
         </div>
         <div>
           <input
+            className="ResidentLogin__input ResidentLogin__input--email"
             value={this.state.password}
             placeholder="password"
-            className=""
             type="password"
             onChange={e => this.handleChangePassword(e.target.value)}
           />
         </div>
         <button
+          className="ResidentLogin__submit"
           value={this.state.redirect}
-          className=""
           onClick={() => this.props.loginResident(this.state.email, this.state.password)}
         >
           Login
         </button>
-        <div>
+        <div className="ResidentLogin__new-user">
           Don't have an account? <Link to="/login/resident/new">Sign Up.</Link>
         </div>
       </div>
