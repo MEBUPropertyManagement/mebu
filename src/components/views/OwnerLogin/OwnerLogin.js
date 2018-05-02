@@ -3,7 +3,7 @@ import {Link} from 'react-router-dom';
 import {connect} from 'react-redux';
 import {loginOwner} from '../../../redux/ducks/userReducer';
 
-import './OwnerLogin';
+import './OwnerLogin.css';
 
 class OwnerLogin extends Component {
   constructor(props) {
@@ -32,34 +32,35 @@ class OwnerLogin extends Component {
 
     return (
       <div className="OwnerLogin">
-        This is the owner login page.
         <div className="logo-container" />
-        <div>
-          <input
-            className="OwnerLogin__input OwnerLogin__input--email"
-            value={this.state.email}
-            placeholder="email"
-            type="text"
-            onChange={e => this.handleChangeEmail(e.target.value)}
-          />
-        </div>
-        <div className="OwnerLogin__input OwnerLogin__input--password">
-          <input
-            value={this.state.password}
-            placeholder="password"
-            type="password"
-            onChange={e => this.handleChangePassword(e.target.value)}
-          />
-        </div>
-        <button
-          className="OwnerLogin__submit"
-          value={this.state.redirect}
-          onClick={() => this.props.loginOwner(this.state.email, this.state.password)}
-        >
-          Login
-        </button>
-        <div className="OwnerLogin__new-user">
-          Don't have an account? <Link to="/login/owner/new">Sign Up.</Link>
+        <div className="login-container">
+          <div>
+            <input
+              className="OwnerLogin__input OwnerLogin__input--email"
+              value={this.state.email}
+              placeholder="email"
+              type="text"
+              onChange={e => this.handleChangeEmail(e.target.value)}
+            />
+          </div>
+          <div className="OwnerLogin__input OwnerLogin__input--password">
+            <input
+              value={this.state.password}
+              placeholder="password"
+              type="password"
+              onChange={e => this.handleChangePassword(e.target.value)}
+            />
+          </div>
+          <button
+            className="OwnerLogin__submit"
+            value={this.state.redirect}
+            onClick={() => this.props.loginOwner(this.state.email, this.state.password)}
+          >
+            Login
+          </button>
+          <div className="OwnerLogin__new-user">
+            Don't have an account? <Link to="/login/owner/new">Sign Up.</Link>
+          </div>
         </div>
       </div>
     );
