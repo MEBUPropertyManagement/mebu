@@ -5,7 +5,13 @@ import OwnerLogin from './components/views/OwnerLogin/OwnerLogin';
 import OwnerRegistration from './components/views/OwnerRegistration/OwnerRegistration';
 import ResidentLogin from './components/views/ResidentLogin/ResidentLogin';
 import ResidentRegistration from './components/views/ResidentRegistration/ResidentRegistration';
+import AddProperty from './components/views/AddProperty/AddProperty';
+import Properties from './components/views/Properties/Properties';
 import Dashboard from './components/views/Dashboard/Dashboard';
+import Property from './components/views/Dashboard/Property/Property';
+import Metrics from './components/views/Dashboard/Metrics/Metrics';
+import Maintenance from './components/views/Dashboard/Maintenance/Maintenance';
+import Settings from './components/views/Dashboard/Settings/Settings';
 
 export default (
   <Switch>
@@ -14,6 +20,20 @@ export default (
     <Route path="/login/owner/new" component={OwnerRegistration} />
     <Route path="/login/resident/returning" component={ResidentLogin} />
     <Route path="/login/resident/new" component={ResidentRegistration} />
-    <Route path="/owner/dashboard" component={Dashboard} />
+    <Route exact path="/owner/properties" component={Properties} />
+    <Route path="/owner/properties/new" component={AddProperty} />
+    <Route
+      path="/owner/dashboard/property/:id"
+      render={() => (
+        <Dashboard>
+          <Switch>
+            <Route exact path="/owner/dashboard/property/:id" component={Property} />
+            <Route path="/owner/dashboard/property/:id/metrics" component={Metrics} />
+            <Route path="/owner/dashboard/property/:id/maintenance" component={Maintenance} />
+            <Route path="/owner/dashboard/property/:id/settings" component={Settings} />
+          </Switch>
+        </Dashboard>
+      )}
+    />
   </Switch>
 );
