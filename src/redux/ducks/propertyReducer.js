@@ -2,6 +2,7 @@ import axios from 'axios';
 
 const CREATE_PROPERTY = 'CREATE_PROPERTY';
 const GET_PROPERTIES = 'GET_PROPERTIES';
+const GET_PROPERTY_BY_ID = 'GET_PROPERTY_BY_ID';
 
 const initialState = {
   properties: [],
@@ -40,6 +41,21 @@ export default function propertyReducer(state = initialState, action) {
         error: false,
       };
 
+    case `${GET_PROPERTY_BY_ID}_PENDING`:
+      return {
+        ...state,
+        loading: true,
+        error: false,
+      };
+
+    case `${GET_PROPERTY_BY_ID}_FULLFILLED`:
+      return {
+        ...state,
+        properties: action.payload,
+        loading: false,
+        error: false,
+      };
+
     default:
       return state;
   }
@@ -67,5 +83,12 @@ export function createProperty(obj) {
         return response.data;
       })
       .catch(err => err),
+  };
+}
+
+export function getPropertyById(id) {
+  return {
+    type: GET_PROPERTY_BY_ID,
+    payload: axios.get('/properties/getProperty/:id', id).then(response => response.data),
   };
 }

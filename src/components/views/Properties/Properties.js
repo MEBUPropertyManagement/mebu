@@ -1,4 +1,6 @@
 import React, {Component} from 'react';
+// import PropertiesTable from './PropertiesTable';
+import './Properties';
 import {connect} from 'react-redux';
 import {Link} from 'react-router-dom';
 import PropertiesTable from './PropertiesTable';
@@ -15,19 +17,19 @@ class Properties extends Component {
   }
 
   render() {
-    console.log(this.props);
     const properties =
       this.props.properties[0] &&
       this.props.properties.map(property => (
-        <div>
-          <div>{property.name}</div>
-          <div>{property.address}</div>
-          <div>{property.units}</div>
-          <div>{property.value}</div>
-          <div>{property.expenses}</div>
-        </div>
+        <Link to={`/owner/dashboard/property/${property.propertyid}`}>
+          <div className="">
+            <div className="">{property.name}</div>
+            <div className="">{property.address}</div>
+            <div className="">{property.units}</div>
+            <div className="">{property.value}</div>
+            <div className="">{property.expenses}</div>
+          </div>
+        </Link>
       ));
-    console.log(this.props.properties);
 
     return (
       <div className="Properties">

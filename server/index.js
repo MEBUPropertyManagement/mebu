@@ -31,6 +31,7 @@ const {
   workOrderByPropertyId,
   workOrderByResidentId,
   addWorkOrder,
+  closeWorkorder,
 } = require(`${__dirname}/controllers/workorderControllers`);
 
 const {
@@ -38,6 +39,8 @@ const {
   getBillingHistory,
   getAllUnpaidBills,
 } = require(`${__dirname}/controllers/billsControllers`);
+
+const {stripeCharge} = require(`${__dirname}/controllers/stripeController`);
 
 require('dotenv').config();
 
@@ -83,8 +86,10 @@ app.get('/residents/getById/:id', getResidents);
 app.get('/workorder/getByPropertyId/:id', workOrderByPropertyId);
 app.get('/workorder/getByResidentId/:id', workOrderByResidentId);
 app.post('/workorder/addWorkorder', addWorkOrder);
+app.post('/workorder/closeWorkorder/:id', closeWorkorder);
 
 app.post('/bills/add', addBill);
+app.post('/bills/pay', stripeCharge);
 app.get('/bills/getBillingHistory', getBillingHistory);
 app.get('/bills/getAllUnpaidBills', getAllUnpaidBills);
 
