@@ -44,6 +44,7 @@ class OwnerLogin extends Component {
         </div>
         <div className="OwnerLogin__input OwnerLogin__input--password">
           <input
+            className="OwnerLogin__input OwnerLogin__input--password"
             value={this.state.password}
             placeholder="password"
             type="password"
