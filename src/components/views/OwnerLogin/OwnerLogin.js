@@ -33,6 +33,7 @@ class OwnerLogin extends Component {
     return (
       <div className="OwnerLogin">
         This is the owner login page.
+        <div className="logo-container" />
         <div>
           <input
             className="OwnerLogin__input OwnerLogin__input--email"
