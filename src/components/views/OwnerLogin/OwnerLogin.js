@@ -57,6 +57,7 @@ class OwnerLogin extends Component {
         >
           Login
         </button>
+        <div className="OwnerLogin__new-user">
           Don't have an account? <Link to="/login/owner/new">Sign Up.</Link>
         </div>
       </div>
