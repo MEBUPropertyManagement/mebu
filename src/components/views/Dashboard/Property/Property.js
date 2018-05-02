@@ -8,19 +8,26 @@ class Property extends Component {
   }
 
   componentDidMount() {
-    this.props.getPropertyById();
+    console.log(this.props);
+    this.props.getPropertyById(this.props.match.params.id);
   }
 
   render() {
-    return (
-      <div>
-        <h1>{this.props.name}</h1>
-        <p>{this.props.address}</p>
-        <p>{this.props.units}</p>
-        <p>{this.props.value}</p>
-        <p>{this.props.expenses}</p>
-      </div>
-    );
+    let property = <p>...loading</p>;
+    if (this.props.selectedProperty[0] && !this.props.loading) {
+      const prop = this.props.selectedProperty[0];
+      property = (
+        <div>
+          <h1>Name: {prop.name}</h1>
+          <p>Address: {prop.address}</p>
+          <p>Units: {prop.units}</p>
+          <p>Value: {prop.value}</p>
+          <p>Expenses: {prop.expenses}</p>
+        </div>
+      );
+    }
+
+    return <div>{property}</div>;
   }
 }
 
