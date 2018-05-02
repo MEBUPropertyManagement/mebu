@@ -31,34 +31,34 @@ class OwnerLogin extends Component {
     }
 
     return (
-      <div>
+      <div className="OwnerLogin">
         This is the owner login page.
         <div>
           <input
+            className="OwnerLogin__input OwnerLogin__input--email"
             value={this.state.email}
             placeholder="email"
-            className=""
             type="text"
             onChange={e => this.handleChangeEmail(e.target.value)}
           />
         </div>
         <div>
           <input
+            className="OwnerLogin__input OwnerLogin__input--password"
             value={this.state.password}
             placeholder="password"
-            className=""
             type="password"
             onChange={e => this.handleChangePassword(e.target.value)}
           />
         </div>
         <button
+          className="OwnerLogin__submit"
           value={this.state.redirect}
-          className=""
           onClick={() => this.props.loginOwner(this.state.email, this.state.password)}
         >
           Login
         </button>
-        <div>
+        <div className="OwnerLogin__new-user">
           Don't have an account? <Link to="/login/owner/new">Sign Up.</Link>
         </div>
       </div>

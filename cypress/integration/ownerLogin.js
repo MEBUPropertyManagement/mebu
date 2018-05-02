@@ -15,18 +15,18 @@ describe('Header Text', () => {
   });
 
   it('Should accept input into the email address field', () => {
-    cy.get('OwnerLogin__input--email').type('aa@aa.com');
+    cy.get('.OwnerLogin__input--email').type('aa@aa.com');
   });
 
   it('Should accept input into the password field', () => {
-    cy.get('OwnerLogin__input--password').type('tailopez');
+    cy.get('.OwnerLogin__input--password').type('tailopez');
   });
 
   it('Should submit the form when the login button is clicked', () => {
-    cy.get('OwnerLogin__submit').click();
+    cy.get('.OwnerLogin__submit').click();
   });
 
   it('Should redirect to a page with a property display class', () => {
-    cy.get('Properties');
+    cy.get('.Properties');
   });
 });
