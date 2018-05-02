@@ -1,9 +1,6 @@
 import React, {Component} from 'react';
-<<<<<<< HEAD:src/components/views/Dashboard/Properties/Properties.js
 // import PropertiesTable from './PropertiesTable';
 import './Properties';
-=======
->>>>>>> 677ae39ba73b69e931535b3345faa13d43579acc:src/components/views/Properties/Properties.js
 import {connect} from 'react-redux';
 import {Link} from 'react-router-dom';
 import PropertiesTable from './PropertiesTable';
@@ -23,26 +20,16 @@ class Properties extends Component {
     const properties =
       this.props.properties[0] &&
       this.props.properties.map(property => (
-<<<<<<< HEAD:src/components/views/Dashboard/Properties/Properties.js
-        <div className="">
-          <div className="">{property.name}</div>
-          <div className="">{property.address}</div>
-          <div className="">{property.units}</div>
-          <div className="">{property.value}</div>
-          <div className="">{property.expenses}</div>
-        </div>
+        <Link to={`/owner/dashboard/property/${property.propertyid}`}>
+          <div className="">
+            <div className="">{property.name}</div>
+            <div className="">{property.address}</div>
+            <div className="">{property.units}</div>
+            <div className="">{property.value}</div>
+            <div className="">{property.expenses}</div>
+          </div>
+        </Link>
       ));
-=======
-        <div>
-          <div>{property.name}</div>
-          <div>{property.address}</div>
-          <div>{property.units}</div>
-          <div>{property.value}</div>
-          <div>{property.expenses}</div>
-        </div>
-      ));
-    console.log(this.props.properties);
->>>>>>> 677ae39ba73b69e931535b3345faa13d43579acc:src/components/views/Properties/Properties.js
 
     return (
       <div className="Properties">

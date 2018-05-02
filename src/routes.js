@@ -13,7 +13,6 @@ import Metrics from './components/views/Dashboard/Metrics/Metrics';
 import Residents from './components/views/Dashboard/Residents/Residents';
 import Maintenance from './components/views/Dashboard/Maintenance/Maintenance';
 import Settings from './components/views/Dashboard/Settings/Settings';
-import Property from './components/views/Dashboard/Property/Property';
 
 export default (
   <Switch>
@@ -29,20 +28,11 @@ export default (
       render={() => (
         <Dashboard>
           <Switch>
-<<<<<<< HEAD
-            <Route exact path="/owner/dashboard/properties" component={Properties} />
-            <Route path="/owner/dashboard/properties/:id" component={Property} />
-            <Route path="/owner/dashboard/properties/new" component={AddProperty} />
-            <Route path="/owner/dashboard/metrics" component={Metrics} />
-            <Route path="/owner/dashboard/maintenance" component={Maintenance} />
-            <Route path="/owner/dashboard/settings" component={Settings} />
-=======
             <Route exact path="/owner/dashboard/property/:id" component={Property} />
             <Route path="/owner/dashboard/property/:id/metrics" component={Metrics} />
             <Route path="/owner/dashboard/property/:id/residents" component={Residents} />
             <Route path="/owner/dashboard/property/:id/maintenance" component={Maintenance} />
             <Route path="/owner/dashboard/property/:id/settings" component={Settings} />
->>>>>>> 677ae39ba73b69e931535b3345faa13d43579acc
           </Switch>
         </Dashboard>
       )}

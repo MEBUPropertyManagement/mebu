@@ -1,12 +1,13 @@
 import React, {Component} from 'react';
+import {getProperties} from '../../../../redux/ducks/propertyReducer';
 
 class Property extends Component {
   constructor(props) {
     super(props);
+  }
 
-    // this.state = {
-    //   property: {},
-    // };
+  componentDidMount() {
+    this.props.getProperties();
   }
 
   render() {
