@@ -34,14 +34,12 @@ class Landing extends Component {
           className="Landing_left-owner split"
         >
           <h1 className="heading-owners">Owners</h1>
-          <button className="">
-            <Link
-              className="landing-button Link__none Landing_link Landing_link--owner"
-              to="/login/owner/returning"
-            >
-              Login
-            </Link>
-          </button>
+          <Link
+            className="landing-button Link__none Landing_link Landing_link--owner"
+            to="/login/owner/returning"
+          >
+            Login
+          </Link>
         </div>
         <div
           style={this.expand('right', 'left')}
@@ -50,14 +48,12 @@ class Landing extends Component {
           className="Landing_right-resident split"
         >
           <h1 className="heading-residents">Residents</h1>
-          <button className="">
-            <Link
-              className="landing-button Link__none Landing_link Landing_link--resident"
-              to="/login/resident/returning"
-            >
-              Login
-            </Link>
-          </button>
+          <Link
+            className="landing-button Link__none Landing_link Landing_link--resident"
+            to="/login/resident/returning"
+          >
+            Login
+          </Link>
         </div>
       </div>
     );
