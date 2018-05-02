@@ -14,8 +14,9 @@ class Property extends Component {
 
   render() {
     let property = <p>...loading</p>;
-    if (this.props.selectedProperty[0] && !this.props.loading) {
-      const prop = this.props.selectedProperty[0];
+    if (this.props.selectedProperty && !this.props.loading) {
+      console.log(this.props.selectedProperty);
+      const prop = this.props.selectedProperty;
       property = (
         <div>
           <h1>Name: {prop.name}</h1>

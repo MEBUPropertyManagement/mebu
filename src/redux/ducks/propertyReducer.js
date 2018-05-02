@@ -6,7 +6,7 @@ const GET_PROPERTY_BY_ID = 'GET_PROPERTY_BY_ID';
 
 const initialState = {
   properties: [],
-  selectedProperty: [],
+  selectedProperty: {},
   loading: false,
   error: false,
 };
@@ -93,8 +93,8 @@ export function getPropertyById(id) {
     payload: axios
       .get(`/properties/getProperty/${id}`)
       .then((response) => {
-        console.log(response.data);
-        return response.data;
+        console.log(response.data.property);
+        return response.data.property;
       })
       .catch(err => err),
   };
