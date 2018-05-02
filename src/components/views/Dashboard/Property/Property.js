@@ -1,12 +1,8 @@
 import React, {Component} from 'react';
-import {getPropertyById} from '../../../../redux/ducks/propertyReducer';
 import {connect} from 'react-redux';
+import {getPropertyById} from '../../../../redux/ducks/propertyReducer';
 
 class Property extends Component {
-  constructor(props) {
-    super(props);
-  }
-
   componentDidMount() {
     console.log(this.props);
     this.props.getPropertyById(this.props.match.params.id);
