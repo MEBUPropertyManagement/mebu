@@ -1,0 +1,55 @@
+.ResidentLogin {
+  display: flex;
+  flex-direction: row;
+  height: 100vh;
+  align-items: center;
+  justify-content: center;
+  align-content: stretch;
+  background-color: var(--white);
+}
+
+.logo-container {
+  width: 45vw;
+  height: 100%;
+  background: url('../../../images/logo2-nobg.png') center center no-repeat;
+  background-color: var(--blue);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.login-container {
+  width: 65vw;
+  height: 75%;
+  align-self: center;
+  margin: 2em;
+  padding: 135px;
+}
+
+.residentlogin-header {
+  padding: 10px;
+}
+
+.ResidentLogin__input.ResidentLogin__input--email,
+.ResidentLogin__input.ResidentLogin__input--email {
+  background: var(--gray);
+  border-radius: 5px 5px 5px 5px;
+  padding: 8px;
+  font-size: 14px;
+  margin: 5px;
+}
+
+.ResidentLogin__submit {
+  background: var(--blue);
+  color: var(--white);
+  border: var(--blue) solid 3px;
+  font-size: 12px;
+  font-weight: bold;
+  text-transform: uppercase;
+  border-radius: 100px;
+  text-align: center;
+  letter-spacing: 1px;
+  line-height: 40px;
+  padding: 0 60px;
+  margin: 5px;
+}
