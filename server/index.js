@@ -5,8 +5,6 @@ const session = require('express-session');
 const massive = require('massive');
 const bCrypt = require('bcrypt');
 
-// const axios = require('axios');
-
 // Authentication Controllers
 const {
   residentRegistration,
@@ -14,6 +12,8 @@ const {
   residentLogin,
   ownerLogin,
   addResident,
+  ownerForgotPassword,
+  residentForgotPassword,
   logout,
 } = require(`${__dirname}/controllers/authenticationControllers`);
 
@@ -72,6 +72,8 @@ app.post('/users/resident-login', residentLogin);
 app.post('/users/owner-registration', ownerRegistration);
 app.post('/users/owner-login', ownerLogin);
 app.post('/users/add', addResident);
+app.post('/users/owner-forgot-password', ownerForgotPassword);
+app.post('/users/resident-forgot-password', residentForgotPassword);
 app.post('/users/logout', logout);
 
 app.post('/unit/add', addUnit);
