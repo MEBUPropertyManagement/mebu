@@ -1,10 +1,8 @@
 import React, {Component} from 'react';
-// import PropertiesTable from './PropertiesTable';
 import './Properties';
 import {connect} from 'react-redux';
 import {Link} from 'react-router-dom';
 import PropertiesTable from './PropertiesTable';
-import './Properties';
 import {getProperties} from '../../../redux/ducks/propertyReducer';
 
 class Properties extends Component {
