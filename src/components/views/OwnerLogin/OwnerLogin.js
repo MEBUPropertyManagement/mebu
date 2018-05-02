@@ -32,9 +32,13 @@ class OwnerLogin extends Component {
 
     return (
       <div className="OwnerLogin">
-        <div className="logo-container" />
+        <div className="logo-container">
+          <h3 className="ownerlogin-logo-header">Owner Portal</h3>
+        </div>
         <div className="login-container">
           <div>
+            <h3 className="ownerlogin-header">Please sign into MEBU.</h3>
+            <p>Enter your details below.</p>
             <input
               className="OwnerLogin__input OwnerLogin__input--email"
               value={this.state.email}
@@ -60,7 +64,10 @@ class OwnerLogin extends Component {
             Login
           </button>
           <div className="OwnerLogin__new-user">
-            Don't have an account? <Link to="/login/owner/new">Sign Up.</Link>
+            Don't have an account?{' '}
+            <Link className="Link__none" to="/login/owner/new">
+              Get Started
+            </Link>
           </div>
         </div>
       </div>
