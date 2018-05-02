@@ -1,0 +1,1 @@
+SELECT * FROM units WHERE units.propertyid = $1 AND units.occupied = true;
