@@ -38,7 +38,7 @@ class OwnerRegistration extends Component {
     } = this.state;
 
     if (this.props.authenticated) {
-      this.props.history.push('/owner/dashboard');
+      this.props.history.push('/owner/properties');
     }
 
     return (

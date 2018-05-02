@@ -10,6 +10,7 @@ import Properties from './components/views/Properties/Properties';
 import Dashboard from './components/views/Dashboard/Dashboard';
 import Property from './components/views/Dashboard/Property/Property';
 import Metrics from './components/views/Dashboard/Metrics/Metrics';
+import Residents from './components/views/Dashboard/Residents/Residents';
 import Maintenance from './components/views/Dashboard/Maintenance/Maintenance';
 import Settings from './components/views/Dashboard/Settings/Settings';
 
@@ -29,6 +30,7 @@ export default (
           <Switch>
             <Route exact path="/owner/dashboard/property/:id" component={Property} />
             <Route path="/owner/dashboard/property/:id/metrics" component={Metrics} />
+            <Route path="/owner/dashboard/property/:id/residents" component={Residents} />
             <Route path="/owner/dashboard/property/:id/maintenance" component={Maintenance} />
             <Route path="/owner/dashboard/property/:id/settings" component={Settings} />
           </Switch>
