@@ -34,9 +34,9 @@ class Landing extends Component {
           className="Landing_left-owner split"
         >
           <h1 className="heading-owners">Owners</h1>
-          <button className="landing-button">
+          <button className="">
             <Link
-              className="Link__none Landing_link Landing_link--owner"
+              className="landing-button Link__none Landing_link Landing_link--owner"
               to="/login/owner/returning"
             >
               Login
@@ -50,9 +50,9 @@ class Landing extends Component {
           className="Landing_right-resident split"
         >
           <h1 className="heading-residents">Residents</h1>
-          <button className="landing-button">
+          <button className="">
             <Link
-              className="Link__none Landing_link Landing_link--resident"
+              className="landing-button Link__none Landing_link Landing_link--resident"
               to="/login/resident/returning"
             >
               Login
