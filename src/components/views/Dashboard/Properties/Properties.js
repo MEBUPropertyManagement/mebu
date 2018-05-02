@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import PropertiesTable from './PropertiesTable';
+// import PropertiesTable from './PropertiesTable';
 import './Properties';
 import {connect} from 'react-redux';
 import {getProperties} from '../../../../redux/ducks/propertyReducer';
@@ -15,18 +15,17 @@ class Properties extends Component {
   }
 
   render() {
-    console.log(this.props);
     const properties =
-      this.props.properties[0] && this.props.properties.map(property => 
-        <div>
-          <div>{property.name}</div>
-          <div>{property.address}</div>
-          <div>{property.units}</div>
-          <div>{property.value}</div>
-          <div>{property.expenses}</div>
+      this.props.properties[0] &&
+      this.props.properties.map(property => (
+        <div className="">
+          <div className="">{property.name}</div>
+          <div className="">{property.address}</div>
+          <div className="">{property.units}</div>
+          <div className="">{property.value}</div>
+          <div className="">{property.expenses}</div>
         </div>
-      );
-    console.log(this.props.properties);
+      ));
 
     return (
       <div className="Properties">
