@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
+import {Link} from 'react-router-dom';
 import {getResidents} from '../../../../redux/ducks/residentReducer';
 
 class Residents extends Component {
@@ -18,7 +19,14 @@ class Residents extends Component {
       ));
     }
 
-    return <div className="Residents">{residentDisplay}</div>;
+    return (
+      <div className="Residents">
+        {residentDisplay}
+        <div className="Residents__button-c">
+          <Link to={`${this.props.location.pathname}/new`}>Add New Resident</Link>
+        </div>
+      </div>
+    );
   }
 }
 
