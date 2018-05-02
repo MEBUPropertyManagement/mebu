@@ -12,14 +12,31 @@ const addProperties = (req, res) => {
 
 const getProperty = (req, res) => {
   const db = req.app.get('db');
+
+  const property = {};
+
   db
     .getPropertyById([req.params.id])
-    .then(response => res.status(200).json(response))
+    .then((propertyResponse) => {
+      property.property = propertyResponse[0];
+      db
+        .properties_occupiedUnits([req.params.id])
+        .then((unitsResponse) => {
+          property.property.occupiedUnits = unitsResponse;
+          property.property.income = unitsResponse.reduce(
+            (accumulator, currentValue) => accumulator + currentValue.rent,
+            0,
+          );
+          return res.status(200).json(property);
+        })
+        .catch(err => console.log(err));
+    })
     .catch(err => console.log(err));
 };
 
 const getProperties = (req, res) => {
   const db = req.app.get('db');
+
   db
     .properties_getProperties([req.session.user.userid])
     .then(response => res.status(200).json(response))
