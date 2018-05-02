@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
-import {getProperties} from '../../../../redux/ducks/propertyReducer';
+import {getPropertyById} from '../../../../redux/ducks/propertyReducer';
+import {connect} from 'react-redux';
 
 class Property extends Component {
   constructor(props) {
@@ -7,7 +8,7 @@ class Property extends Component {
   }
 
   componentDidMount() {
-    this.props.getProperties();
+    this.props.getPropertyById();
   }
 
   render() {
@@ -23,4 +24,8 @@ class Property extends Component {
   }
 }
 
-export default Property;
+const mapStateToProps = state => ({
+  ...state.propertyReducer,
+});
+
+export default connect(mapStateToProps, {getPropertyById})(Property);
