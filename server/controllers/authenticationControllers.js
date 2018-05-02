@@ -151,7 +151,6 @@ const ownerLogin = (req, res) => {
       }));
 };
 
-
 const logout = (req, res) => {
   req.session.destroy();
   return res.status(200).json({authenticated: false, email: null});
@@ -159,7 +158,7 @@ const logout = (req, res) => {
 
 const addResident = (req, res) => {
   const {
-    email, propertyID, unitID, ownerID, firstName, lastName,
+    email, propertyID, unitID, firstName, lastName,
   } = req.body;
 
   const password = rand.generate(6);
@@ -168,17 +167,73 @@ const addResident = (req, res) => {
   bcrypt.genSalt(saltRounds, (saltError, salt) => {
     bcrypt.hash(password, salt, (hashError, hash) => {
       if (hashError) {
-        res.status(200).json({created: false, user: null, error: hashError});
+        res.status(200).json({created: false, user: null, error: `${hashError}`});
       } else {
         hashedPassword = hash;
         const db = req.app.get('db');
         db
-          .resident_add([email, hashedPassword, propertyID, unitID, ownerID, firstName, lastName])
+          .resident_add([
+            email,
+            hashedPassword,
+            propertyID,
+            unitID,
+            req.session.user.userid,
+            firstName,
+            lastName,
+          ])
           .then((response) => {
             registrationEmail(email, password);
             return res.status(200).json({created: true, user: response[0]});
           })
-          .catch(err => res.status(200).json({created: false, user: null, error: err}));
+          .catch(err => res.status(200).json({created: false, user: null, error: `${err}`}));
+      }
+    });
+  });
+};
+
+const residentForgotPassword = (req, res) => {
+  const password = rand.generate(6);
+  const {email} = req.body;
+  let hashedPassword = '';
+
+  bcrypt.genSalt(saltRounds, (saltError, salt) => {
+    bcrypt.hash(password, salt, (hashError, hash) => {
+      if (hashError) {
+        res.status(200).json({updated: false, user: email, error: `${hashError}`});
+      } else {
+        hashedPassword = hash;
+        const db = req.app.get('db');
+        db
+          .resident_forgotPassword([hashedPassword, email])
+          .then((response) => {
+            registrationEmail(response[0].email, password);
+            return res.status(200).json({updated: true, user: response[0]});
+          })
+          .catch(err => res.status(200).json({updated: false, user: email, error: `${err}`}));
+      }
+    });
+  });
+};
+
+const ownerForgotPassword = (req, res) => {
+  const password = rand.generate(6);
+  const {email} = req.body;
+  let hashedPassword = '';
+
+  bcrypt.genSalt(saltRounds, (saltError, salt) => {
+    bcrypt.hash(password, salt, (hashError, hash) => {
+      if (hashError) {
+        res.status(200).json({updated: false, user: email, error: hashError});
+      } else {
+        hashedPassword = hash;
+        const db = req.app.get('db');
+        db
+          .owner_forgotPassword([hashedPassword, email])
+          .then((response) => {
+            registrationEmail(response[0].email, password);
+            return res.status(200).json({updated: true, user: response[0]});
+          })
+          .catch(err => res.status(200).json({updated: false, user: email, error: `${err}`}));
       }
     });
   });
@@ -191,4 +246,6 @@ module.exports = {
   ownerLogin,
   logout,
   addResident,
+  residentForgotPassword,
+  ownerForgotPassword,
 };
