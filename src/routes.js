@@ -1,10 +1,14 @@
 import React from 'react';
 import {Switch, Route} from 'react-router-dom';
+
+// Authentication Routes
 import Landing from './components/views/Landing/Landing';
 import OwnerLogin from './components/views/OwnerLogin/OwnerLogin';
 import OwnerRegistration from './components/views/OwnerRegistration/OwnerRegistration';
 import ResidentLogin from './components/views/ResidentLogin/ResidentLogin';
 import ResidentRegistration from './components/views/ResidentRegistration/ResidentRegistration';
+
+// Owner Dashboard Routes
 import AddProperty from './components/views/AddProperty/AddProperty';
 import Properties from './components/views/Properties/Properties';
 import Dashboard from './components/views/Dashboard/Dashboard';
@@ -15,6 +19,13 @@ import Residents from './components/views/Dashboard/Residents/Residents';
 import Maintenance from './components/views/Dashboard/Maintenance/Maintenance';
 import Settings from './components/views/Dashboard/Settings/Settings';
 import AddResident from './components/views/Dashboard/Residents/AddResident/AddResident';
+
+// Resident Dashboard Routes
+import ResidentContacts from './components/views/Dashboard/ResidentDashboard/Contacts/Contacts';
+import ResidentPayBills from './components/views/Dashboard/ResidentDashboard/Billing/History/BillingHistory';
+import ResidentBillingHistory from './components/views/Dashboard/ResidentDashboard/Billing/Pay/PayBills';
+import ResidentCreateWorkorder from './components/views/Dashboard/ResidentDashboard/Maintenance/CreateWorkorder';
+import ResidentWorkorderHistory from './components/views/Dashboard/ResidentDashboard/Maintenance/WorkorderHistory';
 
 export default (
   <Switch>
@@ -37,6 +48,29 @@ export default (
             <Route path="/owner/dashboard/property/:id/residents/new" component={AddResident} />
             <Route path="/owner/dashboard/property/:id/maintenance" component={Maintenance} />
             <Route path="/owner/dashboard/property/:id/settings" component={Settings} />
+          </Switch>
+        </Dashboard>
+      )}
+    />
+
+    {/* Resident Dashboard Routes */}
+
+    <Route
+      path="/resident/dashboard/"
+      render={() => (
+        <Dashboard>
+          <Switch>
+            <Route exact path="/resident/dashboard/" component={ResidentContacts} />
+            <Route path="/resident/dashboard/billing/pay" component={ResidentPayBills} />
+            <Route path="/resident/dashboard/billing/history" component={ResidentBillingHistory} />
+            <Route
+              path="/resident/dashboard/maintenance/create"
+              component={ResidentCreateWorkorder}
+            />
+            <Route
+              path="/resident/dashboard/maintenance/history"
+              component={ResidentWorkorderHistory}
+            />
           </Switch>
         </Dashboard>
       )}
