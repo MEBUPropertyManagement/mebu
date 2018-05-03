@@ -1,26 +1,31 @@
 import React, {Component} from 'react';
-import {getPropertyById} from '../../../../redux/ducks/propertyReducer';
+import {getWorkorderById} from '../../../../redux/ducks/workorderReducer';
 import {connect} from 'react-redux';
 
 class Maintenance extends Component {
   componentDidMount() {
     console.log(this.props);
-    this.props.getPropertyById(this.props.match.params.id);
+    this.props.getWorkorderById(this.props.match.params.id);
   }
 
   render() {
-    const maintenance = <p>...loading</p>;
-    console.log(this.props.selectedProperty);
+    const workorders =
+      this.props.workorders &&
+      this.props.workorders[0] &&
+      this.props.workorders.map(workorder => (
+        <div>
+          <div>{workorder.content}</div>
+        </div>
+      ));
     return (
       <div>
-        <p>This is the maintenance component.</p>
+        <div>{workorders}</div>
       </div>
     );
   }
 }
-
 const mapStateToProps = state => ({
-  ...state.propertyReducer,
+  ...state.workorderReducer,
 });
 
-export default connect(mapStateToProps, {getPropertyById})(Maintenance);
+export default connect(mapStateToProps, {getWorkorderById})(Maintenance);
