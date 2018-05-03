@@ -67,15 +67,10 @@
   background: var(--gray);
   background-size: 50px 50px;
   opacity: 0;
-  /* filter: alpha(opacity=0); */
   transition: all 0.3s;
   padding-top: 85px;
 }
 
 .Property-card:hover .Properties-imageOverlay {
   opacity: 0.6;
-}
-.Property-card:hover .Properties-imageOverlay .Properties__address,
-.Property-card:hover .Properties-imageOverlay .Properties__units {
-  opacity: 1;
 }
