@@ -1,6 +1,8 @@
-import React, {Component} from 'react';
+import React, {Component, Fragment} from 'react';
+import NewUnit from './NewUnit/NewUnit';
 import {connect} from 'react-redux';
 import {getPropertyById} from '../../../../redux/ducks/propertyReducer';
+import './Units.css';
 
 class Units extends Component {
   componentDidMount() {
@@ -9,22 +11,29 @@ class Units extends Component {
   }
 
   render() {
+    const {selectedProperty, loading} = this.props;
     let property = <p>...loading</p>;
-    if (this.props.selectedProperty && !this.props.loading) {
-      console.log(this.props.selectedProperty);
-      const prop = this.props.selectedProperty;
-      property = (
-        <div>
-          <h1>Name: {prop.name}</h1>
-          <p>Address: {prop.address}</p>
-          <p>Units: {prop.units}</p>
-          <p>Value: {prop.value}</p>
-          <p>Expenses: {prop.expenses}</p>
-        </div>
-      );
+    if (selectedProperty && !loading) {
+      const prop = selectedProperty;
+      property =
+        selectedProperty.occupiedUnits &&
+        selectedProperty.occupiedUnits.map(unit => <NewUnit key={unit.unitid} unit={unit} />);
     }
 
-    return <div>{property}</div>;
+    return (
+      <div className="Units container">
+        <div className="Units__titles">
+          <p>Bath</p>
+          <p>Bed</p>
+          <p>Occupied</p>
+          <p>Rent</p>
+          <p>Roomnum</p>
+          <p>Size</p>
+          <button>Add Unit</button>
+        </div>
+        {property}
+      </div>
+    );
   }
 }
 
