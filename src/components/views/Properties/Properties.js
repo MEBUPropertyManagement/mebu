@@ -1,15 +1,10 @@
 import React, {Component} from 'react';
-import './Properties';
 import {connect} from 'react-redux';
 import {Link} from 'react-router-dom';
-import PropertiesTable from './PropertiesTable';
+import './Properties.css';
 import {getProperties} from '../../../redux/ducks/propertyReducer';
 
 class Properties extends Component {
-  constructor(props) {
-    super(props);
-  }
-
   componentDidMount() {
     this.props.getProperties();
   }
@@ -18,24 +13,26 @@ class Properties extends Component {
     const properties =
       this.props.properties[0] &&
       this.props.properties.map(property => (
-        <Link to={`/owner/dashboard/property/${property.propertyid}`}>
+        <Link key={property.propertyid} to={`/owner/dashboard/property/${property.propertyid}`}>
           <div className="">
-            <div className="">{property.name}</div>
-            <div className="">{property.address}</div>
-            <div className="">{property.units}</div>
-            <div className="">{property.value}</div>
-            <div className="">{property.expenses}</div>
+            <img className="Properties__photo" src={property.photourl} alt="apartment" />
+            <div className="Properties__name">{property.name}</div>
+            <div className="Properties__address">{property.address}</div>
+            <div className="Properties__units">{property.units}</div>
           </div>
         </Link>
       ));
 
     return (
       <div className="Properties">
+        <div className="Properties-navbar">
+          <h2 className="Properties-navbar-header">My Properties</h2>
+          <Link className="Properties-navbar-addProp" to="/owner/properties/new">
+            Add Property
+          </Link>
+        </div>
         <div className="Properties__form" />
         {properties}
-        <Link className="" to="/owner/properties/new">
-          Add Property
-        </Link>
       </div>
     );
   }
