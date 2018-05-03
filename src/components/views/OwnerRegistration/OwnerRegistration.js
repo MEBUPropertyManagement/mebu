@@ -38,86 +38,98 @@ class OwnerRegistration extends Component {
     } = this.state;
 
     if (this.props.authenticated) {
-      this.props.history.push('/owner/dashboard');
+      this.props.history.push('/owner/properties');
     }
 
     return (
       <div className="OwnerRegistration">
-        <div className="OwnerRegistration__form">
-          <form onSubmit={this.onSubmitHandler}>
-            <input
-              className="OwnerRegistration__input OwnerRegistration__input--firstname"
-              onChange={this.onChangeHandler}
-              required
-              placeholder="firstName"
-              name="firstName"
-              maxLength="35"
-              value={firstName}
-              type="text"
-            />
-            <input
-              className="OwnerRegistration__input OwnerRegistration__input--lastname"
-              onChange={this.onChangeHandler}
-              required
-              placeholder="lastName"
-              name="lastName"
-              maxLength="35"
-              value={lastName}
-              type="text"
-            />
-            <input
-              className="OwnerRegistration__input OwnerRegistration__input--companyname"
-              onChange={this.onChangeHandler}
-              placeholder="companyName"
-              name="companyName"
-              value={companyName}
-              type="text"
-            />
-            <input
-              className="OwnerRegistration__input OwnerRegistration__input--email"
-              onChange={this.onChangeHandler}
-              required
-              placeholder="email"
-              name="email"
-              value={email}
-              type="email"
-            />
-            <input
-              className="OwnerRegistration__input OwnerRegistration__input--password"
-              onChange={this.onChangeHandler}
-              required
-              placeholder="password"
-              name="password"
-              value={password}
-              type="password"
-            />
-            <input
-              className="OwnerRegistration__input OwnerRegistration__input--confirmpassword"
-              onChange={this.onChangeHandler}
-              required
-              placeholder="confirmPassword"
-              name="confirmPassword"
-              value={confirmPassword}
-              type="password"
-            />
-            <button
-              onClick={() =>
-                this.props.createOwner(
-                  this.state.email,
-                  this.state.password,
-                  this.state.firstName,
-                  this.state.lastName,
-                  this.state.companyName,
-                )
-              }
-            >
-              Register
-            </button>
-          </form>
+        <div className="logo-container">
+          <h3 className="ownerlogin-logo-header">Owner Registration Portal</h3>
+        </div>
+        <div className="login-container">
+          <h3 className="ownerRegistration-header">
+            To register for an account, <br /> complete the form below.
+          </h3>
+          <div className="OwnerRegistration__form">
+            <form onSubmit={this.onSubmitHandler}>
+              <input
+                className="OwnerRegistration__input OwnerRegistration__input--firstname"
+                onChange={this.onChangeHandler}
+                required
+                placeholder="firstName"
+                name="firstName"
+                maxLength="35"
+                value={firstName}
+                type="text"
+              />
+              <input
+                className="OwnerRegistration__input OwnerRegistration__input--lastname"
+                onChange={this.onChangeHandler}
+                required
+                placeholder="lastName"
+                name="lastName"
+                maxLength="35"
+                value={lastName}
+                type="text"
+              />
+              <input
+                className="OwnerRegistration__input OwnerRegistration__input--companyname"
+                onChange={this.onChangeHandler}
+                placeholder="companyName"
+                name="companyName"
+                value={companyName}
+                type="text"
+              />
+              <input
+                className="OwnerRegistration__input OwnerRegistration__input--email"
+                onChange={this.onChangeHandler}
+                required
+                placeholder="email"
+                name="email"
+                value={email}
+                type="email"
+              />
+              <input
+                className="OwnerRegistration__input OwnerRegistration__input--password"
+                onChange={this.onChangeHandler}
+                required
+                placeholder="password"
+                name="password"
+                value={password}
+                type="password"
+              />
+              <input
+                className="OwnerRegistration__input OwnerRegistration__input--confirmpassword"
+                onChange={this.onChangeHandler}
+                required
+                placeholder="confirmPassword"
+                name="confirmPassword"
+                value={confirmPassword}
+                type="password"
+              />
+              <button
+                className="OwnerRegistration-button"
+                onClick={() =>
+                  this.props.createOwner(
+                    this.state.email,
+                    this.state.password,
+                    this.state.firstName,
+                    this.state.lastName,
+                    this.state.companyName,
+                  )
+                }
+              >
+                Continue
+              </button>
+            </form>
+          </div>
+          <p className="registration-submit-policy">
+            By clicking "Continue" I agree to Mebu's Terms of Service and Privacy Policy.
+          </p>
           <div className="OwnerRegistration__sign-in">
-            Already have an account?{' '}
+            Already have an account with Mebu?{' '}
             <Link className="Link__none" to="/login/owner/returning">
-              Sign In.
+              Sign In
             </Link>
           </div>
         </div>

@@ -2,12 +2,9 @@ import React, {Component} from 'react';
 import {connect} from 'react-redux';
 import {getPropertyById} from '../../../../redux/ducks/propertyReducer';
 
-class Metrics extends Component {
-  constructor(props) {
-    super(props);
-  }
-
+class Units extends Component {
   componentDidMount() {
+    console.log(this.props);
     this.props.getPropertyById(this.props.match.params.id);
   }
 
@@ -18,9 +15,11 @@ class Metrics extends Component {
       const prop = this.props.selectedProperty;
       property = (
         <div>
-          <p>Expenses: {prop.expenses}</p>
+          <h1>Name: {prop.name}</h1>
+          <p>Address: {prop.address}</p>
+          <p>Units: {prop.units}</p>
           <p>Value: {prop.value}</p>
-          <p>Income: {prop.income}</p>
+          <p>Expenses: {prop.expenses}</p>
         </div>
       );
     }
@@ -33,4 +32,4 @@ const mapStateToProps = state => ({
   ...state.propertyReducer,
 });
 
-export default connect(mapStateToProps, {getPropertyById})(Metrics);
+export default connect(mapStateToProps, {getPropertyById})(Units);

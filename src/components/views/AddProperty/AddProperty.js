@@ -32,7 +32,7 @@ class AddProperty extends Component {
       expenses,
       photourl,
     });
-    this.props.history.push('/owner/dashboard/properties');
+    this.props.history.push('/owner/properties');
   }
 
   onChangeHandler(e) {

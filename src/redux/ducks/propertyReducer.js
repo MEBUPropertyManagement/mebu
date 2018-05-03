@@ -2,9 +2,11 @@ import axios from 'axios';
 
 const CREATE_PROPERTY = 'CREATE_PROPERTY';
 const GET_PROPERTIES = 'GET_PROPERTIES';
+const GET_PROPERTY_BY_ID = 'GET_PROPERTY_BY_ID';
 
 const initialState = {
   properties: [],
+  selectedProperty: {},
   loading: false,
   error: false,
 };
@@ -40,6 +42,21 @@ export default function propertyReducer(state = initialState, action) {
         error: false,
       };
 
+    case `${GET_PROPERTY_BY_ID}_PENDING`:
+      return {
+        ...state,
+        loading: true,
+        error: false,
+      };
+
+    case `${GET_PROPERTY_BY_ID}_FULFILLED`:
+      return {
+        ...state,
+        selectedProperty: action.payload,
+        loading: false,
+        error: false,
+      };
+
     default:
       return state;
   }
@@ -57,6 +74,7 @@ export function getProperties() {
       .catch(err => err),
   };
 }
+
 export function createProperty(obj) {
   return {
     type: CREATE_PROPERTY,
@@ -65,6 +83,19 @@ export function createProperty(obj) {
       .then((response) => {
         console.log(response.data);
         return response.data;
+      })
+      .catch(err => err),
+  };
+}
+
+export function getPropertyById(id) {
+  return {
+    type: GET_PROPERTY_BY_ID,
+    payload: axios
+      .get(`/properties/getProperty/${id}`)
+      .then((response) => {
+        console.log(response.data.property);
+        return response.data.property;
       })
       .catch(err => err),
   };
