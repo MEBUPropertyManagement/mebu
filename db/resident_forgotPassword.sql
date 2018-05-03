@@ -1,0 +1,1 @@
+UPDATE residents SET password = $1 WHERE residents.email = $2;
