@@ -74,6 +74,7 @@ export function getProperties() {
       .catch(err => err),
   };
 }
+
 export function createProperty(obj) {
   return {
     type: CREATE_PROPERTY,
