@@ -22,7 +22,8 @@ const getProperty = (req, res) => {
       db
         .properties_occupiedUnits([req.params.id])
         .then((unitsResponse) => {
-          property.property.occupiedUnits = unitsResponse;
+          const sorted = unitsResponse.sort((a, b) => a.roomnum - b.roomnum);
+          property.property.occupiedUnits = sorted;
           property.property.income = unitsResponse.reduce(
             (accumulator, currentValue) => accumulator + currentValue.rent,
             0,
