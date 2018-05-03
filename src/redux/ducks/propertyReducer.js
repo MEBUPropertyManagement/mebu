@@ -3,6 +3,7 @@ import axios from 'axios';
 const CREATE_PROPERTY = 'CREATE_PROPERTY';
 const GET_PROPERTIES = 'GET_PROPERTIES';
 const GET_PROPERTY_BY_ID = 'GET_PROPERTY_BY_ID';
+const ARCHIVE_PROPERTY_BY_ID = 'ARCHIVE_PROPERTY_BY_ID';
 
 const initialState = {
   properties: [],
@@ -57,6 +58,21 @@ export default function propertyReducer(state = initialState, action) {
         error: false,
       };
 
+    case `${ARCHIVE_PROPERTY_BY_ID}_PENDING`:
+      return {
+        ...state,
+        loading: true,
+        error: false,
+      };
+
+    case `${ARCHIVE_PROPERTY_BY_ID}_FULFILLED`:
+      return {
+        ...state,
+        selectedProperty: action.payload,
+        loading: false,
+        error: false,
+      };
+
     default:
       return state;
   }
@@ -67,10 +83,9 @@ export function getProperties() {
     type: GET_PROPERTIES,
     payload: axios
       .get('/properties/getProperties')
-      .then((response) => {
-        console.log(response.data);
-        return response.data;
-      })
+      .then(response =>
+        // console.log(response.data);
+        response.data)
       .catch(err => err),
   };
 }
@@ -80,10 +95,9 @@ export function createProperty(obj) {
     type: CREATE_PROPERTY,
     payload: axios
       .post('/properties/add', obj)
-      .then((response) => {
-        console.log(response.data);
-        return response.data;
-      })
+      .then(response =>
+        // console.log(response.data);
+        response.data)
       .catch(err => err),
   };
 }
@@ -93,6 +107,18 @@ export function getPropertyById(id) {
     type: GET_PROPERTY_BY_ID,
     payload: axios
       .get(`/properties/getProperty/${id}`)
+      .then(response =>
+        // console.log(response.data.property);
+        response.data.property)
+      .catch(err => err),
+  };
+}
+
+export function archivePropertyById(id) {
+  return {
+    type: GET_PROPERTY_BY_ID,
+    payload: axios
+      .put(`/properties/deleteProperty/${id}`)
       .then((response) => {
         console.log(response.data.property);
         return response.data.property;
