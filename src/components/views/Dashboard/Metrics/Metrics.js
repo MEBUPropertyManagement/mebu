@@ -3,10 +3,6 @@ import {connect} from 'react-redux';
 import {getPropertyById} from '../../../../redux/ducks/propertyReducer';
 
 class Metrics extends Component {
-  constructor(props) {
-    super(props);
-  }
-
   componentDidMount() {
     this.props.getPropertyById(this.props.match.params.id);
   }
