@@ -1,15 +1,10 @@
 import React, {Component} from 'react';
-import './Properties';
 import {connect} from 'react-redux';
 import {Link} from 'react-router-dom';
-import PropertiesTable from './PropertiesTable';
+import './Properties.css';
 import {getProperties} from '../../../redux/ducks/propertyReducer';
 
 class Properties extends Component {
-  constructor(props) {
-    super(props);
-  }
-
   componentDidMount() {
     this.props.getProperties();
   }
@@ -18,24 +13,29 @@ class Properties extends Component {
     const properties =
       this.props.properties[0] &&
       this.props.properties.map(property => (
-        <Link to={`/owner/dashboard/property/${property.propertyid}`}>
-          <div className="">
-            <div className="">{property.name}</div>
-            <div className="">{property.address}</div>
-            <div className="">{property.units}</div>
-            <div className="">{property.value}</div>
-            <div className="">{property.expenses}</div>
+        <Link
+          className="Property-card"
+          key={property.propertyid}
+          to={`/owner/dashboard/property/${property.propertyid}`}
+        >
+          <img className="Properties__photo" src={property.photourl} alt="apartment" />
+          <h3 className="Properties__name">{property.name}</h3>
+          <div className="Properties-imageOverlay">
+            <p className="Properties__address">{property.address}</p>
+            <p className="Properties__units">Number of units: {property.units}</p>
           </div>
         </Link>
       ));
 
     return (
       <div className="Properties">
-        <div className="Properties__form" />
-        {properties}
-        <Link className="" to="/owner/properties/new">
-          Add Property
-        </Link>
+        <div className="Properties-navbar">
+          <h2 className="Properties-navbar-header">My Properties</h2> <hr />
+          <Link className="Properties-navbar-addProperty Link__none" to="/owner/properties/new">
+            Add Property
+          </Link>
+        </div>
+        <div className="Properties__all">{properties}</div>
       </div>
     );
   }
