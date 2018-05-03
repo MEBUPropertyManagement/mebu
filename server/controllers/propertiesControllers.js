@@ -44,8 +44,18 @@ const getProperties = (req, res) => {
     .catch(err => console.log(err));
 };
 
+const deleteProperty = (req, res) => {
+  const db = req.app.get('db');
+
+  db
+    .properties_deleteProperty([req.params.id])
+    .then(response => res.status(200).json({deleted: true, propertyid: req.params.id}))
+    .catch(err => res.status(200).json({deleted: false, err}));
+};
+
 module.exports = {
   addProperties,
   getProperty,
   getProperties,
+  deleteProperty,
 };
