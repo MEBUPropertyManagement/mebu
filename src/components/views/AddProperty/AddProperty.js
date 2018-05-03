@@ -122,7 +122,7 @@ class AddProperty extends Component {
               type="number"
             />
           </label>
-          <button>Add Property</button>
+          <button className="AddProperty__button">Add Property</button>
         </form>
       </div>
     );

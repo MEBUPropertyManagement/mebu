@@ -1,4 +1,4 @@
-describe('Header Text', () => {
+describe('Owner Login', () => {
   it('Should have a clickable owner login button', () => {
     cy
       .visit('http://localhost:3000/')
