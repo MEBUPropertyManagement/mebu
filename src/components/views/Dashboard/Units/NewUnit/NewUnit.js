@@ -1,4 +1,5 @@
 import React, {Component, Fragment} from 'react';
+import axios from 'axios';
 import './NewUnit.css';
 
 class NewUnit extends Component {
@@ -8,11 +9,8 @@ class NewUnit extends Component {
       bath: this.props.unit.bath,
       bed: this.props.unit.bed,
       occupied: this.props.unit.occupied,
-      propertyid: this.props.unit.propertyid,
       rent: this.props.unit.rent,
       roomnum: this.props.unit.roomnum,
-      size: this.props.unit.size,
-      unitid: this.props.unit.unitid,
       editing: this.props.unit.editing,
     };
 
@@ -25,15 +23,30 @@ class NewUnit extends Component {
   }
 
   onEditHandler() {
-    // if(this.state.editing) {
-    //   axios.post
-    // }
+    if (this.state.editing) {
+      const {propertyid, unitid, size} = this.props.unit;
+      axios.post('/unit/update', {
+        ...this.state, propertyid, unitid, size,
+      }).then((response) => {
+        console.log('response.data: ', response.data);
+        const {
+          bath, bed, occupied, rent, roomnum,
+        } = response.data[0];
+        this.setState({
+          bath,
+          bed,
+          occupied,
+          rent,
+          roomnum,
+        });
+      });
+    }
     this.setState(prevState => ({editing: !prevState.editing}));
   }
 
   render() {
     const {
-      bath, bed, occupied, propertyid, rent, roomnum, size, unitid,
+      bath, bed, occupied, rent, roomnum, size,
     } = this.props.unit;
 
     const {editing} = this.state;
@@ -46,7 +59,6 @@ class NewUnit extends Component {
           required
           onChange={this.onChangeHandler}
           name="bath"
-          zz
           type="number"
         />
         <input
@@ -66,14 +78,6 @@ class NewUnit extends Component {
           type="text"
         />
         <input
-          value={this.state.propertyid || propertyid}
-          className="NewUnit__input"
-          required
-          onChange={this.onChangeHandler}
-          name="propertyid"
-          type="text"
-        />
-        <input
           value={this.state.rent || rent}
           className="NewUnit__input"
           required
@@ -89,33 +93,16 @@ class NewUnit extends Component {
           name="roomnum"
           type="number"
         />
-        <input
-          value={this.state.size || size}
-          className="NewUnit__input"
-          required
-          onChange={this.onChangeHandler}
-          name="size"
-          type="number"
-        />
-        <input
-          value={this.state.unitid || unitid}
-          className="NewUnit__input"
-          required
-          onChange={this.onChangeHandler}
-          name="unitid"
-          type="number"
-        />
+        <p>{size}</p>
       </Fragment>
     ) : (
       <Fragment>
         <p>{bath}</p>
         <p>{bed}</p>
         <p>{occupied ? 'Yes' : 'No'}</p>
-        <p>{propertyid}</p>
         <p>{rent}</p>
         <p>{roomnum}</p>
         <p>{size}</p>
-        <p>{unitid}</p>
       </Fragment>
     );
 

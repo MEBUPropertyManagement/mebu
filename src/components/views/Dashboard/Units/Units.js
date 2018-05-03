@@ -26,11 +26,9 @@ class Units extends Component {
           <p>Bath</p>
           <p>Bed</p>
           <p>Occupied</p>
-          <p>PropertyID</p>
           <p>Rent</p>
           <p>Roomnum</p>
           <p>Size</p>
-          <p>UnitID</p>
         </div>
         {property}
       </div>
