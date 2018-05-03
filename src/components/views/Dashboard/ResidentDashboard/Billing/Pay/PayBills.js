@@ -20,25 +20,26 @@ class PayBills extends Component {
 
   onToken(token) {
     axios
-    .post('/bills/pay', {
-      amount: this.state.amount,
-      stripeToken: token,
-      billid: this.state.billid,
-      // email: this.props.user.email,
-    })
-    .then(res => console.log(res)) // call to reducer to update the page
-    .catch(err => console.log(err));
+      .post('/bills/pay', {
+        amount: this.state.amount,
+        stripeToken: token,
+        billid: this.state.billid,
+        // email: this.props.user.email,
+      })
+      .then(res => console.log(res)) // call to reducer to update the page
+      .catch(err => console.log(err));
   }
 
   render() {
     return (
-      <StripeCheckout
-        token={this.onToken}
-        stripeKey="pk_test_iueyBCm4l0DmYEeCjwFL51iY"
-        amount={this.state.amount}
-        name={} // name from redux
-        email={} // email from redux
-      />
+      <div>Placeholder Text</div>
+      // <StripeCheckout
+      //   token={this.onToken}
+      //   stripeKey="pk_test_iueyBCm4l0DmYEeCjwFL51iY"
+      //   amount={this.state.amount}
+      //   name={} // name from redux
+      //   email={} // email from redux
+      // />
     );
   }
 }
