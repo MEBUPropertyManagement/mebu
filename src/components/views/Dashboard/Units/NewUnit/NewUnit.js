@@ -25,6 +25,9 @@ class NewUnit extends Component {
   }
 
   onEditHandler() {
+    // if(this.state.editing) {
+    //   axios.post
+    // }
     this.setState(prevState => ({editing: !prevState.editing}));
   }
 
@@ -43,6 +46,7 @@ class NewUnit extends Component {
           required
           onChange={this.onChangeHandler}
           name="bath"
+          zz
           type="number"
         />
         <input
@@ -106,7 +110,7 @@ class NewUnit extends Component {
       <Fragment>
         <p>{bath}</p>
         <p>{bed}</p>
-        <p>{occupied}</p>
+        <p>{occupied ? 'Yes' : 'No'}</p>
         <p>{propertyid}</p>
         <p>{rent}</p>
         <p>{roomnum}</p>

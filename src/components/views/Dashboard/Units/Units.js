@@ -20,7 +20,21 @@ class Units extends Component {
         selectedProperty.occupiedUnits.map(unit => <NewUnit key={unit.unitid} unit={unit} />);
     }
 
-    return <div className="Units container">{property}</div>;
+    return (
+      <div className="Units container">
+        <div className="Units__titles">
+          <p>Bath</p>
+          <p>Bed</p>
+          <p>Occupied</p>
+          <p>PropertyID</p>
+          <p>Rent</p>
+          <p>Roomnum</p>
+          <p>Size</p>
+          <p>UnitID</p>
+        </div>
+        {property}
+      </div>
+    );
   }
 }
 
