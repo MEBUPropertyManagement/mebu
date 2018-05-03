@@ -2,7 +2,7 @@ import React, {Component} from 'react';
 import {connect} from 'react-redux';
 import {getPropertyById} from '../../../../redux/ducks/propertyReducer';
 
-class Property extends Component {
+class Units extends Component {
   componentDidMount() {
     console.log(this.props);
     this.props.getPropertyById(this.props.match.params.id);
@@ -32,4 +32,4 @@ const mapStateToProps = state => ({
   ...state.propertyReducer,
 });
 
-export default connect(mapStateToProps, {getPropertyById})(Property);
+export default connect(mapStateToProps, {getPropertyById})(Units);
