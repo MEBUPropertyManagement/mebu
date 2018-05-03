@@ -23,7 +23,7 @@ const {
   getProperties,
 } = require(`${__dirname}/controllers/propertiesControllers`);
 
-const {addUnit, getUnitById} = require(`${__dirname}/controllers/unitsControllers`);
+const {addUnit, getUnitById, updateUnit} = require(`${__dirname}/controllers/unitsControllers`);
 
 const {getResidents} = require(`${__dirname}/controllers/residentsControllers`);
 
@@ -77,6 +77,7 @@ app.post('/users/resident-forgot-password', residentForgotPassword);
 app.post('/users/logout', logout);
 
 app.post('/unit/add', addUnit);
+app.post('/unit/update', updateUnit);
 app.get('/units/getById/:id', getUnitById);
 
 app.post('/properties/add', addProperties);

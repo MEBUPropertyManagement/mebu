@@ -17,7 +17,19 @@ const getUnitById = (req, res) => {
     .catch(err => console.log(err));
 };
 
+const updateUnit = (req, res) => {
+  const db = req.app.get('db');
+  const {
+    unitid, size, occupied, bed, bath, roomnum, propertyid, rent,
+  } = req.body;
+  db
+    .unit_update([unitid, size, occupied, bed, bath, roomnum, propertyid, rent])
+    .then(response => res.status(200).json(response))
+    .catch(err => console.log(err));
+};
+
 module.exports = {
   addUnit,
   getUnitById,
+  updateUnit,
 };
