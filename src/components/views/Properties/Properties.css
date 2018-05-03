@@ -3,15 +3,35 @@
   margin: 0 auto;
 }
 
+.Properties-navbar {
+  background: var(--blue);
+  padding: 30px;
+}
+
+.Properties-navbar-header {
+  color: var(--white);
+  margin-top: 8vh;
+}
+
+.Properties-navbar-addProperty {
+  color: var(--white);
+}
+
 .Properties__all {
   display: flex;
-  box-sizing: border-box;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: stretch;
+  align-content: stretch;
+  margin-top: 8vh;
 }
 
 .Property-card {
   margin: 12px;
   box-shadow: 0 1px 4px rgba(0, 0, 0, 0, 0.4);
   border: none;
+  width: 300px;
   color: var(--black);
   background-color: var(--white);
   text-decoration: none;
@@ -22,7 +42,7 @@
 }
 
 .Properties__name {
-  padding: 15px;
+  padding: 20px;
 }
 
 .Properties__photo {
@@ -72,5 +92,5 @@
 }
 
 .Property-card:hover .Properties-imageOverlay {
-  opacity: 0.6;
+  opacity: 0.8;
 }

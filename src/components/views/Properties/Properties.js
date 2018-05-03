@@ -30,8 +30,8 @@ class Properties extends Component {
     return (
       <div className="Properties">
         <div className="Properties-navbar">
-          <h2 className="Properties-navbar-header">My Properties</h2>
-          <Link className="Properties-navbar-addProperty" to="/owner/properties/new">
+          <h2 className="Properties-navbar-header">My Properties</h2> <hr />
+          <Link className="Properties-navbar-addProperty Link__none" to="/owner/properties/new">
             Add Property
           </Link>
         </div>
