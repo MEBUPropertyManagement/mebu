@@ -14,7 +14,12 @@ class Maintenance extends Component {
       this.props.workorders[0] &&
       this.props.workorders.map(workorder => (
         <div>
-          <div>{workorder.content}</div>
+          <div>Work order ID: {workorder.workorderid}</div>
+          <div>Resident First Name: {workorder.firstname}</div>
+          <div>Resident last Name: {workorder.lastname}</div>
+          <div>Unit ID: {workorder.unitid}</div>
+          <div>Work order ID: {workorder.workorderid}</div>
+          <div>Content: {workorder.content}</div>
         </div>
       ));
     return (
