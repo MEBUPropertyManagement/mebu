@@ -8,22 +8,44 @@ class Units extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      adding: false,
+      newUnits: [],
     };
-    this.onClickHandler = this.onClickHandler.bind(this);
+    this.onAddHandler = this.onAddHandler.bind(this);
+    this.onRemoveHandler = this.onRemoveHandler.bind(this);
   }
   componentDidMount() {
     console.log(this.props);
     this.props.getPropertyById(this.props.match.params.id);
   }
 
-  onClickHandler() {
-    this.setState({adding: true});
+  onAddHandler() {
+    const arrCopy = this.state.newUnits.slice();
+    arrCopy.push(<NewUnit
+      creating
+      editing
+      unit={{
+          bath: 0,
+          bed: 0,
+          occupied: true,
+          rent: 0,
+          roomnum: 0,
+          size: 0,
+        }}
+    />);
+    this.setState({newUnits: arrCopy});
+  }
+
+  onRemoveHandler() {
+    if (this.state.newUnits.length > 0) {
+      const arrCopy = this.state.newUnits.slice();
+      arrCopy.pop();
+      this.setState({newUnits: arrCopy});
+    }
   }
 
   render() {
     const {selectedProperty, loading} = this.props;
-    const {adding} = this.state;
+    const {newUnits} = this.state;
     let property = <p>...loading</p>;
     if (selectedProperty && !loading) {
       const prop = selectedProperty;
@@ -34,6 +56,23 @@ class Units extends Component {
         ));
     }
 
+    const newUnitDisplay =
+      newUnits.length > 0 &&
+      newUnits.map(newUnit => (
+        <NewUnit
+          creating
+          editing
+          unit={{
+            bath: 0,
+            bed: 0,
+            occupied: true,
+            rent: 0,
+            roomnum: 0,
+            size: 0,
+          }}
+        />
+      ));
+
     return (
       <div className="Units container">
         <div className="Units__titles">
@@ -43,22 +82,12 @@ class Units extends Component {
           <p>Rent</p>
           <p>Roomnum</p>
           <p>Size</p>
-          <button onClick={this.onClickHandler}>Add Unit</button>
+          <div>
+            <button onClick={this.onAddHandler}>Add</button>
+            <button onClick={this.onRemoveHandler}>Remove</button>
+          </div>
         </div>
-        {adding && (
-          <NewUnit
-            creating
-            editing
-            unit={{
-              bath: 0,
-              bed: 0,
-              occupied: true,
-              rent: 0,
-              roomnum: 0,
-              size: 0,
-            }}
-          />
-        )}
+        {newUnitDisplay}
         {property}
       </div>
     );

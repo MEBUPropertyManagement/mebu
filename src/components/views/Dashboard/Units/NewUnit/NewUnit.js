@@ -51,13 +51,7 @@ class NewUnit extends Component {
       const propertyid = this.props.unit.propertyid
         ? this.props.unit.propertyid
         : this.state.propertyid;
-      console.log('this.state.propertyid: ', this.state.propertyid);
       const unitid = this.props.unit.unitid ? this.props.unit.unitid : this.state.unitid;
-      console.log('this.state.unitid: ', this.state.unitid);
-      // const {propertyid, unitid} = this.props.unit || this.state;
-      console.log('unitid: ', unitid);
-      console.log('propertyid: ', propertyid);
-
       axios
         .post('/unit/update', {
           ...this.state,
