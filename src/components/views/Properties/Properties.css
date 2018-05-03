@@ -1,11 +1,16 @@
 .Properties {
   display: flex;
   margin: 0 auto;
+  padding-left: 250px;
 }
 
 .Properties-navbar {
   background: var(--blue);
   padding: 30px;
+  position: fixed;
+  left: 0;
+  height: 100vh;
+  width: 250px;
 }
 
 .Properties-navbar-header {
