@@ -13,12 +13,16 @@ class Properties extends Component {
     const properties =
       this.props.properties[0] &&
       this.props.properties.map(property => (
-        <Link key={property.propertyid} to={`/owner/dashboard/property/${property.propertyid}`}>
-          <div className="">
-            <img className="Properties__photo" src={property.photourl} alt="apartment" />
-            <div className="Properties__name">{property.name}</div>
-            <div className="Properties__address">{property.address}</div>
-            <div className="Properties__units">{property.units}</div>
+        <Link
+          className="Property-card"
+          key={property.propertyid}
+          to={`/owner/dashboard/property/${property.propertyid}`}
+        >
+          <img className="Properties__photo" src={property.photourl} alt="apartment" />
+          <h3 className="Properties__name">{property.name}</h3>
+          <div className="Properties-imageOverlay">
+            <p className="Properties__address">{property.address}</p>
+            <p className="Properties__units">Number of units: {property.units}</p>
           </div>
         </Link>
       ));
@@ -27,12 +31,11 @@ class Properties extends Component {
       <div className="Properties">
         <div className="Properties-navbar">
           <h2 className="Properties-navbar-header">My Properties</h2>
-          <Link className="Properties-navbar-addProp" to="/owner/properties/new">
+          <Link className="Properties-navbar-addProperty" to="/owner/properties/new">
             Add Property
           </Link>
         </div>
-        <div className="Properties__form" />
-        {properties}
+        <div className="Properties__all">{properties}</div>
       </div>
     );
   }
