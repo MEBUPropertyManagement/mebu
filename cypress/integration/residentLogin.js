@@ -1,4 +1,4 @@
-describe('Header Text', () => {
+describe('Resident Login', () => {
   it('Should have a clickable resident login button', () => {
     cy
       .visit('http://localhost:3000/')
