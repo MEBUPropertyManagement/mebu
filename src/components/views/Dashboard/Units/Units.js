@@ -29,6 +29,7 @@ class Units extends Component {
           <p>Rent</p>
           <p>Roomnum</p>
           <p>Size</p>
+          <button>Add Unit</button>
         </div>
         {property}
       </div>
