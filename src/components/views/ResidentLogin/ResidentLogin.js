@@ -62,6 +62,9 @@ class ResidentLogin extends Component {
           >
             Login
           </button>
+          <div>
+            <Link to="/forgotpassword">Forgot Password?</Link>
+          </div>
           <div className="ResidentLogin__new-user">
             Don't have an account?{' '}
             <Link className="Link__none" to="/login/resident/new">
