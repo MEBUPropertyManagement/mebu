@@ -1,6 +1,8 @@
 import React, {Component, Fragment} from 'react';
 import {withRouter} from 'react-router-dom';
+import {connect} from 'react-redux';
 import axios from 'axios';
+import {getPropertyById} from '../../../../../redux/ducks/propertyReducer';
 import './NewUnit.css';
 
 class NewUnit extends Component {
@@ -37,20 +39,7 @@ class NewUnit extends Component {
       axios
         .post('/unit/add', {...this.state, propertyid: this.props.match.params.id})
         .then((response) => {
-          const {
-            bath, bed, occupied, rent, roomnum, size, unitid, propertyid,
-          } = response.data[0];
-          this.setState({
-            bath,
-            bed,
-            occupied,
-            rent,
-            roomnum,
-            size,
-            propertyid,
-            unitid,
-            creating: false,
-          });
+          this.props.getPropertyById(response.data[0].propertyid);
           // if (index >= 0) {
           //   console.log('deleted index: ', index);
           //   this.props.remove(index);
@@ -68,24 +57,25 @@ class NewUnit extends Component {
           unitid,
         })
         .then((response) => {
-          const {
-            bath, bed, occupied, rent, roomnum, size,
-          } = response.data[0];
-          this.setState({
-            bath,
-            bed,
-            rent,
-            roomnum,
-            size,
-            occupied,
-          });
+          // const {
+          //   bath, bed, occupied, rent, roomnum, size,
+          // } = response.data[0];
+          this.props.getPropertyById(response.data[0].propertyid);
+          // this.setState({
+          //   bath,
+          //   bed,
+          //   rent,
+          //   roomnum,
+          //   size,
+          //   occupied,
+          // });
           // if (index >= 0) {
           //   console.log('deleted index: ', index);
           //   this.props.remove(index);
           // }
         });
     }
-    this.setState(prevState => ({editing: !prevState.editing}));
+    this.setState(prevState => ({editing: this.state.creating ? true : !prevState.editing}));
   }
 
   render() {
@@ -115,13 +105,6 @@ class NewUnit extends Component {
           name="bed"
           type="number"
         />
-        {/* <input
-          checked={this.state.occupied}
-          className="NewUnit__input"
-          onChange={this.onChangeHandler}
-          name="occupied"
-          type="checkbox"
-        /> */}
         <input
           checked={this.state.occupied}
           className="NewUnit__input"
@@ -185,4 +168,4 @@ class NewUnit extends Component {
   }
 }
 
-export default withRouter(NewUnit);
+export default withRouter(connect(null, {getPropertyById})(NewUnit));

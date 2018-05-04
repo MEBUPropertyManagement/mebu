@@ -40,7 +40,8 @@ class ResidentLogin extends Component {
               value={this.state.email}
               placeholder="email"
               className="ResidentLogin__input ResidentLogin__input--email"
-              type="text"
+              type="email"
+              required
               onChange={e => this.handleChangeEmail(e.target.value)}
             />
           </div>
@@ -50,6 +51,7 @@ class ResidentLogin extends Component {
               value={this.state.password}
               placeholder="password"
               type="password"
+              required
               onChange={e => this.handleChangePassword(e.target.value)}
             />
           </div>
