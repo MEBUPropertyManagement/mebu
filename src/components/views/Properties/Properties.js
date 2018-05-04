@@ -1,12 +1,25 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
-import {Link} from 'react-router-dom';
+import axios from 'axios';
+import {Link, withRouter} from 'react-router-dom';
 import './Properties.css';
 import {getProperties} from '../../../redux/ducks/propertyReducer';
+import {logoutUser} from '../../../redux/ducks/userReducer';
 
 class Properties extends Component {
   componentDidMount() {
     this.props.getProperties();
+  }
+
+  onLogout() {
+    console.log('logging out!');
+    axios
+      .get('/users/logout')
+      .then((response) => {
+        this.props.logoutUser();
+        return this.props.history.push('/');
+      })
+      .catch(err => console.log(err));
   }
 
   render() {
@@ -35,7 +48,7 @@ class Properties extends Component {
             Add Property
           </Link>
           <div>
-            <button>Logout</button>
+            <button onClick={() => this.onLogout()}>Logout</button>
           </div>
         </div>
         <div className="Properties__all">{properties}</div>
@@ -48,4 +61,4 @@ const mapStateToProps = state => ({
   ...state.propertyReducer,
 });
 
-export default connect(mapStateToProps, {getProperties})(Properties);
+export default withRouter(connect(mapStateToProps, {getProperties, logoutUser})(Properties));
