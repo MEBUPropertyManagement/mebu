@@ -1,13 +1,11 @@
 import React, {Component, Fragment} from 'react';
 import {connect} from 'react-redux';
-import {getResidents} from '../../../../../redux/ducks/residentReducer';
+import {getResidentsByUnitId} from '../../../../../redux/ducks/residentReducer';
 import './ResidentsByUnit.css';
 
 class ResidentsByUnit extends Component {
   componentDidMount() {
-    console.log(this.props.match.params.id);
-    console.log(this.props.match.params.unitid);
-    this.props.getResidents(this.props.match.params.id);
+    this.props.getResidentsByUnitId(this.props.match.params.unitid);
   }
 
   render() {
@@ -39,5 +37,5 @@ class ResidentsByUnit extends Component {
 
 const mapStateToProps = state => ({...state.residentReducer});
 
-export default connect(mapStateToProps, {getResidents})(ResidentsByUnit);
+export default connect(mapStateToProps, {getResidentsByUnitId})(ResidentsByUnit);
 // export default connect(mapStateToProps, {getResidentsByUnitId})(ResidentsByUnit);
