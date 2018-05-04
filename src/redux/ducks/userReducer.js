@@ -4,6 +4,7 @@ const LOGIN_OWNER = 'LOGIN_OWNER';
 const CREATE_OWNER = 'CREATE_OWNER';
 const LOGIN_RESIDENT = 'LOGIN_RESIDENT';
 const CREATE_RESIDENT = 'CREATE_RESIDENT';
+const LOGOUT_USER = 'LOGOUT_USER';
 
 const initialState = {
   current_user: {},
@@ -40,6 +41,13 @@ export default function userReducer(state = initialState, action) {
         authenticated: action.payload.authenticated,
       };
 
+    case `${LOGOUT_USER}`:
+      return {
+        ...state,
+        current_user: {userid: action.payload, email: action.payload},
+        authenticated: false,
+      };
+
     default:
       return state;
   }
@@ -68,6 +76,13 @@ export function loginResident(email, password) {
       })
       .then(response => response.data)
       .catch(err => err),
+  };
+}
+
+export function logoutUser() {
+  return {
+    type: LOGOUT_USER,
+    payload: '',
   };
 }
 
