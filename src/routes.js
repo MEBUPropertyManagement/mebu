@@ -1,5 +1,6 @@
 import React from 'react';
 import {Switch, Route} from 'react-router-dom';
+import App from './App';
 
 // Authentication Routes
 import Landing from './components/views/Landing/Landing';
@@ -7,6 +8,7 @@ import OwnerLogin from './components/views/OwnerLogin/OwnerLogin';
 import OwnerRegistration from './components/views/OwnerRegistration/OwnerRegistration';
 import ResidentLogin from './components/views/ResidentLogin/ResidentLogin';
 import ResidentRegistration from './components/views/ResidentRegistration/ResidentRegistration';
+import ForgotPassword from './components/views/ForgotPassword/ForgotPassword';
 
 // Owner Dashboard Routes
 import AddProperty from './components/views/AddProperty/AddProperty';
@@ -36,6 +38,7 @@ export default (
     <Route path="/login/resident/new" component={ResidentRegistration} />
     <Route exact path="/owner/properties" component={Properties} />
     <Route path="/owner/properties/new" component={AddProperty} />
+    <Route path="/forgotpassword" component={ForgotPassword} />
     <Route
       path="/owner/dashboard/property/:id"
       render={() => (
