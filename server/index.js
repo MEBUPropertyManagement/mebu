@@ -30,7 +30,7 @@ const {
 const {addUnit, getUnit, updateUnit} = require('./controllers/unitsControllers');
 
 // Residents Controllers
-const {getResidents} = require('./controllers/residentsControllers');
+const {getResidents, getResidentsByUnit} = require('./controllers/residentsControllers');
 
 // Workorder Controllers
 const {
@@ -99,6 +99,7 @@ app.get('/properties/getProperties', getProperties);
 
 // Resident Endpoints
 app.get('/residents/getResidents/:id', getResidents);
+app.get('/residents/getResidentsByUnit/:id', getResidentsByUnit);
 
 // Workorder Endpoints
 app.post('/workorder/addWorkorder', addWorkOrder);
