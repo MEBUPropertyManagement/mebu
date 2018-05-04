@@ -4,6 +4,7 @@ const CREATE_PROPERTY = 'CREATE_PROPERTY';
 const GET_PROPERTIES = 'GET_PROPERTIES';
 const GET_PROPERTY_BY_ID = 'GET_PROPERTY_BY_ID';
 const ARCHIVE_PROPERTY_BY_ID = 'ARCHIVE_PROPERTY_BY_ID';
+const UPDATE_PROPERTY_BY_ID = 'UPDATE_PROPERTY_BY_ID';
 
 const initialState = {
   properties: [],
@@ -68,7 +69,20 @@ export default function propertyReducer(state = initialState, action) {
     case `${ARCHIVE_PROPERTY_BY_ID}_FULFILLED`:
       return {
         ...state,
-        selectedProperty: action.payload,
+        loading: false,
+        error: false,
+      };
+
+    case `${UPDATE_PROPERTY_BY_ID}_PENDING`:
+      return {
+        ...state,
+        loading: true,
+        error: false,
+      };
+
+    case `${UPDATE_PROPERTY_BY_ID}_FULFILLED`:
+      return {
+        ...state,
         loading: false,
         error: false,
       };
@@ -119,6 +133,25 @@ export function archivePropertyById(id) {
     type: ARCHIVE_PROPERTY_BY_ID,
     payload: axios
       .put(`/properties/deleteProperty/${id}`)
+      .then((response) => {
+        console.log(response.data.property);
+        return response.data.property;
+      })
+      .catch(err => err),
+  };
+}
+
+export function updatePropertyById(item) {
+  return {
+    type: UPDATE_PROPERTY_BY_ID,
+    payload: axios
+      .put('/properties/update', {
+        name: item.name,
+        address: item.address,
+        unitNo: item.units,
+        value: item.value,
+        expenses: item.expenses,
+      })
       .then((response) => {
         console.log(response.data.property);
         return response.data.property;
