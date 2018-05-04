@@ -116,7 +116,7 @@ export function getPropertyById(id) {
 
 export function archivePropertyById(id) {
   return {
-    type: GET_PROPERTY_BY_ID,
+    type: ARCHIVE_PROPERTY_BY_ID,
     payload: axios
       .put(`/properties/deleteProperty/${id}`)
       .then((response) => {
