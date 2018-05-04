@@ -11,45 +11,78 @@
 .logo-container {
   width: 45vw;
   height: 100%;
-  background: url('../../../images/logo2-nobg.png') center center no-repeat;
   background-color: var(--blue);
   display: flex;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
+}
+
+.OwnerLogin__logo {
+  width: 100%;
+  object-fit: cover;
+}
+
+.ownerlogin-logo-header {
+  font-weight: normal;
+  color: var(--white);
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  font-size: 0.75rem;
+  position: absolute;
+  bottom: 50px;
 }
 
 .login-container {
   width: 65vw;
   height: 75%;
   align-self: center;
-  margin: 2em;
-  padding: 135px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
 }
 
 .ownerlogin-header {
-  padding: 10px;
+  margin-bottom: 5px;
+}
+.ownerlogin-subheader {
+  margin-bottom: 30px;
 }
 
-.OwnerLogin__input.OwnerLogin__input--email,
-.OwnerLogin__input.OwnerLogin__input--password {
-  background: var(--gray);
-  border-radius: 5px 5px 5px 5px;
-  padding: 8px;
+.OwnerLogin__input {
+  background: var(--white);
+  border: 1px solid var(--gray);
+  width: 300px;
+  border-radius: 9999px;
+  padding: 8px 15px;
   font-size: 14px;
-  margin: 5px;
+  margin: 5px 0;
+  outline: none;
+}
+
+.OwnerLogin__input.OwnerLogin__input--email:focus,
+.OwnerLogin__input.OwnerLogin__input--password:focus {
+  border: 1px solid var(--blue);
 }
 
 .OwnerLogin__submit {
   background: var(--blue);
   color: var(--white);
   border: var(--blue) solid 3px;
-  font-size: 12px;
+  font-size: 0.75rem;
+
   font-weight: bold;
   text-transform: uppercase;
   border-radius: 100px;
   text-align: center;
-  letter-spacing: 1px;
-  line-height: 40px;
+  letter-spacing: 2px;
+  width: 300px;
+  height: 35px;
   padding: 0 60px;
-  margin: 5px;
+  margin: 5px 0 20px;
+}
+
+.OwnerLogin__new-user {
+  font-size: 0.75rem;
 }

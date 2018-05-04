@@ -1,4 +1,5 @@
 import React, {Component, Fragment} from 'react';
+import {withRouter} from 'react-router-dom';
 import axios from 'axios';
 import './NewUnit.css';
 
@@ -6,12 +7,17 @@ class NewUnit extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      bath: this.props.unit.bath,
-      bed: this.props.unit.bed,
-      occupied: this.props.unit.occupied,
-      rent: this.props.unit.rent,
-      roomnum: this.props.unit.roomnum,
-      editing: this.props.unit.editing,
+      bath: this.props.unit.bath || 0,
+      bed: this.props.unit.bed || 0,
+      occupied: this.props.unit.occupied || false,
+      rent: this.props.unit.rent || 0,
+      roomnum: this.props.unit.roomnum || 0,
+      size: this.props.unit.size || 0,
+      editing: this.props.editing,
+      creating: this.props.creating,
+      unitid: this.props.unit.unitid || 0,
+      propertyid: this.props.unit.propertyid || 0,
+      index: this.props.index || -1,
     };
 
     this.onChangeHandler = this.onChangeHandler.bind(this);
@@ -19,23 +25,20 @@ class NewUnit extends Component {
   }
 
   onChangeHandler(e) {
-    this.setState({[e.target.name]: e.target.value});
+    const {target} = e;
+    const value = target.type === 'checkbox' ? target.checked : target.value;
+    const {name} = target;
+    this.setState({[name]: value});
   }
 
   onEditHandler() {
-    if (this.state.editing) {
-      const {propertyid, unitid, size} = this.props.unit;
+    const {index} = this.state;
+    if (this.state.editing && this.state.creating) {
       axios
-        .post('/unit/update', {
-          ...this.state,
-          propertyid,
-          unitid,
-          size,
-        })
+        .post('/unit/add', {...this.state, propertyid: this.props.match.params.id})
         .then((response) => {
-          console.log('response.data: ', response.data);
           const {
-            bath, bed, occupied, rent, roomnum,
+            bath, bed, occupied, rent, roomnum, size, unitid, propertyid,
           } = response.data[0];
           this.setState({
             bath,
@@ -43,14 +46,49 @@ class NewUnit extends Component {
             occupied,
             rent,
             roomnum,
+            size,
+            propertyid,
+            unitid,
+            creating: false,
           });
+          // if (index >= 0) {
+          //   console.log('deleted index: ', index);
+          //   this.props.remove(index);
+          // }
+        });
+    } else if (this.state.editing) {
+      const propertyid = this.props.unit.propertyid
+        ? this.props.unit.propertyid
+        : this.state.propertyid;
+      const unitid = this.props.unit.unitid ? this.props.unit.unitid : this.state.unitid;
+      axios
+        .post('/unit/update', {
+          ...this.state,
+          propertyid,
+          unitid,
+        })
+        .then((response) => {
+          const {
+            bath, bed, occupied, rent, roomnum, size,
+          } = response.data[0];
+          this.setState({
+            bath,
+            bed,
+            rent,
+            roomnum,
+            size,
+            occupied,
+          });
+          // if (index >= 0) {
+          //   console.log('deleted index: ', index);
+          //   this.props.remove(index);
+          // }
         });
     }
     this.setState(prevState => ({editing: !prevState.editing}));
   }
 
   render() {
-    console.log(this.state);
     const {
       bath, bed, occupied, rent, roomnum, size,
     } = this.props.unit;
@@ -60,6 +98,7 @@ class NewUnit extends Component {
     const display = editing ? (
       <Fragment>
         <input
+          placeholder="# Bathrooms"
           value={this.state.bath || bath}
           className="NewUnit__input"
           required
@@ -68,6 +107,7 @@ class NewUnit extends Component {
           type="number"
         />
         <input
+          placeholder="# Bedrooms"
           value={this.state.bed || bed}
           className="NewUnit__input"
           required
@@ -75,15 +115,30 @@ class NewUnit extends Component {
           name="bed"
           type="number"
         />
-        <input
-          value={this.state.occupied || occupied}
+        {/* <input
+          checked={this.state.occupied}
           className="NewUnit__input"
-          required
           onChange={this.onChangeHandler}
           name="occupied"
-          type="text"
-        />
+          type="checkbox"
+        /> */}
         <input
+          checked={this.state.occupied}
+          className="NewUnit__input"
+          onChange={this.onChangeHandler}
+          name="occupied"
+          type="checkbox"
+          id="cbx"
+          style={{display: 'none'}}
+        />
+        <label htmlFor="cbx" className="check">
+          <svg width="18px" height="18px" viewBox="0 0 18 18">
+            <path d="M1,9 L1,3.5 C1,2.11928813 2.11928813,1 3.5,1 L14.5,1 C15.8807119,1 17,2.11928813 17,3.5 L17,14.5 C17,15.8807119 15.8807119,17 14.5,17 L3.5,17 C2.11928813,17 1,15.8807119 1,14.5 L1,9 Z" />
+            <polyline points="1 9 7 14 15 4" />
+          </svg>
+        </label>
+        <input
+          placeholder="$Rent"
           value={this.state.rent || rent}
           className="NewUnit__input"
           required
@@ -92,6 +147,7 @@ class NewUnit extends Component {
           type="number"
         />
         <input
+          placeholder="Room #"
           value={this.state.roomnum || roomnum}
           className="NewUnit__input"
           required
@@ -99,7 +155,15 @@ class NewUnit extends Component {
           name="roomnum"
           type="number"
         />
-        <p>{size}</p>
+        <input
+          placeholder="Size in sq ft."
+          value={this.state.size || size}
+          className="NewUnit__input"
+          required
+          onChange={this.onChangeHandler}
+          name="size"
+          type="number"
+        />
       </Fragment>
     ) : (
       <Fragment>
@@ -108,7 +172,7 @@ class NewUnit extends Component {
         <p>{this.state.occupied ? 'Yes' : 'No'}</p>
         <p>{this.state.rent}</p>
         <p>{this.state.roomnum}</p>
-        <p>{size}</p>
+        <p>{this.state.size}</p>
       </Fragment>
     );
 
@@ -121,4 +185,4 @@ class NewUnit extends Component {
   }
 }
 
-export default NewUnit;
+export default withRouter(NewUnit);
