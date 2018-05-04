@@ -13,40 +13,46 @@ class Settings extends Component {
 
     this.state = {
       name: '',
+      photourl: '',
       address: '',
-      propertyNo: '',
-      value: '',
-      expenses: '',
+      units: 0,
+      value: 0,
+      expenses: 0,
     };
     this.onSubmitHandler = this.onSubmitHandler.bind(this);
     this.handleChangeName = this.handleChangeName.bind(this);
     this.handleChangeAddress = this.handleChangeAddress.bind(this);
-    this.handleChangePropertyNo = this.handleChangePropertyNo.bind(this);
+    this.handleChangeUnits = this.handleChangeUnits.bind(this);
     this.handleChangeValue = this.handleChangeValue.bind(this);
     this.handleChangeExpenses = this.handleChangeExpenses.bind(this);
   }
 
   onSubmitHandler(e) {
     e.preventDefault();
-    this.props.updatePropertyById(
-      this.state.name,
-      this.state.address,
-      this.state.unitNo,
-      this.state.value,
-      this.state.expenses,
-    );
+    this.props.updatePropertyById(this.props.match.params.id, {
+      name: this.state.name,
+      photourl: this.state.photourl,
+      address: this.state.address,
+      units: this.state.units,
+      value: this.state.value,
+      expenses: this.state.expenses,
+    });
   }
 
   handleChangeName(value) {
     this.setState({name: value});
   }
 
+  handleChangePhotoUrl(value) {
+    this.setState({photourl: value});
+  }
+
   handleChangeAddress(value) {
     this.setState({address: value});
   }
 
-  handleChangePropertyNo(value) {
-    this.setState({unitNo: value});
+  handleChangeUnits(value) {
+    this.setState({units: value});
   }
 
   handleChangeValue(value) {
@@ -70,6 +76,7 @@ class Settings extends Component {
     return (
       <div>
         <form onSubmit={this.onSubmitHandler}>
+          <label>Property Name: </label>
           <input
             className=""
             type="text"
@@ -77,6 +84,15 @@ class Settings extends Component {
             placeholder="Property Name"
             onChange={e => this.handleChangeName(e.target.value)}
           />
+          <label>Photo URL: </label>
+          <input
+            className=""
+            type="text"
+            value={this.state.photourl}
+            placeholder="Photo URL"
+            onChange={e => this.handleChangePhotoUrl(e.target.value)}
+          />
+          <label>Address: </label>
           <input
             className=""
             type="text"
@@ -84,23 +100,26 @@ class Settings extends Component {
             placeholder="Address"
             onChange={e => this.handleChangeAddress(e.target.value)}
           />
+          <label>Number of Units: </label>
           <input
             className=""
-            type="text"
-            value={this.state.unitNo}
-            placeholder="Property No."
-            onChange={e => this.handleChangePropertyNo(e.target.value)}
+            type="number"
+            value={this.state.units}
+            placeholder="Number of Units"
+            onChange={e => this.handleChangeUnits(e.target.value)}
           />
+          <label>Value: </label>
           <input
             className=""
-            type="text"
+            type="number"
             value={this.state.value}
             placeholder="Value"
             onChange={e => this.handleChangeValue(e.target.value)}
           />
+          <label>Expenses: </label>
           <input
             className=""
-            type="text"
+            type="number"
             value={this.state.expenses}
             placeholder="Expenses"
             onChange={e => this.handleChangeExpenses(e.target.value)}

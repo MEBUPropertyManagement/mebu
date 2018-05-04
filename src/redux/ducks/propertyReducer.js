@@ -141,14 +141,15 @@ export function archivePropertyById(id) {
   };
 }
 
-export function updatePropertyById(item) {
+export function updatePropertyById(id, item) {
   return {
     type: UPDATE_PROPERTY_BY_ID,
     payload: axios
-      .put('/properties/update', {
+      .put(`/properties/update/${id}`, {
         name: item.name,
+        photourl: item.photourl,
         address: item.address,
-        unitNo: item.units,
+        units: item.units,
         value: item.value,
         expenses: item.expenses,
       })
