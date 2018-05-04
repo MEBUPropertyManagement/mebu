@@ -1,0 +1,1 @@
+SELECT * FROM residents WHERE unitid = $1;
