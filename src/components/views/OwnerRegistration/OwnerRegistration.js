@@ -3,6 +3,7 @@ import {Link} from 'react-router-dom';
 import PropTypes from 'prop-types';
 import {connect} from 'react-redux';
 import {createOwner} from '../../../redux/ducks/userReducer';
+import logo from '../../../images/logo2-nobg.png';
 import './OwnerRegistration.css';
 
 class OwnerRegistration extends Component {
@@ -44,6 +45,7 @@ class OwnerRegistration extends Component {
     return (
       <div className="OwnerRegistration">
         <div className="logo-container-owner-reg">
+          <img className="OwnerRegistration__logo" src={logo} alt="logo" />
           <h3 className="ownerlogin-logo-header">Owner Registration Portal</h3>
         </div>
         <div className="login-container">
@@ -56,7 +58,7 @@ class OwnerRegistration extends Component {
                 className="OwnerRegistration__input OwnerRegistration__input--firstname"
                 onChange={this.onChangeHandler}
                 required
-                placeholder="firstName"
+                placeholder="first name"
                 name="firstName"
                 maxLength="35"
                 value={firstName}
@@ -66,7 +68,7 @@ class OwnerRegistration extends Component {
                 className="OwnerRegistration__input OwnerRegistration__input--lastname"
                 onChange={this.onChangeHandler}
                 required
-                placeholder="lastName"
+                placeholder="last name"
                 name="lastName"
                 maxLength="35"
                 value={lastName}
@@ -75,7 +77,7 @@ class OwnerRegistration extends Component {
               <input
                 className="OwnerRegistration__input OwnerRegistration__input--companyname"
                 onChange={this.onChangeHandler}
-                placeholder="companyName"
+                placeholder="company name"
                 name="companyName"
                 value={companyName}
                 type="text"
@@ -102,7 +104,7 @@ class OwnerRegistration extends Component {
                 className="OwnerRegistration__input OwnerRegistration__input--confirmpassword"
                 onChange={this.onChangeHandler}
                 required
-                placeholder="confirmPassword"
+                placeholder="confirm password"
                 name="confirmPassword"
                 value={confirmPassword}
                 type="password"

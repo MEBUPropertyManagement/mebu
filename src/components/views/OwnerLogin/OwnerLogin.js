@@ -41,7 +41,7 @@ class OwnerLogin extends Component {
       <div className="OwnerLogin">
         <div className="logo-container">
           <img className="OwnerLogin__logo" src={logo} alt="logo" />
-          <h3 className="ownerlogin-logo-header">Owner Portal</h3>
+          <h3 className="ownerlogin-logo-header">Owner Login Portal</h3>
         </div>
         <div>
           <form onSubmit={this.onSubmitHandler} className="login-container">
@@ -52,7 +52,8 @@ class OwnerLogin extends Component {
                 className="OwnerLogin__input OwnerLogin__input--email"
                 value={this.state.email}
                 placeholder="email"
-                type="text"
+                type="email"
+                required
                 onChange={e => this.handleChangeEmail(e.target.value)}
               />
             </div>
@@ -62,6 +63,7 @@ class OwnerLogin extends Component {
                 value={this.state.password}
                 placeholder="password"
                 type="password"
+                required
                 onChange={e => this.handleChangePassword(e.target.value)}
               />
             </div>

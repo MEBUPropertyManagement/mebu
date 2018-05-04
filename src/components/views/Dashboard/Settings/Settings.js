@@ -1,9 +1,145 @@
-import React from 'react';
+import React, {Component} from 'react';
+import {
+  getPropertyById,
+  updatePropertyById,
+  archivePropertyById,
+} from '../../../../redux/ducks/propertyReducer';
+import {connect} from 'react-redux';
+import {Link} from 'react-router-dom';
 
-const Settings = () => (
-  <div>
-    <p>This is the settings component.</p>
-  </div>
+class Settings extends Component {
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      name: '',
+      photourl: '',
+      address: '',
+      units: 0,
+      value: 0,
+      expenses: 0,
+    };
+    this.onSubmitHandler = this.onSubmitHandler.bind(this);
+    this.handleChangeName = this.handleChangeName.bind(this);
+    this.handleChangeAddress = this.handleChangeAddress.bind(this);
+    this.handleChangeUnits = this.handleChangeUnits.bind(this);
+    this.handleChangeValue = this.handleChangeValue.bind(this);
+    this.handleChangeExpenses = this.handleChangeExpenses.bind(this);
+  }
+
+  onSubmitHandler(e) {
+    e.preventDefault();
+    this.props.updatePropertyById(this.props.match.params.id, {
+      name: this.state.name,
+      photourl: this.state.photourl,
+      address: this.state.address,
+      units: this.state.units,
+      value: this.state.value,
+      expenses: this.state.expenses,
+    });
+  }
+
+  handleChangeName(value) {
+    this.setState({name: value});
+  }
+
+  handleChangePhotoUrl(value) {
+    this.setState({photourl: value});
+  }
+
+  handleChangeAddress(value) {
+    this.setState({address: value});
+  }
+
+  handleChangeUnits(value) {
+    this.setState({units: value});
+  }
+
+  handleChangeValue(value) {
+    this.setState({value: value});
+  }
+
+  handleChangeExpenses(value) {
+    this.setState({expenses: value});
+  }
+
+  componentDidMount() {
+    console.log(this.props);
+    this.props.getPropertyById(this.props.match.params.id);
+  }
+
+  archiveProperty = id => {
+    this.props.archivePropertyById(id);
+  };
+
+  render() {
+    return (
+      <div>
+        <form onSubmit={this.onSubmitHandler}>
+          <label>Property Name: </label>
+          <input
+            className=""
+            type="text"
+            value={this.state.name}
+            placeholder="Property Name"
+            onChange={e => this.handleChangeName(e.target.value)}
+          />
+          <label>Photo URL: </label>
+          <input
+            className=""
+            type="text"
+            value={this.state.photourl}
+            placeholder="Photo URL"
+            onChange={e => this.handleChangePhotoUrl(e.target.value)}
+          />
+          <label>Address: </label>
+          <input
+            className=""
+            type="text"
+            value={this.state.address}
+            placeholder="Address"
+            onChange={e => this.handleChangeAddress(e.target.value)}
+          />
+          <label>Number of Units: </label>
+          <input
+            className=""
+            type="number"
+            value={this.state.units}
+            placeholder="Number of Units"
+            onChange={e => this.handleChangeUnits(e.target.value)}
+          />
+          <label>Value: </label>
+          <input
+            className=""
+            type="number"
+            value={this.state.value}
+            placeholder="Value"
+            onChange={e => this.handleChangeValue(e.target.value)}
+          />
+          <label>Expenses: </label>
+          <input
+            className=""
+            type="number"
+            value={this.state.expenses}
+            placeholder="Expenses"
+            onChange={e => this.handleChangeExpenses(e.target.value)}
+          />
+          <input value="Update changes" type="submit" className="" />
+        </form>
+        <div>
+          <Link to="/owner/properties">
+            <button onClick={() => this.archiveProperty}>Archive this property</button>
+          </Link>
+        </div>
+      </div>
+    );
+  }
+}
+
+const mapStateToProps = state => ({
+  ...state.propertyReducer,
+});
+
+export default connect(mapStateToProps, {getPropertyById, updatePropertyById, archivePropertyById})(
+  Settings,
 );
-
-export default Settings;

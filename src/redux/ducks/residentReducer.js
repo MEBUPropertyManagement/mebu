@@ -1,6 +1,7 @@
 import axios from 'axios';
 
 const GET_RESIDENTS = 'GET_RESIDENTS';
+const GET_RESIDENTS_BY_UNIT_ID = 'GET_RESIDENTS_BY_UNIT_ID';
 const CREATE_RESIDENT = 'CREATE_RESIDENT';
 
 const initialState = {
@@ -18,6 +19,19 @@ export default function propertyReducer(state = initialState, action) {
         error: false,
       };
     case `${GET_RESIDENTS}_FULFILLED`:
+      return {
+        ...state,
+        residents: action.payload,
+        loading: false,
+        error: false,
+      };
+    case `${GET_RESIDENTS_BY_UNIT_ID}_PENDING`:
+      return {
+        ...state,
+        loading: true,
+        error: false,
+      };
+    case `${GET_RESIDENTS_BY_UNIT_ID}_FULFILLED`:
       return {
         ...state,
         residents: action.payload,
@@ -46,10 +60,23 @@ export function getResidents(propertyId) {
   return {
     type: GET_RESIDENTS,
     payload: axios
-      .get(`/residents/getById/${propertyId}`)
+      .get(`/residents/getResidents/${propertyId}`)
       .then((response) => {
         console.log(response.data);
-        return response.data;
+        return response.data.residents;
+      })
+      .catch(err => err),
+  };
+}
+
+export function getResidentsByUnitId(unitid) {
+  return {
+    type: GET_RESIDENTS_BY_UNIT_ID,
+    payload: axios
+      .get(`/residents/getResidentsByUnit/${unitid}`)
+      .then((response) => {
+        console.log(response.data);
+        return response.data.residents;
       })
       .catch(err => err),
   };
