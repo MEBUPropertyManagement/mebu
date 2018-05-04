@@ -7,42 +7,44 @@ const bCrypt = require('bcrypt');
 
 // Authentication Controllers
 const {
+  residentForgotPassword,
   residentRegistration,
-  ownerRegistration,
   residentLogin,
+  ownerForgotPassword,
+  ownerRegistration,
   ownerLogin,
   addResident,
-  ownerForgotPassword,
-  residentForgotPassword,
   logout,
-} = require(`${__dirname}/controllers/authenticationControllers`);
+} = require('./controllers/authenticationControllers');
 
+// Property Controllers
 const {
   addProperties,
   getProperty,
   getProperties,
   deleteProperty,
   updateProperty,
-} = require(`${__dirname}/controllers/propertiesControllers`);
+} = require('./controllers/propertiesControllers');
 
-const {addUnit, getUnitById, updateUnit} = require(`${__dirname}/controllers/unitsControllers`);
+// Unit Controllers
+const {addUnit, getUnit, updateUnit} = require('./controllers/unitsControllers');
 
-const {getResidents} = require(`${__dirname}/controllers/residentsControllers`);
+// Residents Controllers
+const {getResidents} = require('./controllers/residentsControllers');
 
+// Workorder Controllers
 const {
   workOrderByPropertyId,
   workOrderByResidentId,
   addWorkOrder,
   closeWorkorder,
-} = require(`${__dirname}/controllers/workorderControllers`);
+} = require('./controllers/workorderControllers');
 
-const {
-  addBill,
-  getBillingHistory,
-  getAllUnpaidBills,
-} = require(`${__dirname}/controllers/billsControllers`);
+// Bills Controllers
+const {addBill, getBillingHistory, getUnpaidBills} = require('./controllers/billsControllers');
 
-const {stripeCharge} = require(`${__dirname}/controllers/stripeController`);
+// Stripe Controllers
+const {stripeCharge} = require('./controllers/stripeController');
 
 require('dotenv').config();
 
@@ -69,37 +71,47 @@ app.use(session({
   },
 }));
 
+// Resident Authentication Endpoints
+app.post('/users/resident-forgot-password', residentForgotPassword);
 app.post('/users/resident-registration', residentRegistration);
 app.post('/users/resident-login', residentLogin);
+
+// Owner Authentication Endpoints
+app.post('/users/owner-forgot-password', ownerForgotPassword);
 app.post('/users/owner-registration', ownerRegistration);
 app.post('/users/owner-login', ownerLogin);
-app.post('/users/add', addResident);
-app.post('/users/owner-forgot-password', ownerForgotPassword);
-app.post('/users/resident-forgot-password', residentForgotPassword);
-app.post('/users/logout', logout);
 
+// User Endpoints
+app.get('/users/logout', logout);
+app.post('/users/add', addResident);
+
+// Unit Endpoints
 app.post('/unit/add', addUnit);
 app.post('/unit/update', updateUnit);
-app.get('/units/getById/:id', getUnitById);
+app.get('/units/getUnit/:id', getUnit);
 
+// Property Endpoints
 app.post('/properties/add', addProperties);
 app.put('/properties/update/:id', updateProperty);
 app.put('/properties/deleteProperty/:id', deleteProperty);
 app.get('/properties/getProperty/:id', getProperty);
 app.get('/properties/getProperties', getProperties);
 
-app.get('/residents/getById/:id', getResidents);
+// Resident Endpoints
+app.get('/residents/getResidents/:id', getResidents);
 
-app.get('/workorder/getByPropertyId/:id', workOrderByPropertyId);
-app.get('/workorder/getByResidentId/:id', workOrderByResidentId);
+// Workorder Endpoints
 app.post('/workorder/addWorkorder', addWorkOrder);
 app.post('/workorder/closeWorkorder/:id', closeWorkorder);
+app.get('/workorder/getByPropertyId/:id', workOrderByPropertyId);
+app.get('/workorder/getByResidentId/:id', workOrderByResidentId);
 
+// Billing Endpoints
 app.post('/bills/add', addBill);
 app.post('/bills/pay', stripeCharge);
 app.get('/bills/getBillingHistory', getBillingHistory);
-app.get('/bills/getAllUnpaidBills', getAllUnpaidBills);
+app.get('/bills/getUnpaid', getUnpaidBills);
 
 app.listen(port, () => {
-  console.log(`Listening on Port: ${port}`);
+  console.log(`Dr. Crane is listening on ${port}`);
 });

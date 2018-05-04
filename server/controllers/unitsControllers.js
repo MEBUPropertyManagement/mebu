@@ -9,12 +9,12 @@ const addUnit = (req, res) => {
     .catch(err => res.status(200).json({added: false, error: `${err}`}));
 };
 
-const getUnitById = (req, res) => {
+const getUnit = (req, res) => {
   const db = req.app.get('db');
   db
     .getUnitById([req.params.id])
     .then(response => res.status(200).json(response))
-    .catch(err => console.log(err));
+    .catch(err => res.status(200).json({error: `${err}`}));
 };
 
 const updateUnit = (req, res) => {
@@ -24,12 +24,17 @@ const updateUnit = (req, res) => {
   } = req.body;
   db
     .unit_update([unitid, size, occupied, bed, bath, roomnum, propertyid, rent])
+<<<<<<< HEAD
     .then(response => res.status(200).json({updated: true, units: response}))
     .catch(err => res.status(200).json({updated: false, error: `${err}`}));
+=======
+    .then(response => res.status(200).json({updated: true, response}))
+    .catch(err => res.status(200).json({error: `${err}`}));
+>>>>>>> master
 };
 
 module.exports = {
   addUnit,
-  getUnitById,
+  getUnit,
   updateUnit,
 };

@@ -5,7 +5,7 @@ const workOrderByPropertyId = (req, res) => {
   db
     .workOrderByPropertyId([req.params.id])
     .then(response => res.status(200).json(response))
-    .catch(err => console.log(err));
+    .catch(err => res.status(200).json({error: `${err}`}));
 };
 
 const workOrderByResidentId = (req, res) => {
@@ -13,7 +13,7 @@ const workOrderByResidentId = (req, res) => {
   db
     .workOrderByResidentId([req.params.id])
     .then(response => res.status(200).json(response))
-    .catch(err => console.log(err));
+    .catch(err => res.status(200).json({error: `${err}`}));
 };
 
 const addWorkOrder = (req, res) => {
@@ -23,24 +23,24 @@ const addWorkOrder = (req, res) => {
   } = req.body;
   db
     .addWorkOrder([
-      moment('MM-DD-YYYY'),
+      moment().format('MMMM Do YYYY'),
       content,
       urgency,
       propertyid,
       req.session.user.userid,
       unitid,
     ])
-    .then(response => res.status(200).json(response))
-    .catch(err => console.log(err));
+    .then(response => res.status(200).json({added: true, response: response[0]}))
+    .catch(err => res.status(200).json({error: `${err}`}));
 };
 
 const closeWorkorder = (req, res) => {
   const db = req.app.get('db');
 
   db
-    .addWorkOrder([moment('MM-DD-YYYY'), req.params.id])
-    .then(response => res.status(200).json(response))
-    .catch(err => console.log(err));
+    .closeWorkOrder([moment().format('MMMM Do YYYY'), req.params.id])
+    .then(response => res.status(200).json({closed: true, response}))
+    .catch(err => res.status(200).json({error: `${err}`}));
 };
 
 module.exports = {
