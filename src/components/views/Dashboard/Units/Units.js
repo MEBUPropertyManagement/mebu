@@ -70,6 +70,7 @@ class Units extends Component {
           <NewUnit index={-1} creating={false} editing={false} key={unit.unitid} unit={unit} />
         ));
     }
+<<<<<<< HEAD
     const newUnitDisplay = newUnits;
     //   newUnits.length > 0 &&
     //   newUnits.map((newUnit, index) => (
@@ -85,6 +86,27 @@ class Units extends Component {
     //       }}
     //     />
     //   ));
+=======
+    const newUnitDisplay =
+      newUnits.length > 0 &&
+      newUnits.map((newUnit, index) => (
+        <NewUnit
+          remove={this.onFromArrayDelete}
+          key={index}
+          index={index}
+          creating
+          editing
+          unit={{
+            bath: 0,
+            bed: 0,
+            occupied: true,
+            rent: 0,
+            roomnum: 0,
+            size: 0,
+          }}
+        />
+      ));
+>>>>>>> feature-units
     return (
       <div className="Units container">
         <div className="Units__titles">
@@ -99,7 +121,12 @@ class Units extends Component {
             <button onClick={this.onRemoveHandler}>Remove</button>
           </div>
         </div>
+        {newUnits.length > 0 && <h1>Multi-Add</h1>}
         {newUnitDisplay}
+<<<<<<< HEAD
+=======
+        <h1>Current Units</h1>
+>>>>>>> feature-units
         {property}
       </div>
     );
