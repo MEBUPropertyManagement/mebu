@@ -43,7 +43,7 @@ class OwnerRegistration extends Component {
 
     return (
       <div className="OwnerRegistration">
-        <div className="logo-container">
+        <div className="logo-container-owner-reg">
           <h3 className="ownerlogin-logo-header">Owner Registration Portal</h3>
         </div>
         <div className="login-container">

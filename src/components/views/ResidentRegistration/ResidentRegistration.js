@@ -123,7 +123,7 @@ class ResidentRegistration extends Component {
             </Link>
           </div>
         </div>
-        <div className="logo-container">
+        <div className="logo-container-resident-reg">
           <h3 className="residentlogin-logo-header">Resident Registration Portal</h3>
         </div>
       </div>
