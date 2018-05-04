@@ -83,7 +83,7 @@
 .Properties-imageOverlay {
   position: absolute;
   display: block;
-  color: var(--blue);
+  color: var(--black);
   top: 0;
   left: 0;
   bottom: 0;
