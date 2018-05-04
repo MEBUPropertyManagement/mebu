@@ -22,6 +22,7 @@ const {
   getProperty,
   getProperties,
   deleteProperty,
+  updateProperty,
 } = require(`${__dirname}/controllers/propertiesControllers`);
 
 const {addUnit, getUnitById, updateUnit} = require(`${__dirname}/controllers/unitsControllers`);
@@ -82,6 +83,7 @@ app.post('/unit/update', updateUnit);
 app.get('/units/getById/:id', getUnitById);
 
 app.post('/properties/add', addProperties);
+app.put('/properties/update/:id', updateProperty);
 app.put('/properties/deleteProperty/:id', deleteProperty);
 app.get('/properties/getProperty/:id', getProperty);
 app.get('/properties/getProperties', getProperties);

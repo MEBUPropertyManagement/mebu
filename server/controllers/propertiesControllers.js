@@ -53,9 +53,25 @@ const deleteProperty = (req, res) => {
     .catch(err => res.status(200).json({deleted: false, err}));
 };
 
+const updateProperty = (req, res) => {
+  const db = req.app.get('db');
+
+  const {
+    name, photourl, address, units, value, expenses,
+  } = req.body;
+
+  db
+    .properties_updateProperty([req.params.id, name, photourl, address, units, value, expenses])
+    .then(response =>
+      res.status(200).json({updated: true, propertyid: req.params.id, property: response[0]}))
+    .catch(err =>
+      res.status(200).json({updated: false, propertyid: req.params.id, error: `${err}`}));
+};
+
 module.exports = {
   addProperties,
   getProperty,
   getProperties,
   deleteProperty,
+  updateProperty,
 };

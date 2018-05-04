@@ -5,8 +5,8 @@ const addUnit = (req, res) => {
   } = req.body;
   db
     .addUnit([size, occupied, bed, bath, roomnum, propertyid, rent])
-    .then(response => res.status(200).json(response))
-    .catch(err => console.log(err));
+    .then(response => res.status(200).json({added: true, units: response}))
+    .catch(err => res.status(200).json({added: false, error: `${err}`}));
 };
 
 const getUnitById = (req, res) => {
