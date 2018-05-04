@@ -6,8 +6,8 @@ const addProperties = (req, res) => {
 
   db
     .addProperties([name, photourl, address, units, value, expenses, req.session.user.userid])
-    .then(response => res.status(200).json(response))
-    .catch(err => console.log(err));
+    .then(response => res.status(200).json({added: true, property: response}))
+    .catch(err => res.status(200).json({added: false, error: `${err}`}));
 };
 
 const getProperty = (req, res) => {
