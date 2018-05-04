@@ -9,7 +9,6 @@ class Units extends Component {
     super(props);
     this.state = {
       newUnits: [],
-      savedUnits: [],
     };
     this.onAddHandler = this.onAddHandler.bind(this);
     this.onRemoveHandler = this.onRemoveHandler.bind(this);
@@ -21,10 +20,15 @@ class Units extends Component {
   }
 
   onAddHandler() {
-    const arrCopy = this.state.newUnits.slice();
+    const {newUnits} = this.state;
+    const index = newUnits.length;
+    const arrCopy = newUnits.slice();
     arrCopy.push(<NewUnit
+      remove={this.onFromArrayDelete}
+      key={index}
       creating
       editing
+      index={index}
       unit={{
           bath: 0,
           bed: 0,
@@ -46,19 +50,12 @@ class Units extends Component {
   }
 
   onFromArrayDelete(index) {
-    const {newUnits, savedUnits} = this.state;
+    const {newUnits} = this.state;
     console.log('index: ', index);
-    if (newUnits.length > 0) {
-      // const newUnitsCopy = this.state.newUnits.slice();
+    if (newUnits.length >= 0) {
       const newUnitsCopy = [...newUnits];
-      const saved = newUnitsCopy.splice(index, 1);
-      const savedUnitsCopy = [...savedUnits];
-      savedUnitsCopy.push(saved[0]);
-
-      // const deleted = this.state.newUnits[index];
-      // const arrCopy = this.state.newUnits.slice().splice(index, 1);
-      // console.log('deleted: ', deleted);
-      this.setState({newUnits: newUnitsCopy, savedUnits: savedUnitsCopy});
+      newUnitsCopy.splice(index, 1);
+      this.setState({newUnits: newUnitsCopy});
     }
   }
 
@@ -73,27 +70,21 @@ class Units extends Component {
           <NewUnit index={-1} creating={false} editing={false} key={unit.unitid} unit={unit} />
         ));
     }
-    const newUnitDisplay =
-      newUnits.length > 0 &&
-      newUnits.map((newUnit, index) => (
-        <NewUnit
-          remove={this.onFromArrayDelete}
-          key={index}
-          index={index}
-          creating
-          editing
-          unit={{
-            bath: 0,
-            bed: 0,
-            occupied: true,
-            rent: 0,
-            roomnum: 0,
-            size: 0,
-          }}
-        />
-      ));
-    const savedUnitsDisplay = savedUnits.length > 0 && savedUnits.map(unit => unit);
-    console.log(savedUnitsDisplay);
+    const newUnitDisplay = newUnits;
+    //   newUnits.length > 0 &&
+    //   newUnits.map((newUnit, index) => (
+    //     <NewUnit
+
+    //       unit={{
+    //         bath: 0,
+    //         bed: 0,
+    //         occupied: true,
+    //         rent: 0,
+    //         roomnum: 0,
+    //         size: 0,
+    //       }}
+    //     />
+    //   ));
     return (
       <div className="Units container">
         <div className="Units__titles">
@@ -109,7 +100,6 @@ class Units extends Component {
           </div>
         </div>
         {newUnitDisplay}
-        {savedUnitsDisplay}
         {property}
       </div>
     );

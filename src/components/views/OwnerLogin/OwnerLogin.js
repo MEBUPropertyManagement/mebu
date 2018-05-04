@@ -52,7 +52,8 @@ class OwnerLogin extends Component {
                 className="OwnerLogin__input OwnerLogin__input--email"
                 value={this.state.email}
                 placeholder="email"
-                type="text"
+                type="email"
+                required
                 onChange={e => this.handleChangeEmail(e.target.value)}
               />
             </div>
@@ -62,6 +63,7 @@ class OwnerLogin extends Component {
                 value={this.state.password}
                 placeholder="password"
                 type="password"
+                required
                 onChange={e => this.handleChangePassword(e.target.value)}
               />
             </div>

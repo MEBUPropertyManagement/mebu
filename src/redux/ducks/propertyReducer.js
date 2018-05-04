@@ -56,7 +56,6 @@ export default function propertyReducer(state = initialState, action) {
         loading: false,
         error: false,
       };
-
     default:
       return state;
   }
