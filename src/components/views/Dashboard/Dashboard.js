@@ -1,45 +1,40 @@
-import React from 'react';
+import React, {Component} from 'react';
+import axios from 'axios';
 import {Link, withRouter} from 'react-router-dom';
+import {connect} from 'react-redux';
+
+const onLogout = () => {
+  console.log('logging out!');
+  axios.get('/users/logout').then(res => console.log(res));
+};
 
 const Dashboard = (props) => {
-  const {path} = props.match;
-
+  const {path, params} = props.match;
   return path.includes('/owner/') ? (
     <div>
-      <Link className="Link__none" to={`/owner/dashboard/property/${props.match.params.id}`}>
+      <Link className="Link__none" to={`/owner/dashboard/property/${params.id}`}>
         <h1>Dashboard</h1>
       </Link>
       <nav>
-        <Link
-          className="Link__none"
-          to={`/owner/dashboard/property/${props.match.params.id}/units`}
-        >
+        <Link className="Link__none" to={`/owner/dashboard/property/${params.id}/units`}>
           Units
         </Link>
-        <Link
-          className="Link__none"
-          to={`/owner/dashboard/property/${props.match.params.id}/residents`}
-        >
+        <Link className="Link__none" to={`/owner/dashboard/property/${params.id}/residents`}>
           Residents
         </Link>
-        <Link
-          className="Link__none"
-          to={`/owner/dashboard/property/${props.match.params.id}/metrics`}
-        >
+        <Link className="Link__none" to={`/owner/dashboard/property/${params.id}/metrics`}>
           Metrics
         </Link>
-        <Link
-          className="Link__none"
-          to={`/owner/dashboard/property/${props.match.params.id}/maintenance`}
-        >
+        <Link className="Link__none" to={`/owner/dashboard/property/${params.id}/maintenance`}>
           Maintenance
         </Link>
-        <Link
-          className="Link__none"
-          to={`/owner/dashboard/property/${props.match.params.id}/settings`}
-        >
+        <Link className="Link__none" to={`/owner/dashboard/property/${params.id}/settings`}>
           Settings
         </Link>
+        <Link className="Link__none" to="/owner/properties">
+          Return to Properties
+        </Link>
+        {props.current_user.userid ? <button onClick={() => onLogout()}> Logout</button> : ''}
       </nav>
       {props.children}
     </div>
@@ -63,4 +58,9 @@ const Dashboard = (props) => {
     </div>
   );
 };
-export default withRouter(Dashboard);
+
+const mapStateToProps = state => ({
+  ...state.userReducer,
+});
+
+export default withRouter(connect(mapStateToProps, null)(Dashboard));

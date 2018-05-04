@@ -14,7 +14,7 @@ const stripeCharge = (req, res) => {
     },
     (error, charge) => {
       if (error) {
-        return res.status(200).json({charged: false, charge: ''});
+        return res.status(200).json({charged: false, charge: '', error: `${error}`});
       }
       return db
         .billing_update([req.body.billid])

@@ -67,6 +67,11 @@ class OwnerLogin extends Component {
             </div>
             <input value="Login" type="submit" className="OwnerLogin__submit" />
           </form>
+          <div>
+            <Link to="/forgotpassword">
+            Forgot Password?
+            </Link>
+          </div>
           <div className="OwnerLogin__new-user">
             Don't have an account?{' '}
             <Link className="Link__none" to="/login/owner/new">
