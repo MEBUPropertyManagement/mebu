@@ -24,13 +24,8 @@ const updateUnit = (req, res) => {
   } = req.body;
   db
     .unit_update([unitid, size, occupied, bed, bath, roomnum, propertyid, rent])
-<<<<<<< HEAD
-    .then(response => res.status(200).json({updated: true, units: response}))
-    .catch(err => res.status(200).json({updated: false, error: `${err}`}));
-=======
     .then(response => res.status(200).json({updated: true, response}))
     .catch(err => res.status(200).json({error: `${err}`}));
->>>>>>> master
 };
 
 module.exports = {

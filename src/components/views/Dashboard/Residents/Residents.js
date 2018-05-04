@@ -12,6 +12,7 @@ class Residents extends Component {
     const {residents, loading} = this.props;
     let residentDisplay = <p>Loading...</p>;
     if (residents && residents[0] && !loading) {
+      console.log(residents);
       residentDisplay = residents.map(resident => (
         <div key={resident.residentid}>
           <p>{`${resident.firstname} ${resident.lastname} ${resident.email}`}</p>
@@ -19,11 +20,7 @@ class Residents extends Component {
       ));
     }
 
-    return (
-      <div className="Residents">
-        {residentDisplay}
-      </div>
-    );
+    return <div className="Residents">{residentDisplay}</div>;
   }
 }
 

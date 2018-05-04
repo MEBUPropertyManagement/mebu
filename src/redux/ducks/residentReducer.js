@@ -46,10 +46,10 @@ export function getResidents(propertyId) {
   return {
     type: GET_RESIDENTS,
     payload: axios
-      .get(`/residents/getById/${propertyId}`)
+      .get(`/residents/getResidents/${propertyId}`)
       .then((response) => {
         console.log(response.data);
-        return response.data;
+        return response.data.residents;
       })
       .catch(err => err),
   };
