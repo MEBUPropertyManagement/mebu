@@ -46,7 +46,7 @@ class ResidentLogin extends Component {
           </div>
           <div>
             <input
-              className="ResidentLogin__input ResidentLogin__input--email"
+              className="ResidentLogin__input ResidentLogin__input--password"
               value={this.state.password}
               placeholder="password"
               type="password"
@@ -67,7 +67,7 @@ class ResidentLogin extends Component {
             </Link>
           </div>
         </div>
-        <div className="logo-container">
+        <div className="logo-container-registration-log">
           <h3 className="ownerlogin-logo-header">Resident Portal</h3>
         </div>
       </div>

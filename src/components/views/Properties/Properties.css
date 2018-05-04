@@ -1,0 +1,101 @@
+.Properties {
+  display: flex;
+  margin: 0 auto;
+  padding-left: 250px;
+}
+
+.Properties-navbar {
+  background: var(--blue);
+  padding: 30px;
+  position: fixed;
+  left: 0;
+  height: 100vh;
+  width: 250px;
+}
+
+.Properties-navbar-header {
+  color: var(--white);
+  margin-top: 8vh;
+}
+
+.Properties-navbar-addProperty {
+  color: var(--white);
+}
+
+.Properties__all {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: stretch;
+  align-content: stretch;
+  margin-top: 8vh;
+}
+
+.Property-card {
+  margin: 12px;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0, 0.4);
+  border: none;
+  width: 300px;
+  color: var(--black);
+  background-color: var(--white);
+  text-decoration: none;
+  text-align: center;
+  display: block;
+  position: relative;
+  overflow: hidden;
+}
+
+.Properties__name {
+  padding: 20px;
+}
+
+.Properties__photo {
+  display: block;
+  border: none;
+  width: 300px;
+  height: 300px;
+  background-color: var(--white);
+  background-repeat: no-repeat;
+  position: relative;
+}
+
+.Properties__photo:after {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  bottom: 20px;
+  left: 20px;
+  border: 1px solid var(--white);
+  color: var(--white);
+  padding-top: 14%;
+  opacity: 0;
+  filter: alpha(opacity=0);
+  transition: all 0.3s;
+  transform: scale(0);
+}
+
+.Property-card:hover .Properties__photo:after {
+  opacity: 1;
+  transform: scale(1);
+}
+
+.Properties-imageOverlay {
+  position: absolute;
+  display: block;
+  color: var(--blue);
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  margin: auto;
+  background: var(--gray);
+  background-size: 50px 50px;
+  opacity: 0;
+  transition: all 0.3s;
+  padding-top: 85px;
+}
+
+.Property-card:hover .Properties-imageOverlay {
+  opacity: 0.8;
+}
