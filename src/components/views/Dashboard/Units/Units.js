@@ -92,8 +92,6 @@ class Units extends Component {
           }}
         />
       ));
-    const savedUnitsDisplay = savedUnits.length > 0 && savedUnits.map(unit => unit);
-    console.log(savedUnitsDisplay);
     return (
       <div className="Units container">
         <div className="Units__titles">
@@ -108,8 +106,9 @@ class Units extends Component {
             <button onClick={this.onRemoveHandler}>Remove</button>
           </div>
         </div>
+        {newUnits.length > 0 && <h1>Multi-Add</h1>}
         {newUnitDisplay}
-        {savedUnitsDisplay}
+        <h1>Current Units</h1>
         {property}
       </div>
     );
