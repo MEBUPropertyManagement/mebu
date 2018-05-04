@@ -73,6 +73,12 @@ const residentLogin = (req, res) => {
   const db = req.app.get('db');
   const {email, password} = req.body;
 
+  if (!email || !password) {
+    return res
+      .status(200)
+      .json({authenticated: false, error: 'Request is missing a username or password.'});
+  }
+
   db
     .resident_login(email, password)
     .then((response) => {
@@ -114,6 +120,12 @@ const ownerLogin = (req, res) => {
   const db = req.app.get('db');
   const {email, password} = req.body;
 
+  if (!email || !password) {
+    return res
+      .status(200)
+      .json({authenticated: false, error: 'Request is missing a username or password.'});
+  }
+
   db
     .owner_login([email, password])
     .then((response) => {
@@ -147,7 +159,7 @@ const ownerLogin = (req, res) => {
         authenticated: false,
         email,
         userid: 0,
-        error: err,
+        error: `${err}`,
       }));
 };
 
