@@ -9,7 +9,7 @@ class NewUnit extends Component {
     this.state = {
       bath: this.props.unit.bath || 0,
       bed: this.props.unit.bed || 0,
-      occupied: this.props.unit.occupied,
+      occupied: this.props.unit.occupied || false,
       rent: this.props.unit.rent || 0,
       roomnum: this.props.unit.roomnum || 0,
       size: this.props.unit.size || 0,
@@ -17,6 +17,7 @@ class NewUnit extends Component {
       creating: this.props.creating,
       unitid: this.props.unit.unitid || 0,
       propertyid: this.props.unit.propertyid || 0,
+      index: this.props.index || -1,
     };
 
     this.onChangeHandler = this.onChangeHandler.bind(this);
@@ -24,10 +25,14 @@ class NewUnit extends Component {
   }
 
   onChangeHandler(e) {
-    this.setState({[e.target.name]: e.target.value});
+    const {target} = e;
+    const value = target.type === 'checkbox' ? target.checked : target.value;
+    const {name} = target;
+    this.setState({[name]: value});
   }
 
   onEditHandler() {
+    const {index} = this.state;
     if (this.state.editing && this.state.creating) {
       axios
         .post('/unit/add', {...this.state, propertyid: this.props.match.params.id})
@@ -46,6 +51,10 @@ class NewUnit extends Component {
             unitid,
             creating: false,
           });
+          // if (index >= 0) {
+          //   console.log('deleted index: ', index);
+          //   this.props.remove(index);
+          // }
         });
     } else if (this.state.editing) {
       const propertyid = this.props.unit.propertyid
@@ -65,11 +74,15 @@ class NewUnit extends Component {
           this.setState({
             bath,
             bed,
-            occupied,
             rent,
             roomnum,
             size,
+            occupied,
           });
+          // if (index >= 0) {
+          //   console.log('deleted index: ', index);
+          //   this.props.remove(index);
+          // }
         });
     }
     this.setState(prevState => ({editing: !prevState.editing}));
@@ -102,15 +115,28 @@ class NewUnit extends Component {
           name="bed"
           type="number"
         />
-        <input
-          placeholder="Is it occupied?"
-          value={this.state.occupied || occupied}
+        {/* <input
+          checked={this.state.occupied}
           className="NewUnit__input"
-          required
           onChange={this.onChangeHandler}
           name="occupied"
-          type="text"
+          type="checkbox"
+        /> */}
+        <input
+          checked={this.state.occupied}
+          className="NewUnit__input"
+          onChange={this.onChangeHandler}
+          name="occupied"
+          type="checkbox"
+          id="cbx"
+          style={{display: 'none'}}
         />
+        <label htmlFor="cbx" className="check">
+          <svg width="18px" height="18px" viewBox="0 0 18 18">
+            <path d="M1,9 L1,3.5 C1,2.11928813 2.11928813,1 3.5,1 L14.5,1 C15.8807119,1 17,2.11928813 17,3.5 L17,14.5 C17,15.8807119 15.8807119,17 14.5,17 L3.5,17 C2.11928813,17 1,15.8807119 1,14.5 L1,9 Z" />
+            <polyline points="1 9 7 14 15 4" />
+          </svg>
+        </label>
         <input
           placeholder="$Rent"
           value={this.state.rent || rent}
