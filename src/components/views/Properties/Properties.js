@@ -34,6 +34,9 @@ class Properties extends Component {
           <Link className="Properties-navbar-addProperty Link__none" to="/owner/properties/new">
             Add Property
           </Link>
+          <div>
+            <button>Logout</button>
+          </div>
         </div>
         <div className="Properties__all">{properties}</div>
       </div>
