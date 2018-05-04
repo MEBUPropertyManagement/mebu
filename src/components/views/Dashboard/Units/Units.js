@@ -9,9 +9,11 @@ class Units extends Component {
     super(props);
     this.state = {
       newUnits: [],
+      savedUnits: [],
     };
     this.onAddHandler = this.onAddHandler.bind(this);
     this.onRemoveHandler = this.onRemoveHandler.bind(this);
+    this.onFromArrayDelete = this.onFromArrayDelete.bind(this);
   }
   componentDidMount() {
     console.log(this.props);
@@ -43,23 +45,41 @@ class Units extends Component {
     }
   }
 
+  onFromArrayDelete(index) {
+    const {newUnits, savedUnits} = this.state;
+    console.log('index: ', index);
+    if (newUnits.length > 0) {
+      // const newUnitsCopy = this.state.newUnits.slice();
+      const newUnitsCopy = [...newUnits];
+      const saved = newUnitsCopy.splice(index, 1);
+      const savedUnitsCopy = [...savedUnits];
+      savedUnitsCopy.push(saved[0]);
+
+      // const deleted = this.state.newUnits[index];
+      // const arrCopy = this.state.newUnits.slice().splice(index, 1);
+      // console.log('deleted: ', deleted);
+      this.setState({newUnits: newUnitsCopy, savedUnits: savedUnitsCopy});
+    }
+  }
+
   render() {
     const {selectedProperty, loading} = this.props;
-    const {newUnits} = this.state;
+    const {newUnits, savedUnits} = this.state;
     let property = <p>...loading</p>;
     if (selectedProperty && !loading) {
-      const prop = selectedProperty;
       property =
         selectedProperty.occupiedUnits &&
         selectedProperty.occupiedUnits.map(unit => (
-          <NewUnit creating={false} editing={false} key={unit.unitid} unit={unit} />
+          <NewUnit index={-1} creating={false} editing={false} key={unit.unitid} unit={unit} />
         ));
     }
-
     const newUnitDisplay =
       newUnits.length > 0 &&
-      newUnits.map(newUnit => (
+      newUnits.map((newUnit, index) => (
         <NewUnit
+          remove={this.onFromArrayDelete}
+          key={index}
+          index={index}
           creating
           editing
           unit={{
@@ -72,7 +92,8 @@ class Units extends Component {
           }}
         />
       ));
-
+    const savedUnitsDisplay = savedUnits.length > 0 && savedUnits.map(unit => unit);
+    console.log(savedUnitsDisplay);
     return (
       <div className="Units container">
         <div className="Units__titles">
@@ -88,6 +109,7 @@ class Units extends Component {
           </div>
         </div>
         {newUnitDisplay}
+        {savedUnitsDisplay}
         {property}
       </div>
     );

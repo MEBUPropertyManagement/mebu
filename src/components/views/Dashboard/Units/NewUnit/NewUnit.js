@@ -17,6 +17,7 @@ class NewUnit extends Component {
       creating: this.props.creating,
       unitid: this.props.unit.unitid || 0,
       propertyid: this.props.unit.propertyid || 0,
+      index: this.props.index || -1,
     };
 
     this.onChangeHandler = this.onChangeHandler.bind(this);
@@ -24,10 +25,13 @@ class NewUnit extends Component {
   }
 
   onChangeHandler(e) {
+    const {target} = e;
+    const value = target.type === 'checkbox' ? target.checked : target.value;
     this.setState({[e.target.name]: e.target.value});
   }
 
   onEditHandler() {
+    const {index} = this.state;
     if (this.state.editing && this.state.creating) {
       axios
         .post('/unit/add', {...this.state, propertyid: this.props.match.params.id})
@@ -46,6 +50,10 @@ class NewUnit extends Component {
             unitid,
             creating: false,
           });
+          // if (index >= 0) {
+          //   console.log('deleted index: ', index);
+          //   this.props.remove(index);
+          // }
         });
     } else if (this.state.editing) {
       const propertyid = this.props.unit.propertyid
@@ -65,11 +73,15 @@ class NewUnit extends Component {
           this.setState({
             bath,
             bed,
-            occupied,
             rent,
             roomnum,
             size,
+            occupied,
           });
+          // if (index >= 0) {
+          //   console.log('deleted index: ', index);
+          //   this.props.remove(index);
+          // }
         });
     }
     this.setState(prevState => ({editing: !prevState.editing}));
