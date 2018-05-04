@@ -1,4 +1,5 @@
 import React, {Component, Fragment} from 'react';
+import {Link} from 'react-router-dom';
 import {connect} from 'react-redux';
 import NewUnit from './NewUnit/NewUnit';
 import {getPropertyById} from '../../../../redux/ducks/propertyReducer';
@@ -67,26 +68,11 @@ class Units extends Component {
       property =
         selectedProperty.occupiedUnits &&
         selectedProperty.occupiedUnits.map(unit => (
-          <NewUnit index={-1} creating={false} editing={false} key={unit.unitid} unit={unit} />
+          <Link to={`/owner/dashboard/property/${this.props.match.params.id}/units/${unit.unitid}`}>
+            <NewUnit index={-1} creating={false} editing={false} key={unit.unitid} unit={unit} />
+          </Link>
         ));
     }
-<<<<<<< HEAD
-    const newUnitDisplay = newUnits;
-    //   newUnits.length > 0 &&
-    //   newUnits.map((newUnit, index) => (
-    //     <NewUnit
-
-    //       unit={{
-    //         bath: 0,
-    //         bed: 0,
-    //         occupied: true,
-    //         rent: 0,
-    //         roomnum: 0,
-    //         size: 0,
-    //       }}
-    //     />
-    //   ));
-=======
     const newUnitDisplay =
       newUnits.length > 0 &&
       newUnits.map((newUnit, index) => (
@@ -106,7 +92,6 @@ class Units extends Component {
           }}
         />
       ));
->>>>>>> feature-units
     return (
       <div className="Units container">
         <div className="Units__titles">
@@ -123,10 +108,7 @@ class Units extends Component {
         </div>
         {newUnits.length > 0 && <h1>Multi-Add</h1>}
         {newUnitDisplay}
-<<<<<<< HEAD
-=======
         <h1>Current Units</h1>
->>>>>>> feature-units
         {property}
       </div>
     );

@@ -19,6 +19,7 @@ import Residents from './components/views/Dashboard/Residents/Residents';
 import Maintenance from './components/views/Dashboard/Maintenance/Maintenance';
 import Settings from './components/views/Dashboard/Settings/Settings';
 import AddResident from './components/views/Dashboard/Residents/AddResident/AddResident';
+import ResidentsByUnit from './components/views/Dashboard/Units/ResidentsByUnit/ResidentsByUnit';
 
 // Resident Dashboard Routes
 import ResidentContacts from './components/views/Dashboard/ResidentDashboard/Contacts/Contacts';
@@ -42,7 +43,8 @@ export default (
         <Dashboard>
           <Switch>
             <Route exact path="/owner/dashboard/property/:id" component={Property} />
-            <Route path="/owner/dashboard/property/:id/units" component={Units} />
+            <Route exact path="/owner/dashboard/property/:id/units" component={Units} />
+            <Route path="/owner/dashboard/property/:id/units/:unitid" component={ResidentsByUnit} />
             <Route path="/owner/dashboard/property/:id/metrics" component={Metrics} />
             <Route exact path="/owner/dashboard/property/:id/residents" component={Residents} />
             <Route path="/owner/dashboard/property/:id/residents/new" component={AddResident} />
