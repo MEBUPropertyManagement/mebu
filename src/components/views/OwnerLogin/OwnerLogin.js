@@ -41,7 +41,7 @@ class OwnerLogin extends Component {
       <div className="OwnerLogin">
         <div className="logo-container">
           <img className="OwnerLogin__logo" src={logo} alt="logo" />
-          <h3 className="ownerlogin-logo-header">Owner Portal</h3>
+          <h3 className="ownerlogin-logo-header">Owner Login Portal</h3>
         </div>
         <div>
           <form onSubmit={this.onSubmitHandler} className="login-container">
