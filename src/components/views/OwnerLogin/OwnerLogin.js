@@ -54,6 +54,7 @@ class OwnerLogin extends Component {
                 placeholder="email"
                 type="email"
                 required
+                autoFocus
                 onChange={e => this.handleChangeEmail(e.target.value)}
               />
             </div>
@@ -70,9 +71,7 @@ class OwnerLogin extends Component {
             <input value="Login" type="submit" className="OwnerLogin__submit" />
           </form>
           <div>
-            <Link to="/forgotpassword">
-            Forgot Password?
-            </Link>
+            <Link to="/forgotpassword">Forgot Password?</Link>
           </div>
           <div className="OwnerLogin__new-user">
             Don't have an account?{' '}
