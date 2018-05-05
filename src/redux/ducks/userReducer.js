@@ -83,7 +83,7 @@ export function forgotPassword(email) {
   return {
     type: FORGOT_PASSWORD,
     payload: axios
-      .post('/users/resident-forgot-password', {email})
+      .post('/users/owner-forgot-password', {email})
       .then((response) => {
         console.log(response.data);
         return response.data;

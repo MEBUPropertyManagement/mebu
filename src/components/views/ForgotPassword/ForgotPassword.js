@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
 import './ForgotPassword.css';
+import {Link} from 'react-router-dom';
 import {connect} from 'react-redux';
 import {forgotPassword} from '../../../redux/ducks/userReducer';
 
@@ -9,14 +10,10 @@ class ForgotPassword extends Component {
 
     this.state = {
       email: '',
+      redirect: null,
     };
 
-    this.onHandleChange = this.onHandleChange.bind(this);
     this.onSubmitHandler = this.onSubmitHandler.bind(this);
-  }
-
-  onHandleChange(value) {
-    this.setState({email: value});
   }
 
   onSubmitHandler(e) {
@@ -34,10 +31,12 @@ class ForgotPassword extends Component {
             <input
               type="text"
               value={this.state.email}
-              onChange={e => this.onHandleChange(e.target.value)}
+              onChange={e => this.setState({email: e.target.value})}
               placeholder="Email Address"
             />
-            <input type="submit" value="Submit" className="" />
+            <Link to="/login/owner/returning">
+              <input type="submit" value="Submit" className="" />
+            </Link>
           </form>
         </div>
       </div>
