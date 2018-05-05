@@ -1,6 +1,7 @@
 import axios from 'axios';
 
 const LOGIN_OWNER = 'LOGIN_OWNER';
+const WELCOME_OWNER = 'WELCOME_OWNER';
 const CREATE_OWNER = 'CREATE_OWNER';
 const LOGIN_RESIDENT = 'LOGIN_RESIDENT';
 const CREATE_RESIDENT = 'CREATE_RESIDENT';
@@ -17,6 +18,13 @@ export default function userReducer(state = initialState, action) {
       return {
         ...state,
         current_user: {userid: action.payload.userid, email: action.payload.email},
+        authenticated: action.payload.authenticated,
+      };
+
+    case `${WELCOME_OWNER}_FULFILLED`:
+      return {
+        ...state,
+        current_user: action.payload,
         authenticated: action.payload.authenticated,
       };
 
@@ -65,6 +73,13 @@ export function loginOwner(email, password) {
       .catch(err => err),
   };
 }
+
+// export function welcomeOwner(name) {
+//   return {
+//     type: WELCOME_OWNER,
+//     payload:
+//   }
+// }
 
 export function loginResident(email, password) {
   return {

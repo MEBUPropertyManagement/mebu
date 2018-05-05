@@ -40,6 +40,11 @@ class Properties extends Component {
         </Link>
       ));
 
+    const user = <p>...loading</p>;
+    if (this.props.current_user) {
+      console.log(this.props.current_user);
+    }
+
     return (
       <div className="Properties">
         <div className="Properties-navbar">
@@ -59,6 +64,7 @@ class Properties extends Component {
 
 const mapStateToProps = state => ({
   ...state.propertyReducer,
+  ...state.userReducer,
 });
 
 export default withRouter(connect(mapStateToProps, {getProperties, logoutUser})(Properties));
