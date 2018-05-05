@@ -43,13 +43,19 @@ class Properties extends Component {
     return (
       <div className="Properties">
         <div className="Properties-navbar">
-          <h2 className="Properties-navbar-header">My Properties</h2> <hr />
-          <Link className="Properties-navbar-addProperty Link__none" to="/owner/properties/new">
+          <h2 className="Properties-navbar-header">Properties</h2>
+          <Link
+            className="Properties__button Properties__button--add Link__none"
+            to="/owner/properties/new"
+          >
             Add Property
           </Link>
-          <div>
-            <button onClick={() => this.onLogout()}>Logout</button>
-          </div>
+          <button
+            className="Properties__button Properties__button--logout"
+            onClick={() => this.onLogout()}
+          >
+            Logout
+          </button>
         </div>
         <div className="Properties__all">{properties}</div>
       </div>
