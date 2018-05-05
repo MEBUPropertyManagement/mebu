@@ -73,12 +73,6 @@ const residentLogin = (req, res) => {
   const db = req.app.get('db');
   const {email, password} = req.body;
 
-  if (!email || !password) {
-    return res
-      .status(200)
-      .json({authenticated: false, error: 'Request is missing a username or password.'});
-  }
-
   db
     .resident_login(email, password)
     .then((response) => {
@@ -87,9 +81,13 @@ const residentLogin = (req, res) => {
         bcrypt.compare(password, hash, (err, result) => {
           if (result === true) {
             req.session.user = {email, userid: response[0].residentid || 0};
-            return res
-              .status(200)
-              .json({authenticated: true, email, userid: response[0].residentid || 0});
+            return res.status(200).json({
+              authenticated: true,
+              email,
+              userid: response[0].residentid || 0,
+              firstName: response[0].firstname,
+              lastName: response[0].lastname,
+            });
           }
           return res.status(200).json({
             authenticated: false,
@@ -120,12 +118,6 @@ const ownerLogin = (req, res) => {
   const db = req.app.get('db');
   const {email, password} = req.body;
 
-  if (!email || !password) {
-    return res
-      .status(200)
-      .json({authenticated: false, error: 'Request is missing a username or password.'});
-  }
-
   db
     .owner_login([email, password])
     .then((response) => {
@@ -134,9 +126,13 @@ const ownerLogin = (req, res) => {
         bcrypt.compare(password, hash, (err, result) => {
           if (result === true) {
             req.session.user = {email, userid: response[0].ownerid || 0};
-            return res
-              .status(200)
-              .json({authenticated: true, email, userid: response[0].ownerid || 0});
+            return res.status(200).json({
+              authenticated: true,
+              email,
+              userid: response[0].ownerid || 0,
+              firstName: response[0].firstname,
+              lastName: response[0].lastname,
+            });
           }
           return res.status(200).json({
             authenticated: false,
@@ -159,7 +155,7 @@ const ownerLogin = (req, res) => {
         authenticated: false,
         email,
         userid: 0,
-        error: `${err}`,
+        error: err,
       }));
 };
 
