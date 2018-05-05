@@ -70,7 +70,7 @@ class OwnerLogin extends Component {
             <input value="Login" type="submit" className="OwnerLogin__submit" />
           </form>
           <div>
-            <Link to="/forgotpassword">Forgot Password?</Link>
+            <Link to="/owner/forgotpassword">Forgot Password?</Link>
           </div>
           <div className="OwnerLogin__new-user">
             Don't have an account?{' '}
