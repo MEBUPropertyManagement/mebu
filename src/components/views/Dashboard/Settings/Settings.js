@@ -25,6 +25,12 @@ class Settings extends Component {
     this.handleChangeUnits = this.handleChangeUnits.bind(this);
     this.handleChangeValue = this.handleChangeValue.bind(this);
     this.handleChangeExpenses = this.handleChangeExpenses.bind(this);
+    this.archiveProperty = this.archiveProperty.bind(this);
+  }
+
+  componentDidMount() {
+    console.log(this.props);
+    this.props.getPropertyById(this.props.match.params.id);
   }
 
   onSubmitHandler(e) {
@@ -56,21 +62,16 @@ class Settings extends Component {
   }
 
   handleChangeValue(value) {
-    this.setState({value: value});
+    this.setState({value});
   }
 
   handleChangeExpenses(value) {
     this.setState({expenses: value});
   }
 
-  componentDidMount() {
-    console.log(this.props);
-    this.props.getPropertyById(this.props.match.params.id);
+  archiveProperty() {
+    this.props.archivePropertyById(this.props.match.params.id);
   }
-
-  archiveProperty = id => {
-    this.props.archivePropertyById(id);
-  };
 
   render() {
     return (
@@ -124,12 +125,10 @@ class Settings extends Component {
             placeholder="Expenses"
             onChange={e => this.handleChangeExpenses(e.target.value)}
           />
-          <input value="Update changes" type="submit" className="" />
+          <input value="Update" type="submit" className="" />
         </form>
         <div>
-          <Link to="/owner/properties">
-            <button onClick={() => this.archiveProperty}>Archive this property</button>
-          </Link>
+          <button onClick={() => this.archiveProperty}>Archive this property</button>
         </div>
       </div>
     );
@@ -140,6 +139,4 @@ const mapStateToProps = state => ({
   ...state.propertyReducer,
 });
 
-export default connect(mapStateToProps, {getPropertyById, updatePropertyById, archivePropertyById})(
-  Settings,
-);
+export default connect(mapStateToProps, {getPropertyById, updatePropertyById, archivePropertyById})(Settings);
