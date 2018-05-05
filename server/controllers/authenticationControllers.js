@@ -224,6 +224,7 @@ const residentForgotPassword = (req, res) => {
 };
 
 const ownerForgotPassword = (req, res) => {
+  console.log(req.body);
   const password = rand.generate(6);
   const {email} = req.body;
   let hashedPassword = '';

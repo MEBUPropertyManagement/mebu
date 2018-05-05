@@ -1,6 +1,7 @@
 import axios from 'axios';
 
 const LOGIN_OWNER = 'LOGIN_OWNER';
+const FORGOT_PASSWORD = 'FORGOT_PASSWORD';
 const CREATE_OWNER = 'CREATE_OWNER';
 const LOGIN_RESIDENT = 'LOGIN_RESIDENT';
 const CREATE_RESIDENT = 'CREATE_RESIDENT';
@@ -16,7 +17,12 @@ export default function userReducer(state = initialState, action) {
     case `${LOGIN_OWNER}_FULFILLED`:
       return {
         ...state,
-        current_user: {userid: action.payload.userid, email: action.payload.email},
+        current_user: {
+          userid: action.payload.userid,
+          email: action.payload.email,
+          firstName: action.payload.firstName,
+          lastName: action.payload.lastName,
+        },
         authenticated: action.payload.authenticated,
       };
 
@@ -48,6 +54,13 @@ export default function userReducer(state = initialState, action) {
         authenticated: false,
       };
 
+    case `${FORGOT_PASSWORD}`:
+      return {
+        ...state,
+        current_user: {email: action.payload.email},
+        authenticated: action.payload.authenticated,
+      };
+
     default:
       return state;
   }
@@ -63,6 +76,19 @@ export function loginOwner(email, password) {
       })
       .then(response => response.data)
       .catch(err => err),
+  };
+}
+
+export function forgotPassword(email) {
+  return {
+    type: FORGOT_PASSWORD,
+    payload: axios
+      .post('/users/resident-forgot-password', {email})
+      .then((response) => {
+        console.log(response.data);
+        return response.data;
+      })
+      .catch(err => console.log(err)),
   };
 }
 

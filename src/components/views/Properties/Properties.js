@@ -40,14 +40,24 @@ class Properties extends Component {
         </Link>
       ));
 
+    let user = <p>...loading</p>;
+    if (this.props.current_user) {
+      const name = this.props.current_user;
+      user = (
+        <div>
+          <h1>
+            Welcome {name.firstName} {name.lastName}
+          </h1>
+        </div>
+      );
+    }
+
     return (
       <div className="Properties">
         <div className="Properties-navbar">
-          <h2 className="Properties-navbar-header">Properties</h2>
-          <Link
-            className="Properties__button Properties__button--add Link__none"
-            to="/owner/properties/new"
-          >
+          {user}
+          <h2 className="Properties-navbar-header">My Properties</h2> <hr />
+          <Link className="Properties-navbar-addProperty Link__none" to="/owner/properties/new">
             Add Property
           </Link>
           <button
@@ -65,6 +75,7 @@ class Properties extends Component {
 
 const mapStateToProps = state => ({
   ...state.propertyReducer,
+  ...state.userReducer,
 });
 
 export default withRouter(connect(mapStateToProps, {getProperties, logoutUser})(Properties));

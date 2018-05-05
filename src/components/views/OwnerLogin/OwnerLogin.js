@@ -19,17 +19,17 @@ class OwnerLogin extends Component {
     this.onSubmitHandler = this.onSubmitHandler.bind(this);
   }
 
+  onSubmitHandler(e) {
+    e.preventDefault();
+    this.props.loginOwner(this.state.email, this.state.password);
+  }
+
   handleChangeEmail(value) {
     this.setState({email: value});
   }
 
   handleChangePassword(value) {
     this.setState({password: value});
-  }
-
-  onSubmitHandler(e) {
-    e.preventDefault();
-    this.props.loginOwner(this.state.email, this.state.password);
   }
 
   render() {
@@ -71,7 +71,7 @@ class OwnerLogin extends Component {
             <input value="Login" type="submit" className="OwnerLogin__submit" />
           </form>
           <div>
-            <Link to="/forgotpassword">Forgot Password?</Link>
+            <Link to="/owner/forgotpassword">Forgot Password?</Link>
           </div>
           <div className="OwnerLogin__new-user">
             Don't have an account?{' '}
