@@ -60,9 +60,12 @@ class Properties extends Component {
           <Link className="Properties-navbar-addProperty Link__none" to="/owner/properties/new">
             Add Property
           </Link>
-          <div>
-            <button onClick={() => this.onLogout()}>Logout</button>
-          </div>
+          <button
+            className="Properties__button Properties__button--logout"
+            onClick={() => this.onLogout()}
+          >
+            Logout
+          </button>
         </div>
         <div className="Properties__all">{properties}</div>
       </div>

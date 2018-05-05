@@ -54,6 +54,7 @@ class OwnerLogin extends Component {
                 placeholder="email"
                 type="email"
                 required
+                autoFocus
                 onChange={e => this.handleChangeEmail(e.target.value)}
               />
             </div>
