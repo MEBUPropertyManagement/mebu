@@ -14,6 +14,24 @@
   flex-direction: column;
 }
 
+.Properties__welcome {
+  padding: 20px;
+
+  font-size: 0.6rem;
+  text-transform: uppercase;
+  font-weight: 400;
+  text-align: center;
+
+  color: var(--gray);
+  background: var(--white);
+}
+
+.Properties__welcome-name {
+  letter-spacing: 1px;
+  font-size: 0.8rem;
+  color: var(--dark-gray);
+}
+
 .Properties-navbar-header {
   width: 100%;
   padding: 20px 0;
@@ -45,6 +63,13 @@
 
 .Properties__button--add {
   color: var(--white);
+}
+
+.Properties__logo {
+  width: 80%;
+  object-fit: cover;
+  align-self: center;
+  margin: 15px 0 0;
 }
 
 .Properties__all {
