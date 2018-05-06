@@ -5,6 +5,7 @@ import {Link, withRouter} from 'react-router-dom';
 import './Properties.css';
 import {getProperties} from '../../../redux/ducks/propertyReducer';
 import {logoutUser} from '../../../redux/ducks/userReducer';
+import logo from '../../../images/logo_final_blue.svg';
 
 class Properties extends Component {
   componentDidMount() {
@@ -44,11 +45,12 @@ class Properties extends Component {
     if (this.props.current_user) {
       const name = this.props.current_user;
       user = (
-        <div>
-          <h1>
-            Welcome {name.firstName} {name.lastName}
-          </h1>
-        </div>
+        <h1 className="Properties__welcome">
+          Welcome,{' '}
+          <p className="Properties__welcome-name">
+            {name.firstName} {name.lastName}
+          </p>
+        </h1>
       );
     }
 
@@ -56,8 +58,11 @@ class Properties extends Component {
       <div className="Properties">
         <div className="Properties-navbar">
           {user}
-          <h2 className="Properties-navbar-header">My Properties</h2> <hr />
-          <Link className="Properties-navbar-addProperty Link__none" to="/owner/properties/new">
+          <h2 className="Properties-navbar-header">My Properties</h2>
+          <Link
+            className="Properties__button Properties__button--add Link__none"
+            to="/owner/properties/new"
+          >
             Add Property
           </Link>
           <button
@@ -66,6 +71,7 @@ class Properties extends Component {
           >
             Logout
           </button>
+          <img className="Properties__logo" src={logo} alt="logo" />
         </div>
         <div className="Properties__all">{properties}</div>
       </div>
