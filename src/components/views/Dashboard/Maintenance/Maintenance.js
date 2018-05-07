@@ -1,11 +1,24 @@
 import React, {Component} from 'react';
-import {getWorkorderById} from '../../../../redux/ducks/workorderReducer';
+import {getWorkorderById, closeWorkorderById} from '../../../../redux/ducks/workorderReducer';
 import {connect} from 'react-redux';
 
 class Maintenance extends Component {
+  constructor(props) {
+    super(props);
+
+    // this.state = {
+    //   workorderid: '',
+    // };
+  }
+
   componentDidMount() {
     console.log(this.props);
     this.props.getWorkorderById(this.props.match.params.id);
+  }
+
+  closeWorkorderHandler() {
+    console.log(this.props);
+    // this.props.closeWorkorderHandler(this.props.match.params.id);
   }
 
   render() {
