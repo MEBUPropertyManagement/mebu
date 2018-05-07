@@ -18,6 +18,7 @@ class Dashboard extends Component {
 
   render() {
     const {path, params} = this.props.match;
+    console.log(this.props)
     return path.includes('/owner/') ? (
       <div>
         <Link className="Link__none" to={`/owner/dashboard/property/${params.id}`}>
