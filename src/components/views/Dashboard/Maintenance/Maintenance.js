@@ -4,6 +4,15 @@ import {connect} from 'react-redux';
 import {isThisSecond} from 'date-fns';
 
 class Maintenance extends Component {
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      userInput: '',
+      fiteredArray: [],
+    };
+  }
+
   componentDidMount() {
     console.log(this.props);
     this.props.getWorkorderById(this.props.match.params.id);
@@ -15,10 +24,12 @@ class Maintenance extends Component {
       this.props.workorders[0] &&
       this.props.workorders.map((workorder) => {
         const workorderid = workorder.workorderid;
-        console.log(typeof workorderid);
+        console.log(workorder);
         return (
           <div>
             <div>Work order ID: {workorder.workorderid}</div>
+            <div>Date Start: {workorder.datestart}</div>
+            <div>Date End: {workorder.dateend}</div>
             <div>Resident First Name: {workorder.firstname}</div>
             <div>Resident last Name: {workorder.lastname}</div>
             <div>Unit ID: {workorder.unitid}</div>
