@@ -1,5 +1,7 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
+import {Doughnut} from 'react-chartjs';
+
 import {getPropertyById} from '../../../../redux/ducks/propertyReducer';
 
 class Metrics extends Component {
@@ -21,7 +23,34 @@ class Metrics extends Component {
       );
     }
 
-    return <div>{property}</div>;
+    const data = [
+      {
+        value: this.props.selectedProperty.expenses,
+        color: '#2796d6',
+        highlight: '#29a0e5',
+        label: 'Expenses',
+      },
+      {
+        value: this.props.selectedProperty.income,
+        color: '#292929',
+        highlight: '#383737',
+        label: 'Income',
+      },
+    ];
+
+    return (
+      <div>
+        {property}
+        <Doughnut
+          data={data}
+          options={{
+            animationEasing: 'easeOutCubic',
+          }}
+          width="600"
+          height="250"
+        />
+      </div>
+    );
   }
 }
 
