@@ -1,0 +1,25 @@
+.Property-container {
+  background: var(--gray);
+  width: 100%;
+  height: 100%;
+  box-shadow: var(--box-shadow);
+  text-align: left;
+}
+
+.Property-name {
+  padding: 10px;
+}
+
+.Property-container p {
+  padding: 5px 10px;
+}
+
+.Property__photo {
+  display: block;
+  border: none;
+  height: 200px;
+  width: 200px;
+  object-fit: cover;
+  padding: 15px;
+  margin-top: 2.5rem;
+}
