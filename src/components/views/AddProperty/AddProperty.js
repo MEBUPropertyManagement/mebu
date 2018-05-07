@@ -13,9 +13,9 @@ class AddProperty extends Component {
     this.state = {
       name: '',
       address: '',
-      value: 0,
-      units: 0,
-      expenses: 0,
+      value: '',
+      units: '',
+      expenses: '',
       photourl: '',
     };
     this.onChangeHandler = this.onChangeHandler.bind(this);
@@ -77,75 +77,75 @@ class AddProperty extends Component {
           <img className="Properties__logo" src={logo} alt="logo" />
         </div>
         <form className="AddProperty-form" onSubmit={this.onSubmitHandler}>
-          <label htmlFor="name">
-            Name
+          <label className="Property__label" htmlFor="name">
+            Property Name
             <input
               className="AddProperty__input AddProperty__input--name"
               onChange={this.onChangeHandler}
               required
-              placeholder="John Smith"
+              placeholder="Name"
               name="name"
               maxLength="35"
               value={name}
               type="text"
             />
           </label>
-          <label htmlFor="address">
-            Address
+          <label className="Property__label" htmlFor="Property address">
+            Property Address
             <input
               className="AddProperty__input AddProperty__input--address"
               onChange={this.onChangeHandler}
               required
-              placeholder="1234 Address Blvd."
+              placeholder="Address"
               name="address"
               value={address}
               type="text"
             />
           </label>
-          <label htmlFor="value">
-            Value
+          <label className="Property__label" htmlFor="value">
+            Property Value
             <input
               className="AddProperty__input AddProperty__input--value"
               onChange={this.onChangeHandler}
               required
-              placeholder="00,000"
+              placeholder="Value amount"
               name="value"
               value={value}
               type="number"
             />
           </label>
-          <label htmlFor="photourl">
-            Photo URL
+          <label className="Property__label" htmlFor="photourl">
+            Property Photo
             <input
               className="AddProperty__input AddProperty__input--photourl"
               onChange={this.onChangeHandler}
               required
-              placeholder="http://pathtoimage.com"
+              placeholder="URL address"
               name="photourl"
               maxLength="180"
               value={photourl}
               type="url"
             />
           </label>
-          <label htmlFor="units">
-            Number of Units
+          <label className="Property__label" htmlFor="units">
+            Total Number of Property Units
             <input
               className="AddProperty__input AddProperty__input--units"
               onChange={this.onChangeHandler}
               required
-              placeholder="0"
+              placeholder="Number of units"
               name="units"
               value={units}
               type="number"
             />
           </label>
-          <label htmlFor="expenses">
-            Expenses
+          <label className="Property__label" htmlFor="expenses">
+            Total Property Expenses
             <input
               className="AddProperty__input AddProperty__input--expenses"
               onChange={this.onChangeHandler}
               required
-              placeholder="00,000"
+              placeholder="Expense amount"
               name="expenses"
               value={expenses}
               type="number"

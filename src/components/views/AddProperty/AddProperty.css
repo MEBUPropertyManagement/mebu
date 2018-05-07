@@ -16,7 +16,7 @@
 
 .AddProperty-navbar-header {
   width: 100%;
-  padding: 40px 0;
+  padding: 30px 10px;
   color: var(--white);
   font-size: 1rem;
   letter-spacing: 2px;
@@ -28,34 +28,42 @@
 }
 
 .AddProperty-form {
-  margin: 55px;
+  margin: 110px 55px;
+  padding: 20px;
   box-shadow: 0 1px 4px rgba(0, 0, 0, 0, 0.4);
   border: none;
   color: var(--black);
   background-color: var(--white);
-  text-decoration: none;
-  text-align: center;
   width: 65vw;
-  height: 75%;
-  align-self: center;
+  height: 100%;
   display: flex;
-  justify-content: center;
+  text-align: left;
   align-items: left;
   flex-direction: column;
-  overflow: hidden;
+}
+
+.Property__label {
+  margin-bottom: 0.5rem;
+  width: 100%;
+  font-size: 0.65rem;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  font-weight: bold;
 }
 
 .AddProperty__input {
   background: var(--white);
   border: 1px solid var(--gray);
-
-  border-radius: 8px;
-  padding: 8px 15px;
+  border-radius: 3px;
+  padding: 8px;
+  margin-top: 5px;
   font-size: 14px;
-  margin: 5px 0;
   outline: none;
+  width: 100%;
 }
-
+.AddProperty__input:focus {
+  border: 1px solid var(--blue);
+}
 .AddProperty__button {
   background: var(--blue);
   color: var(--white);
@@ -63,15 +71,13 @@
   font-size: 0.75rem;
   font-weight: bold;
   text-transform: uppercase;
-  border-radius: 100px;
+  border-radius: 3px;
   text-align: center;
   letter-spacing: 2px;
-  width: 300px;
+  width: 100%;
   height: 35px;
-  padding: 0 60px;
-  margin: 5px 0 20px;
   outline: none;
-  border-radius: 8px;
+  margin-top: 10px;
 }
 
 .AddProperty__button:hover {
