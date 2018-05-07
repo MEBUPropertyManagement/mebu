@@ -5,6 +5,7 @@ import {Link, withRouter} from 'react-router-dom';
 import './Properties.css';
 import {getProperties} from '../../../redux/ducks/propertyReducer';
 import {logoutUser} from '../../../redux/ducks/userReducer';
+import logo from '../../../images/logo_final_blue.svg';
 
 class Properties extends Component {
   componentDidMount() {
@@ -40,16 +41,37 @@ class Properties extends Component {
         </Link>
       ));
 
+    let user = <p>...loading</p>;
+    if (this.props.current_user) {
+      const name = this.props.current_user;
+      user = (
+        <h1 className="Properties__welcome">
+          Welcome,{' '}
+          <p className="Properties__welcome-name">
+            {name.firstName} {name.lastName}
+          </p>
+        </h1>
+      );
+    }
+
     return (
       <div className="Properties">
         <div className="Properties-navbar">
-          <h2 className="Properties-navbar-header">My Properties</h2> <hr />
-          <Link className="Properties-navbar-addProperty Link__none" to="/owner/properties/new">
+          {user}
+          <h2 className="Properties-navbar-header">My Properties</h2>
+          <Link
+            className="Properties__button Properties__button--add Link__none"
+            to="/owner/properties/new"
+          >
             Add Property
           </Link>
-          <div>
-            <button onClick={() => this.onLogout()}>Logout</button>
-          </div>
+          <button
+            className="Properties__button Properties__button--logout"
+            onClick={() => this.onLogout()}
+          >
+            Logout
+          </button>
+          <img className="Properties__logo" src={logo} alt="logo" />
         </div>
         <div className="Properties__all">{properties}</div>
       </div>
@@ -59,6 +81,7 @@ class Properties extends Component {
 
 const mapStateToProps = state => ({
   ...state.propertyReducer,
+  ...state.userReducer,
 });
 
 export default withRouter(connect(mapStateToProps, {getProperties, logoutUser})(Properties));

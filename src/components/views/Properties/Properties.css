@@ -5,38 +5,85 @@
 }
 
 .Properties-navbar {
-  background: var(--blue);
-  padding: 30px;
+  background: var(--black);
   position: fixed;
   left: 0;
   height: 100vh;
   width: 250px;
+  display: flex;
+  flex-direction: column;
+}
+
+.Properties__welcome {
+  padding: 20px;
+
+  font-size: 0.6rem;
+  text-transform: uppercase;
+  font-weight: 400;
+  text-align: center;
+
+  color: var(--gray);
+  background: var(--white);
+}
+
+.Properties__welcome-name {
+  letter-spacing: 1px;
+  font-size: 0.8rem;
+  color: var(--dark-gray);
 }
 
 .Properties-navbar-header {
+  width: 100%;
+  padding: 20px 0;
   color: var(--white);
-  margin-top: 8vh;
+  font-size: 1rem;
+  letter-spacing: 2px;
+  font-weight: 700;
+  text-align: center;
+  text-transform: uppercase;
+  line-height: 1.2rem;
+  background-color: var(--blue);
 }
 
-.Properties-navbar-addProperty {
+.Properties__button {
+  align-self: flex-end;
   color: var(--white);
+  font-size: 0.7rem;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 20px;
+  width: 100%;
+  letter-spacing: 1px;
+  transition: all 100ms linear;
+}
+.Properties__button:hover {
+  background: var(--blue);
+}
+
+.Properties__button--add {
+  color: var(--white);
+}
+
+.Properties__logo {
+  width: 80%;
+  object-fit: cover;
+  align-self: center;
+  margin: 15px 0 0;
 }
 
 .Properties__all {
-  display: flex;
-  flex-direction: row;
-  flex-wrap: wrap;
-  justify-content: center;
-  align-items: stretch;
-  align-content: stretch;
-  margin-top: 8vh;
+  display: grid;
+  grid: auto-flow / repeat(auto-fill, minmax(300px, 1fr));
+  width: 100%;
+  padding: 20px;
+  grid-gap: 15px;
 }
 
 .Property-card {
   margin: 12px;
   box-shadow: 0 1px 4px rgba(0, 0, 0, 0, 0.4);
   border: none;
-  width: 300px;
   color: var(--black);
   background-color: var(--white);
   text-decoration: none;
@@ -53,26 +100,10 @@
 .Properties__photo {
   display: block;
   border: none;
-  width: 300px;
   height: 300px;
+  width: 100%;
   background-color: var(--white);
   object-fit: cover;
-  position: relative;
-}
-
-.Properties__photo:after {
-  position: absolute;
-  top: 20px;
-  right: 20px;
-  bottom: 20px;
-  left: 20px;
-  border: 1px solid var(--white);
-  color: var(--white);
-  padding-top: 14%;
-  opacity: 0;
-  filter: alpha(opacity=0);
-  transition: all 0.3s;
-  transform: scale(0);
 }
 
 .Property-card:hover .Properties__photo:after {

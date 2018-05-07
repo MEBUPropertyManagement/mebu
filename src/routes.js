@@ -39,7 +39,7 @@ export default (
     <Route path="/login/resident/new" component={ResidentRegistration} />
     <Route exact path="/owner/properties" component={Properties} />
     <Route path="/owner/properties/new" component={AddProperty} />
-    <Route path="/forgotpassword" component={ForgotPassword} />
+    <Route path="/owner/forgotpassword" component={ForgotPassword} />
     <Route
       path="/owner/dashboard/property/:id"
       render={() => (

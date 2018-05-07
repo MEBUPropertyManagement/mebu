@@ -81,9 +81,13 @@ const residentLogin = (req, res) => {
         bcrypt.compare(password, hash, (err, result) => {
           if (result === true) {
             req.session.user = {email, userid: response[0].residentid || 0};
-            return res
-              .status(200)
-              .json({authenticated: true, email, userid: response[0].residentid || 0});
+            return res.status(200).json({
+              authenticated: true,
+              email,
+              userid: response[0].residentid || 0,
+              firstName: response[0].firstname,
+              lastName: response[0].lastname,
+            });
           }
           return res.status(200).json({
             authenticated: false,
@@ -122,9 +126,13 @@ const ownerLogin = (req, res) => {
         bcrypt.compare(password, hash, (err, result) => {
           if (result === true) {
             req.session.user = {email, userid: response[0].ownerid || 0};
-            return res
-              .status(200)
-              .json({authenticated: true, email, userid: response[0].ownerid || 0});
+            return res.status(200).json({
+              authenticated: true,
+              email,
+              userid: response[0].ownerid || 0,
+              firstName: response[0].firstname,
+              lastName: response[0].lastname,
+            });
           }
           return res.status(200).json({
             authenticated: false,
@@ -216,6 +224,7 @@ const residentForgotPassword = (req, res) => {
 };
 
 const ownerForgotPassword = (req, res) => {
+  console.log(req.body);
   const password = rand.generate(6);
   const {email} = req.body;
   let hashedPassword = '';

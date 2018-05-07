@@ -2,7 +2,7 @@ import React, {Component} from 'react';
 import {Link} from 'react-router-dom';
 import {connect} from 'react-redux';
 import {loginOwner} from '../../../redux/ducks/userReducer';
-import logo from '../../../images/logo2-nobg.png';
+import logo from '../../../images/logo_final_white.svg';
 
 import './OwnerLogin.css';
 
@@ -19,17 +19,17 @@ class OwnerLogin extends Component {
     this.onSubmitHandler = this.onSubmitHandler.bind(this);
   }
 
+  onSubmitHandler(e) {
+    e.preventDefault();
+    this.props.loginOwner(this.state.email, this.state.password);
+  }
+
   handleChangeEmail(value) {
     this.setState({email: value});
   }
 
   handleChangePassword(value) {
     this.setState({password: value});
-  }
-
-  onSubmitHandler(e) {
-    e.preventDefault();
-    this.props.loginOwner(this.state.email, this.state.password);
   }
 
   render() {
@@ -54,6 +54,7 @@ class OwnerLogin extends Component {
                 placeholder="email"
                 type="email"
                 required
+                autoFocus
                 onChange={e => this.handleChangeEmail(e.target.value)}
               />
             </div>
@@ -70,13 +71,13 @@ class OwnerLogin extends Component {
             <input value="Login" type="submit" className="OwnerLogin__submit" />
           </form>
           <div>
-            <Link to="/forgotpassword">
-            Forgot Password?
+            <Link className="OwnerLogin__link Link__none" to="/owner/forgotpassword">
+              Forgot Password?
             </Link>
           </div>
-          <div className="OwnerLogin__new-user">
+          <div className="OwnerLogin__footer">
             Don't have an account?{' '}
-            <Link className="Link__none" to="/login/owner/new">
+            <Link className="OwnerLogin__link Link__none" to="/login/owner/new">
               Get Started
             </Link>
           </div>
