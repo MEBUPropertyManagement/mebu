@@ -55,7 +55,7 @@ export function closeWorkorderById(id) {
   return {
     type: CLOSE_WORK_ORDER,
     payload: axios
-      .post(`/workorder/closeWorkorder/${id}`)
+      .put(`/workorder/closeWorkorder/${id}`)
       .then((response) => {
         console.log(response.data);
         return response.data;
