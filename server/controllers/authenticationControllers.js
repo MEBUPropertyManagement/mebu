@@ -80,7 +80,12 @@ const residentLogin = (req, res) => {
         const hash = response[0].password;
         bcrypt.compare(password, hash, (err, result) => {
           if (result === true) {
-            req.session.user = {email, userid: response[0].residentid || 0};
+            req.session.user = {
+              email,
+              userid: response[0].residentid || 0,
+              propertyid: response[0].propertyid || 0,
+              unitid: response[0].unitid || 0,
+            };
             return res.status(200).json({
               authenticated: true,
               email,

@@ -18,7 +18,7 @@ class Dashboard extends Component {
 
   render() {
     const {path, params} = this.props.match;
-    console.log(this.props)
+    console.log(this.props);
     return path.includes('/owner/') ? (
       <div>
         <Link className="Link__none" to={`/owner/dashboard/property/${params.id}`}>
@@ -69,6 +69,11 @@ class Dashboard extends Component {
           <Link className="Link__none" to="/resident/dashboard/maintenance/history">
             Maintenance History
           </Link>
+          {this.props.current_user.userid ? (
+            <button onClick={() => this.onLogout()}> Logout</button>
+          ) : (
+            ''
+          )}
         </nav>
         {this.props.children}
       </div>

@@ -54,8 +54,8 @@
   cursor: pointer;
   padding: 20px;
   width: 100%;
-  letter-spacing: 1px;
   transition: all 100ms linear;
+  font-family: var(--font);
 }
 .Properties__button:hover {
   color: var(--blue);

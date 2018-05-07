@@ -68,9 +68,7 @@ class Units extends Component {
       property =
         selectedProperty.occupiedUnits &&
         selectedProperty.occupiedUnits.map(unit => (
-          <Link to={`/owner/dashboard/property/${this.props.match.params.id}/units/${unit.unitid}`}>
             <NewUnit index={-1} creating={false} editing={false} key={unit.unitid} unit={unit} />
-          </Link>
         ));
     }
     const newUnitDisplay =

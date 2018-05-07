@@ -24,9 +24,14 @@ class Properties extends Component {
   }
 
   render() {
-    const properties =
-      this.props.properties[0] &&
-      this.props.properties.map(property => (
+    const {
+      properties, loading, error, current_user,
+    } = this.props;
+    const propertiesDisplay =
+      properties &&
+      properties[0] &&
+      !loading &&
+      properties.map(property => (
         <Link
           className="Property-card"
           key={property.propertyid}
@@ -42,8 +47,8 @@ class Properties extends Component {
       ));
 
     let user = <p>...loading</p>;
-    if (this.props.current_user) {
-      const name = this.props.current_user;
+    if (current_user) {
+      const name = current_user;
       user = (
         <h1 className="Properties__welcome">
           Welcome,{' '}
@@ -74,7 +79,7 @@ class Properties extends Component {
           </button>
           <img className="Properties__logo" src={logo} alt="logo" />
         </div>
-        <div className="Properties__all">{properties}</div>
+        <div className="Properties__all">{propertiesDisplay}</div>
       </div>
     );
   }
