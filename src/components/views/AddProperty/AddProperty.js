@@ -1,7 +1,10 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
+import axios from 'axios';
+import {Link, withRouter} from 'react-router-dom';
 import {createProperty} from '../../../redux/ducks/propertyReducer';
-
+import {logoutUser} from '../../../redux/ducks/userReducer';
+import logo from '../../../images/logo_final_blue.svg';
 import './AddProperty.css';
 
 class AddProperty extends Component {
@@ -10,9 +13,9 @@ class AddProperty extends Component {
     this.state = {
       name: '',
       address: '',
-      value: 0,
-      units: 0,
-      expenses: 0,
+      value: '',
+      units: '',
+      expenses: '',
       photourl: '',
     };
     this.onChangeHandler = this.onChangeHandler.bind(this);
@@ -39,84 +42,110 @@ class AddProperty extends Component {
     this.setState({[e.target.name]: e.target.value});
   }
 
+  onLogout() {
+    console.log('logging out!');
+    axios
+      .get('/users/logout')
+      .then((response) => {
+        this.props.logoutUser();
+        return this.props.history.push('/');
+      })
+      .catch(err => console.log(err));
+  }
+
   render() {
     const {
       name, address, value, units, expenses, photourl,
     } = this.state;
 
     return (
-      <div>
-        This is the AddProperty component.
-        <form onSubmit={this.onSubmitHandler}>
-          <label htmlFor="name">
-            Name
+      <div className="AddProperty">
+        <div className="AddProperty-navbar">
+          <h2 className="AddProperty-navbar-header">Add New Property</h2>
+          <Link
+            className="Properties__button Properties__button--add Link__none"
+            to="/owner/properties"
+          >
+            Back to All Properties
+          </Link>
+          <button
+            className="Properties__button Properties__button--logout"
+            onClick={() => this.onLogout()}
+          >
+            Logout
+          </button>
+          <img className="Properties__logo" src={logo} alt="logo" />
+        </div>
+        <form className="AddProperty-form" onSubmit={this.onSubmitHandler}>
+          <label className="Property__label" htmlFor="name">
+            Property Name
             <input
               className="AddProperty__input AddProperty__input--name"
               onChange={this.onChangeHandler}
               required
-              placeholder="John Smith"
+              placeholder="Name"
               name="name"
               maxLength="35"
               value={name}
               type="text"
             />
           </label>
-          <label htmlFor="address">
-            Address
+          <label className="Property__label" htmlFor="Property address">
+            Property Address
             <input
               className="AddProperty__input AddProperty__input--address"
               onChange={this.onChangeHandler}
               required
-              placeholder="1234 Address Blvd."
+              placeholder="Address"
               name="address"
               value={address}
               type="text"
             />
           </label>
-          <label htmlFor="value">
-            Value
+          <label className="Property__label" htmlFor="value">
+            Property Value
             <input
               className="AddProperty__input AddProperty__input--value"
               onChange={this.onChangeHandler}
               required
-              placeholder="00,000"
+              placeholder="Value amount"
               name="value"
               value={value}
               type="number"
             />
           </label>
-          <label htmlFor="photourl">
-            Photo URL
+          <label className="Property__label" htmlFor="photourl">
+            Property Photo
             <input
               className="AddProperty__input AddProperty__input--photourl"
               onChange={this.onChangeHandler}
               required
-              placeholder="http://pathtoimage.com"
+              placeholder="URL address"
               name="photourl"
               maxLength="180"
               value={photourl}
               type="url"
             />
           </label>
-          <label htmlFor="units">
-            Number of Units
+          <label className="Property__label" htmlFor="units">
+            Total Number of Property Units
             <input
               className="AddProperty__input AddProperty__input--units"
               onChange={this.onChangeHandler}
               required
-              placeholder="0"
+              placeholder="Number of units"
               name="units"
               value={units}
               type="number"
             />
           </label>
-          <label htmlFor="expenses">
-            Expenses
+          <label className="Property__label" htmlFor="expenses">
+            Total Property Expenses
             <input
               className="AddProperty__input AddProperty__input--expenses"
               onChange={this.onChangeHandler}
               required
-              placeholder="00,000"
+              placeholder="Expense amount"
               name="expenses"
               value={expenses}
               type="number"
@@ -133,4 +162,4 @@ const mapStateToProps = state => ({
   ...state.propertyReducer,
 });
 
-export default connect(mapStateToProps, {createProperty})(AddProperty);
+export default connect(mapStateToProps, {createProperty, logoutUser})(AddProperty);

@@ -10,7 +10,6 @@ const stripeCharge = (req, res) => {
       amount: req.body.amount,
       currency: 'usd',
       source: req.body.stripeToken,
-      receipt_email: req.body.email,
     },
     (error, charge) => {
       if (error) {
