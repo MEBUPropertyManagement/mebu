@@ -58,7 +58,7 @@
   transition: all 100ms linear;
 }
 .Properties__button:hover {
-  background: var(--blue);
+  color: var(--blue);
 }
 
 .Properties__button--add {

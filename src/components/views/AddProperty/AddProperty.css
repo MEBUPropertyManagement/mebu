@@ -28,14 +28,53 @@
 }
 
 .AddProperty-form {
-  margin: 12px;
+  margin: 55px;
   box-shadow: 0 1px 4px rgba(0, 0, 0, 0, 0.4);
   border: none;
   color: var(--black);
   background-color: var(--white);
   text-decoration: none;
   text-align: center;
-  display: block;
-  position: relative;
+  width: 65vw;
+  height: 75%;
+  align-self: center;
+  display: flex;
+  justify-content: center;
+  align-items: left;
+  flex-direction: column;
   overflow: hidden;
+}
+
+.AddProperty__input {
+  background: var(--white);
+  border: 1px solid var(--gray);
+
+  border-radius: 8px;
+  padding: 8px 15px;
+  font-size: 14px;
+  margin: 5px 0;
+  outline: none;
+}
+
+.AddProperty__button {
+  background: var(--blue);
+  color: var(--white);
+  border: var(--blue) solid 3px;
+  font-size: 0.75rem;
+  font-weight: bold;
+  text-transform: uppercase;
+  border-radius: 100px;
+  text-align: center;
+  letter-spacing: 2px;
+  width: 300px;
+  height: 35px;
+  padding: 0 60px;
+  margin: 5px 0 20px;
+  outline: none;
+  border-radius: 8px;
+}
+
+.AddProperty__button:hover {
+  color: var(--blue);
+  background: var(--white);
 }
