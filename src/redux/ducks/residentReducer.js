@@ -3,9 +3,13 @@ import axios from 'axios';
 const GET_RESIDENTS = 'GET_RESIDENTS';
 const GET_RESIDENTS_BY_UNIT_ID = 'GET_RESIDENTS_BY_UNIT_ID';
 const CREATE_RESIDENT = 'CREATE_RESIDENT';
+const GET_BILLS = 'GET_BILLS';
+const GET_BILLING_HISTORY = 'GET_BILLING_HISTORY';
 
 const initialState = {
   residents: [],
+  bills: [],
+  billingHistory: [],
   loading: false,
   error: false,
 };
@@ -51,6 +55,36 @@ export default function propertyReducer(state = initialState, action) {
         error: false,
       };
 
+    case `${GET_BILLS}_PENDING`:
+      return {
+        ...state,
+        loading: true,
+        error: false,
+      };
+
+    case `${GET_BILLS}_FULFILLED`:
+      return {
+        ...state,
+        bills: action.payload,
+        loading: false,
+        error: false,
+      };
+
+    case `${GET_BILLING_HISTORY}_PENDING`:
+      return {
+        ...state,
+        loading: true,
+        error: false,
+      };
+
+    case `${GET_BILLING_HISTORY}_FULFILLED`:
+      return {
+        ...state,
+        billingHistory: action.payload,
+        loading: false,
+        error: false,
+      };
+
     default:
       return state;
   }
@@ -91,6 +125,26 @@ export function addResident(obj) {
         console.log(response.data);
         return response.data;
       })
+      .catch(err => err),
+  };
+}
+
+export function getBills() {
+  return {
+    type: GET_BILLS,
+    payload: axios
+      .get('/bills/getUnpaid')
+      .then(response => response.data)
+      .catch(err => err),
+  };
+}
+
+export function getBillingHistory() {
+  return {
+    type: GET_BILLING_HISTORY,
+    payload: axios
+      .get('/bills/getBillingHistory')
+      .then(response => response.data)
       .catch(err => err),
   };
 }

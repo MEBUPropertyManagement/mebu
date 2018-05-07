@@ -14,7 +14,16 @@ const getResidentsByUnit = (req, res) => {
     .catch(err => res.status(200).json({error: `${err}`}));
 };
 
+const getResidentDetails = (req, res) => {
+  const db = req.app.get('db');
+  db
+    .residents_getResidentDetails([req.session.user.userid])
+    .then(response => res.status(200).json({details: response}))
+    .catch(err => res.status(200).json({error: `${err}`}));
+};
+
 module.exports = {
   getResidents,
   getResidentsByUnit,
+  getResidentDetails,
 };

@@ -59,6 +59,7 @@ class Properties extends Component {
         <div className="Properties-navbar">
           {user}
           <h2 className="Properties-navbar-header">My Properties</h2>
+
           <Link
             className="Properties__button Properties__button--add Link__none"
             to="/owner/properties/new"

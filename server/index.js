@@ -30,7 +30,11 @@ const {
 const {addUnit, getUnit, updateUnit} = require('./controllers/unitsControllers');
 
 // Residents Controllers
-const {getResidents, getResidentsByUnit} = require('./controllers/residentsControllers');
+const {
+  getResidents,
+  getResidentsByUnit,
+  getResidentDetails,
+} = require('./controllers/residentsControllers');
 
 // Workorder Controllers
 const {
@@ -100,6 +104,7 @@ app.get('/properties/getProperties', getProperties);
 // Resident Endpoints
 app.get('/residents/getResidents/:id', getResidents);
 app.get('/residents/getResidentsByUnit/:id', getResidentsByUnit);
+app.get('/residents/getResidentDetails', getResidentDetails);
 
 // Workorder Endpoints
 app.post('/workorder/addWorkorder', addWorkOrder);
