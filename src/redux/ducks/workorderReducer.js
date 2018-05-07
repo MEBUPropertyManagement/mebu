@@ -6,6 +6,7 @@ const CLOSE_WORK_ORDER = 'CLOSE_WORK_ORDER';
 
 const initialState = {
   workorders: [],
+  fiterWorkorders: [],
   loading: false,
   error: false,
 };

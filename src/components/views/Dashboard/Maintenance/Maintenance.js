@@ -9,13 +9,16 @@ class Maintenance extends Component {
 
     this.state = {
       userInput: '',
-      fiteredArray: [],
     };
   }
 
   componentDidMount() {
     console.log(this.props);
     this.props.getWorkorderById(this.props.match.params.id);
+  }
+
+  onHandleChange(value) {
+    this.setState({userInput: value});
   }
 
   render() {
@@ -43,6 +46,7 @@ class Maintenance extends Component {
       });
     return (
       <div>
+        <input onChange={e => this.onHandleChange(e.target.value)} />
         <div>{workorders}</div>
       </div>
     );
