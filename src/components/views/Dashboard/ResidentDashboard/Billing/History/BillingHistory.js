@@ -1,5 +1,5 @@
 import React from 'react';
 
-const BillingHistory = () => <div>Placeholder</div>;
+const BillingHistory = () => <div>Billing History Component</div>;
 
 export default BillingHistory;

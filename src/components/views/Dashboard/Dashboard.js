@@ -42,27 +42,34 @@ class Dashboard extends Component {
           <Link className="Link__none" to="/owner/properties">
             Return to Properties
           </Link>
-          {this.props.current_user.userid ? <button onClick={() => this.onLogout()}> Logout</button> : ''}
+          {this.props.current_user.userid ? (
+            <button onClick={() => this.onLogout()}> Logout</button>
+          ) : (
+            ''
+          )}
         </nav>
         {this.props.children}
       </div>
     ) : (
       <div>
-        <Link className="Link__none" to="/resident/dashboard/">
-          Contacts
-        </Link>
-        <Link className="Link__none" to="/resident/dashboard/billing/pay">
-          Pay Bills
-        </Link>
-        <Link className="Link__none" to="/resident/dashboard/billing/history">
-          Billing History
-        </Link>
-        <Link className="Link__none" to="/resident/dashboard/maintenance/create">
-          Maintenance Request
-        </Link>
-        <Link className="Link__none" to="/resident/dashboard/maintenance/history">
-          Maintenance History
-        </Link>
+        <nav>
+          <Link className="Link__none" to="/resident/dashboard/">
+            Contacts
+          </Link>
+          <Link className="Link__none" to="/resident/dashboard/billing/pay">
+            Pay Bills
+          </Link>
+          <Link className="Link__none" to="/resident/dashboard/billing/history">
+            Billing History
+          </Link>
+          <Link className="Link__none" to="/resident/dashboard/maintenance/create">
+            Maintenance Request
+          </Link>
+          <Link className="Link__none" to="/resident/dashboard/maintenance/history">
+            Maintenance History
+          </Link>
+        </nav>
+        {this.props.children}
       </div>
     );
   }
