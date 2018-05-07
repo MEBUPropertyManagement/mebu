@@ -1,7 +1,7 @@
 import React, {Component, Fragment} from 'react';
-import {withRouter} from 'react-router-dom';
-import {connect} from 'react-redux';
 import axios from 'axios';
+import {withRouter, Link} from 'react-router-dom';
+import {connect} from 'react-redux';
 import {getPropertyById} from '../../../../../redux/ducks/propertyReducer';
 import './NewUnit.css';
 
@@ -150,12 +150,14 @@ class NewUnit extends Component {
       </Fragment>
     ) : (
       <Fragment>
-        <p>{this.state.bath}</p>
-        <p>{this.state.bed}</p>
-        <p>{this.state.occupied ? 'Yes' : 'No'}</p>
-        <p>{this.state.rent}</p>
-        <p>{this.state.roomnum}</p>
-        <p>{this.state.size}</p>
+        <Link className="Link__none" to={`/owner/dashboard/property/${this.state.propertyid}/units/${this.state.unitid}`}>
+          <p>{this.state.bath}</p>
+          <p>{this.state.bed}</p>
+          <p>{this.state.occupied ? 'Yes' : 'No'}</p>
+          <p>{this.state.rent}</p>
+          <p>{this.state.roomnum}</p>
+          <p>{this.state.size}</p>
+        </Link>
       </Fragment>
     );
 
