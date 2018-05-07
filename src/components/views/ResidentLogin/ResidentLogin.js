@@ -27,7 +27,7 @@ class ResidentLogin extends Component {
 
   render() {
     if (this.props.authenticated) {
-      this.props.history.push('/');
+      this.props.history.push('/resident/dashboard/');
     }
 
     return (
@@ -65,12 +65,12 @@ class ResidentLogin extends Component {
           <div>
             <Link to="/forgotpassword">Forgot Password?</Link>
           </div>
-          <div className="ResidentLogin__new-user">
+          {/* <div className="ResidentLogin__new-user">
             Don't have an account?{' '}
             <Link className="Link__none" to="/login/resident/new">
               Get Started
             </Link>
-          </div>
+          </div> */}
         </div>
         <div className="logo-container-registration-log">
           <h3 className="ownerlogin-logo-header">Resident Portal</h3>
