@@ -25,10 +25,10 @@ class Settings extends Component {
     this.handleChangeUnits = this.handleChangeUnits.bind(this);
     this.handleChangeValue = this.handleChangeValue.bind(this);
     this.handleChangeExpenses = this.handleChangeExpenses.bind(this);
+    this.onArchiveClickHandler = this.onArchiveClickHandler.bind(this);
   }
 
   componentDidMount() {
-    console.log(this.props);
     this.props.getPropertyById(this.props.match.params.id);
   }
 
@@ -66,6 +66,11 @@ class Settings extends Component {
 
   handleChangeExpenses(value) {
     this.setState({expenses: value});
+  }
+
+  onArchiveClickHandler() {
+    this.props.archivePropertyById(this.props.match.params.id);
+    this.props.history.push('/owner/properties');
   }
 
   render() {
@@ -123,9 +128,7 @@ class Settings extends Component {
           <input value="Update" type="submit" className="" />
         </form>
         <div>
-          <button onClick={() => this.props.archivePropertyById(this.props.match.params.id)}>
-            Archive this property
-          </button>
+          <button onClick={this.onArchiveClickHandler}>Archive this property</button>
         </div>
       </div>
     );
