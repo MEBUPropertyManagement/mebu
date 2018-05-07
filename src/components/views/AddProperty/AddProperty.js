@@ -1,7 +1,9 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
+import axios from 'axios';
 import {createProperty} from '../../../redux/ducks/propertyReducer';
-
+import {logoutUser} from '../../../redux/ducks/userReducer';
+import logo from '../../../images/logo_final_blue.svg';
 import './AddProperty.css';
 
 class AddProperty extends Component {
@@ -39,14 +41,34 @@ class AddProperty extends Component {
     this.setState({[e.target.name]: e.target.value});
   }
 
+  onLogout() {
+    console.log('logging out!');
+    axios
+      .get('/users/logout')
+      .then((response) => {
+        this.props.logoutUser();
+        return this.props.history.push('/');
+      })
+      .catch(err => console.log(err));
+  }
+
   render() {
     const {
       name, address, value, units, expenses, photourl,
     } = this.state;
 
     return (
-      <div>
-        This is the AddProperty component.
+      <div className="AddProperty">
+        <div className="AddProperty-navbar">
+          <h2 className="AddProperty-navbar-header">Add New Property</h2>
+          <button
+            className="Properties__button Properties__button--logout"
+            onClick={() => this.onLogout()}
+          >
+            Logout
+          </button>
+          <img className="Properties__logo" src={logo} alt="logo" />
+        </div>
         <form onSubmit={this.onSubmitHandler}>
           <label htmlFor="name">
             Name
@@ -133,4 +155,4 @@ const mapStateToProps = state => ({
   ...state.propertyReducer,
 });
 
-export default connect(mapStateToProps, {createProperty})(AddProperty);
+export default connect(mapStateToProps, {createProperty, logoutUser})(AddProperty);
