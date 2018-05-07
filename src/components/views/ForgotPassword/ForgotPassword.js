@@ -10,7 +10,6 @@ class ForgotPassword extends Component {
 
     this.state = {
       email: '',
-      redirect: null,
     };
 
     this.onSubmitHandler = this.onSubmitHandler.bind(this);
