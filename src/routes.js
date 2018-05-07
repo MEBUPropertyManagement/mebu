@@ -47,10 +47,17 @@ export default (
           <Switch>
             <Route exact path="/owner/dashboard/property/:id" component={Property} />
             <Route exact path="/owner/dashboard/property/:id/units" component={Units} />
-            <Route path="/owner/dashboard/property/:id/units/:unitid" component={ResidentsByUnit} />
+            <Route
+              exact
+              path="/owner/dashboard/property/:id/units/:unitid/residents"
+              component={ResidentsByUnit}
+            />
+            <Route
+              path="/owner/dashboard/property/:id/units/:unitid/residents/new"
+              component={AddResident}
+            />
             <Route path="/owner/dashboard/property/:id/metrics" component={Metrics} />
-            <Route exact path="/owner/dashboard/property/:id/residents" component={Residents} />
-            <Route path="/owner/dashboard/property/:id/residents/new" component={AddResident} />
+            <Route path="/owner/dashboard/property/:id/residents" component={Residents} />
             <Route path="/owner/dashboard/property/:id/maintenance" component={Maintenance} />
             <Route path="/owner/dashboard/property/:id/settings" component={Settings} />
           </Switch>

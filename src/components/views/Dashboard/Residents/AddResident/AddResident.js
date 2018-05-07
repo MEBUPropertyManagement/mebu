@@ -7,11 +7,11 @@ class AddResident extends Component {
     super(props);
     this.state = {
       email: '',
-      unitID: '',
       firstName: '',
       lastName: '',
     };
     this.onChangeHandler = this.onChangeHandler.bind(this);
+    this.onSubmitHandler = this.onSubmitHandler.bind(this);
   }
 
   onChangeHandler(e) {
@@ -20,7 +20,11 @@ class AddResident extends Component {
 
   onSubmitHandler(e) {
     e.preventDefault();
-    this.props.addResident({...this.state, propertyID: this.props.match.params.id});
+    this.props.addResident({
+      ...this.state,
+      unitID: this.props.match.params.unitid,
+      propertyID: this.props.match.params.id,
+    });
   }
 
   render() {
@@ -34,20 +38,15 @@ class AddResident extends Component {
             required
             onChange={this.onChangeHandler}
             placeholder="email"
+            name="email"
             value={email}
             type="email"
           />
           <input
             required
             onChange={this.onChangeHandler}
-            placeholder="unitID"
-            value={unitID}
-            type="number"
-          />
-          <input
-            required
-            onChange={this.onChangeHandler}
             placeholder="firstName"
+            name="firstName"
             value={firstName}
             type="text"
           />
@@ -55,10 +54,11 @@ class AddResident extends Component {
             required
             onChange={this.onChangeHandler}
             placeholder="lastName"
+            name="lastName"
             value={lastName}
             type="text"
           />
-          <input type="submit" />
+          <input type="submit" value="Add Resident" />
         </form>
       </div>
     );

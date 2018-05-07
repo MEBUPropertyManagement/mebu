@@ -57,10 +57,11 @@ class NewUnit extends Component {
           unitid,
         })
         .then((response) => {
+          console.log('response: ', response);
           // const {
           //   bath, bed, occupied, rent, roomnum, size,
           // } = response.data[0];
-          this.props.getPropertyById(response.data[0].propertyid);
+          this.props.getPropertyById(response.data.response[0].propertyid);
           // this.setState({
           //   bath,
           //   bed,
@@ -150,12 +151,22 @@ class NewUnit extends Component {
       </Fragment>
     ) : (
       <Fragment>
-        <Link className="Link__none" to={`/owner/dashboard/property/${this.state.propertyid}/units/${this.state.unitid}`}>
+        <Link className="Link__none" to={`/owner/dashboard/property/${this.state.propertyid}/units/${this.state.unitid}/residents`}>
           <p>{this.state.bath}</p>
+        </Link>
+        <Link className="Link__none" to={`/owner/dashboard/property/${this.state.propertyid}/units/${this.state.unitid}/residents`}>
           <p>{this.state.bed}</p>
+        </Link>
+        <Link className="Link__none" to={`/owner/dashboard/property/${this.state.propertyid}/units/${this.state.unitid}/residents`}>
           <p>{this.state.occupied ? 'Yes' : 'No'}</p>
+        </Link>
+        <Link className="Link__none" to={`/owner/dashboard/property/${this.state.propertyid}/units/${this.state.unitid}/residents`}>
           <p>{this.state.rent}</p>
+        </Link>
+        <Link className="Link__none" to={`/owner/dashboard/property/${this.state.propertyid}/units/${this.state.unitid}/residents`}>
           <p>{this.state.roomnum}</p>
+        </Link>
+        <Link className="Link__none" to={`/owner/dashboard/property/${this.state.propertyid}/units/${this.state.unitid}/residents`}>
           <p>{this.state.size}</p>
         </Link>
       </Fragment>

@@ -1,5 +1,6 @@
 import React, {Component, Fragment} from 'react';
 import {connect} from 'react-redux';
+import {Link} from 'react-router-dom';
 import {getResidentsByUnitId} from '../../../../../redux/ducks/residentReducer';
 import './ResidentsByUnit.css';
 
@@ -24,13 +25,22 @@ class ResidentsByUnit extends Component {
       ));
     }
     return (
-      <div className="ResidentsByUnit">
-        <p>email</p>
-        <p>firstname</p>
-        <p>lastname</p>
-        <p>isresident</p>
-        {residentsDisplay}
-      </div>
+      <Fragment>
+        <div className="ResidentsByUnit">
+          <p>email</p>
+          <p>firstname</p>
+          <p>lastname</p>
+          <p>isresident</p>
+          {residentsDisplay}
+        </div>
+        <Link
+          to={`/owner/dashboard/property/${this.props.match.params.id}/units/${
+            this.props.match.params.unitid
+          }/residents/new`}
+        >
+          Add Resident
+        </Link>
+      </Fragment>
     );
   }
 }
