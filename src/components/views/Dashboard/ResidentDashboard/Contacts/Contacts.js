@@ -1,5 +1,5 @@
 import React from 'react';
 
-const Contacts = () => <div>Placeholder</div>;
+const Contacts = () => <div>Contacts Component</div>;
 
 export default Contacts;

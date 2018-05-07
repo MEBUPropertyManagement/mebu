@@ -10,8 +10,6 @@ class PayBills extends Component {
       amount: 0,
       billid: 0,
     };
-
-    this.onToken = this.onToken.bind(this);
   }
 
   componentDidMount() {
@@ -32,7 +30,7 @@ class PayBills extends Component {
 
   render() {
     return (
-      <div>Placeholder Text</div>
+      <div>Pay Bills Component</div>
       // <StripeCheckout
       //   token={this.onToken}
       //   stripeKey="pk_test_iueyBCm4l0DmYEeCjwFL51iY"

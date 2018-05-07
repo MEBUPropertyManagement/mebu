@@ -25,8 +25,8 @@ import ResidentsByUnit from './components/views/Dashboard/Units/ResidentsByUnit/
 
 // Resident Dashboard Routes
 import ResidentContacts from './components/views/Dashboard/ResidentDashboard/Contacts/Contacts';
-import ResidentPayBills from './components/views/Dashboard/ResidentDashboard/Billing/History/BillingHistory';
-import ResidentBillingHistory from './components/views/Dashboard/ResidentDashboard/Billing/Pay/PayBills';
+import ResidentPayBills from './components/views/Dashboard/ResidentDashboard/Billing/Pay/PayBills';
+import ResidentBillingHistory from './components/views/Dashboard/ResidentDashboard/Billing/History/BillingHistory';
 import ResidentCreateWorkorder from './components/views/Dashboard/ResidentDashboard/Maintenance/CreateWorkorder';
 import ResidentWorkorderHistory from './components/views/Dashboard/ResidentDashboard/Maintenance/WorkorderHistory';
 
