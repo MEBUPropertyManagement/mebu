@@ -3,9 +3,11 @@ import axios from 'axios';
 const GET_RESIDENTS = 'GET_RESIDENTS';
 const GET_RESIDENTS_BY_UNIT_ID = 'GET_RESIDENTS_BY_UNIT_ID';
 const CREATE_RESIDENT = 'CREATE_RESIDENT';
+const GET_RESIDENT_INFO = 'GET_RESIDENT_INFO';
 
 const initialState = {
   residents: [],
+  residentInfo: {},
   loading: false,
   error: false,
 };
@@ -51,6 +53,20 @@ export default function propertyReducer(state = initialState, action) {
         error: false,
       };
 
+    case `${GET_RESIDENT_INFO}_PENDING`:
+      return {
+        ...state,
+        loading: true,
+        error: false,
+      };
+    case `${GET_RESIDENT_INFO}_FULFILLED`:
+      return {
+        ...state,
+        residentInfo: action.payload,
+        loading: false,
+        error: false,
+      };
+
     default:
       return state;
   }
@@ -91,6 +107,16 @@ export function addResident(obj) {
         console.log(response.data);
         return response.data;
       })
+      .catch(err => err),
+  };
+}
+
+export function getResidentInfo() {
+  return {
+    type: GET_RESIDENT_INFO,
+    payload: axios
+      .get('/residents/getResidentDetails')
+      .then(response => response.data)
       .catch(err => err),
   };
 }
