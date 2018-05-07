@@ -25,6 +25,7 @@ class AddResident extends Component {
       unitID: this.props.match.params.unitid,
       propertyID: this.props.match.params.id,
     });
+    this.props.history.push(this.props.location.pathname.replace('/new', ''));
   }
 
   render() {
@@ -33,8 +34,13 @@ class AddResident extends Component {
     } = this.state;
     return (
       <div className="AddResident">
+        <p className="AddResident__warning">
+          New residents will only show up as a resident once they have logged in through the
+          Resident Portal.
+        </p>
         <form onSubmit={this.onSubmitHandler}>
           <input
+            className="AddResident__input AddResident__input--email"
             required
             onChange={this.onChangeHandler}
             placeholder="email"
@@ -43,6 +49,7 @@ class AddResident extends Component {
             type="email"
           />
           <input
+            className="AddResident__input AddResident__input--firstname"
             required
             onChange={this.onChangeHandler}
             placeholder="firstName"
@@ -51,6 +58,7 @@ class AddResident extends Component {
             type="text"
           />
           <input
+            className="AddResident__input AddResident__input--lastname"
             required
             onChange={this.onChangeHandler}
             placeholder="lastName"
