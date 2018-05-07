@@ -2,6 +2,7 @@ import axios from 'axios';
 
 const GET_WORK_ORDER = 'GET_WORK_ORDER';
 const GET_WORK_ORDER_BY_ID = 'GET_WORK_ORDER_BY_ID';
+const CLOSE_WORK_ORDER = 'CLOSE_WORK_ORDER';
 
 const initialState = {
   workorders: [],
@@ -26,6 +27,12 @@ export default function workorderReducer(state = initialState, action) {
         error: false,
       };
 
+    case `${CLOSE_WORK_ORDER}`:
+      return {
+        ...state,
+        workorders: {id: action.type.id},
+      };
+
     default:
       return state;
   }
@@ -36,6 +43,19 @@ export function getWorkorderById(id) {
     type: GET_WORK_ORDER_BY_ID,
     payload: axios
       .get(`/workorder/getByPropertyId/${id}`)
+      .then((response) => {
+        console.log(response.data);
+        return response.data;
+      })
+      .catch(err => err),
+  };
+}
+
+export function closeWorkorderById(id) {
+  return {
+    type: CLOSE_WORK_ORDER,
+    payload: axios
+      .post(`/workorder/closeWorkorder/${id}`)
       .then((response) => {
         console.log(response.data);
         return response.data;

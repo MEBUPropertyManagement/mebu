@@ -103,7 +103,7 @@ app.get('/residents/getResidentsByUnit/:id', getResidentsByUnit);
 
 // Workorder Endpoints
 app.post('/workorder/addWorkorder', addWorkOrder);
-app.post('/workorder/closeWorkorder/:id', closeWorkorder);
+app.put('/workorder/closeWorkorder/:id', closeWorkorder);
 app.get('/workorder/getByPropertyId/:id', workOrderByPropertyId);
 app.get('/workorder/getByResidentId/:id', workOrderByResidentId);
 
