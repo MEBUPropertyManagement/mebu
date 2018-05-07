@@ -57,8 +57,9 @@ class Properties extends Component {
     return (
       <div className="Properties">
         <div className="Properties-navbar">
-          <h2 className="Properties-navbar-header">My Properties</h2>
           {user}
+          <h2 className="Properties-navbar-header">My Properties</h2>
+
           <Link
             className="Properties__button Properties__button--add Link__none"
             to="/owner/properties/new"

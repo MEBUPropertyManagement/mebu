@@ -22,14 +22,14 @@
   font-weight: 400;
   text-align: center;
 
-  color: var(--white);
-  background: var(--black);
+  color: var(--gray);
+  background: var(--white);
 }
 
 .Properties__welcome-name {
   letter-spacing: 1px;
   font-size: 0.7rem;
-  color: var(--white);
+  color: var(--gray);
 }
 
 .Properties-navbar-header {
@@ -57,9 +57,9 @@
   letter-spacing: 1px;
   transition: all 100ms linear;
 }
-/* .Properties__button:hover {
+.Properties__button:hover {
   background: var(--blue);
-} */
+}
 
 .Properties__button--add {
   color: var(--white);

@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
 import axios from 'axios';
+import {Link, withRouter} from 'react-router-dom';
 import {createProperty} from '../../../redux/ducks/propertyReducer';
 import {logoutUser} from '../../../redux/ducks/userReducer';
 import logo from '../../../images/logo_final_blue.svg';
@@ -61,6 +62,12 @@ class AddProperty extends Component {
       <div className="AddProperty">
         <div className="AddProperty-navbar">
           <h2 className="AddProperty-navbar-header">Add New Property</h2>
+          <Link
+            className="Properties__button Properties__button--add Link__none"
+            to="/owner/properties"
+          >
+            Back to All Properties
+          </Link>
           <button
             className="Properties__button Properties__button--logout"
             onClick={() => this.onLogout()}
@@ -69,7 +76,7 @@ class AddProperty extends Component {
           </button>
           <img className="Properties__logo" src={logo} alt="logo" />
         </div>
-        <form onSubmit={this.onSubmitHandler}>
+        <form className="AddProperty-form" onSubmit={this.onSubmitHandler}>
           <label htmlFor="name">
             Name
             <input
