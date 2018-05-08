@@ -39,12 +39,12 @@ const {
 
 // Workorder Controllers
 const {
-  workOrderByPropertyId,
-  workOrderByResidentId,
-  workOrderByUnitId,
-  addWorkOrder,
+  workorderByPropertyId,
+  workorderByResidentId,
+  workorderByUnitId,
+  addWorkorder,
   closeWorkorder,
-} = require('./controllers/workorderControllers');
+} = require('./controllers/workordersControllers');
 
 // Bills Controllers
 const {addBill, getBillingHistory, getUnpaidBills} = require('./controllers/billsControllers');
@@ -110,11 +110,11 @@ app.get('/residents/getResidentsByUnit/:id', getResidentsByUnit);
 app.get('/residents/getResidentDetails', getResidentDetails);
 
 // Workorder Endpoints
-app.post('/workorder/addWorkorder', addWorkOrder);
+app.post('/workorder/addWorkorder', addWorkorder);
 app.put('/workorder/closeWorkorder/:id', closeWorkorder);
-app.get('/workorder/getByPropertyId/:id', workOrderByPropertyId);
-app.get('/workorder/getByResidentId/', workOrderByResidentId);
-app.get('/workorder/getByUnitId', workOrderByUnitId);
+app.get('/workorder/getByPropertyId/:id', workorderByPropertyId);
+app.get('/workorder/getByResidentId/', workorderByResidentId);
+app.get('/workorder/getByUnitId', workorderByUnitId);
 
 // Billing Endpoints
 app.post('/bills/add', addBill);

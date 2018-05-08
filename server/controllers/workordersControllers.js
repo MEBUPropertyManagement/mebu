@@ -2,7 +2,7 @@ const moment = require('moment');
 
 const {maintenanceEmail} = require('./nodemailer');
 
-const workOrderByPropertyId = (req, res) => {
+const workorderByPropertyId = (req, res) => {
   const db = req.app.get('db');
   db
     .workorders_getByProperty([req.params.id])
@@ -10,7 +10,7 @@ const workOrderByPropertyId = (req, res) => {
     .catch(err => res.status(200).json({error: `${err}`}));
 };
 
-const workOrderByResidentId = (req, res) => {
+const workorderByResidentId = (req, res) => {
   const db = req.app.get('db');
   db
     .workorders_getByResident([req.session.user.userid])
@@ -18,7 +18,7 @@ const workOrderByResidentId = (req, res) => {
     .catch(err => res.status(200).json({error: `${err}`}));
 };
 
-const workOrderByUnitId = (req, res) => {
+const workorderByUnitId = (req, res) => {
   const db = req.app.get('db');
 
   db
@@ -27,7 +27,7 @@ const workOrderByUnitId = (req, res) => {
     .catch(err => res.status(200).json({error: `${err}`}));
 };
 
-const addWorkOrder = (req, res) => {
+const addWorkorder = (req, res) => {
   const db = req.app.get('db');
   const {content, urgency} = req.body;
   const {propertyid, userid, unitid} = req.session.user;
@@ -51,9 +51,9 @@ const closeWorkorder = (req, res) => {
 };
 
 module.exports = {
-  workOrderByPropertyId,
-  workOrderByResidentId,
-  workOrderByUnitId,
-  addWorkOrder,
+  workorderByPropertyId,
+  workorderByResidentId,
+  workorderByUnitId,
+  addWorkorder,
   closeWorkorder,
 };
