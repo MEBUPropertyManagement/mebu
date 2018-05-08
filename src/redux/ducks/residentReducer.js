@@ -170,7 +170,7 @@ export function getBillingHistory() {
     type: GET_BILLING_HISTORY,
     payload: axios
       .get('/bills/getBillingHistory')
-      .then(response => response.data)
+      .then(response => response.data.history)
       .catch(err => err),
   };
 }

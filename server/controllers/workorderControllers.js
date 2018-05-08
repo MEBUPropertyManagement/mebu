@@ -16,6 +16,15 @@ const workOrderByResidentId = (req, res) => {
     .catch(err => res.status(200).json({error: `${err}`}));
 };
 
+const workOrderByUnitId = (req, res) => {
+  const db = req.app.get('db');
+
+  db
+    .workOrderByUnitId([req.session.user.unitid])
+    .then(response => res.status(200).json({workorders: response}))
+    .catch(err => res.status(200).json({error: `${err}`}));
+};
+
 const addWorkOrder = (req, res) => {
   const db = req.app.get('db');
   const {content, urgency} = req.body;
@@ -44,6 +53,7 @@ const closeWorkorder = (req, res) => {
 module.exports = {
   workOrderByPropertyId,
   workOrderByResidentId,
+  workOrderByUnitId,
   addWorkOrder,
   closeWorkorder,
 };

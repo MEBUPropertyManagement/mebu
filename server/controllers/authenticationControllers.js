@@ -17,12 +17,20 @@ const residentRegistration = (req, res) => {
         .resident_registration([email, hash, firstName, lastName])
         .then((response) => {
           if (response.length > 0) {
-            req.session.user = {email, role: 'owner', userid: response[0].residentid || 0};
+            req.session.user = {
+              email,
+              role: 'resident',
+              userid: response[0].residentid || 0,
+              unitid: response[0].unitid || 0,
+            };
             return res.status(200).json({
               authenticated: true,
-              role: 'owner',
+              role: 'resident',
               email,
               userid: response[0].residentid || 0,
+              unitid: response[0].unitid || 0,
+              firstName: response[0].firstname,
+              lastName: response[0].lastname,
             });
           }
           return res
@@ -98,6 +106,7 @@ const residentLogin = (req, res) => {
               role: 'resident',
               email,
               userid: response[0].residentid || 0,
+              unitid: response[0].unitid || 0,
               firstName: response[0].firstname,
               lastName: response[0].lastname,
             });
