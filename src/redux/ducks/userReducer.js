@@ -17,33 +17,28 @@ export default function userReducer(state = initialState, action) {
     case `${LOGIN_OWNER}_FULFILLED`:
       return {
         ...state,
-        current_user: {
-          userid: action.payload.userid,
-          email: action.payload.email,
-          firstName: action.payload.firstName,
-          lastName: action.payload.lastName,
-        },
+        current_user: {...action.payload},
         authenticated: action.payload.authenticated,
       };
 
     case `${CREATE_OWNER}_FULFILLED`:
       return {
         ...state,
-        current_user: {userid: action.payload.userid, email: action.payload.email},
+        current_user: {...action.payload},
         authenticated: action.payload.authenticated,
       };
 
     case `${LOGIN_RESIDENT}_FULFILLED`:
       return {
         ...state,
-        current_user: {userid: action.payload.userid, email: action.payload.email},
+        current_user: {...action.payload},
         authenticated: action.payload.authenticated,
       };
 
     case `${CREATE_RESIDENT}_FULFILLED`:
       return {
         ...state,
-        current_user: {userid: action.payload.userid, email: action.payload.email},
+        current_user: {...action.payload},
         authenticated: action.payload.authenticated,
       };
 

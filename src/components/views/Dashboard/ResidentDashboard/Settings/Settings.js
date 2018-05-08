@@ -1,16 +1,19 @@
-import React, {Component} from 'react';
+import React, {Component, Fragment} from 'react';
 import {connect} from 'react-redux';
 
 class Settings extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      email: '',
-      firstname: '',
-      lastname: '',
+      email: this.props.current_user.email,
+      firstname: this.props.current_user.firstName,
+      lastname: this.props.current_user.lastName,
+      editing: false,
     };
 
     this.onSubmitHandler = this.onSubmitHandler.bind(this);
+    this.onChangeHandler = this.onChangeHandler.bind(this);
+    this.onEditHandler = this.onEditHandler.bind(this);
   }
 
   componentDidMount() {
@@ -19,19 +22,33 @@ class Settings extends Component {
 
   onSubmitHandler(e) {
     e.preventDefault();
-  }
-
-  onChangeHandler(e) {
     const {email, firstname, lastname} = this.state;
     if (email && firstname && lastname) {
-      this.setState({[e.target.name]: e.target.value});
+      console.log('submitted');
     }
   }
 
+  onChangeHandler(e) {
+    this.setState({[e.target.name]: e.target.value});
+  }
+
+  onEditHandler() {
+    this.setState(prevState => ({editing: !prevState.editing}));
+  }
+
   render() {
-    const {email, firstname, lastname} = this.state;
-    return (
-      <div className="Settings">
+    const {
+      email, firstname, lastname, editing,
+    } = this.state;
+    let settingsDisplay = (
+      <Fragment>
+        <p>email: {this.state.email}</p>
+        <p>firstname: {this.state.firstname}</p>
+        <p>lastname: {this.state.lastname}</p>
+      </Fragment>
+    );
+    if (editing) {
+      settingsDisplay = (
         <form onSubmit={this.onSubmitHandler}>
           <input
             onChange={this.onChangeHandler}
@@ -54,7 +71,14 @@ class Settings extends Component {
             name="lastname"
             type="text"
           />
+          <input type="submit" value="" />
         </form>
+      );
+    }
+    return (
+      <div className="Settings">
+        <button onClick={this.onEditHandler}>{editing ? 'Save Profile' : 'Edit Profile'}</button>
+        {settingsDisplay}
       </div>
     );
   }
