@@ -15,10 +15,13 @@ const stripeCharge = (req, res) => {
       if (error) {
         return res.status(200).json({charged: false, charge: '', error: `${error}`});
       }
-      return db
-        .billing_update([req.body.billid])
-        .then(response => res.status(200).json({charged: true, charge}))
-        .catch(err => res.status(200).json({err: `${err}`}));
+      return (
+        db
+          .bills_update([req.body.billid])
+          // eslint-disable-next-line
+          .then(response => res.status(200).json({charged: true, charge}))
+          .catch(err => res.status(200).json({err: `${err}`}))
+      );
     },
   );
 };
