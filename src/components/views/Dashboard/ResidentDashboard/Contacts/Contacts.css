@@ -1,0 +1,11 @@
+.Contacts-container {
+  display: flex;
+  margin: 0 auto;
+}
+
+.Contacts-resident-info {
+  display: flex;
+  text-align: left;
+  align-items: left;
+  flex-direction: column;
+}

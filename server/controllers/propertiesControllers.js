@@ -5,7 +5,7 @@ const addProperties = (req, res) => {
   } = req.body;
 
   db
-    .addProperties([name, photourl, address, units, value, expenses, req.session.user.userid])
+    .properties_add([name, photourl, address, units, value, expenses, req.session.user.userid])
     .then(response => res.status(200).json({added: true, property: response}))
     .catch(err => res.status(200).json({added: false, error: `${err}`}));
 };
@@ -16,8 +16,9 @@ const getProperty = (req, res) => {
   const property = {};
 
   db
-    .getPropertyById([req.params.id])
+    .properties_getById([req.params.id])
     .then((propertyResponse) => {
+      // eslint-disable-next-line
       property.property = propertyResponse[0];
       db
         .properties_occupiedUnits([req.params.id])
@@ -30,9 +31,9 @@ const getProperty = (req, res) => {
           );
           return res.status(200).json(property);
         })
-        .catch(err => console.log(err));
+        .catch(err => res.status(200).json({err: `${err}`}));
     })
-    .catch(err => console.log(err));
+    .catch(err => res.status(200).json({err: `${err}`}));
 };
 
 const getProperties = (req, res) => {
@@ -41,7 +42,7 @@ const getProperties = (req, res) => {
   db
     .properties_getProperties([req.session.user.userid])
     .then(response => res.status(200).json(response))
-    .catch(err => console.log(err));
+    .catch(err => res.status(200).json({err: `${err}`}));
 };
 
 const deleteProperty = (req, res) => {
@@ -49,8 +50,9 @@ const deleteProperty = (req, res) => {
 
   db
     .properties_deleteProperty([req.params.id])
+    // eslint-disable-next-line
     .then(response => res.status(200).json({deleted: true, propertyid: req.params.id}))
-    .catch(err => res.status(200).json({deleted: false, err}));
+    .catch(err => res.status(200).json({deleted: false, error: `${err}`}));
 };
 
 const updateProperty = (req, res) => {
