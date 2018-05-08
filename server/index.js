@@ -32,6 +32,7 @@ const {addUnit, getUnit, updateUnit} = require('./controllers/unitsControllers')
 // Residents Controllers
 const {
   getResidents,
+  updateResident,
   getResidentsByUnit,
   getResidentDetails,
 } = require('./controllers/residentsControllers');
@@ -40,6 +41,7 @@ const {
 const {
   workOrderByPropertyId,
   workOrderByResidentId,
+  workOrderByUnitId,
   addWorkOrder,
   closeWorkorder,
 } = require('./controllers/workorderControllers');
@@ -103,6 +105,7 @@ app.get('/properties/getProperties', getProperties);
 
 // Resident Endpoints
 app.get('/residents/getResidents/:id', getResidents);
+app.put('/residents/updateResident', updateResident);
 app.get('/residents/getResidentsByUnit/:id', getResidentsByUnit);
 app.get('/residents/getResidentDetails', getResidentDetails);
 
@@ -111,6 +114,7 @@ app.post('/workorder/addWorkorder', addWorkOrder);
 app.put('/workorder/closeWorkorder/:id', closeWorkorder);
 app.get('/workorder/getByPropertyId/:id', workOrderByPropertyId);
 app.get('/workorder/getByResidentId/', workOrderByResidentId);
+app.get('/workorder/getByUnitId', workOrderByUnitId);
 
 // Billing Endpoints
 app.post('/bills/add', addBill);
