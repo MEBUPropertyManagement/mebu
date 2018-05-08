@@ -4,14 +4,6 @@
 }
 
 .Contacts-resident-info {
-  margin: 50px 45px;
-  padding: 20px;
-  box-shadow: var(--box-shadow);
-  border: none;
-  color: var(--black);
-  background-color: var(--white);
-  width: 65vw;
-  height: 100%;
   display: flex;
   text-align: left;
   align-items: left;
