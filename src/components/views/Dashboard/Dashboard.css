@@ -26,6 +26,7 @@
 }
 
 .Dashboard__body {
+  padding: 20px;
   grid-area: body;
   background: var(--white);
 }
