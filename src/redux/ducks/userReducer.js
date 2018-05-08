@@ -6,6 +6,7 @@ const CREATE_OWNER = 'CREATE_OWNER';
 const LOGIN_RESIDENT = 'LOGIN_RESIDENT';
 const CREATE_RESIDENT = 'CREATE_RESIDENT';
 const LOGOUT_USER = 'LOGOUT_USER';
+const UPDATE_RESIDENT = 'UPDATE_RESIDENT';
 
 const initialState = {
   current_user: {},
@@ -17,33 +18,28 @@ export default function userReducer(state = initialState, action) {
     case `${LOGIN_OWNER}_FULFILLED`:
       return {
         ...state,
-        current_user: {
-          userid: action.payload.userid,
-          email: action.payload.email,
-          firstName: action.payload.firstName,
-          lastName: action.payload.lastName,
-        },
+        current_user: {...action.payload},
         authenticated: action.payload.authenticated,
       };
 
     case `${CREATE_OWNER}_FULFILLED`:
       return {
         ...state,
-        current_user: {userid: action.payload.userid, email: action.payload.email},
+        current_user: {...action.payload},
         authenticated: action.payload.authenticated,
       };
 
     case `${LOGIN_RESIDENT}_FULFILLED`:
       return {
         ...state,
-        current_user: {userid: action.payload.userid, email: action.payload.email},
+        current_user: {...action.payload},
         authenticated: action.payload.authenticated,
       };
 
     case `${CREATE_RESIDENT}_FULFILLED`:
       return {
         ...state,
-        current_user: {userid: action.payload.userid, email: action.payload.email},
+        current_user: {...action.payload},
         authenticated: action.payload.authenticated,
       };
 
@@ -59,6 +55,12 @@ export default function userReducer(state = initialState, action) {
         ...state,
         current_user: {email: action.payload.email},
         authenticated: action.payload.authenticated,
+      };
+
+    case `${UPDATE_RESIDENT}_FULFILLED`:
+      return {
+        ...state,
+        current_user: {...state.current_user, ...action.payload},
       };
 
     default:
@@ -138,6 +140,16 @@ export function createResident(email, password, firstName, lastName) {
         firstName,
         lastName,
       })
+      .then(response => response.data)
+      .catch(err => err),
+  };
+}
+
+export function updateResident(email, firstName, lastName) {
+  return {
+    type: UPDATE_RESIDENT,
+    payload: axios
+      .put('/residents/updateResident', {email, firstName, lastName})
       .then(response => response.data)
       .catch(err => err),
   };

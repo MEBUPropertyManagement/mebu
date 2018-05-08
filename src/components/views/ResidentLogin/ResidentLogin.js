@@ -18,15 +18,14 @@ class ResidentLogin extends Component {
     this.onSubmitHandler = this.onSubmitHandler.bind(this);
   }
 
-  handleChange(e) {
-    this.setState({[e.target.name]: e.target.value});
-  }
-
   onSubmitHandler(e) {
     e.preventDefault();
     this.props.loginResident(this.state.email, this.state.password);
   }
 
+  handleChange(e) {
+    this.setState({[e.target.name]: e.target.value});
+  }
   render() {
     if (this.props.authenticated) {
       this.props.history.push('/resident/dashboard/');
@@ -45,6 +44,7 @@ class ResidentLogin extends Component {
               name="email"
               type="email"
               required
+              autoFocus
               onChange={this.handleChange}
             />
             <input

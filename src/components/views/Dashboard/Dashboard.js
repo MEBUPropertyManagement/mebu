@@ -77,7 +77,6 @@ class Dashboard extends Component {
           >
             Settings
           </NavLink>
-          {/* {this.props.current_user.userid ? ( */}
           <button className="Dashboard__link" onClick={() => this.onLogout()}>
             Logout
           </button>
@@ -126,6 +125,13 @@ class Dashboard extends Component {
             to="/resident/dashboard/maintenance/history"
           >
             Maintenance History
+          </NavLink>
+          <NavLink
+            activeClassName="Dashboard__link--active"
+            className="Dashboard__link Link__none"
+            to="/resident/dashboard/settings"
+          >
+            Settings
           </NavLink>
           <button className="Dashboard__link" onClick={() => this.onLogout()}>
             Logout
