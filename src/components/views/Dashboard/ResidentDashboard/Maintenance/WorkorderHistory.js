@@ -1,11 +1,11 @@
 import React, {Component} from 'react';
-import {getWorkorderById} from '../../../../../redux/ducks/workorderReducer';
+import {getResidentWorkOrder} from '../../../../../redux/ducks/workorderReducer';
 import {connect} from 'react-redux';
 
 class WorkorderHistory extends Component {
   componentDidMount() {
     console.log(this.props);
-    this.props.getWorkorderById(this.props.match.params.id);
+    this.props.getResidentWorkOrder();
   }
 
   render() {
@@ -16,12 +16,8 @@ class WorkorderHistory extends Component {
         <div>
           <div>Work order ID: {workorder.workorderid}</div>
           <div>Date Start: {workorder.datestart}</div>
-          <div>Date End: {workorder.dateend}</div>
-          <div>Resident First Name: {workorder.firstname}</div>
-          <div>Resident last Name: {workorder.lastname}</div>
-          <div>Unit ID: {workorder.unitid}</div>
-          <div>Work order ID: {workorder.workorderid}</div>
           <div>Content: {workorder.content}</div>
+          <div>Date End: {workorder.dateend}</div>
         </div>
       ));
     return <div>{workorders}</div>;
@@ -32,4 +28,4 @@ const mapStateToProps = state => ({
   ...state.workorderReducer,
 });
 
-export default connect(mapStateToProps, {getWorkorderById})(WorkorderHistory);
+export default connect(mapStateToProps, {getResidentWorkOrder})(WorkorderHistory);
