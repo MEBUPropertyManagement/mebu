@@ -1,0 +1,74 @@
+.Dashboard {
+  height: 100vh;
+  width: 100%;
+  display: grid;
+  grid-template-areas:
+    'sidebar topbar'
+    'sidebar body';
+  grid-template-rows: 100px 1fr;
+  grid-template-columns: 200px 1fr;
+}
+
+.Dashboard__top {
+  position: fixed;
+  top: 0;
+  right: 0;
+  width: calc(100vw - 200px);
+  height: 100px;
+  background: var(--gray);
+}
+
+.Dashboard__nav {
+  grid-area: sidebar;
+  width: 200px;
+  height: 100%;
+  position: fixed;
+  background: var(--black);
+  display: flex;
+  flex-direction: column;
+  outline: none;
+}
+
+.Dashboard__body {
+  grid-area: body;
+  background: var(--white);
+}
+
+.Dashboard__link {
+  align-self: flex-end;
+  color: var(--white);
+  font-size: 0.7rem;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 20px;
+  width: 100%;
+  transition: all 100ms linear;
+  font-family: var(--font);
+}
+
+.Dashboard__link:hover {
+  border-right: 3px solid var(--gray);
+  padding-left: 3px;
+  background-color: var(--light-black);
+  color: var(--blue);
+}
+
+.Dashboard__link--active {
+  border-right: 3px solid var(--gray);
+
+  color: var(--blue);
+}
+
+.Dashboard__link.Dashboard__link--back {
+  height: 100px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: var(--white);
+  color: var(--black);
+}
+.Dashboard__link.Dashboard__link--back:hover {
+  border-color: var(--blue);
+  color: var(--black);
+}
