@@ -19,17 +19,33 @@ class PayBills extends Component {
   }
 
   onToken(token) {
-    axios
-      .post('/bills/pay', {
-        amount: this.state.amount,
-        stripeToken: token,
-        billid: this.state.billid,
-      })
-      .then((res) => {
-        console.log(res);
-        return this.props.getBills();
-      })
-      .catch(err => console.log(err));
+    console.log(token);
+    // axios
+    //   .post('/bills/pay', {
+    //     amount: this.state.amount,
+    //     stripeToken: token,
+    //     billid: this.state.billid,
+    //   })
+    //   .then((res) => {
+    //     console.log(res);
+    //     return this.props.getBills();
+    //   })
+    //   .catch(err => console.log(err));
+  }
+
+  selectBill(value) {
+    const {bills} = this.props.bills;
+    const matchBillID = element => element.billid == value;
+    const ind = bills.findIndex(matchBillID);
+
+    // CANNOT FIND AMOUNT OF UNDEFINED
+    console.log(+bills[ind].amount);
+    console.log(+bills[ind].billid);
+
+    // this.setState({
+    //   amount: +this.props.getBills[ind].amount,
+    //   billid: +this.props.getBills[ind].billid,
+    // });
   }
 
   render() {
@@ -43,7 +59,7 @@ class PayBills extends Component {
 
     if (bills && bills[0]) {
       mappedItems = bills.map(bill => (
-        <option key={bill.billid} value={bill.billid}>
+        <option key={bill.billid} billid={bill.billid} value={bill.amount}>
           Amount: ${Number(JSON.stringify(bill.amount).replace(re, subst))}
         </option>
       ));
@@ -60,7 +76,7 @@ class PayBills extends Component {
             <form>
               <select
                 required
-                onChange={event => console.log(event.target.id)}
+                onChange={event => this.selectBill(event.target.value)}
                 defaultValue="Please select the bill you would like to pay."
               >
                 {mappedItems}
@@ -69,10 +85,10 @@ class PayBills extends Component {
                 token={this.onToken}
                 stripeKey="pk_test_iueyBCm4l0DmYEeCjwFL51iY"
                 amount={this.state.amount}
-              />{' '}
+              />
             </form>
           ) : (
-            'No bills to pay, good sir.'
+            'No bills to pay, good sir. *tips hat*'
           )}
         </div>
       </div>

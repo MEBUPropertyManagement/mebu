@@ -8,6 +8,11 @@
   background-color: var(--white);
 }
 
+.ResidentLogin__form {
+  display: flex;
+  flex-direction: column;
+}
+
 .logo-container-registration-log {
   width: 45vw;
   height: 100%;
