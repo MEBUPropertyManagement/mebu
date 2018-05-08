@@ -11,7 +11,7 @@ const workOrderByPropertyId = (req, res) => {
 const workOrderByResidentId = (req, res) => {
   const db = req.app.get('db');
   db
-    .workOrderByResidentId([req.params.id])
+    .workOrderByResidentId([req.session.user.userid])
     .then(response => res.status(200).json(response))
     .catch(err => res.status(200).json({error: `${err}`}));
 };

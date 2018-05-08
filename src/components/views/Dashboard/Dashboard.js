@@ -1,8 +1,11 @@
 import React, {Component} from 'react';
+import FontAwesome from 'react-fontawesome';
 import axios from 'axios';
-import {Link, withRouter} from 'react-router-dom';
+import {NavLink, withRouter} from 'react-router-dom';
 import {connect} from 'react-redux';
 import {logoutUser} from '../../../redux/ducks/userReducer';
+import logo from '../../../images/logo_final_white.svg';
+import './Dashboard.css';
 
 class Dashboard extends Component {
   onLogout() {
@@ -20,62 +23,118 @@ class Dashboard extends Component {
     const {path, params} = this.props.match;
     console.log(this.props);
     return path.includes('/owner/') ? (
-      <div>
-        <Link className="Link__none" to={`/owner/dashboard/property/${params.id}`}>
-          <h1>Dashboard</h1>
-        </Link>
-        <nav>
-          <Link className="Link__none" to={`/owner/dashboard/property/${params.id}/units`}>
+      <div className="Dashboard">
+        <div className="Dashboard__top">
+          <p>TopBar</p>
+        </div>
+        <nav className="Dashboard__nav">
+          <NavLink
+            activeClassName="Dashboard__link--active"
+            className="Dashboard__link Dashboard__link--back Link__none"
+            to="/owner/properties"
+          >
+            <FontAwesome className="Dashboard__symbol--back" name="long-arrow-alt-left" />
+            Back
+          </NavLink>
+          <NavLink
+            exact
+            activeClassName="Dashboard__link--active"
+            className="Dashboard__link Link__none"
+            to={`/owner/dashboard/property/${params.id}`}
+          >
+            Home
+          </NavLink>
+          <NavLink
+            activeClassName="Dashboard__link--active"
+            className="Dashboard__link Link__none"
+            to={`/owner/dashboard/property/${params.id}/units`}
+          >
             Units
-          </Link>
-          <Link className="Link__none" to={`/owner/dashboard/property/${params.id}/residents`}>
+          </NavLink>
+          <NavLink
+            activeClassName="Dashboard__link--active"
+            className="Dashboard__link Link__none"
+            to={`/owner/dashboard/property/${params.id}/residents`}
+          >
             Residents
-          </Link>
-          <Link className="Link__none" to={`/owner/dashboard/property/${params.id}/metrics`}>
+          </NavLink>
+          <NavLink
+            activeClassName="Dashboard__link--active"
+            className="Dashboard__link Link__none"
+            to={`/owner/dashboard/property/${params.id}/metrics`}
+          >
             Metrics
-          </Link>
-          <Link className="Link__none" to={`/owner/dashboard/property/${params.id}/maintenance`}>
+          </NavLink>
+          <NavLink
+            activeClassName="Dashboard__link--active"
+            className="Dashboard__link Link__none"
+            to={`/owner/dashboard/property/${params.id}/maintenance`}
+          >
             Maintenance
-          </Link>
-          <Link className="Link__none" to={`/owner/dashboard/property/${params.id}/settings`}>
+          </NavLink>
+          <NavLink
+            activeClassName="Dashboard__link--active"
+            className="Dashboard__link Link__none"
+            to={`/owner/dashboard/property/${params.id}/settings`}
+          >
             Settings
-          </Link>
-          <Link className="Link__none" to="/owner/properties">
-            Return to Properties
-          </Link>
-          {this.props.current_user.userid ? (
-            <button onClick={() => this.onLogout()}> Logout</button>
-          ) : (
-            ''
-          )}
+          </NavLink>
+          {/* {this.props.current_user.userid ? ( */}
+          <button className="Dashboard__link" onClick={() => this.onLogout()}>
+            Logout
+          </button>
+          <img className="Dashboard__logo" src={logo} alt="logo" />
         </nav>
-        {this.props.children}
+        <div className="Dashboard__body">{this.props.children}</div>
       </div>
     ) : (
-      <div>
-        <nav>
-          <Link className="Link__none" to="/resident/dashboard/">
+      <div className="Dashboard">
+        <div className="Dashboard__top">
+          <p>TopBar</p>
+        </div>
+        <nav className="Dashboard__nav">
+          <NavLink
+            exact
+            activeClassName="Dashboard__link--active"
+            className="Dashboard__link Link__none"
+            to="/resident/dashboard/"
+          >
             Contacts
-          </Link>
-          <Link className="Link__none" to="/resident/dashboard/billing/pay">
+          </NavLink>
+          <NavLink
+            activeClassName="Dashboard__link--active"
+            className="Dashboard__link Link__none"
+            to="/resident/dashboard/billing/pay"
+          >
             Pay Bills
-          </Link>
-          <Link className="Link__none" to="/resident/dashboard/billing/history">
+          </NavLink>
+          <NavLink
+            activeClassName="Dashboard__link--active"
+            className="Dashboard__link Link__none"
+            to="/resident/dashboard/billing/history"
+          >
             Billing History
-          </Link>
-          <Link className="Link__none" to="/resident/dashboard/maintenance/create">
+          </NavLink>
+          <NavLink
+            activeClassName="Dashboard__link--active"
+            className="Dashboard__link Link__none"
+            to="/resident/dashboard/maintenance/create"
+          >
             Maintenance Request
-          </Link>
-          <Link className="Link__none" to="/resident/dashboard/maintenance/history">
+          </NavLink>
+          <NavLink
+            activeClassName="Dashboard__link--active"
+            className="Dashboard__link Link__none"
+            to="/resident/dashboard/maintenance/history"
+          >
             Maintenance History
-          </Link>
-          {this.props.current_user.userid ? (
-            <button onClick={() => this.onLogout()}> Logout</button>
-          ) : (
-            ''
-          )}
+          </NavLink>
+          <button className="Dashboard__link" onClick={() => this.onLogout()}>
+            Logout
+          </button>
+          <img className="Dashboard__logo" src={logo} alt="logo" />
         </nav>
-        {this.props.children}
+        <div className="Dashboard__body">{this.props.children}</div>
       </div>
     );
   }

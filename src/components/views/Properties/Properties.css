@@ -15,7 +15,7 @@
 }
 
 .Properties__welcome {
-  padding: 20px;
+  padding: 20px 0;
 
   font-size: 0.7rem;
   text-transform: uppercase;
@@ -28,13 +28,13 @@
 
 .Properties__welcome-name {
   letter-spacing: 1px;
-  font-size: 0.7rem;
-  color: var(--gray);
+  font-size: 0.8rem;
+  color: var(--black);
 }
 
 .Properties-navbar-header {
   width: 100%;
-  padding: 40px 0;
+  padding: 20px 0;
   color: var(--white);
   font-size: 1rem;
   letter-spacing: 2px;
@@ -55,6 +55,7 @@
   padding: 20px;
   width: 100%;
   transition: all 100ms linear;
+  outline: none;
   font-family: var(--font);
 }
 .Properties__button:hover {
@@ -66,9 +67,9 @@
 }
 
 .Properties__logo {
-  width: 80%;
+  width: 60%;
   position: absolute;
-  bottom: 40px;
+  bottom: 20px;
   object-fit: cover;
   align-self: center;
   margin: 15px 0 0;
