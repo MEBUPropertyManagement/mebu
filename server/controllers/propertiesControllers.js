@@ -30,9 +30,9 @@ const getProperty = (req, res) => {
           );
           return res.status(200).json(property);
         })
-        .catch(err => console.log(err));
+        .catch(err => res.status(200).json({err: `${err}`}));
     })
-    .catch(err => console.log(err));
+    .catch(err => res.status(200).json({err: `${err}`}));
 };
 
 const getProperties = (req, res) => {
@@ -41,7 +41,7 @@ const getProperties = (req, res) => {
   db
     .properties_getProperties([req.session.user.userid])
     .then(response => res.status(200).json(response))
-    .catch(err => console.log(err));
+    .catch(err => res.status(200).json({err: `${err}`}));
 };
 
 const deleteProperty = (req, res) => {

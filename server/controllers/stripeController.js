@@ -18,7 +18,7 @@ const stripeCharge = (req, res) => {
       return db
         .billing_update([req.body.billid])
         .then(response => res.status(200).json({charged: true, charge}))
-        .catch(err => console.log(err));
+        .catch(err => res.status(200).json({err: `${err}`}));
     },
   );
 };
