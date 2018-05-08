@@ -21,6 +21,23 @@ const registrationEmail = (email, password) =>
     },
   );
 
+const maintenanceEmail = (email, propertyname) =>
+  transporter.sendMail(
+    {
+      from: 'kovich@michaelkovich.com',
+      to: `${email}`,
+      subject: 'A new workorder has been submitted!',
+      text: 'Plain text content goes here.',
+      html: `<html><p>A new workorder has been submitted for ${propertyname}.<br/><br/>Please access your dashboard for details.</p></html>`,
+    },
+    (err, info) => {
+      console.log(info.envelope);
+      console.log(info.messageId);
+      info.message.pipe(process.stdout);
+    },
+  );
+
 module.exports = {
   registrationEmail,
+  maintenanceEmail,
 };
