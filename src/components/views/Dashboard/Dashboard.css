@@ -29,14 +29,22 @@
   outline: none;
 }
 
+.Dashboard__logo {
+  width: 80%;
+  margin: 20px;
+  position: absolute;
+  bottom: 0;
+}
+
 .Dashboard__body {
   grid-area: body;
   background: var(--white);
 }
 
 .Dashboard__link {
+  text-align: right;
   align-self: flex-end;
-  color: var(--white);
+  color: var(--dark-gray);
   font-size: 0.7rem;
   background: none;
   border: none;
@@ -48,27 +56,37 @@
 }
 
 .Dashboard__link:hover {
-  border-right: 3px solid var(--gray);
+  border-right: 3px solid var(--blue);
   padding-left: 3px;
   background-color: var(--light-black);
-  color: var(--blue);
+  color: var(--white);
 }
 
 .Dashboard__link--active {
-  border-right: 3px solid var(--gray);
+  border-right: 3px solid var(--blue);
 
-  color: var(--blue);
+  color: var(--white);
 }
 
 .Dashboard__link.Dashboard__link--back {
   height: 100px;
   display: flex;
   align-items: center;
-  justify-content: center;
-  background-color: var(--white);
-  color: var(--black);
+  justify-content: flex-end;
+  background-color: var(--light-black);
+  color: var(--gray);
 }
 .Dashboard__link.Dashboard__link--back:hover {
+  border: none;
   border-color: var(--blue);
-  color: var(--black);
+  color: var(--white);
+  padding: 20px;
+}
+
+.Dashboard__link--back .Dashboard__symbol--back {
+  margin-right: 20px;
+  transition: all 100ms ease-in-out;
+}
+.Dashboard__link--back:hover .Dashboard__symbol--back {
+  margin-right: 30px;
 }
