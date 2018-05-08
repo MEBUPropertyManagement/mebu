@@ -29,6 +29,7 @@ import ResidentPayBills from './components/views/Dashboard/ResidentDashboard/Bil
 import ResidentBillingHistory from './components/views/Dashboard/ResidentDashboard/Billing/History/BillingHistory';
 import ResidentCreateWorkorder from './components/views/Dashboard/ResidentDashboard/Maintenance/CreateWorkorder';
 import ResidentWorkorderHistory from './components/views/Dashboard/ResidentDashboard/Maintenance/WorkorderHistory';
+import ResidentSettings from './components/views/Dashboard/ResidentDashboard/Settings/Settings';
 
 export default (
   <Switch>
@@ -82,6 +83,10 @@ export default (
             <Route
               path="/resident/dashboard/maintenance/history"
               component={ResidentWorkorderHistory}
+            />
+            <Route
+              path="/resident/dashboard/settings"
+              component={ResidentSettings}
             />
           </Switch>
         </Dashboard>
