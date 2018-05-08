@@ -6,6 +6,7 @@ const CREATE_OWNER = 'CREATE_OWNER';
 const LOGIN_RESIDENT = 'LOGIN_RESIDENT';
 const CREATE_RESIDENT = 'CREATE_RESIDENT';
 const LOGOUT_USER = 'LOGOUT_USER';
+const UPDATE_RESIDENT = 'UPDATE_RESIDENT';
 
 const initialState = {
   current_user: {},
@@ -54,6 +55,12 @@ export default function userReducer(state = initialState, action) {
         ...state,
         current_user: {email: action.payload.email},
         authenticated: action.payload.authenticated,
+      };
+
+    case `${UPDATE_RESIDENT}_FULFILLED`:
+      return {
+        ...state,
+        current_user: {...action.payload},
       };
 
     default:
@@ -133,6 +140,16 @@ export function createResident(email, password, firstName, lastName) {
         firstName,
         lastName,
       })
+      .then(response => response.data)
+      .catch(err => err),
+  };
+}
+
+export function updateResident(email, firstName, lastName) {
+  return {
+    type: UPDATE_RESIDENT,
+    payload: axios
+      .put('/residents/updateResident', {email, firstName, lastName})
       .then(response => response.data)
       .catch(err => err),
   };

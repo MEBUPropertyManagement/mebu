@@ -1,5 +1,6 @@
 import React, {Component, Fragment} from 'react';
 import {connect} from 'react-redux';
+import {updateResident} from '../../../../../redux/ducks/userReducer';
 
 class Settings extends Component {
   constructor(props) {
@@ -22,10 +23,14 @@ class Settings extends Component {
 
   onSubmitHandler(e) {
     e.preventDefault();
-    const {email, firstname, lastname} = this.state;
-    if (email && firstname && lastname) {
-      console.log('submitted');
+    const {
+      email, firstname, lastname, editing,
+    } = this.state;
+
+    if (email && firstname && lastname && !editing) {
+      this.props.updateResident(email, firstname, lastname);
     }
+    this.onEdithandler();
   }
 
   onChangeHandler(e) {
@@ -71,7 +76,7 @@ class Settings extends Component {
             name="lastname"
             type="text"
           />
-          <input type="submit" value="" />
+          <button style={{display: 'none'}} />
         </form>
       );
     }
@@ -86,4 +91,4 @@ class Settings extends Component {
 
 const mapStateToProps = state => ({...state.userReducer});
 
-export default connect(mapStateToProps, null)(Settings);
+export default connect(mapStateToProps, {updateResident})(Settings);
