@@ -5,25 +5,25 @@ const addBill = (req, res) => {
   } = req.body;
 
   db
-    .addBill([paid, datepaid, amount, residentid])
+    .bills_add([paid, datepaid, amount, residentid])
     .then(response => res.status(200).json({added: true, bill: response[0]}))
-    .catch(err => console.log(err));
+    .catch(err => res.status(200).json({error: `${err}`}));
 };
 
 const getBillingHistory = (req, res) => {
   const db = req.app.get('db');
   db
-    .getBillingHistory([req.session.user.userid])
+    .bills_history([req.session.user.userid])
     .then(response => res.status(200).json({history: response}))
-    .catch(err => console.log(err));
+    .catch(err => res.status(200).json({error: `${err}`}));
 };
 
 const getUnpaidBills = (req, res) => {
   const db = req.app.get('db');
   db
-    .getAllUnpaidBills([req.session.user.userid])
+    .bills_unpaid([req.session.user.userid])
     .then(response => res.status(200).json({bills: response}))
-    .catch(err => console.log(err));
+    .catch(err => res.status(200).json({error: `${err}`}));
 };
 
 module.exports = {

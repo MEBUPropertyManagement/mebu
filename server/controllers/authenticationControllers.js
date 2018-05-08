@@ -42,7 +42,7 @@ const residentRegistration = (req, res) => {
             authenticated: false,
             email,
             userid: 0,
-            error: err,
+            error: `${err}`,
           }));
     });
   });
@@ -77,7 +77,7 @@ const ownerRegistration = (req, res) => {
             authenticated: false,
             email,
             userid: 0,
-            error: err,
+            error: `${err}`,
           }));
     });
   });
@@ -132,7 +132,7 @@ const residentLogin = (req, res) => {
         authenticated: false,
         email,
         userid: 0,
-        error: err,
+        error: `${err}`,
       }));
 };
 
@@ -178,7 +178,7 @@ const ownerLogin = (req, res) => {
         authenticated: false,
         email,
         userid: 0,
-        error: err,
+        error: `${err}`,
       }));
 };
 
