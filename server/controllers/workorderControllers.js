@@ -1,5 +1,7 @@
 const moment = require('moment');
 
+const {maintenanceEmail} = require('./nodemailer');
+
 const workOrderByPropertyId = (req, res) => {
   const db = req.app.get('db');
   db
@@ -28,16 +30,14 @@ const workOrderByUnitId = (req, res) => {
 const addWorkOrder = (req, res) => {
   const db = req.app.get('db');
   const {content, urgency} = req.body;
+  const {propertyid, userid, unitid} = req.session.user;
+
   db
-    .addWorkOrder([
-      moment().format('MMMM Do YYYY'),
-      content,
-      urgency,
-      req.session.user.propertyid,
-      req.session.user.userid,
-      req.session.user.unitid,
-    ])
-    .then(response => res.status(200).json({added: true, response: response[0]}))
+    .addWorkOrder([moment().format('MMMM Do YYYY'), content, urgency, propertyid, userid, unitid])
+    .then((response) => {
+      maintenanceEmail(response[0].email, response[0].name);
+      return res.status(200).json({added: true});
+    })
     .catch(err => res.status(200).json({error: `${err}`}));
 };
 
