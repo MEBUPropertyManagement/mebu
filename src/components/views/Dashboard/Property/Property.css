@@ -1,9 +1,16 @@
 .Property-container {
-  background: var(--gray);
-  width: 100%;
-  height: 100%;
+  margin: 50px 100px;
+  padding: 20px;
   box-shadow: var(--box-shadow);
+  border: none;
+  color: var(--black);
+  background-color: var(--white);
+  width: 65vw;
+  height: 100%;
+  display: flex;
   text-align: left;
+  align-items: left;
+  flex-direction: column;
 }
 
 .Property-name {
@@ -21,5 +28,5 @@
   width: 200px;
   object-fit: cover;
   padding: 15px;
-  margin-top: 2.5rem;
+  margin-top: 55px;
 }
