@@ -34,7 +34,7 @@ class ResidentLogin extends Component {
 
     return (
       <div className="ResidentLogin">
-        <div className="logo-container">
+        <div className="login-container">
           <h3 className="residentlogin-header">Please sign into MEBU.</h3>
           <p className="residentlogin-subheader">Enter your details below.</p>
           <form className="ResidentLogin__form" onSubmit={this.onSubmitHandler}>
