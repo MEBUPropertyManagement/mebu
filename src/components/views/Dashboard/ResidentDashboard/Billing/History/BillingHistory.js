@@ -33,6 +33,7 @@ class BillingHistory extends Component {
         <BillingItems
           billid={item.billid}
           paid={item.paid}
+          key={item.billid}
           amount={`$${Number(JSON.stringify(item.amount).replace(re, subst))}`}
           description={item.description}
         />

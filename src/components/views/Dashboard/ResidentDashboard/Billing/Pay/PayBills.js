@@ -20,32 +20,25 @@ class PayBills extends Component {
 
   onToken(token) {
     console.log(token);
-    // axios
-    //   .post('/bills/pay', {
-    //     amount: this.state.amount,
-    //     stripeToken: token,
-    //     billid: this.state.billid,
-    //   })
-    //   .then((res) => {
-    //     console.log(res);
-    //     return this.props.getBills();
-    //   })
-    //   .catch(err => console.log(err));
+
+    axios
+      .post('/bills/pay', {
+        amount: this.state.amount,
+        stripeToken: token,
+        billid: this.state.billid,
+      })
+      .then(res => console.log(res)) // call getBills
+      .catch(err => console.log(err));
   }
 
   selectBill(value) {
     const {bills} = this.props.bills;
-    const matchBillID = element => element.billid == value;
-    const ind = bills.findIndex(matchBillID);
+    const bucketOfMonkeys = bills.findIndex(element => element.amount == value);
 
-    // CANNOT FIND AMOUNT OF UNDEFINED
-    console.log(+bills[ind].amount);
-    console.log(+bills[ind].billid);
-
-    // this.setState({
-    //   amount: +this.props.getBills[ind].amount,
-    //   billid: +this.props.getBills[ind].billid,
-    // });
+    this.setState({
+      amount: +bills[bucketOfMonkeys].amount,
+      billid: +bills[bucketOfMonkeys].billid,
+    });
   }
 
   render() {
@@ -54,7 +47,6 @@ class PayBills extends Component {
     const re = /\b(\d+)(\d{2})\b/;
     const subst = '$1.$2';
 
-    const {loading} = this.props;
     const {bills} = this.props.bills;
 
     if (bills && bills[0]) {
@@ -64,9 +56,6 @@ class PayBills extends Component {
         </option>
       ));
     }
-
-    console.log('Props: ', bills);
-    console.log('Items: ', mappedItems);
 
     return (
       <div>
@@ -85,7 +74,9 @@ class PayBills extends Component {
                 token={this.onToken}
                 stripeKey="pk_test_iueyBCm4l0DmYEeCjwFL51iY"
                 amount={this.state.amount}
-              />
+              >
+                <button className="">Pay Now</button>
+              </StripeCheckout>
             </form>
           ) : (
             'No bills to pay, good sir. *tips hat*'
