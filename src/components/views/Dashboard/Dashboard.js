@@ -24,9 +24,7 @@ class Dashboard extends Component {
     console.log(this.props);
     return path.includes('/owner/') ? (
       <div className="Dashboard">
-        <div className="Dashboard__top">
-          <p>TopBar</p>
-        </div>
+        
         <nav className="Dashboard__nav">
           <NavLink
             activeClassName="Dashboard__link--active"
