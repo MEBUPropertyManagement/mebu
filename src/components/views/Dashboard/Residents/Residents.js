@@ -15,7 +15,9 @@ class Residents extends Component {
     if (residents && residents[0] && !loading) {
       residentDisplay = residents.map(resident => (
         <div key={resident.residentid}>
-          <p>{`${resident.firstname} ${resident.lastname} ${resident.email}`}</p>
+          <p>
+            {`${resident.firstname} ${resident.lastname} ${resident.roomnum} ${resident.email}`}
+          </p>
         </div>
       ));
     }

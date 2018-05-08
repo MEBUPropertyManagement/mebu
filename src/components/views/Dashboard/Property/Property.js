@@ -24,11 +24,7 @@ class Property extends Component {
       );
     }
 
-    return (
-      <div>
-        {property}
-      </div>
-    );
+    return <div>{property}</div>;
   }
 }
 
