@@ -27,10 +27,13 @@ class Settings extends Component {
       email, firstname, lastname, editing,
     } = this.state;
 
-    if (email && firstname && lastname && !editing) {
+    if (email && firstname && lastname && editing) {
+      console.log('lastname: ', lastname);
+      console.log('firstname: ', firstname);
+      console.log('email: ', email);
       this.props.updateResident(email, firstname, lastname);
     }
-    this.onEdithandler();
+    this.onEditHandler();
   }
 
   onChangeHandler(e) {

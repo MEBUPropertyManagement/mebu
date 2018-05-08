@@ -60,7 +60,7 @@ export default function userReducer(state = initialState, action) {
     case `${UPDATE_RESIDENT}_FULFILLED`:
       return {
         ...state,
-        current_user: {...action.payload},
+        current_user: {...state.current_user, ...action.payload},
       };
 
     default:
