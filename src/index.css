@@ -1,7 +1,9 @@
 @import url('https://fonts.googleapis.com/css?family=Roboto:400,700');
+@import url('https://fonts.googleapis.com/css?family=Roboto+Condensed:400,700');
 
 :root {
   --black: #292929;
+  --light-black: #343434;
   --white: #f3f3f3;
   --blue: #2796d6;
   --light-blue: #47a6dd;

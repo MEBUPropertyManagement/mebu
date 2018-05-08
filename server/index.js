@@ -110,7 +110,7 @@ app.get('/residents/getResidentDetails', getResidentDetails);
 app.post('/workorder/addWorkorder', addWorkOrder);
 app.put('/workorder/closeWorkorder/:id', closeWorkorder);
 app.get('/workorder/getByPropertyId/:id', workOrderByPropertyId);
-app.get('/workorder/getByResidentId/:id', workOrderByResidentId);
+app.get('/workorder/getByResidentId/', workOrderByResidentId);
 
 // Billing Endpoints
 app.post('/bills/add', addBill);

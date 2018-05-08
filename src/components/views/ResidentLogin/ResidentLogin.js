@@ -13,16 +13,17 @@ class ResidentLogin extends Component {
       email: '',
       password: '',
     };
-    this.handleChangeEmail = this.handleChangeEmail.bind(this);
-    this.handleChangePassword = this.handleChangePassword.bind(this);
+    this.handleChange = this.handleChange.bind(this);
+    this.onSubmitHandler = this.onSubmitHandler.bind(this);
   }
 
-  handleChangeEmail(value) {
-    this.setState({email: value});
+  handleChange(e) {
+    this.setState({[e.target.name]: e.target.value});
   }
 
-  handleChangePassword(value) {
-    this.setState({password: value});
+  onSubmitHandler(e) {
+    e.preventDefault();
+    this.props.loginResident(this.state.email, this.state.password);
   }
 
   render() {
@@ -33,44 +34,32 @@ class ResidentLogin extends Component {
     return (
       <div className="ResidentLogin">
         <div className="login-container">
-          <div>
-            <h3 className="residentlogin-header">Please sign into MEBU.</h3>
-            <p>Enter your details below.</p>
+          <h3 className="residentlogin-header">Please sign into MEBU.</h3>
+          <p>Enter your details below.</p>
+          <form className="ResidentLogin__form" onSubmit={this.onSubmitHandler}>
             <input
+              className="ResidentLogin__input ResidentLogin__input--email"
               value={this.state.email}
               placeholder="email"
-              className="ResidentLogin__input ResidentLogin__input--email"
+              name="email"
               type="email"
               required
-              onChange={e => this.handleChangeEmail(e.target.value)}
+              onChange={this.handleChange}
             />
-          </div>
-          <div>
             <input
               className="ResidentLogin__input ResidentLogin__input--password"
               value={this.state.password}
               placeholder="password"
+              name="password"
               type="password"
               required
-              onChange={e => this.handleChangePassword(e.target.value)}
+              onChange={this.handleChange}
             />
-          </div>
-          <button
-            className="ResidentLogin__submit"
-            value={this.state.redirect}
-            onClick={() => this.props.loginResident(this.state.email, this.state.password)}
-          >
-            Login
-          </button>
+            <input type="submit" className="ResidentLogin__submit" value="Login" />
+          </form>
           <div>
             <Link to="/forgotpassword">Forgot Password?</Link>
           </div>
-          {/* <div className="ResidentLogin__new-user">
-            Don't have an account?{' '}
-            <Link className="Link__none" to="/login/resident/new">
-              Get Started
-            </Link>
-          </div> */}
         </div>
         <div className="logo-container-registration-log">
           <h3 className="ownerlogin-logo-header">Resident Portal</h3>
