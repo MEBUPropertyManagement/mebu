@@ -1,8 +1,10 @@
 import React, {Component} from 'react';
+import FontAwesome from 'react-fontawesome';
 import axios from 'axios';
 import {NavLink, withRouter} from 'react-router-dom';
 import {connect} from 'react-redux';
 import {logoutUser} from '../../../redux/ducks/userReducer';
+import logo from '../../../images/logo_final_white.svg';
 import './Dashboard.css';
 
 class Dashboard extends Component {
@@ -31,6 +33,7 @@ class Dashboard extends Component {
             className="Dashboard__link Dashboard__link--back Link__none"
             to="/owner/properties"
           >
+            <FontAwesome className="Dashboard__symbol--back" name="long-arrow-alt-left" />
             Back
           </NavLink>
           <NavLink
@@ -80,9 +83,7 @@ class Dashboard extends Component {
           <button className="Dashboard__link" onClick={() => this.onLogout()}>
             Logout
           </button>
-          {/* ) : ( */}
-          {/* '' */}
-          {/* )} */}
+          <img className="Dashboard__logo" src={logo} alt="logo" />
         </nav>
         <div className="Dashboard__body">{this.props.children}</div>
       </div>
@@ -131,6 +132,7 @@ class Dashboard extends Component {
           <button className="Dashboard__link" onClick={() => this.onLogout()}>
             Logout
           </button>
+          <img className="Dashboard__logo" src={logo} alt="logo" />
         </nav>
         <div className="Dashboard__body">{this.props.children}</div>
       </div>
