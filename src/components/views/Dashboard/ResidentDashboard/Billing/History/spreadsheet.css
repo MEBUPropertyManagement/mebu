@@ -1,0 +1,27 @@
+#billing-items {
+  font-family: 'Raleway', sans-serif;
+  border-collapse: collapse;
+  width: 100%;
+}
+
+#billing-items td,
+#billing-items th {
+  border: 1px solid #ddd;
+  padding: 8px;
+}
+
+#billing-items tr:nth-child(even) {
+  background-color: #f2f2f2;
+}
+
+#billing-items tr:hover {
+  background-color: #ddd;
+}
+
+#billing-items th {
+  padding-top: 12px;
+  padding-bottom: 12px;
+  text-align: left;
+  background-color: #33383b;
+  color: white;
+}
