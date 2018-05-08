@@ -68,7 +68,7 @@ class Units extends Component {
       property =
         selectedProperty.occupiedUnits &&
         selectedProperty.occupiedUnits.map(unit => (
-            <NewUnit index={-1} creating={false} editing={false} key={unit.unitid} unit={unit} />
+          <NewUnit index={-1} creating={false} editing={false} key={unit.unitid} unit={unit} />
         ));
     }
     const newUnitDisplay =
