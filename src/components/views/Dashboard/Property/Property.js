@@ -27,7 +27,7 @@ class Property extends Component {
       );
     }
 
-    return <div>{property}</div>;
+    return <div className="Property-container">{property}</div>;
   }
 }
 
