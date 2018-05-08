@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
 import {getResidentInfo} from '../../../../../redux/ducks/residentReducer';
+import './Contacts.css';
 
 class Contacts extends Component {
   constructor(props) {
@@ -16,9 +17,9 @@ class Contacts extends Component {
     let residentInfoDisplay = <p>Loading...</p>;
     if (Object.keys(residentInfo).length > 0 && !loading && !error) {
       residentInfoDisplay = (
-        <div>
+        <div className="Contacts-container">
           <div>
-            <h3>Property</h3>
+            <h3 className="">Property</h3>
             <p>Name: {residentInfo.name}</p>
             <p>Address: {residentInfo.address}</p>
             <p>Image: {residentInfo.photourl}</p>

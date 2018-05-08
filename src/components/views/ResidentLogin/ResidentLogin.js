@@ -2,6 +2,7 @@ import React, {Component} from 'react';
 import {Link} from 'react-router-dom';
 import {connect} from 'react-redux';
 import {loginResident} from '../../../redux/ducks/userReducer';
+import logo from '../../../images/logo_final_white.svg';
 
 import './ResidentLogin.css';
 
@@ -35,7 +36,7 @@ class ResidentLogin extends Component {
       <div className="ResidentLogin">
         <div className="login-container">
           <h3 className="residentlogin-header">Please sign into MEBU.</h3>
-          <p>Enter your details below.</p>
+          <p className="residentlogin-subheader">Enter your details below.</p>
           <form className="ResidentLogin__form" onSubmit={this.onSubmitHandler}>
             <input
               className="ResidentLogin__input ResidentLogin__input--email"
@@ -58,11 +59,14 @@ class ResidentLogin extends Component {
             <input type="submit" className="ResidentLogin__submit" value="Login" />
           </form>
           <div>
-            <Link to="/forgotpassword">Forgot Password?</Link>
+            <Link className="ResidentLogin__link Link__none" to="/forgotpassword">
+              Forgot Password?
+            </Link>
           </div>
         </div>
         <div className="logo-container-registration-log">
-          <h3 className="ownerlogin-logo-header">Resident Portal</h3>
+          <img className="ResidentLogin__logo" src={logo} alt="logo" />
+          <h3 className="Residentlogin-logo-header">Resident Portal</h3>
         </div>
       </div>
     );
