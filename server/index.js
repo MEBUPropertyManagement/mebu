@@ -41,6 +41,7 @@ const {
 const {
   workOrderByPropertyId,
   workOrderByResidentId,
+  workOrderByUnitId,
   addWorkOrder,
   closeWorkorder,
 } = require('./controllers/workorderControllers');
@@ -113,6 +114,7 @@ app.post('/workorder/addWorkorder', addWorkOrder);
 app.put('/workorder/closeWorkorder/:id', closeWorkorder);
 app.get('/workorder/getByPropertyId/:id', workOrderByPropertyId);
 app.get('/workorder/getByResidentId/', workOrderByResidentId);
+app.get('/workorder/getByUnitId', workOrderByUnitId);
 
 // Billing Endpoints
 app.post('/bills/add', addBill);
