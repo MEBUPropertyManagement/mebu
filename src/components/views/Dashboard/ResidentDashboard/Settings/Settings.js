@@ -1,6 +1,7 @@
 import React, {Component, Fragment} from 'react';
 import {connect} from 'react-redux';
 import {updateResident} from '../../../../../redux/ducks/userReducer';
+import './Settings.css';
 
 class Settings extends Component {
   constructor(props) {
@@ -57,28 +58,37 @@ class Settings extends Component {
     );
     if (editing) {
       settingsDisplay = (
-        <form onSubmit={this.onSubmitHandler}>
-          <input
-            onChange={this.onChangeHandler}
-            className="Settings__input Settings__input--email"
-            value={email}
-            name="email"
-            type="email"
-          />
-          <input
-            onChange={this.onChangeHandler}
-            className="Settings__input Settings__input--firstname"
-            value={firstname}
-            name="firstname"
-            type="text"
-          />
-          <input
-            onChange={this.onChangeHandler}
-            className="Settings__input Settings__input--lastname"
-            value={lastname}
-            name="lastname"
-            type="text"
-          />
+        <form className="Settings__form" onSubmit={this.onSubmitHandler}>
+          <label htmlFor="email">
+            Email
+            <input
+              onChange={this.onChangeHandler}
+              className="Settings__input Settings__input--email"
+              value={email}
+              name="email"
+              type="email"
+            />
+          </label>
+          <label htmlFor="firstname">
+            First Name
+            <input
+              onChange={this.onChangeHandler}
+              className="Settings__input Settings__input--firstname"
+              value={firstname}
+              name="firstname"
+              type="text"
+            />
+          </label>
+          <label htmlFor="lastname">
+            Last Name
+            <input
+              onChange={this.onChangeHandler}
+              className="Settings__input Settings__input--lastname"
+              value={lastname}
+              name="lastname"
+              type="text"
+            />
+          </label>
           <button style={{display: 'none'}} />
         </form>
       );
