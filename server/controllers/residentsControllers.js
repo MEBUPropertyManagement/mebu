@@ -6,6 +6,16 @@ const getResidents = (req, res) => {
     .catch(err => res.status(200).json({error: `${err}`}));
 };
 
+const updateResident = (req, res) => {
+  const db = req.app.get('db');
+  const {email, firstName, lastName} = req.body;
+
+  db
+    .residents_updateResident([req.session.user.userid, email, firstName, lastName])
+    .then(response => res.status(200).json({updated: true, response: response[0]}))
+    .catch(err => res.status(200).json({updated: false, error: `${err}`}));
+};
+
 const getResidentsByUnit = (req, res) => {
   const db = req.app.get('db');
   db
@@ -24,6 +34,7 @@ const getResidentDetails = (req, res) => {
 
 module.exports = {
   getResidents,
+  updateResident,
   getResidentsByUnit,
   getResidentDetails,
 };

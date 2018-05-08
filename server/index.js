@@ -32,6 +32,7 @@ const {addUnit, getUnit, updateUnit} = require('./controllers/unitsControllers')
 // Residents Controllers
 const {
   getResidents,
+  updateResident,
   getResidentsByUnit,
   getResidentDetails,
 } = require('./controllers/residentsControllers');
@@ -103,6 +104,7 @@ app.get('/properties/getProperties', getProperties);
 
 // Resident Endpoints
 app.get('/residents/getResidents/:id', getResidents);
+app.put('/residents/updateResident', updateResident);
 app.get('/residents/getResidentsByUnit/:id', getResidentsByUnit);
 app.get('/residents/getResidentDetails', getResidentDetails);
 
