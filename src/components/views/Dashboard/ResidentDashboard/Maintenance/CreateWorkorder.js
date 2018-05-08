@@ -2,6 +2,7 @@ import React, {Component} from 'react';
 import {Link} from 'react-router-dom';
 import {connect} from 'react-redux';
 import {loginResident} from '../../../../../redux/ducks/userReducer';
+import axios from 'axios';
 
 class CreateWorkorder extends Component {
   constructor() {
@@ -11,36 +12,59 @@ class CreateWorkorder extends Component {
       content: '',
       urgency: '',
     };
-
-    handleSubmit = () => {};
   }
+
+  handleContent = e => {
+    this.setState({
+      content: e.target.value,
+    });
+  };
+
+  handleUrgency = e => {
+    this.setState({
+      urgency: e.target.value,
+    });
+  };
+
+  Submit = () => {
+    console.log(this.state);
+    axios
+      .post('/workorder/addWorkorder', {
+        content: this.state.content,
+        urgency: this.state.urgency,
+      })
+      .then(response => alert('Thank you for submitting your work order'));
+  };
+
   render() {
     return (
       <div>
         <h1>CreateWorkorder</h1>
-        <form onSubmit={() => this.handleSubmit}>
-          <div>
-            <label> Content </label>
-            <textarea />
-          </div>
-          <br />
+        <form>
           <div className="radio">
-            <label>Urgency</label>
-            <label>
-              <input type="radio" value="option1" checked />
-              Option 1
-            </label>
-          </div>
-          <div className="radio">
-            <label>
-              <input type="radio" value="option2" />
-              Option 2
-            </label>
-          </div>
-          <div className="radio">
-            <input type="radio" value="option3"> Option 3 </input>
+            <label>Priority</label>
+            <br />
+            <div onChange={e => this.handleUrgency(e)} value={this.state.urgency}>
+              <input type="radio" value="Low Priority" name="Priority" /> Low Priority
+              <input type="radio" value="Routine" name="Priority" /> Routine
+              <input type="radio" value="Urgent" name="Priority" /> Urgent
+            </div>
+            <br />
+            <div>
+              <label> Content </label>
+              <br />
+              <textarea
+                name="content"
+                onChange={e => this.handleContent(e)}
+                value={this.state.content}
+                id="exampleFormControlTextarea1"
+                rows="12"
+                type="message"
+              />
+            </div>
           </div>
         </form>
+        <button onClick={() => this.Submit()}> Submit </button>
       </div>
     );
   }
