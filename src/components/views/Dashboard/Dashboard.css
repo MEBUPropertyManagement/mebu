@@ -9,15 +9,6 @@
   grid-template-columns: 200px 1fr;
 }
 
-.Dashboard__top {
-  position: fixed;
-  top: 0;
-  right: 0;
-  width: calc(100vw - 200px);
-  height: 100px;
-  background: var(--gray);
-}
-
 .Dashboard__nav {
   grid-area: sidebar;
   width: 200px;
