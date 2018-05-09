@@ -23,18 +23,10 @@ constructor(props){
       })
       .catch(err => console.log(err));
   }
-  getCurrentUser() {
-    axios
-      .get('/users/current')
-      .then((response) => {
-        this.currentUser = this.props.current_user
-      });
-  }
-
 
   render() {
-    const {path, params, residentInfo, current_user} = this.props.match;
-    console.log(residentInfo);
+    const {path, params, residentInfo, currentUser} = this.props.match;
+    console.log(currentUser);
     return path.includes('/owner/') ? (
       <div className="Dashboard">
         <nav className="Dashboard__nav">
