@@ -7,7 +7,7 @@ import {connect} from 'react-redux';
 import Loading from '../../Loading/Loading';
 import NotLoggedIn from '../../NotLoggedIn/NotLoggedIn';
 import {logoutUser} from '../../../redux/ducks/userReducer';
-import logo from '../../../images/logo_final_white.svg';
+import logo from '../../../images/logo_final_blue.svg';
 import './Dashboard.css';
 import {getResidentInfo} from '../../../redux/ducks/residentReducer';
 
