@@ -7,10 +7,12 @@ const LOGIN_RESIDENT = 'LOGIN_RESIDENT';
 const CREATE_RESIDENT = 'CREATE_RESIDENT';
 const LOGOUT_USER = 'LOGOUT_USER';
 const UPDATE_RESIDENT = 'UPDATE_RESIDENT';
+const GET_USER = 'GET_USER';
 
 const initialState = {
-  current_user: {},
+  current_user: '',
   authenticated: false,
+  loading: false,
 };
 
 export default function userReducer(state = initialState, action) {
@@ -61,6 +63,21 @@ export default function userReducer(state = initialState, action) {
       return {
         ...state,
         current_user: {...state.current_user, ...action.payload},
+      };
+
+    case `${GET_USER}_PENDING`:
+      return {
+        ...state,
+        loading: true,
+      };
+
+    case `${GET_USER}_FULFILLED`:
+      console.log('action.payload: ', action.payload);
+      console.log('state.current_user: ', state.current_user);
+      return {
+        ...state,
+        current_user: {...state.current_user, ...action.payload},
+        loading: false,
       };
 
     default:
@@ -151,6 +168,16 @@ export function updateResident(email, firstName, lastName) {
     payload: axios
       .put('/residents/updateResident', {email, firstName, lastName})
       .then(response => response.data)
+      .catch(err => err),
+  };
+}
+
+export function getUser() {
+  return {
+    type: GET_USER,
+    payload: axios
+      .get('/users/current')
+      .then(response => response.data.user)
       .catch(err => err),
   };
 }

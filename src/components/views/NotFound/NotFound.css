@@ -1,0 +1,37 @@
+.NotFound {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  z-index: 9999;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background: var(--black);
+}
+
+.NotFound__text {
+  font-size: 2rem;
+  font-weight: bold;
+  margin-bottom: 20px;
+  color: var(--white);
+}
+
+.NotFound__button {
+  background: var(--blue);
+  color: var(--white);
+  border: var(--blue) solid 3px;
+  font-size: 0.75rem;
+  font-weight: bold;
+  text-transform: uppercase;
+  border-radius: 100px;
+  text-align: center;
+  letter-spacing: 2px;
+  width: 300px;
+  height: 35px;
+  padding: 0 60px;
+  margin: 5px 0 20px;
+  outline: none;
+}

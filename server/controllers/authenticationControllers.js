@@ -100,6 +100,8 @@ const residentLogin = (req, res) => {
               userid: response[0].residentid || 0,
               propertyid: response[0].propertyid || 0,
               unitid: response[0].unitid || 0,
+              firstName: response[0].firstname,
+              lastName: response[0].lastname,
             };
             return res.status(200).json({
               authenticated: true,
@@ -147,7 +149,13 @@ const ownerLogin = (req, res) => {
         const hash = response[0].password;
         bcrypt.compare(password, hash, (err, result) => {
           if (result === true) {
-            req.session.user = {email, role: 'owner', userid: response[0].ownerid || 0};
+            req.session.user = {
+              email,
+              role: 'owner',
+              userid: response[0].ownerid || 0,
+              firstName: response[0].firstname,
+              lastName: response[0].lastname,
+            };
             return res.status(200).json({
               authenticated: true,
               email,
