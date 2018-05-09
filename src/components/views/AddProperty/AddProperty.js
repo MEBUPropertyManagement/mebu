@@ -61,24 +61,28 @@ class AddProperty extends Component {
     return (
       <div className="AddProperty">
         <div className="AddProperty-navbar">
-          <h2 className="AddProperty-navbar-header">Add New Property</h2>
-          <Link
-            className="Properties__button Properties__button--add Link__none"
-            to="/owner/properties"
-          >
-            Back to All Properties
-          </Link>
-          <button
-            className="Properties__button Properties__button--logout"
-            onClick={() => this.onLogout()}
-          >
-            Logout
-          </button>
-          <img className="Properties__logo" src={logo} alt="logo" />
+          <div className="AddProperty__buttons">
+            <h2 className="AddProperty-navbar-header">Add New Property</h2>
+            <Link
+              className="Properties__button Properties__button--add Link__none"
+              to="/owner/properties"
+            >
+              Back to All Properties
+            </Link>
+            <button
+              className="Properties__button Properties__button--logout"
+              onClick={() => this.onLogout()}
+            >
+              Logout
+            </button>
+          </div>
+          <img className="AddProperty__logo" src={logo} alt="logo" />
         </div>
         <form className="AddProperty-form" onSubmit={this.onSubmitHandler}>
           <label className="Property__label" htmlFor="name">
+            <span className="Property__label-text">
             Property Name
+            </span>
             <input
               className="AddProperty__input AddProperty__input--name"
               onChange={this.onChangeHandler}
@@ -91,7 +95,9 @@ class AddProperty extends Component {
             />
           </label>
           <label className="Property__label" htmlFor="Property address">
+            <span className="Property__label-text">
             Property Address
+            </span>
             <input
               className="AddProperty__input AddProperty__input--address"
               onChange={this.onChangeHandler}
@@ -103,7 +109,9 @@ class AddProperty extends Component {
             />
           </label>
           <label className="Property__label" htmlFor="value">
+            <span className="Property__label-text">
             Property Value
+            </span>
             <input
               className="AddProperty__input AddProperty__input--value"
               onChange={this.onChangeHandler}
@@ -115,7 +123,9 @@ class AddProperty extends Component {
             />
           </label>
           <label className="Property__label" htmlFor="photourl">
+            <span className="Property__label-text">
             Property Photo
+            </span>
             <input
               className="AddProperty__input AddProperty__input--photourl"
               onChange={this.onChangeHandler}
@@ -128,7 +138,9 @@ class AddProperty extends Component {
             />
           </label>
           <label className="Property__label" htmlFor="units">
+            <span className="Property__label-text">
             Total Number of Property Units
+            </span>
             <input
               className="AddProperty__input AddProperty__input--units"
               onChange={this.onChangeHandler}
@@ -140,7 +152,9 @@ class AddProperty extends Component {
             />
           </label>
           <label className="Property__label" htmlFor="expenses">
+            <span className="Property__label-text">
             Total Property Expenses
+            </span>
             <input
               className="AddProperty__input AddProperty__input--expenses"
               onChange={this.onChangeHandler}
