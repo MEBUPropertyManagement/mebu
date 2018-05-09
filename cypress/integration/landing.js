@@ -24,15 +24,15 @@ describe('Header Text', () => {
     cy
       .get('.Landing_link--owner')
       .click()
-      .get('div')
-      .contains('This is the owner login page.');
+      .get('h3')
+      .contains('Please sign into MEBU.');
   });
 
   it('Should display appropriate text after clicking on the resident button', () => {
     cy
       .get('.Landing_link--resident')
       .click()
-      .get('div')
-      .contains('This is the Resident login page.');
+      .get('h3')
+      .contains('Please sign into MEBU.');
   });
 });

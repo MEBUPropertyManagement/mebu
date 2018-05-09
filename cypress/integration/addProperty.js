@@ -18,18 +18,12 @@ describe('Add Property', () => {
     cy.get('.OwnerLogin__submit').click();
   });
 
-  it('Should redirect to a page with a property display class', () => {
-    cy.get('.Properties');
+  it('Should redirect to a page with an add property button', () => {
+    cy.get('.Properties__button--add');
   });
 
-  // Now that we're logged in, head to the add property page.
-
-  // it('Should visit the add property page', () => {
-  //   cy.visit('http://localhost:3000/owner/properties/new');
-  // });
-
   it('Should have an add property button', () => {
-    cy.get('.Properties__button').click();
+    cy.get('.Properties__button--add').click();
   });
 
   it('Should have an input for a name', () => {
