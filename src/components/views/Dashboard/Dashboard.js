@@ -6,8 +6,13 @@ import {connect} from 'react-redux';
 import {logoutUser} from '../../../redux/ducks/userReducer';
 import logo from '../../../images/logo_final_white.svg';
 import './Dashboard.css';
+import {getResidentInfo} from '../../../redux/ducks/residentReducer';
 
 class Dashboard extends Component {
+constructor(props){
+  super(props);
+}
+
   onLogout() {
     console.log('logging out!');
     axios
@@ -18,10 +23,18 @@ class Dashboard extends Component {
       })
       .catch(err => console.log(err));
   }
+  getCurrentUser() {
+    axios
+      .get('/users/current')
+      .then((response) => {
+        this.currentUser = this.props.current_user
+      });
+  }
+
 
   render() {
-    const {path, params} = this.props.match;
-    console.log(this.props);
+    const {path, params, residentInfo, current_user} = this.props.match;
+    console.log(residentInfo);
     return path.includes('/owner/') ? (
       <div className="Dashboard">
         <nav className="Dashboard__nav">
@@ -144,4 +157,4 @@ const mapStateToProps = state => ({
   ...state.userReducer,
 });
 
-export default withRouter(connect(mapStateToProps, {logoutUser})(Dashboard));
+export default withRouter(connect(mapStateToProps, {logoutUser, getResidentInfo})(Dashboard));
