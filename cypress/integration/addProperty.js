@@ -11,7 +11,7 @@ describe('Add Property', () => {
   });
 
   it('Should input a password', () => {
-    cy.get('.OwnerLogin__input--password').type('tailopez');
+    cy.get('.OwnerLogin__input--password').type('kkz8gp');
   });
 
   it('Should submit the form', () => {
