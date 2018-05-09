@@ -104,7 +104,7 @@ class Dashboard extends Component {
           <div className="Dashboard__body">{this.props.children}</div>
         </div>
       );
-    } else if (path.includes('/owner/') && !loading) {
+    } else if (path.includes('/resident/') && !loading) {
       // if they're a resident
       dashboard = (
         <div className="Dashboard">
