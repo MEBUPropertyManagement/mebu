@@ -9,7 +9,7 @@ class Units extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      newUnits: [],
+      newUnits: []
     };
     this.onAddHandler = this.onAddHandler.bind(this);
     this.onRemoveHandler = this.onRemoveHandler.bind(this);
@@ -24,21 +24,23 @@ class Units extends Component {
     const {newUnits} = this.state;
     const index = newUnits.length;
     const arrCopy = newUnits.slice();
-    arrCopy.push(<NewUnit
-      remove={this.onFromArrayDelete}
-      key={index}
-      creating
-      editing
-      index={index}
-      unit={{
+    arrCopy.push(
+      <NewUnit
+        remove={this.onFromArrayDelete}
+        key={index}
+        creating
+        editing
+        index={index}
+        unit={{
           bath: 0,
           bed: 0,
           occupied: true,
           rent: 0,
           roomnum: 0,
-          size: 0,
+          size: 0
         }}
-    />);
+      />
+    );
     this.setState({newUnits: arrCopy});
   }
 
@@ -68,7 +70,13 @@ class Units extends Component {
       property =
         selectedProperty.occupiedUnits &&
         selectedProperty.occupiedUnits.map(unit => (
-          <NewUnit index={-1} creating={false} editing={false} key={unit.unitid} unit={unit} />
+          <NewUnit
+            index={-1}
+            creating={false}
+            editing={false}
+            key={unit.unitid}
+            unit={unit}
+          />
         ));
     }
     const newUnitDisplay =
@@ -86,7 +94,7 @@ class Units extends Component {
             occupied: true,
             rent: 0,
             roomnum: 0,
-            size: 0,
+            size: 0
           }}
         />
       ));
@@ -115,7 +123,7 @@ class Units extends Component {
 }
 
 const mapStateToProps = state => ({
-  ...state.propertyReducer,
+  ...state.propertyReducer
 });
 
 export default connect(mapStateToProps, {getPropertyById})(Units);
