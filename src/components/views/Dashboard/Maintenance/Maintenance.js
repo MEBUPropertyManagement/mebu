@@ -54,6 +54,7 @@ class Maintenance extends Component {
           lastname={lastname}
           unitid={unitid}
           content={content}
+          close={this.closeWorkorder}
         />
       );
     });
@@ -69,6 +70,7 @@ class Maintenance extends Component {
           lastname={lastname}
           unitid={unitid}
           content={content}
+          close={this.closeWorkorder}
         />
       );
     });

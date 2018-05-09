@@ -13,6 +13,9 @@ class Property extends Component {
     let property = <p>...loading</p>;
     if (this.props.selectedProperty && !this.props.loading) {
       const prop = this.props.selectedProperty;
+      const expenses = +prop.expenses;
+      const value = +prop.value;
+
       property = (
         <div className="Property">
           <div className="Property__text">
@@ -28,12 +31,12 @@ class Property extends Component {
 
               <div className="Property__info__section">
                 <h6 className="Property__info__header">Value</h6>
-                <p className="Proprty__info__number">${prop.value}</p>
+                <p className="Proprty__info__number">${value.toLocaleString('en')}</p>
               </div>
 
               <div className="Property__info__section">
                 <h6 className="Property__info__header">Expenses</h6>
-                <p className="Proprty__info__number">${prop.expenses}</p>
+                <p className="Proprty__info__number">${expenses.toLocaleString('en')}</p>
               </div>
             </div>
           </div>
