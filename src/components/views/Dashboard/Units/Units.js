@@ -92,7 +92,6 @@ class Units extends Component {
       ));
     return (
       <div className="Units container">
-        <h1>Current Units</h1>
         <div className="Units__titles">
           <p>Bath</p>
           <p>Bed</p>
@@ -108,6 +107,7 @@ class Units extends Component {
         {newUnits.length > 0 && <h1>Multi-Add</h1>}
         {newUnitDisplay}
 
+        <h1>Current Units</h1>
         {property}
       </div>
     );

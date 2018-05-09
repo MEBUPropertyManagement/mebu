@@ -27,12 +27,12 @@
 }
 
 .Property__address {
-  font-size: 4rem;
+  font-size: 5rem;
   font-weight: 900;
   letter-spacing: 2px;
   text-transform: uppercase;
   margin: 30px 0;
-  line-height: 3rem;
+  line-height: 4.5rem;
 }
 
 .Property__info__section {
