@@ -44,6 +44,14 @@ class EditUnit extends Component {
     }
   }
 
+  onDeleteHandler() {
+    if (!this.state.editing) {
+      axios
+        .delete(`/unit/delete/${this.props.unit.unitid}`)
+        .then(() => this.props.reload());
+    }
+  }
+
   onChangeHandler(event) {
     const {target} = event;
     const value = target.type === 'checkbox' ? target.checked : target.value;
@@ -142,22 +150,26 @@ class EditUnit extends Component {
     return (
       <tr className="Unit__table-row">
         {editDisplay}
-        <td>
-          <button
-            style={{display: editing ? 'block' : 'none'}}
-            className="EditUnit__button"
-            onClick={this.onEditHandler}
-          >
-            <i className="fas fa-save" />
-          </button>
-          <button
-            style={{display: editing ? 'none' : 'block'}}
-            className="EditUnit__button"
-            onClick={this.onEditHandler}
-          >
-            {/* <FontAwesome name="edit" /> */}
-            <i className="fas fa-edit" />
-          </button>
+        <td className="EditUnit__td-buttons">
+          <div className="EditUnit__buttons">
+            <button
+              style={{display: editing ? 'block' : 'none'}}
+              className="EditUnit__button"
+              onClick={this.onEditHandler}
+            >
+              <i className="fas fa-save" />
+            </button>
+            <button
+              style={{display: editing ? 'none' : 'block'}}
+              className="EditUnit__button"
+              onClick={this.onEditHandler}
+            >
+              <i className="fas fa-edit" />
+            </button>
+            <button onClick={this.onDeleteHandler} className="EditUnit__button">
+              <i className="fas fa-trash" />
+            </button>
+          </div>
         </td>
       </tr>
     );

@@ -78,7 +78,7 @@ class AddUnits extends Component {
               <th>Bed</th>
               <th>Occupied</th>
               <th>Rent</th>
-              <th>Room #</th>
+              <th>Apt #</th>
               <th>Size</th>
             </tr>
           </thead>

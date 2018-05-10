@@ -2,11 +2,28 @@
   cursor: pointer;
 }
 
-.EditUnit__button {
+.EditUnit__td-buttons {
+  padding: 0;
+  position: relative;
+}
+
+.EditUnit__buttons {
+  position: absolute;
+  top: 0;
+  left: 0;
   width: 100%;
   height: 100%;
-  margin: 0;
-  padding: 0;
-  background: none;
+  display: flex;
+}
+
+.EditUnit__button {
+  flex: 1;
+  background: var(--white);
   border: none;
+  color: var(--light-black);
+  transition: all 50ms linear;
+}
+.EditUnit__button:hover {
+  background: var(--light-black);
+  color: var(--white);
 }

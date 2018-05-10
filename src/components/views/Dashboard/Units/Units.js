@@ -15,8 +15,13 @@ class Units extends Component {
     this.onAddNewUnits = this.onAddNewUnits.bind(this);
     this.addingStateToFalse = this.addingStateToFalse.bind(this);
     this.toResidentsByUnit = this.toResidentsByUnit.bind(this);
+    this.reload = this.reload.bind(this);
   }
   componentDidMount() {
+    this.props.getUnits(this.props.match.params.id);
+  }
+
+  reload() {
     this.props.getUnits(this.props.match.params.id);
   }
 
@@ -46,14 +51,20 @@ class Units extends Component {
               <th>Bed</th>
               <th>Occupied</th>
               <th>Rent</th>
-              <th>Room #</th>
+              <th>Apt #</th>
               <th>Size</th>
+              <th>Edit / Delete</th>
             </tr>
           </thead>
           <tbody>
             {units &&
               units.map(unit => (
-                <EditUnit key={unit.unitid} toUnit={this.toResidentsByUnit} unit={{...unit}} />
+                <EditUnit
+                  reload={this.reload}
+                  key={unit.unitid}
+                  toUnit={this.toResidentsByUnit}
+                  unit={{...unit}}
+                />
               ))}
           </tbody>
         </table>

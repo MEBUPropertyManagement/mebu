@@ -43,22 +43,19 @@ pre {
 
 table {
   box-shadow: 0 4px 25px rgba(0, 0, 0, 0.1);
-}
-
-th {
-  text-transform: uppercase;
+  /* border-collapse: separate; */
+  width: 100%;
 }
 
 table,
 td,
 th {
   border: 1px solid #ddd;
-  text-align: left;
+  text-align: center;
 }
 
-table {
-  border-collapse: collapse;
-  width: 100%;
+th {
+  text-transform: uppercase;
 }
 
 th,

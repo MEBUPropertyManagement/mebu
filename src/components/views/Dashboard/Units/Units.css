@@ -16,5 +16,8 @@
 }
 
 .Unit__table-row:hover {
+  transition: all 100ms linear;
+}
+.Unit__table-row:hover {
   background-color: #ddd;
 }
