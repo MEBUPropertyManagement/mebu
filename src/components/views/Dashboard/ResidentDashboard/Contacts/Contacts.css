@@ -1,6 +1,12 @@
 .Contacts-container {
+  border: none;
+  color: var(--black);
+  background-color: var(--white);
+  height: 100%;
   display: flex;
-  margin: 0 auto;
+  text-align: left;
+  align-items: left;
+  flex-direction: column;
 }
 
 .Contacts-resident-info {
@@ -8,4 +14,39 @@
   text-align: left;
   align-items: left;
   flex-direction: column;
+}
+
+.Contacts-header {
+  font-size: 0.5rem;
+  font-weight: 900;
+  color: var(--light-blue);
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  margin-top: 5px;
+}
+
+.Contacts-property-name {
+  color: var(--dark-gray);
+  text-transform: uppercase;
+  margin-bottom: 3px;
+}
+
+.Contacts__border__bottom {
+  border-bottom: 5px solid var(--light-blue);
+  width: 7%;
+}
+
+.Contacts-property-address {
+  font-size: 5rem;
+  font-weight: 900;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  margin: 30px 0;
+  line-height: 4.5rem;
+}
+
+.Contacts-text {
+  font-weight: 400;
+  font-size: 1.5rem;
+  letter-spacing: 1.5px;
 }
