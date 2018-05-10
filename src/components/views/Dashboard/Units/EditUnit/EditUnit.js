@@ -20,6 +20,7 @@ class EditUnit extends Component {
     };
     this.onEditHandler = this.onEditHandler.bind(this);
     this.onChangeHandler = this.onChangeHandler.bind(this);
+    this.onDeleteHandler = this.onDeleteHandler.bind(this);
   }
 
   onEditHandler() {
@@ -46,9 +47,7 @@ class EditUnit extends Component {
 
   onDeleteHandler() {
     if (!this.state.editing) {
-      axios
-        .delete(`/unit/delete/${this.props.unit.unitid}`)
-        .then(() => this.props.reload());
+      axios.delete(`/unit/delete/${this.props.unit.unitid}`).then(() => this.props.reload());
     }
   }
 
@@ -65,11 +64,12 @@ class EditUnit extends Component {
   render() {
     const {editing} = this.state;
     const {bath, bed, occupied, rent, roomnum, size, unitid} = this.props.unit;
-
+    let classes = ['Unit__table-row'];
     const editDisplay = editing ? (
       <Fragment>
-        <td>
+        <td className="EditUnit__td">
           <input
+            className="EditUnit__input"
             value={this.state.bath || ''}
             onChange={this.onChangeHandler}
             placeholder="bath"
@@ -77,8 +77,9 @@ class EditUnit extends Component {
             type="number"
           />
         </td>
-        <td>
+        <td className="EditUnit__td">
           <input
+            className="EditUnit__input"
             value={this.state.bed || ''}
             onChange={this.onChangeHandler}
             placeholder="bed"
@@ -86,16 +87,23 @@ class EditUnit extends Component {
             type="number"
           />
         </td>
-        <td>
+        <td className="EditUnit__td">
           <input
             checked={this.state.occupied || false}
             onChange={this.onChangeHandler}
             name="occupied"
             type="checkbox"
+            id={`cbx${unitid}`}
+            className="EditUnit__toggle"
+            style={{display: 'none'}}
           />
+          <label htmlFor={`cbx${unitid}`} className="toggle">
+            <span />
+          </label>
         </td>
-        <td>
+        <td className="EditUnit__td">
           <input
+            className="EditUnit__input"
             value={this.state.rent || ''}
             onChange={this.onChangeHandler}
             placeholder="rent"
@@ -103,8 +111,9 @@ class EditUnit extends Component {
             type="number"
           />
         </td>
-        <td>
+        <td className="EditUnit__td">
           <input
+            className="EditUnit__input"
             value={this.state.roomnum || ''}
             onChange={this.onChangeHandler}
             placeholder="roomnum"
@@ -112,8 +121,9 @@ class EditUnit extends Component {
             type="number"
           />
         </td>
-        <td>
+        <td className="EditUnit__td">
           <input
+            className="EditUnit__input"
             value={this.state.size || ''}
             onChange={this.onChangeHandler}
             placeholder="size"
@@ -146,11 +156,13 @@ class EditUnit extends Component {
     );
 
     /* eslint-enable */
-
+    if (editing) {
+      classes.push('EditUnit__table-row--editing');
+    }
     return (
-      <tr className="Unit__table-row">
+      <tr className={classes.join(' ')}>
         {editDisplay}
-        <td className="EditUnit__td-buttons">
+        <td className="EditUnit__td">
           <div className="EditUnit__buttons">
             <button
               style={{display: editing ? 'block' : 'none'}}

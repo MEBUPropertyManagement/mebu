@@ -45,20 +45,22 @@ class AddUnits extends Component {
   }
 
   addAllHandler() {
-    const promises = [];
-    const filteredArray = this.state.newUnits.filter((unit) => {
-      if (unit.size && unit.bed && unit.bath && unit.roomnum && unit.rent) {
-        promises.push(axios.post('/unit/add', {...unit, propertyid: this.props.match.params.id}));
-      } else {
-        return unit;
-      }
-      return null;
-    });
-    axios.all(promises).then(() => {
-      this.setState({newUnits: filteredArray, count: 0});
-      this.props.getUnits(this.props.match.params.id);
-      this.props.hide();
-    });
+    if (this.state.count > 0) {
+      const promises = [];
+      const filteredArray = this.state.newUnits.filter((unit) => {
+        if (unit.size && unit.bed && unit.bath && unit.roomnum && unit.rent) {
+          promises.push(axios.post('/unit/add', {...unit, propertyid: this.props.match.params.id}));
+        } else {
+          return unit;
+        }
+        return null;
+      });
+      axios.all(promises).then(() => {
+        this.setState({newUnits: filteredArray, count: 0});
+        this.props.getUnits(this.props.match.params.id);
+        this.props.hide();
+      });
+    }
   }
 
   render() {

@@ -1,5 +1,5 @@
 .Residents__table-data:hover {
-  background-color: #ddd;
+  background-color: var(--gray);
 }
 
 .Residents__table-header {

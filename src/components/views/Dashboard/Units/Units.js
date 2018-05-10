@@ -17,16 +17,17 @@ class Units extends Component {
     this.toResidentsByUnit = this.toResidentsByUnit.bind(this);
     this.reload = this.reload.bind(this);
   }
-  componentDidMount() {
-    this.props.getUnits(this.props.match.params.id);
-  }
 
-  reload() {
-    this.props.getUnits(this.props.match.params.id);
+  componentDidMount() {
+    this.reload();
   }
 
   onAddNewUnits() {
     this.setState(prevState => ({addingUnits: !prevState.addingUnits}));
+  }
+
+  reload() {
+    this.props.getUnits(this.props.match.params.id);
   }
 
   addingStateToFalse() {

@@ -19,5 +19,5 @@
   transition: all 100ms linear;
 }
 .Unit__table-row:hover {
-  background-color: #ddd;
+  background-color: var(--gray);
 }
