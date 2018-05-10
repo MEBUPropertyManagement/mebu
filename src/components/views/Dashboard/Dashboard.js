@@ -33,11 +33,10 @@ class Dashboard extends Component {
     const {path, params} = this.props.match;
 
     let dashboard = null;
-    // don't exist
-    if (!(Object.keys(current_user).length > 0) && !loading) {
-      dashboard = <NotLoggedIn />;
-    } else if (path.includes('/owner/') && !loading) {
-      // if they're an owner
+    // if (!(Object.keys(current_user).length > 0) && !loading) {
+    //   dashboard = <NotLoggedIn />;
+    // } else
+    if (path.includes('/owner/') && !loading) {
       dashboard = (
         <div className="Dashboard">
           <nav className="Dashboard__nav">
