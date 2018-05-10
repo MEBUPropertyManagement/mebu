@@ -13,6 +13,7 @@ const initialState = {
   current_user: '',
   authenticated: false,
   loading: false,
+  loginSubmitted: false,
 };
 
 export default function userReducer(state = initialState, action) {
@@ -22,6 +23,7 @@ export default function userReducer(state = initialState, action) {
         ...state,
         current_user: {...action.payload},
         authenticated: action.payload.authenticated,
+        loginSubmitted: true,
       };
 
     case `${CREATE_OWNER}_FULFILLED`:
@@ -36,6 +38,7 @@ export default function userReducer(state = initialState, action) {
         ...state,
         current_user: {...action.payload},
         authenticated: action.payload.authenticated,
+        loginSubmitted: true,
       };
 
     case `${CREATE_RESIDENT}_FULFILLED`:
