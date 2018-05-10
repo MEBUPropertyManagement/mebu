@@ -19,14 +19,10 @@ describe('Owner Login', () => {
   });
 
   it('Should accept input into the password field', () => {
-    cy.get('.OwnerLogin__input--password').type('tailopez');
+    cy.get('.OwnerLogin__input--password').type('kkz8gp');
   });
 
   it('Should submit the form when the login button is clicked', () => {
     cy.get('.OwnerLogin__submit').click();
-  });
-
-  it('Should redirect to a page with a property display class', () => {
-    cy.get('.Properties');
   });
 });

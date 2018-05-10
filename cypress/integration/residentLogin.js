@@ -15,26 +15,22 @@ describe('Resident Login', () => {
   });
 
   it('Should accept input into the email address field', () => {
-    cy.get('.ResidentLogin__input--email').type('christoph@chriswf.co');
+    cy.get('.ResidentLogin__input--email').type('aa@aa.com');
   });
 
   it('Should have its value updated with the user input', () => {
-    cy.get('.ResidentLogin__input--email').should('have.value', 'christoph@chriswf.co');
+    cy.get('.ResidentLogin__input--email').should('have.value', 'aa@aa.com');
   });
 
   it('Should accept input into the password field', () => {
-    cy.get('.ResidentLogin__input--password').type('potatoes');
+    cy.get('.ResidentLogin__input--password').type('tailopez');
   });
 
   it('Should have its value updated with the user input', () => {
-    cy.get('.ResidentLogin__input--password').should('have.value', 'potatoes');
+    cy.get('.ResidentLogin__input--password').should('have.value', 'tailopez');
   });
 
   it('Should submit the form when the login button is clicked', () => {
     cy.get('.ResidentLogin__submit').click();
   });
-
-  // it('Should redirect to a page with a display class', () => {
-  //   cy.get('Properties');
-  // });
 });
