@@ -1,4 +1,10 @@
-.Units__titles {
-  display: grid;
-  grid: auto-flow / 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
+.Units__title {
+  text-align: left;
+  margin-bottom: 10px;
+  font-size: 2rem;
+  font-weight: 700;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  border-left: 2px solid var(--light-blue);
+  padding-left: 5px;
 }

@@ -13,7 +13,10 @@ const getUnit = (req, res) => {
   const db = req.app.get('db');
   db
     .units_getById([req.params.id])
-    .then(response => res.status(200).json(response))
+    .then((units) => {
+      const sortedUnits = units.sort((a, b) => a.roomnum - b.roomnum);
+      return res.status(200).json(sortedUnits);
+    })
     .catch(err => res.status(200).json({error: `${err}`}));
 };
 
@@ -24,7 +27,10 @@ const updateUnit = (req, res) => {
   } = req.body;
   db
     .unit_update([unitid, size, occupied, bed, bath, roomnum, propertyid, rent])
-    .then(response => res.status(200).json({updated: true, response}))
+    .then((units) => {
+      const response = units.sort((a, b) => a.roomnum - b.roomnum);
+      return res.status(200).json({updated: true, response});
+    })
     .catch(err => res.status(200).json({error: `${err}`}));
 };
 
