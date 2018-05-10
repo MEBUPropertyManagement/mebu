@@ -2,13 +2,11 @@ import axios from 'axios';
 
 const GET_WORK_ORDER = 'GET_WORK_ORDER';
 const GET_RESIDENT_WORK_ORDER = 'GET_RESIDENT_WORK_ORDER';
-const CHANGE_FILTERED_WORK_ORDER = 'CHANGE_FILTERED_WORK_ORDER';
 const GET_WORK_ORDER_BY_ID = 'GET_WORK_ORDER_BY_ID';
 const CLOSE_WORK_ORDER = 'CLOSE_WORK_ORDER';
 
 const initialState = {
   workorders: [],
-  filterWorkorders: [],
   loading: false,
   error: false,
 };
@@ -34,13 +32,6 @@ export default function workorderReducer(state = initialState, action) {
       return {
         ...state,
         workorders: {id: action.type.id},
-      };
-
-    case `${CHANGE_FILTERED_WORK_ORDER}`:
-      console.log(action.payload);
-      return {
-        ...state,
-        filterWorkorders: action.payload,
       };
 
     case `${GET_RESIDENT_WORK_ORDER}_PENDING`:
@@ -86,13 +77,6 @@ export function closeWorkorderById(id) {
         return response.data;
       })
       .catch(err => err),
-  };
-}
-
-export function changeFilteredWorkorder(arr) {
-  return {
-    type: CHANGE_FILTERED_WORK_ORDER,
-    payload: arr,
   };
 }
 
