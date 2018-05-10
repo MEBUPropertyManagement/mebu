@@ -53,6 +53,7 @@ export default function userReducer(state = initialState, action) {
         ...state,
         current_user: {userid: action.payload, email: action.payload},
         authenticated: false,
+        loginSubmitted: false,
       };
 
     case `${FORGOT_PASSWORD}`:
@@ -81,6 +82,7 @@ export default function userReducer(state = initialState, action) {
         ...state,
         current_user: {...state.current_user, ...action.payload},
         loading: false,
+        loginSubmitted: false,
       };
 
     default:
