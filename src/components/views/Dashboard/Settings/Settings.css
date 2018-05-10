@@ -1,0 +1,94 @@
+.Settings__title {
+  text-align: left;
+  margin-bottom: 15px;
+  font-size: 1.5rem;
+  font-weight: 400;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  border-left: 5px solid var(--light-blue);
+  padding-left: 5px;
+}
+
+.Settings-form {
+  grid-area: content;
+  padding: 25px;
+  border: none;
+  color: var(--black);
+  background-color: var(--white);
+  height: 100%;
+  display: flex;
+  text-align: left;
+  align-items: left;
+  flex-direction: column;
+}
+
+.Settings__label {
+  margin-bottom: 0.5rem;
+  width: 100%;
+  font-size: 0.65rem;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  font-weight: bold;
+  color: var(--light-black);
+}
+
+.Settings__label-text {
+  padding-left: 10px;
+}
+
+.Settings__input {
+  background: var(--white);
+  border: 1px solid var(--gray);
+  border-radius: 9999px;
+  padding: 10px 15px;
+  margin-top: 5px;
+  font-size: 14px;
+  outline: none;
+  width: 100%;
+}
+
+.Settings__input:focus {
+  border: 1px solid var(--blue);
+}
+
+.Settings__button {
+  padding: 10px 15px;
+  background: var(--blue);
+  color: var(--white);
+  border: var(--blue) solid 2px;
+  font-size: 0.75rem;
+  font-weight: bold;
+  text-transform: uppercase;
+  border-radius: 9999px;
+  text-align: center;
+  letter-spacing: 2px;
+  width: 100%;
+  outline: none;
+  margin-top: 10px;
+}
+
+.Settings__button:hover {
+  color: var(--blue);
+  background: var(--white);
+}
+
+.Settings__archive {
+  padding: 10px 15px;
+  background: var(--dark-gray);
+  color: var(--white);
+  border: var(--dark-gray) solid 2px;
+  font-size: 0.75rem;
+  font-weight: bold;
+  text-transform: uppercase;
+  border-radius: 9999px;
+  text-align: center;
+  letter-spacing: 2px;
+  width: 90%;
+  outline: none;
+  margin-top: 10px;
+}
+
+.Settings__archive:hover {
+  color: var(--dark-gray);
+  background: var(--white);
+}
