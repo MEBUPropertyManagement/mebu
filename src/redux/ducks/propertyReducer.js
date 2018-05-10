@@ -52,7 +52,6 @@ export default function propertyReducer(state = initialState, action) {
       };
 
     case `${GET_PROPERTY_BY_ID}_FULFILLED`:
-      console.log(action.payload);
       return {
         ...state,
         selectedProperty: action.payload,
@@ -98,9 +97,7 @@ export function getProperties() {
     type: GET_PROPERTIES,
     payload: axios
       .get('/properties/getProperties')
-      .then(response =>
-        // console.log(response.data);
-        response.data)
+      .then(response => response.data)
       .catch(err => err),
   };
 }
@@ -110,9 +107,7 @@ export function createProperty(obj) {
     type: CREATE_PROPERTY,
     payload: axios
       .post('/properties/add', obj)
-      .then(response =>
-        // console.log(response.data);
-        response.data)
+      .then(response => response.data)
       .catch(err => err),
   };
 }
@@ -122,9 +117,7 @@ export function getPropertyById(id) {
     type: GET_PROPERTY_BY_ID,
     payload: axios
       .get(`/properties/getProperty/${id}`)
-      .then(response =>
-        // console.log(response.data.property);
-        response.data.property)
+      .then(response => response.data.property)
       .catch(err => err),
   };
 }
@@ -134,10 +127,7 @@ export function archivePropertyById(id) {
     type: ARCHIVE_PROPERTY_BY_ID,
     payload: axios
       .put(`/properties/deleteProperty/${id}`)
-      .then((response) => {
-        console.log(response.data.property);
-        return response.data.property;
-      })
+      .then(response => response.data.property)
       .catch(err => err),
   };
 }
@@ -154,10 +144,7 @@ export function updatePropertyById(id, item) {
         value: item.value,
         expenses: item.expenses,
       })
-      .then((response) => {
-        console.log(response.data.property);
-        return response.data.property;
-      })
+      .then(response => response.data.property)
       .catch(err => err),
   };
 }

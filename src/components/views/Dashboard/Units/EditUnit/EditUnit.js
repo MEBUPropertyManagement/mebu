@@ -1,4 +1,5 @@
 import React, {Component, Fragment} from 'react';
+import axios from 'axios';
 
 class EditUnit extends Component {
   constructor(props) {
@@ -20,9 +21,24 @@ class EditUnit extends Component {
 
   onEditHandler() {
     if (this.state.editing) {
-      this.props.update({...this.state});
+      // this.props.update({...this.state});
+      axios.post('/unit/update', {...this.state}).then((response) => {
+        const {
+          bath, bed, occupied, rent, roomnum, size,
+        } = response.data.response[0];
+        this.setState({
+          editing: false,
+          bath,
+          bed,
+          occupied,
+          rent,
+          roomnum,
+          size,
+        });
+      });
+    } else {
+      this.setState(prevState => ({editing: !prevState.editing}));
     }
-    this.setState(prevState => ({editing: !prevState.editing}));
   }
 
   onChangeHandler(event) {
@@ -49,7 +65,7 @@ class EditUnit extends Component {
             onChange={this.onChangeHandler}
             placeholder="bath"
             name="bath"
-            type="text"
+            type="number"
           />
         </td>
         <td>
@@ -58,7 +74,7 @@ class EditUnit extends Component {
             onChange={this.onChangeHandler}
             placeholder="bed"
             name="bed"
-            type="text"
+            type="number"
           />
         </td>
         <td>
@@ -75,7 +91,7 @@ class EditUnit extends Component {
             onChange={this.onChangeHandler}
             placeholder="rent"
             name="rent"
-            type="text"
+            type="number"
           />
         </td>
         <td>
@@ -84,7 +100,7 @@ class EditUnit extends Component {
             onChange={this.onChangeHandler}
             placeholder="roomnum"
             name="roomnum"
-            type="text"
+            type="number"
           />
         </td>
         <td>
@@ -93,18 +109,18 @@ class EditUnit extends Component {
             onChange={this.onChangeHandler}
             placeholder="size"
             name="size"
-            type="text"
+            type="number"
           />
         </td>
       </Fragment>
     ) : (
       <Fragment>
-        <td>{bath}</td>
-        <td>{bed}</td>
-        <td>{occupied ? 'Yes' : 'No'}</td>
-        <td>{rent}</td>
-        <td>{roomnum}</td>
-        <td>{size}</td>
+        <td>{this.state.bath || bath}</td>
+        <td>{this.state.bed || bed}</td>
+        <td>{this.state.occupied || occupied ? 'Yes' : 'No'}</td>
+        <td>{this.state.rent || rent}</td>
+        <td>{this.state.roomnum || roomnum}</td>
+        <td>{this.state.size || size}</td>
       </Fragment>
     );
 
