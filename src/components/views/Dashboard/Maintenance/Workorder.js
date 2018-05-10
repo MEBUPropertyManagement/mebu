@@ -1,8 +1,15 @@
 import React from 'react';
+import './Workorder.css';
 
-const Workorder = (props) => {
+const Workorder = props => {
   const {
-    workorderid, datestart, dateend, firstname, lastname, unitid, content,
+    workorderid,
+    datestart,
+    dateend,
+    firstname,
+    lastname,
+    unitid,
+    content
   } = props;
 
   return (
@@ -15,7 +22,14 @@ const Workorder = (props) => {
       <div>Unit ID: {unitid}</div>
       <div>Workorder ID: {workorderid}</div>
       <div>Content: {content}</div>
-      {!dateend ? <button onClick={() => props.close(workorderid)}>Close Order</button> : null}
+      {!dateend ? (
+        <button
+          className="Workorder__close-order"
+          onClick={() => props.close(workorderid)}
+        >
+          Close Order
+        </button>
+      ) : null}
     </div>
   );
 };

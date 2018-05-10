@@ -31,7 +31,7 @@ class Residents extends Component {
           <tr className="Residents__table-header">
             <th>First Name</th>
             <th>Last Name</th>
-            <th>Room No.</th>
+            <th>Apt No.</th>
             <th>Email</th>
           </tr>
           {residentDisplay}

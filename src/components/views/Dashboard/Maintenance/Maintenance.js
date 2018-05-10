@@ -2,7 +2,7 @@ import React, {Component} from 'react';
 import {
   getWorkorderById,
   closeWorkorderById,
-  changeFilteredWorkorder,
+  changeFilteredWorkorder
 } from '../../../../redux/ducks/workorderReducer';
 import {connect} from 'react-redux';
 
@@ -13,7 +13,7 @@ class Maintenance extends Component {
     super(props);
 
     this.state = {
-      filter: 'all',
+      filter: 'all'
     };
   }
 
@@ -27,40 +27,68 @@ class Maintenance extends Component {
   };
 
   render() {
-    const open = this.props.workorders.filter(workorder => !workorder.dateend).map(order => {
-      const {workorderid, datestart, dateend, firstname, lastname, unitid, content} = order;
-      return (
-        <Workorder
-          workorderid={workorderid}
-          datestart={datestart}
-          dateend={dateend}
-          firstname={firstname}
-          lastname={lastname}
-          unitid={unitid}
-          content={content}
-          close={this.closeWorkorder}
-        />
-      );
-    });
+    const open = this.props.workorders
+      .filter(workorder => !workorder.dateend)
+      .map(order => {
+        const {
+          workorderid,
+          datestart,
+          dateend,
+          firstname,
+          lastname,
+          unitid,
+          content
+        } = order;
+        return (
+          <Workorder
+            workorderid={workorderid}
+            datestart={datestart}
+            dateend={dateend}
+            firstname={firstname}
+            lastname={lastname}
+            unitid={unitid}
+            content={content}
+            close={this.closeWorkorder}
+          />
+        );
+      });
 
-    const closed = this.props.workorders.filter(workorder => workorder.dateend).map(order => {
-      const {workorderid, datestart, dateend, firstname, lastname, unitid, content} = order;
-      return (
-        <Workorder
-          workorderid={workorderid}
-          datestart={datestart}
-          dateend={dateend}
-          firstname={firstname}
-          lastname={lastname}
-          unitid={unitid}
-          content={content}
-          close={this.closeWorkorder}
-        />
-      );
-    });
+    const closed = this.props.workorders
+      .filter(workorder => workorder.dateend)
+      .map(order => {
+        const {
+          workorderid,
+          datestart,
+          dateend,
+          firstname,
+          lastname,
+          unitid,
+          content
+        } = order;
+        return (
+          <Workorder
+            workorderid={workorderid}
+            datestart={datestart}
+            dateend={dateend}
+            firstname={firstname}
+            lastname={lastname}
+            unitid={unitid}
+            content={content}
+            close={this.closeWorkorder}
+          />
+        );
+      });
 
     const all = this.props.workorders.map(order => {
-      const {workorderid, datestart, dateend, firstname, lastname, unitid, content} = order;
+      const {
+        workorderid,
+        datestart,
+        dateend,
+        firstname,
+        lastname,
+        unitid,
+        content
+      } = order;
       return (
         <Workorder
           workorderid={workorderid}
@@ -86,7 +114,12 @@ class Maintenance extends Component {
             checked={this.state.filter === 'all'}
           />
           All
-          <input type="radio" value="open" name="filter" checked={this.state.filter === 'open'} />
+          <input
+            type="radio"
+            value="open"
+            name="filter"
+            checked={this.state.filter === 'open'}
+          />
           Open
           <input
             type="radio"
@@ -97,7 +130,11 @@ class Maintenance extends Component {
           Closed
         </div>
         <div>
-          {this.state.filter === 'all' ? all : this.state.filter === 'closed' ? closed : open}
+          {this.state.filter === 'all'
+            ? all
+            : this.state.filter === 'closed'
+              ? closed
+              : open}
         </div>
       </div>
     );
@@ -105,11 +142,11 @@ class Maintenance extends Component {
 }
 
 const mapStateToProps = state => ({
-  ...state.workorderReducer,
+  ...state.workorderReducer
 });
 
 export default connect(mapStateToProps, {
   getWorkorderById,
   closeWorkorderById,
-  changeFilteredWorkorder,
+  changeFilteredWorkorder
 })(Maintenance);

@@ -12,7 +12,7 @@ class Units extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      addingUnits: false,
+      addingUnits: false
     };
     this.onAddNewUnits = this.onAddNewUnits.bind(this);
     this.addingStateToFalse = this.addingStateToFalse.bind(this);
@@ -48,14 +48,18 @@ class Units extends Component {
               <th>Bed</th>
               <th>Occupied</th>
               <th>Rent</th>
-              <th>Room #</th>
+              <th>Apt #</th>
               <th>Size</th>
             </tr>
           </thead>
           <tbody>
             {units &&
               units.map(unit => (
-                <EditUnit key={unit.unitid} unit={{...unit}} update={this.updateUnit} />
+                <EditUnit
+                  key={unit.unitid}
+                  unit={{...unit}}
+                  update={this.updateUnit}
+                />
               ))}
           </tbody>
         </table>
@@ -76,7 +80,7 @@ class Units extends Component {
 }
 
 const mapStateToProps = state => ({
-  ...state.unitReducer,
+  ...state.unitReducer
 });
 
 export default connect(mapStateToProps, {getUnits, updateUnit})(Units);
