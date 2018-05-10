@@ -148,14 +148,15 @@ class EditUnit extends Component {
             className="EditUnit__button"
             onClick={this.onEditHandler}
           >
-            <FontAwesome name="name" />
+            <i className="fas fa-save" />
           </button>
           <button
             style={{display: editing ? 'none' : 'block'}}
             className="EditUnit__button"
             onClick={this.onEditHandler}
           >
-            <FontAwesome name="edit" />
+            {/* <FontAwesome name="edit" /> */}
+            <i className="fas fa-edit" />
           </button>
         </td>
       </tr>
