@@ -9,6 +9,15 @@ const addUnit = (req, res) => {
     .catch(err => res.status(200).json({added: false, error: `${err}`}));
 };
 
+const deleteUnit = (req, res) => {
+  const db = req.app.get('db');
+
+  db
+    .units_delete([req.params.id])
+    .then(res.status(200).json({deleted: true}))
+    .catch(err => res.status(200).json({error: `${err}`}));
+};
+
 const getUnit = (req, res) => {
   const db = req.app.get('db');
   db
@@ -36,6 +45,7 @@ const updateUnit = (req, res) => {
 
 module.exports = {
   addUnit,
+  deleteUnit,
   getUnit,
   updateUnit,
 };
