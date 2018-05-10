@@ -1,6 +1,5 @@
 import axios from 'axios';
 
-const GET_WORK_ORDER = 'GET_WORK_ORDER';
 const GET_RESIDENT_WORK_ORDER = 'GET_RESIDENT_WORK_ORDER';
 const CHANGE_FILTERED_WORK_ORDER = 'CHANGE_FILTERED_WORK_ORDER';
 const GET_WORK_ORDER_BY_ID = 'GET_WORK_ORDER_BY_ID';
@@ -37,7 +36,6 @@ export default function workorderReducer(state = initialState, action) {
       };
 
     case `${CHANGE_FILTERED_WORK_ORDER}`:
-      console.log(action.payload);
       return {
         ...state,
         filterWorkorders: action.payload,
@@ -68,10 +66,7 @@ export function getWorkorderById(id) {
     type: GET_WORK_ORDER_BY_ID,
     payload: axios
       .get(`/workorder/getByPropertyId/${id}`)
-      .then((response) => {
-        console.log(response.data);
-        return response.data;
-      })
+      .then(response => response.data)
       .catch(err => err),
   };
 }
@@ -81,10 +76,7 @@ export function closeWorkorderById(id) {
     type: CLOSE_WORK_ORDER,
     payload: axios
       .put(`/workorder/closeWorkorder/${id}`)
-      .then((response) => {
-        console.log(response.data);
-        return response.data;
-      })
+      .then(response => response.data)
       .catch(err => err),
   };
 }
@@ -101,10 +93,7 @@ export function getResidentWorkOrder() {
     type: GET_RESIDENT_WORK_ORDER,
     payload: axios
       .get('/workorder/getByResidentId/')
-      .then((response) => {
-        console.log(response.data);
-        return response.data;
-      })
+      .then(response => response.data)
       .catch(err => err),
   };
 }
