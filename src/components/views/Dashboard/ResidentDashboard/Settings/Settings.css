@@ -33,7 +33,7 @@ form.ResSettings__form {
   height: 100%;
   display: flex;
   text-align: left;
-  align-items: left;
+  align-items: flex-start;
   flex-direction: column;
 }
 
