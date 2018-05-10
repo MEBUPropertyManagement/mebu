@@ -73,7 +73,7 @@ class AddUnits extends Component {
         <input onChange={this.onChangeHandler} value={count} type="number" />
         <table>
           <thead>
-            <tr>
+            <tr className="Units__table-header">
               <th>Bath</th>
               <th>Bed</th>
               <th>Occupied</th>

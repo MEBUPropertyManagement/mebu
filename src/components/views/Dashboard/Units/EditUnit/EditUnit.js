@@ -1,5 +1,8 @@
 import React, {Component, Fragment} from 'react';
+import FontAwesome from 'react-fontawesome';
 import axios from 'axios';
+
+import './EditUnit.css';
 
 class EditUnit extends Component {
   constructor(props) {
@@ -50,12 +53,10 @@ class EditUnit extends Component {
       [name]: value,
     });
   }
-
+  /* eslint-disable */
   render() {
     const {editing} = this.state;
-    const {
-      bath, bed, occupied, rent, roomnum, size, unitid,
-    } = this.props.unit;
+    const {bath, bed, occupied, rent, roomnum, size, unitid} = this.props.unit;
 
     const editDisplay = editing ? (
       <Fragment>
@@ -115,20 +116,47 @@ class EditUnit extends Component {
       </Fragment>
     ) : (
       <Fragment>
-        <td>{this.state.bath || bath}</td>
-        <td>{this.state.bed || bed}</td>
-        <td>{this.state.occupied || occupied ? 'Yes' : 'No'}</td>
-        <td>{this.state.rent || rent}</td>
-        <td>{this.state.roomnum || roomnum}</td>
-        <td>{this.state.size || size}</td>
+        <td className="EditUnit__link" onClick={() => this.props.toUnit(unitid)}>
+          {this.state.bath || bath}
+        </td>
+        <td className="EditUnit__link" onClick={() => this.props.toUnit(unitid)}>
+          {this.state.bed || bed}
+        </td>
+        <td className="EditUnit__link" onClick={() => this.props.toUnit(unitid)}>
+          {this.state.occupied || occupied ? 'Yes' : 'No'}
+        </td>
+        <td className="EditUnit__link" onClick={() => this.props.toUnit(unitid)}>
+          {this.state.rent || rent}
+        </td>
+        <td className="EditUnit__link" onClick={() => this.props.toUnit(unitid)}>
+          {this.state.roomnum || roomnum}
+        </td>
+        <td className="EditUnit__link" onClick={() => this.props.toUnit(unitid)}>
+          {this.state.size || size}
+        </td>
       </Fragment>
     );
 
+    /* eslint-enable */
+
     return (
-      <tr>
+      <tr className="Unit__table-row">
         {editDisplay}
         <td>
-          <button onClick={this.onEditHandler}>{editing ? 'Save' : 'Edit'}</button>
+          <button
+            style={{display: editing ? 'block' : 'none'}}
+            className="EditUnit__button"
+            onClick={this.onEditHandler}
+          >
+            <FontAwesome name="name" />
+          </button>
+          <button
+            style={{display: editing ? 'none' : 'block'}}
+            className="EditUnit__button"
+            onClick={this.onEditHandler}
+          >
+            <FontAwesome name="edit" />
+          </button>
         </td>
       </tr>
     );

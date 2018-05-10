@@ -1,11 +1,11 @@
 import React, {Component} from 'react';
+import {connect} from 'react-redux';
+
 import {
   getPropertyById,
   updatePropertyById,
-  archivePropertyById
+  archivePropertyById,
 } from '../../../../redux/ducks/propertyReducer';
-import {connect} from 'react-redux';
-import {Link} from 'react-router-dom';
 
 import './Settings.css';
 
@@ -19,7 +19,7 @@ class Settings extends Component {
       address: '',
       units: 0,
       value: 0,
-      expenses: 0
+      expenses: 0,
     };
     this.onSubmitHandler = this.onSubmitHandler.bind(this);
     this.handleChangeName = this.handleChangeName.bind(this);
@@ -42,8 +42,13 @@ class Settings extends Component {
       address: this.state.address,
       units: this.state.units,
       value: this.state.value,
-      expenses: this.state.expenses
+      expenses: this.state.expenses,
     });
+  }
+
+  onArchiveClickHandler() {
+    this.props.archivePropertyById(this.props.match.params.id);
+    this.props.history.push('/owner/properties');
   }
 
   handleChangeName(value) {
@@ -70,13 +75,10 @@ class Settings extends Component {
     this.setState({expenses: value});
   }
 
-  onArchiveClickHandler() {
-    this.props.archivePropertyById(this.props.match.params.id);
-    this.props.history.push('/owner/properties');
-  }
-
   render() {
-    const {name, photourl, address, units, value, expenses} = this.state;
+    const {
+      name, photourl, address, units, value, expenses,
+    } = this.state;
 
     return (
       <div className="Settings">
@@ -151,10 +153,7 @@ class Settings extends Component {
           <button className="Settings__button">Update</button>
         </form>
         <div>
-          <button
-            className="Settings__archive"
-            onClick={this.onArchiveClickHandler}
-          >
+          <button className="Settings__archive" onClick={this.onArchiveClickHandler}>
             Archive this property
           </button>
         </div>
@@ -164,11 +163,11 @@ class Settings extends Component {
 }
 
 const mapStateToProps = state => ({
-  ...state.propertyReducer
+  ...state.propertyReducer,
 });
 
 export default connect(mapStateToProps, {
   getPropertyById,
   updatePropertyById,
-  archivePropertyById
+  archivePropertyById,
 })(Settings);

@@ -41,6 +41,35 @@ pre {
   -webkit-font-smoothing: antialiased;
 }
 
+table {
+  box-shadow: 0 4px 25px rgba(0, 0, 0, 0.1);
+}
+
+th {
+  text-transform: uppercase;
+}
+
+table,
+td,
+th {
+  border: 1px solid #ddd;
+  text-align: left;
+}
+
+table {
+  border-collapse: collapse;
+  width: 100%;
+}
+
+th,
+td {
+  padding: 15px;
+}
+
+td {
+  color: var(--light-black);
+}
+
 @media screen and (min-width: 320px) {
   html {
     font-size: calc(16px + 6 * ((100vw - 320px) / 680));
