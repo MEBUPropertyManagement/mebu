@@ -42,15 +42,22 @@ class Units extends Component {
     if (units.length > 0 && !loading) {
       unitsDisplay = (
         <table>
-          <tr>
-            <th>Bath</th>
-            <th>Bed</th>
-            <th>Occupied</th>
-            <th>Rent</th>
-            <th>Room #</th>
-            <th>Size</th>
-          </tr>
-          {units && units.map(unit => <EditUnit unit={{...unit}} update={this.updateUnit} />)}
+          <thead>
+            <tr>
+              <th>Bath</th>
+              <th>Bed</th>
+              <th>Occupied</th>
+              <th>Rent</th>
+              <th>Room #</th>
+              <th>Size</th>
+            </tr>
+          </thead>
+          <tbody>
+            {units &&
+              units.map(unit => (
+                <EditUnit key={unit.unitid} unit={{...unit}} update={this.updateUnit} />
+              ))}
+          </tbody>
         </table>
       );
     } else {

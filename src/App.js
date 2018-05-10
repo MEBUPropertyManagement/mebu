@@ -11,7 +11,6 @@ class App extends Component {
   }
 
   render() {
-    console.log('App.js :: getUser :: ', this.props.current_user);
     return (
       <div className="App">
         <Routes />
