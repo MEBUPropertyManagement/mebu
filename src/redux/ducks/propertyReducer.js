@@ -52,6 +52,7 @@ export default function propertyReducer(state = initialState, action) {
       };
 
     case `${GET_PROPERTY_BY_ID}_FULFILLED`:
+      console.log(action.payload);
       return {
         ...state,
         selectedProperty: action.payload,

@@ -12,10 +12,6 @@ import './Dashboard.css';
 import {getResidentInfo} from '../../../redux/ducks/residentReducer';
 
 class Dashboard extends Component {
-  constructor(props) {
-    super(props);
-  }
-
   onLogout() {
     console.log('logging out!');
     axios
@@ -38,9 +34,10 @@ class Dashboard extends Component {
 
     let dashboard = null;
     // don't exist
-    if (!(Object.keys(current_user).length > 0) && !loading) {
-      dashboard = <NotLoggedIn />;
-    } else if (path.includes('/owner/') && !loading) {
+    // if (!(Object.keys(current_user).length > 0) && !loading) {
+    //   dashboard = <NotLoggedIn />;
+    // } else
+    if (path.includes('/owner/') && !loading) {
       // if they're an owner
       dashboard = (
         <div className="Dashboard">

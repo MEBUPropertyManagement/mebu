@@ -1,6 +1,6 @@
 .NewUnit {
-  display: grid;
-  grid: auto-flow / 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
+  /* display: grid; */
+  /* grid: auto-flow / 1fr 1fr 1fr 1fr 1fr 1fr 1fr; */
 }
 .NewUnit__input {
   text-align: center;

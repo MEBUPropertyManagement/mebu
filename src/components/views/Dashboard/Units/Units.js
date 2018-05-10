@@ -2,128 +2,64 @@ import React, {Component, Fragment} from 'react';
 import {Link} from 'react-router-dom';
 import {connect} from 'react-redux';
 import NewUnit from './NewUnit/NewUnit';
-import {getPropertyById} from '../../../../redux/ducks/propertyReducer';
+import AddUnits from './AddUnits/AddUnits';
+import EditUnit from './EditUnit/EditUnit';
+import {getUnits} from '../../../../redux/ducks/unitReducer';
+import Loading from '../../../Loading/Loading';
 import './Units.css';
 
 class Units extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      newUnits: []
+      addingUnits: false,
     };
-    this.onAddHandler = this.onAddHandler.bind(this);
-    this.onRemoveHandler = this.onRemoveHandler.bind(this);
-    this.onFromArrayDelete = this.onFromArrayDelete.bind(this);
+    this.onAddNewUnits = this.onAddNewUnits.bind(this);
+    this.addingStateToFalse = this.addingStateToFalse.bind(this);
   }
   componentDidMount() {
-    console.log(this.props);
-    this.props.getPropertyById(this.props.match.params.id);
+    this.props.getUnits(this.props.match.params.id);
   }
 
-  onAddHandler() {
-    const {newUnits} = this.state;
-    const index = newUnits.length;
-    const arrCopy = newUnits.slice();
-    arrCopy.push(
-      <NewUnit
-        remove={this.onFromArrayDelete}
-        key={index}
-        creating
-        editing
-        index={index}
-        unit={{
-          bath: 0,
-          bed: 0,
-          occupied: true,
-          rent: 0,
-          roomnum: 0,
-          size: 0
-        }}
-      />
-    );
-    this.setState({newUnits: arrCopy});
+  onAddNewUnits() {
+    this.setState(prevState => ({addingUnits: !prevState.addingUnits}));
   }
 
-  onRemoveHandler() {
-    if (this.state.newUnits.length > 0) {
-      const arrCopy = this.state.newUnits.slice();
-      arrCopy.pop();
-      this.setState({newUnits: arrCopy});
-    }
-  }
-
-  onFromArrayDelete(index) {
-    const {newUnits} = this.state;
-    console.log('index: ', index);
-    if (newUnits.length >= 0) {
-      const newUnitsCopy = [...newUnits];
-      newUnitsCopy.splice(index, 1);
-      this.setState({newUnits: newUnitsCopy});
-    }
+  addingStateToFalse() {
+    this.setState({addingUnits: false});
   }
 
   render() {
-    const {selectedProperty, loading} = this.props;
-    const {newUnits, savedUnits} = this.state;
-    let property = <p>...loading</p>;
-    if (selectedProperty && !loading) {
-      property =
-        selectedProperty.occupiedUnits &&
-        selectedProperty.occupiedUnits.map(unit => (
-          <NewUnit
-            index={-1}
-            creating={false}
-            editing={false}
-            key={unit.unitid}
-            unit={unit}
-          />
-        ));
+    const {addingUnits} = this.state;
+    const {loading, units} = this.props;
+    let unitsDisplay = <Loading />;
+    if (units.length > 0 && !loading) {
+      unitsDisplay = units && units.map(unit => <EditUnit unit={{...unit}} />);
     }
-    const newUnitDisplay =
-      newUnits.length > 0 &&
-      newUnits.map((newUnit, index) => (
-        <NewUnit
-          remove={this.onFromArrayDelete}
-          key={index}
-          index={index}
-          creating
-          editing
-          unit={{
-            bath: 0,
-            bed: 0,
-            occupied: true,
-            rent: 0,
-            roomnum: 0,
-            size: 0
-          }}
-        />
-      ));
-    return (
-      <div className="Units container">
-        <div className="Units__titles">
-          <p>Bath</p>
-          <p>Bed</p>
-          <p>Occupied</p>
-          <p>Rent</p>
-          <p>Roomnum</p>
-          <p>Size</p>
-          <div>
-            <button onClick={this.onAddHandler}>Add</button>
-            <button onClick={this.onRemoveHandler}>Remove</button>
-          </div>
-        </div>
-        {newUnits.length > 0 && <h1>Multi-Add</h1>}
-        {newUnitDisplay}
 
-        <h1>Current Units</h1>
-        {property}
+    return (
+      <div className="Units">
+        <h1 className="Units__title">Units</h1>
+        <table>
+          <tr>
+            <th>Bath</th>
+            <th>Bed</th>
+            <th>Occupied</th>
+            <th>Rent</th>
+            <th>Room #</th>
+            <th>Size</th>
+          </tr>
+          {unitsDisplay}
+        </table>
+        <button onClick={this.onAddNewUnits}>Add New Units</button>
+        {addingUnits && <AddUnits hide={this.addingStateToFalse} />}
       </div>
     );
   }
 }
 
 const mapStateToProps = state => ({
-  ...state.propertyReducer
+  ...state.unitReducer,
 });
 
-export default connect(mapStateToProps, {getPropertyById})(Units);
+export default connect(mapStateToProps, {getUnits})(Units);

@@ -13,7 +13,10 @@ const getUnit = (req, res) => {
   const db = req.app.get('db');
   db
     .units_getById([req.params.id])
-    .then(response => res.status(200).json(response))
+    .then((units) => {
+      const sortedUnits = units.sort((a, b) => a.roomnum - b.roomnum);
+      return res.status(200).json(sortedUnits);
+    })
     .catch(err => res.status(200).json({error: `${err}`}));
 };
 
