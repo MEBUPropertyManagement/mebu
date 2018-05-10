@@ -4,7 +4,7 @@ import {connect} from 'react-redux';
 import NewUnit from './NewUnit/NewUnit';
 import AddUnits from './AddUnits/AddUnits';
 import EditUnit from './EditUnit/EditUnit';
-import {getUnits} from '../../../../redux/ducks/unitReducer';
+import {getUnits, updateUnit} from '../../../../redux/ducks/unitReducer';
 import Loading from '../../../Loading/Loading';
 import './Units.css';
 
@@ -16,6 +16,7 @@ class Units extends Component {
     };
     this.onAddNewUnits = this.onAddNewUnits.bind(this);
     this.addingStateToFalse = this.addingStateToFalse.bind(this);
+    this.updateUnit = this.updateUnit.bind(this);
   }
   componentDidMount() {
     this.props.getUnits(this.props.match.params.id);
@@ -29,17 +30,17 @@ class Units extends Component {
     this.setState({addingUnits: false});
   }
 
+  updateUnit(obj) {
+    this.props.updateUnit(obj);
+  }
+
   render() {
     const {addingUnits} = this.state;
     const {loading, units} = this.props;
+
     let unitsDisplay = <Loading />;
     if (units.length > 0 && !loading) {
-      unitsDisplay = units && units.map(unit => <EditUnit unit={{...unit}} />);
-    }
-
-    return (
-      <div className="Units">
-        <h1 className="Units__title">Units</h1>
+      unitsDisplay = (
         <table>
           <tr>
             <th>Bath</th>
@@ -49,8 +50,17 @@ class Units extends Component {
             <th>Room #</th>
             <th>Size</th>
           </tr>
-          {unitsDisplay}
+          {units && units.map(unit => <EditUnit unit={{...unit}} update={this.updateUnit} />)}
         </table>
+      );
+    } else {
+      unitsDisplay = <p>No Units To Display</p>;
+    }
+
+    return (
+      <div className="Units">
+        <h1 className="Units__title">Units</h1>
+        {unitsDisplay}
         <button onClick={this.onAddNewUnits}>Add New Units</button>
         {addingUnits && <AddUnits hide={this.addingStateToFalse} />}
       </div>
@@ -62,4 +72,4 @@ const mapStateToProps = state => ({
   ...state.unitReducer,
 });
 
-export default connect(mapStateToProps, {getUnits})(Units);
+export default connect(mapStateToProps, {getUnits, updateUnit})(Units);

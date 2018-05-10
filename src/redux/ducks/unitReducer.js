@@ -1,7 +1,7 @@
 import axios from 'axios';
 
 const GET_UNITS = 'GET_UNITS';
-const ADD_UNITS = 'ADD_UNITS';
+const UPDATE_UNIT = 'UPDATE_UNIT';
 
 const initialState = {
   units: [],
@@ -24,13 +24,13 @@ export default function propertyReducer(state = initialState, action) {
         loading: false,
         error: false,
       };
-    case `${ADD_UNITS}_PENDING`:
+    case `${UPDATE_UNIT}_PENDING`:
       return {
         ...state,
         loading: true,
         error: false,
       };
-    case `${ADD_UNITS}_FULFILLED`:
+    case `${UPDATE_UNIT}_FULFILLED`:
       return {
         ...state,
         units: action.payload,
@@ -52,12 +52,12 @@ export function getUnits(id) {
   };
 }
 
-export function addUnits(obj) {
+export function updateUnit(obj) {
   return {
-    type: ADD_UNITS,
+    type: UPDATE_UNIT,
     payload: axios
-      .post('/unit/add', obj)
-      .then(response => response.data)
+      .post('/unit/update', obj)
+      .then(response => response.data.response)
       .catch(err => err),
   };
 }

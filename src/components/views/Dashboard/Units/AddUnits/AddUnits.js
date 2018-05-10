@@ -3,7 +3,7 @@ import axios from 'axios';
 import {withRouter} from 'react-router-dom';
 import {connect} from 'react-redux';
 
-import {addUnits, getUnits} from '../../../../../redux/ducks/unitReducer';
+import {getUnits} from '../../../../../redux/ducks/unitReducer';
 import NewUnit from './NewUnit/NewUnit';
 
 class AddUnits extends Component {
@@ -92,4 +92,4 @@ class AddUnits extends Component {
 
 const mapStateToProps = state => ({...state.unitReducer});
 
-export default withRouter(connect(mapStateToProps, {addUnits, getUnits})(AddUnits));
+export default withRouter(connect(mapStateToProps, {getUnits})(AddUnits));

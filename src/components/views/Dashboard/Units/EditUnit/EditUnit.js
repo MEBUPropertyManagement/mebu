@@ -5,25 +5,47 @@ class EditUnit extends Component {
     super(props);
     this.state = {
       editing: false,
+      bath: this.props.unit.bath || '',
+      bed: this.props.unit.bed || '',
+      occupied: this.props.unit.occupied || false,
+      rent: this.props.unit.rent || '',
+      roomnum: this.props.unit.roomnum || '',
+      size: this.props.unit.size || '',
+      unitid: this.props.unit.unitid,
+      propertyid: this.props.unit.propertyid,
     };
     this.onEditHandler = this.onEditHandler.bind(this);
+    this.onChangeHandler = this.onChangeHandler.bind(this);
   }
 
   onEditHandler() {
+    if (this.state.editing) {
+      this.props.update({...this.state});
+    }
     this.setState(prevState => ({editing: !prevState.editing}));
+  }
+
+  onChangeHandler(event) {
+    const {target} = event;
+    const value = target.type === 'checkbox' ? target.checked : target.value;
+    const {name} = target;
+
+    this.setState({
+      [name]: value,
+    });
   }
 
   render() {
     const {editing} = this.state;
     const {
-      bath, bed, occupied, rent, roomnum, size, update, unitid,
+      bath, bed, occupied, rent, roomnum, size, unitid,
     } = this.props.unit;
 
     const editDisplay = editing ? (
       <Fragment>
         <td>
           <input
-            value={this.state.bath}
+            value={this.state.bath || ''}
             onChange={this.onChangeHandler}
             placeholder="bath"
             name="bath"
@@ -32,7 +54,7 @@ class EditUnit extends Component {
         </td>
         <td>
           <input
-            value={this.state.bed}
+            value={this.state.bed || ''}
             onChange={this.onChangeHandler}
             placeholder="bed"
             name="bed"
@@ -41,7 +63,7 @@ class EditUnit extends Component {
         </td>
         <td>
           <input
-            checked={this.state.occupied}
+            checked={this.state.occupied || false}
             onChange={this.onChangeHandler}
             name="occupied"
             type="checkbox"
@@ -49,7 +71,7 @@ class EditUnit extends Component {
         </td>
         <td>
           <input
-            value={this.state.rent}
+            value={this.state.rent || ''}
             onChange={this.onChangeHandler}
             placeholder="rent"
             name="rent"
@@ -58,7 +80,7 @@ class EditUnit extends Component {
         </td>
         <td>
           <input
-            value={this.state.roomnum}
+            value={this.state.roomnum || ''}
             onChange={this.onChangeHandler}
             placeholder="roomnum"
             name="roomnum"
@@ -67,7 +89,7 @@ class EditUnit extends Component {
         </td>
         <td>
           <input
-            value={this.state.size}
+            value={this.state.size || ''}
             onChange={this.onChangeHandler}
             placeholder="size"
             name="size"
