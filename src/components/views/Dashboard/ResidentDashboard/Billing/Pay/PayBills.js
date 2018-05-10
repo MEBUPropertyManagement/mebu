@@ -53,7 +53,12 @@ class PayBills extends Component {
 
     if (bills && bills[0]) {
       mappedItems = bills.map(bill => (
-        <option key={bill.billid} billid={bill.billid} value={bill.amount}>
+        <option
+          className="PayBills-select-option"
+          key={bill.billid}
+          billid={bill.billid}
+          value={bill.amount}
+        >
           Amount: ${Number(JSON.stringify(bill.amount).replace(re, subst))}
         </option>
       ));
@@ -61,11 +66,15 @@ class PayBills extends Component {
 
     return (
       <div>
-        <div>Pay Bills Component</div>
+        <div className="PayBills-title">Pay My Bill</div>
         <div>
           {bills && bills[0] ? (
-            <form>
+            <form className="PayBills-form">
+              <label className="PayBills__label">
+                Please select the bill you would like to pay
+              </label>
               <select
+                className="PayBills-select"
                 required
                 onChange={event => this.selectBill(event.target.value)}
                 defaultValue="Please select the bill you would like to pay."
@@ -77,11 +86,11 @@ class PayBills extends Component {
                 stripeKey="pk_test_iueyBCm4l0DmYEeCjwFL51iY"
                 amount={this.state.amount}
               >
-                <button className="">Pay Now</button>
+                <button className="PayBills-button">Pay Now</button>
               </StripeCheckout>
             </form>
           ) : (
-            "No bills to pay, good sir. *tips hat*"
+            <p className="PayBills-nopay">No bills to pay today</p>
           )}
         </div>
       </div>

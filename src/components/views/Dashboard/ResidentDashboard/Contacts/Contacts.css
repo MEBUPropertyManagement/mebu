@@ -9,6 +9,13 @@
   flex-direction: column;
 }
 
+.Contacts {
+  display: flex;
+  flex-direction: row-reverse;
+  height: 100%;
+  
+}
+
 .Contacts-resident-info {
   display: flex;
   text-align: left;
@@ -33,7 +40,7 @@
 
 .Contacts__border__bottom {
   border-bottom: 5px solid var(--light-blue);
-  width: 7%;
+  width: 45px;
 }
 
 .Contacts-property-address {
@@ -49,4 +56,14 @@
   font-weight: 400;
   font-size: 1.5rem;
   letter-spacing: 1.5px;
+}
+
+.Contacts__photo {
+  display: block;
+  border: none;
+  height: 100%;
+  width: 100%;
+  object-fit: cover;
+  padding-right: 20px;
+  
 }

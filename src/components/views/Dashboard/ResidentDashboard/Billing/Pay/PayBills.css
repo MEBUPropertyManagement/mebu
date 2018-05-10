@@ -1,0 +1,70 @@
+.PayBills-title {
+  text-align: left;
+  margin-bottom: 15px;
+  font-size: 1.5rem;
+  font-weight: 400;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  border-left: 5px solid var(--light-blue);
+  padding-left: 5px;
+}
+
+.PayBills-nopay {
+  text-align: left;
+  margin: 30px 0;
+}
+
+.PayBills-form {
+  grid-area: content;
+  padding: 25px;
+  border: none;
+  color: var(--black);
+  background-color: var(--white);
+  height: 100%;
+  display: flex;
+  text-align: left;
+  align-items: left;
+  flex-direction: column;
+}
+
+.PayBills__label {
+  margin-bottom: 0.5rem;
+  width: 100%;
+  font-size: 0.65rem;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  font-weight: bold;
+  color: var(--light-black);
+}
+
+.PayBills-button {
+  padding: 10px 15px;
+  background: var(--blue);
+  color: var(--white);
+  border: var(--blue) solid 2px;
+  font-size: 0.75rem;
+  font-weight: bold;
+  text-transform: uppercase;
+  border-radius: 9999px;
+  text-align: center;
+  letter-spacing: 2px;
+  width: 150px;
+  outline: none;
+  margin-top: 10px;
+}
+
+select.PayBills-select {
+  background: var(--white);
+  border: 1px solid var(--gray);
+  border-radius: 9999px;
+  padding: 10px 15px;
+  margin-top: 5px;
+  font-size: 14px;
+  outline: none;
+  width: 100%;
+}
+
+option.PayBills-select-option {
+  border: none;
+  
+}
