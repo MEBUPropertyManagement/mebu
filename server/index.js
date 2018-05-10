@@ -28,7 +28,9 @@ const {
 } = require('./controllers/propertiesControllers');
 
 // Unit Controllers
-const {addUnit, getUnit, updateUnit} = require('./controllers/unitsControllers');
+const {
+  addUnit, deleteUnit, getUnit, updateUnit,
+} = require('./controllers/unitsControllers');
 
 // Residents Controllers
 const {
@@ -95,6 +97,7 @@ app.get('/users/current', getCurrentUser);
 
 // Unit Endpoints
 app.post('/unit/add', addUnit);
+app.delete('/unit/delete/:id', deleteUnit);
 app.post('/unit/update', updateUnit);
 app.get('/units/getUnit/:id', getUnit);
 
