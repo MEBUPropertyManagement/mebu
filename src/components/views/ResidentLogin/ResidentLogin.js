@@ -27,8 +27,16 @@ class ResidentLogin extends Component {
     this.setState({[e.target.name]: e.target.value});
   }
   render() {
-    if (this.props.authenticated) {
+    const {authenticated, loginSubmitted} = this.props;
+
+    if (authenticated) {
       this.props.history.push('/resident/dashboard/');
+    }
+
+    let bc = 'var(--gray)';
+
+    if (!authenticated && loginSubmitted) {
+      bc = 'var(--red)';
     }
 
     return (
@@ -39,6 +47,7 @@ class ResidentLogin extends Component {
           <form className="ResidentLogin__form" onSubmit={this.onSubmitHandler}>
             <input
               className="ResidentLogin__input ResidentLogin__input--email"
+              style={{borderColor: bc}}
               value={this.state.email}
               placeholder="email"
               name="email"
@@ -49,6 +58,7 @@ class ResidentLogin extends Component {
             />
             <input
               className="ResidentLogin__input ResidentLogin__input--password"
+              style={{borderColor: bc}}
               value={this.state.password}
               placeholder="password"
               name="password"

@@ -64,3 +64,43 @@ describe('Retrieve Unpaid Bills', () => {
     });
   });
 });
+
+describe('Retrieve Current User', () => {
+  it('Should log the user in and retrieve the current user stored on session', () => {
+    cy
+      .request('POST', 'http://localhost:3001/users/resident-login', {
+        email: 'aa@aa.com',
+        password: 'tailopez',
+      })
+      .then((response) => {
+        expect(response.body).to.have.property('authenticated', true);
+      });
+
+    // indicates whether a session is successfully created
+    cy.getCookie('connect.sid').should('exist');
+
+    cy.request('GET', 'http://localhost:3001/users/current').then((response) => {
+      expect(response.body.user).to.have.property('email');
+    });
+  });
+});
+
+describe("End User's Session", () => {
+  it('Should log the user in and log the user out', () => {
+    cy
+      .request('POST', 'http://localhost:3001/users/resident-login', {
+        email: 'aa@aa.com',
+        password: 'tailopez',
+      })
+      .then((response) => {
+        expect(response.body).to.have.property('authenticated', true);
+      });
+
+    // indicates whether a session is successfully created
+    cy.getCookie('connect.sid').should('exist');
+
+    cy.request('GET', 'http://localhost:3001/users/logout').then((response) => {
+      expect(response.body).to.have.property('authenticated', false);
+    });
+  });
+});

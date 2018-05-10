@@ -1,10 +1,6 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
-import {
-  getWorkorderById,
-  closeWorkorderById,
-  changeFilteredWorkorder,
-} from '../../../../redux/ducks/workorderReducer';
+import {getWorkorderById, closeWorkorderById} from '../../../../redux/ducks/workorderReducer';
 
 import Workorder from './Workorder';
 
@@ -27,7 +23,9 @@ class Maintenance extends Component {
   };
 
   render() {
-    const open = this.props.workorders.filter(workorder => !workorder.dateend).map(order => {
+    const {workorders} = this.props;
+
+    const open = workorders.filter(workorder => !workorder.dateend).map(order => {
       const {workorderid, datestart, dateend, firstname, lastname, unitid, content} = order;
       return (
         <Workorder
@@ -43,7 +41,7 @@ class Maintenance extends Component {
       );
     });
 
-    const closed = this.props.workorders.filter(workorder => workorder.dateend).map(order => {
+    const closed = workorders.filter(workorder => workorder.dateend).map(order => {
       const {workorderid, datestart, dateend, firstname, lastname, unitid, content} = order;
       return (
         <Workorder
@@ -59,7 +57,7 @@ class Maintenance extends Component {
       );
     });
 
-    const all = this.props.workorders.map(order => {
+    const all = workorders.map(order => {
       const {workorderid, datestart, dateend, firstname, lastname, unitid, content} = order;
       return (
         <Workorder
@@ -111,5 +109,4 @@ const mapStateToProps = state => ({
 export default connect(mapStateToProps, {
   getWorkorderById,
   closeWorkorderById,
-  changeFilteredWorkorder,
 })(Maintenance);
