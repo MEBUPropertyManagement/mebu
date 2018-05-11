@@ -1,34 +1,3 @@
-/* .Metrics {
-  display: flex;
-}
-
-.Metrics__info-expenses,
-.Metrics__info-value,
-.Metrics__info-income {
-  width: 200%;
-  margin-bottom: 5px;
-  border: 7px solid var(--light-black);
-  background: var(--white);
-}
-
-.Metrics__symbol--expense {
-  width: 250px;
-  margin-bottom: 15px;
-  color: var(--light-black);
-}
-
-.Metrics__info-title {
-  padding: 5px;
-  color: var(--light-black);
-  margin-bottom: 20px;
-  border-bottom: 7px solid var(--light-black);
-}
-
-.Metrics__info-numbers {
-  color: var(--light-black);
-  padding-bottom: 5px;
-} */
-
 .Metrics {
   display: flex;
 }
@@ -36,7 +5,7 @@
 .Metrics__info-title {
   text-align: left;
   font-size: 0.5rem;
-  font-weight: 900;
+  font-weight: 700;
   color: var(--light-blue);
   text-transform: uppercase;
   letter-spacing: 1px;

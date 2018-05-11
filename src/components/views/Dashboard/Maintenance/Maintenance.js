@@ -7,6 +7,7 @@ import {
 } from '../../../../redux/ducks/workorderReducer';
 
 import Workorder from './Workorder';
+import './Maintenance.css';
 
 class Maintenance extends Component {
   constructor(props) {
@@ -104,7 +105,8 @@ class Maintenance extends Component {
     });
 
     return (
-      <div>
+      <div className="Tb">
+        <div className="Maintenance__title">Maintenance</div>
         <div onChange={e => this.setState({filter: e.target.value})}>
           <input
             type="radio"
@@ -129,27 +131,28 @@ class Maintenance extends Component {
           />
           Closed
         </div>
-        <table>
-          <tr>
-            <th>Workorder ID</th>
-            <th>Date Start</th>
-            <th>Date End</th>
-            <th>Resident First Name</th>
-            <th>Resident Last Name</th>
-            <th>Unit ID</th>
-            <th>Workorder ID</th>
-            <th>Content</th>
-            <th>Closer order</th>
-          </tr>
-          <tr />
+        <table className="Maintenance__table">
+          <thead>
+            <tr className="Maintenance__table-header">
+              <th>Workorder ID</th>
+              <th>Date Start</th>
+              <th>Date End</th>
+              <th>First Name</th>
+              <th>Last Name</th>
+              <th>Unit ID</th>
+              <th>Content</th>
+              <th>Closed</th>
+            </tr>
+          </thead>
+
+          <tbody>
+            {this.state.filter === 'all'
+              ? all
+              : this.state.filter === 'closed'
+                ? closed
+                : open}
+          </tbody>
         </table>
-        <div>
-          {this.state.filter === 'all'
-            ? all
-            : this.state.filter === 'closed'
-              ? closed
-              : open}
-        </div>
       </div>
     );
   }

@@ -12,18 +12,22 @@ const Workorder = props => {
   } = props;
 
   return (
-    <tr key={workorderid}>
+    <tr className="Maintenance__table-data" key={workorderid}>
       <td> {workorderid}</td>
       <td>{datestart}</td>
       <td>{dateend}</td>
       <td>{firstname}</td>
       <td>{lastname}</td>
       <td>{unitid}</td>
-      <td>{workorderid}</td>
       <td>{content}</td>
       <td>
         {!dateend ? (
-          <button onClick={() => props.close(workorderid)}>Close Order</button>
+          <button
+            className="Maintenance__close-order"
+            onClick={() => props.close(workorderid)}
+          >
+            Close Order
+          </button>
         ) : null}
       </td>
     </tr>

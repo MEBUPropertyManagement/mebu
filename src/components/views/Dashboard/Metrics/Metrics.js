@@ -26,11 +26,6 @@ class Metrics extends Component {
           <div>
             <div className="Metrics__info-expenses">
               <h5 className="Metrics__info-title">Expenses</h5>
-              {/* <FontAwesome
-                className="Metrics__symbol--expense"
-                name="credit-card"
-                // size="2x"
-              /> */}
               <p className="Metrics__info-numbers">
                 ${expenses.toLocaleString('en')}
               </p>
@@ -40,11 +35,6 @@ class Metrics extends Component {
           <div>
             <div className="Metrics__info-value">
               <h5 className="Metrics__info-title">Value</h5>
-              {/* <FontAwesome
-                className="Metrics__symbol--expense"
-                name="chart-line"
-                // size="2x"
-              /> */}
               <p className="Metrics__info-numbers">
                 ${value.toLocaleString('en')}
               </p>
@@ -54,11 +44,6 @@ class Metrics extends Component {
           <div>
             <div className="Metrics__info-income">
               <h5 className="Metrics__info-title">Income</h5>
-              {/* <FontAwesome
-                className="Metrics__symbol--expense"
-                name="money-bill-alt"
-                // size="2x"
-              /> */}
               <p className="Metrics__info-numbers">
                 ${income.toLocaleString('en')}
               </p>
