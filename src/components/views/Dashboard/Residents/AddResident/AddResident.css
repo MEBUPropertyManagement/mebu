@@ -1,4 +1,9 @@
-.Settings__title {
+.AddResident {
+  display: flex;
+  flex-direction: column;
+}
+
+.AddResident__header {
   text-align: left;
   margin-bottom: 15px;
   font-size: 1.5rem;
@@ -9,7 +14,13 @@
   padding-left: 5px;
 }
 
-.Settings-form {
+.AddResident__warning {
+  margin-top: 5px;
+  align-self: flex-start;
+  font-size: 0.6rem;
+}
+
+.AddResident__form {
   grid-area: content;
   padding: 25px;
   border: none;
@@ -18,11 +29,11 @@
   height: 100%;
   display: flex;
   text-align: left;
-  align-items: left;
   flex-direction: column;
+  align-items: flex-start;
 }
 
-.Settings__label {
+.AddResident__label {
   margin-bottom: 0.5rem;
   width: 100%;
   font-size: 0.65rem;
@@ -30,13 +41,16 @@
   letter-spacing: 1px;
   font-weight: bold;
   color: var(--light-black);
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
 }
 
-.Settings__label-text {
+.AddResident__label-text {
   padding-left: 10px;
 }
 
-.Settings__input {
+.AddResident__input {
   background: var(--white);
   border: 1px solid var(--gray);
   border-radius: 9999px;
@@ -44,14 +58,14 @@
   margin-top: 5px;
   font-size: 14px;
   outline: none;
-  width: 100%;
+  width: 50%;
 }
 
-.Settings__input:focus {
+.AddResident__input:focus {
   border: 1px solid var(--blue);
 }
 
-.Settings__button {
+.AddResident__btn {
   padding: 10px 15px;
   background: var(--blue);
   color: var(--white);
@@ -68,33 +82,7 @@
   transition: all 100ms linear;
 }
 
-.Settings__button:hover {
+.AddResident__btn:hover {
   color: var(--blue);
-  background: var(--white);
-}
-
-.Settings__archive-container {
-  padding: 0 25px;
-  text-align: left;
-}
-
-.Settings__archive {
-  padding: 10px 15px;
-  background: var(--red);
-  color: var(--white);
-  border: var(--red) solid 2px;
-  font-size: 0.75rem;
-  font-weight: bold;
-  text-transform: uppercase;
-  border-radius: 9999px;
-  text-align: center;
-  letter-spacing: 2px;
-  width: 30%;
-  outline: none;
-  transition: all 100ms linear;
-}
-
-.Settings__archive:hover {
-  color: var(--red);
   background: var(--white);
 }

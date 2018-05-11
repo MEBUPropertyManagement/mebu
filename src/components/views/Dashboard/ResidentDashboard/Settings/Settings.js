@@ -1,7 +1,7 @@
-import React, { Component, Fragment } from "react";
-import { connect } from "react-redux";
-import { updateResident } from "../../../../../redux/ducks/userReducer";
-import "./Settings.css";
+import React, {Component, Fragment} from 'react';
+import {connect} from 'react-redux';
+import {updateResident} from '../../../../../redux/ducks/userReducer';
+import './Settings.css';
 
 class Settings extends Component {
   constructor(props) {
@@ -10,7 +10,7 @@ class Settings extends Component {
       email: this.props.current_user.email,
       firstname: this.props.current_user.firstName,
       lastname: this.props.current_user.lastName,
-      editing: false
+      editing: false,
     };
 
     this.onSubmitHandler = this.onSubmitHandler.bind(this);
@@ -22,7 +22,9 @@ class Settings extends Component {
 
   onSubmitHandler(e) {
     e.preventDefault();
-    const { email, firstname, lastname, editing } = this.state;
+    const {
+      email, firstname, lastname, editing,
+    } = this.state;
 
     if (email && firstname && lastname && editing) {
       this.props.updateResident(email, firstname, lastname);
@@ -31,15 +33,17 @@ class Settings extends Component {
   }
 
   onChangeHandler(e) {
-    this.setState({ [e.target.name]: e.target.value });
+    this.setState({[e.target.name]: e.target.value});
   }
 
   onEditHandler() {
-    this.setState(prevState => ({ editing: !prevState.editing }));
+    this.setState(prevState => ({editing: !prevState.editing}));
   }
 
   render() {
-    const { email, firstname, lastname, editing } = this.state;
+    const {
+      email, firstname, lastname, editing,
+    } = this.state;
     let settingsDisplay = (
       <Fragment>
         <p>email: {this.state.email}</p>
@@ -80,7 +84,7 @@ class Settings extends Component {
               type="text"
             />
           </label>
-          <button style={{ display: "none" }} />
+          <button style={{display: 'none'}} />
         </form>
       );
     }
@@ -89,13 +93,13 @@ class Settings extends Component {
         <div className="ResSettings-title">Update My Info</div>
         {settingsDisplay}
         <button className="ResSettings-button" onClick={this.onEditHandler}>
-          {editing ? "Save Profile" : "Edit Profile"}
+          {editing ? 'Save Profile' : 'Edit Profile'}
         </button>
       </div>
     );
   }
 }
 
-const mapStateToProps = state => ({ ...state.userReducer });
+const mapStateToProps = state => ({...state.userReducer});
 
-export default connect(mapStateToProps, { updateResident })(Settings);
+export default connect(mapStateToProps, {updateResident})(Settings);

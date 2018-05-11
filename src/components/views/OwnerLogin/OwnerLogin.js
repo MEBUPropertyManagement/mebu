@@ -81,7 +81,7 @@ class OwnerLogin extends Component {
             <input value="Login" type="submit" className="OwnerLogin__submit" />
           </form>
           <div>
-            <Link className="OwnerLogin__link Link__none" to="/owner/forgotpassword">
+            <Link className="OwnerLogin__link Link__none" to="/forgotpassword">
               Forgot Password?
             </Link>
           </div>

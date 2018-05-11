@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
 import {addResident} from '../../../../../redux/ducks/residentReducer';
+import './AddResident.css';
 
 class AddResident extends Component {
   constructor(props) {
@@ -34,39 +35,50 @@ class AddResident extends Component {
     } = this.state;
     return (
       <div className="AddResident">
-        <p className="AddResident__warning">
-          New residents will only show up as a resident once they have logged in through the
-          Resident Portal.
-        </p>
-        <form onSubmit={this.onSubmitHandler}>
-          <input
-            className="AddResident__input AddResident__input--email"
-            required
-            onChange={this.onChangeHandler}
-            placeholder="email"
-            name="email"
-            value={email}
-            type="email"
-          />
-          <input
-            className="AddResident__input AddResident__input--firstname"
-            required
-            onChange={this.onChangeHandler}
-            placeholder="firstName"
-            name="firstName"
-            value={firstName}
-            type="text"
-          />
-          <input
-            className="AddResident__input AddResident__input--lastname"
-            required
-            onChange={this.onChangeHandler}
-            placeholder="lastName"
-            name="lastName"
-            value={lastName}
-            type="text"
-          />
-          <input type="submit" value="Add Resident" />
+        <h1 className="AddResident__header">Add Resident</h1>
+        <form className="AddResident__form" onSubmit={this.onSubmitHandler}>
+          <label className="AddResident__label">
+            <span className="AddResident__label-text">email</span>
+            <input
+              className="AddResident__input AddResident__input--email"
+              required
+              onChange={this.onChangeHandler}
+              placeholder="email"
+              name="email"
+              value={email}
+              type="email"
+            />
+          </label>
+          <label className="AddResident__label">
+            <span className="AddResident__label-text">firstName</span>
+            <input
+              className="AddResident__input AddResident__input--firstname"
+              required
+              onChange={this.onChangeHandler}
+              placeholder="firstName"
+              name="firstName"
+              value={firstName}
+              type="text"
+            />
+          </label>
+          <label className="AddResident__label">
+            <span className="AddResident__label-text">lastName</span>
+            <input
+              className="AddResident__input AddResident__input--lastname"
+              required
+              onChange={this.onChangeHandler}
+              placeholder="lastName"
+              name="lastName"
+              value={lastName}
+              type="text"
+            />
+          </label>
+
+          <input className="AddResident__btn" type="submit" value="Add Resident" />
+          <p className="AddResident__warning">
+            *New residents will only show up as a resident once <br /> they have logged in through
+            the Resident Portal.
+          </p>
         </form>
       </div>
     );

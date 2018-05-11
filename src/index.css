@@ -25,6 +25,7 @@ body {
 
 ::selection {
   background: var(--light-blue);
+  color: var(--light-black);
 }
 h1,
 h2,

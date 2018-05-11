@@ -2,7 +2,7 @@
   text-align: left;
   margin-bottom: 15px;
   font-size: 1.5rem;
-  font-weight: 400;
+  font-weight: 700;
   letter-spacing: 2px;
   text-transform: uppercase;
   border-left: 5px solid var(--light-blue);
@@ -26,11 +26,10 @@ button.CreateWorkorder-button {
 }
 
 textarea#exampleFormControlTextarea1 {
-	width: 600px;
-	height: 120px;
-	border: 3px solid #cccccc;
-	padding: 5px;
-	font-family: var(--font);
+  width: 600px;
+  height: 120px;
+  border: 3px solid #cccccc;
+  padding: 5px;
+  font-family: var(--font);
   box-shadow: var(--box-shadow);
- 
 }
