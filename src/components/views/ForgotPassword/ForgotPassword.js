@@ -1,8 +1,8 @@
 import React, {Component} from 'react';
-import './ForgotPassword.css';
 import {Link} from 'react-router-dom';
 import {connect} from 'react-redux';
 import {forgotPassword} from '../../../redux/ducks/userReducer';
+import './ForgotPassword.css';
 
 class ForgotPassword extends Component {
   constructor(props) {
@@ -22,9 +22,9 @@ class ForgotPassword extends Component {
 
   render() {
     return (
-      <div>
-        <h1>Reset Password </h1>
-        <div>
+      <div className="ForgotPassword">
+        <h1 className="ForgotPassword__header">Reset Password </h1>
+        <div className="ForgotPassword__email">
           Enter your email address:
           <form onSubmit={this.onSubmitHandler} className="">
             <input

@@ -14,8 +14,31 @@
   font-family: var(--font);
   outline: none;
   font-weight: bold;
-  color: var;
+  color: var(--light-black);
 }
+
 .AddProperty__input:focus {
   border: 1px solid var(--blue);
+}
+
+.AddUnits__btn {
+  padding: 10px 15px;
+  background: var(--blue);
+  color: var(--white);
+  border: var(--blue) solid 2px;
+  font-size: 0.75rem;
+  font-weight: bold;
+  text-transform: uppercase;
+  border-radius: 9999px;
+  text-align: center;
+  letter-spacing: 2px;
+  outline: none;
+  width: 235px;
+  margin-top: 15px;
+  transition: all 100ms linear;
+}
+
+.AddUnits__btn:hover {
+  color: var(--blue);
+  background: var(--white);
 }

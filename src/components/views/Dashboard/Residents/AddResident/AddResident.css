@@ -1,4 +1,9 @@
-.PayBills-title {
+.AddResident {
+  display: flex;
+  flex-direction: column;
+}
+
+.AddResident__header {
   text-align: left;
   margin-bottom: 15px;
   font-size: 1.5rem;
@@ -9,12 +14,13 @@
   padding-left: 5px;
 }
 
-.PayBills-nopay {
-  text-align: left;
-  margin: 30px 0;
+.AddResident__warning {
+  margin-top: 5px;
+  align-self: flex-start;
+  font-size: 0.6rem;
 }
 
-.PayBills-form {
+.AddResident__form {
   grid-area: content;
   padding: 25px;
   border: none;
@@ -23,11 +29,11 @@
   height: 100%;
   display: flex;
   text-align: left;
-  align-items: left;
   flex-direction: column;
+  align-items: flex-start;
 }
 
-.PayBills__label {
+.AddResident__label {
   margin-bottom: 0.5rem;
   width: 100%;
   font-size: 0.65rem;
@@ -35,9 +41,31 @@
   letter-spacing: 1px;
   font-weight: bold;
   color: var(--light-black);
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
 }
 
-.PayBills-button {
+.AddResident__label-text {
+  padding-left: 10px;
+}
+
+.AddResident__input {
+  background: var(--white);
+  border: 1px solid var(--gray);
+  border-radius: 9999px;
+  padding: 10px 15px;
+  margin-top: 5px;
+  font-size: 14px;
+  outline: none;
+  width: 50%;
+}
+
+.AddResident__input:focus {
+  border: 1px solid var(--blue);
+}
+
+.AddResident__btn {
   padding: 10px 15px;
   background: var(--blue);
   color: var(--white);
@@ -48,22 +76,13 @@
   border-radius: 9999px;
   text-align: center;
   letter-spacing: 2px;
-  width: 150px;
+  width: 30%;
   outline: none;
-  margin-top: 10px;
+  margin-top: 15px;
+  transition: all 100ms linear;
 }
 
-select.PayBills-select {
+.AddResident__btn:hover {
+  color: var(--blue);
   background: var(--white);
-  border: 1px solid var(--gray);
-  border-radius: 9999px;
-  padding: 10px 15px;
-  margin-top: 5px;
-  font-size: 14px;
-  outline: none;
-  width: 100%;
-}
-
-option.PayBills-select-option {
-  border: none;
 }

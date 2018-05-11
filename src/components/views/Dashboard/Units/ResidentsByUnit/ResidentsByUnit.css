@@ -1,4 +1,45 @@
 .ResidentsByUnit {
-  display: grid;
-  grid: auto-flow / 1fr 1fr 1fr 1fr;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.ResidentsByUnit__table {
+  table-layout: auto;
+}
+
+.ResidentsByUnit__th {
+  color: var(--white);
+  background-color: var(--light-black);
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+}
+
+.ResidentsByUnit__td--email {
+  text-transform: lowercase;
+}
+
+.ResidentsByUnit__td {
+  text-transform: capitalize;
+}
+
+.ResidentsByUnit__btn {
+  padding: 10px 15px;
+  background: var(--blue);
+  color: var(--white);
+  border: var(--blue) solid 2px;
+  font-size: 0.75rem;
+  font-weight: bold;
+  text-transform: uppercase;
+  border-radius: 9999px;
+  text-align: center;
+  letter-spacing: 2px;
+  outline: none;
+  width: 235px;
+  margin-top: 15px;
+  transition: all 100ms linear;
+}
+
+.ResidentsByUnit__btn:hover {
+  color: var(--blue);
+  background: var(--white);
 }

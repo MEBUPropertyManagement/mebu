@@ -20,6 +20,7 @@ class AddUnits extends Component {
   }
 
   onChangeHandler(e) {
+    e.target.value = e.target.value > 100 ? 100 : e.target.value;
     const newUnitsCopy = [...this.state.newUnits];
     const diff = +e.target.value - this.state.newUnits.length;
     if (diff >= 0) {
@@ -78,6 +79,8 @@ class AddUnits extends Component {
           onChange={this.onChangeHandler}
           value={count}
           type="number"
+          max={100}
+          autoFocus
           placeholder="# of Units to Add"
         />
         <table>
@@ -95,7 +98,11 @@ class AddUnits extends Component {
           )}
           <tbody>{newUnitsDisplay}</tbody>
         </table>
-        <button onClick={this.addAllHandler}>Add All</button>
+        {count > 0 && (
+          <button className="AddUnits__btn" onClick={this.addAllHandler}>
+            Add All
+          </button>
+        )}
       </div>
     );
   }

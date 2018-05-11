@@ -28,6 +28,7 @@ class NewUnit extends Component {
   }
 
   render() {
+    const {index} = this.props;
     return (
       <tr>
         <td className="NewUnit__td">
@@ -35,9 +36,9 @@ class NewUnit extends Component {
             className="NewUnit__input"
             value={this.state.bath}
             onChange={this.onChangeHandler}
-            placeholder="bath"
+            placeholder="# of Baths"
             name="bath"
-            type="text"
+            type="number"
           />
         </td>
         <td className="NewUnit__td">
@@ -45,28 +46,33 @@ class NewUnit extends Component {
             className="NewUnit__input"
             value={this.state.bed}
             onChange={this.onChangeHandler}
-            placeholder="bed"
+            placeholder="# of Bedrooms"
             name="bed"
-            type="text"
+            type="number"
           />
         </td>
         <td className="NewUnit__td">
           <input
-            className="NewUnit__input"
-            checked={this.state.occupied}
+            checked={this.state.occupied || false}
             onChange={this.onChangeHandler}
             name="occupied"
             type="checkbox"
+            id={`cbx${index}`}
+            className="EditUnit__toggle"
+            style={{display: 'none'}}
           />
+          <label htmlFor={`cbx${index}`} className="toggle">
+            <span />
+          </label>
         </td>
         <td className="NewUnit__td">
           <input
             className="NewUnit__input"
             value={this.state.rent}
             onChange={this.onChangeHandler}
-            placeholder="rent"
+            placeholder="Monthly Rent"
             name="rent"
-            type="text"
+            type="number"
           />
         </td>
         <td className="NewUnit__td">
@@ -74,7 +80,7 @@ class NewUnit extends Component {
             className="NewUnit__input"
             value={this.state.roomnum}
             onChange={this.onChangeHandler}
-            placeholder="roomnum"
+            placeholder="Apt #"
             name="roomnum"
             type="text"
           />
@@ -84,9 +90,9 @@ class NewUnit extends Component {
             className="NewUnit__input"
             value={this.state.size}
             onChange={this.onChangeHandler}
-            placeholder="size"
+            placeholder="Size"
             name="size"
-            type="text"
+            type="number"
           />
         </td>
       </tr>
