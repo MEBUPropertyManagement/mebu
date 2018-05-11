@@ -1,7 +1,5 @@
-import React, {Component, Fragment} from 'react';
-import {Link} from 'react-router-dom';
+import React, {Component} from 'react';
 import {connect} from 'react-redux';
-import NewUnit from './NewUnit/NewUnit';
 import AddUnits from './AddUnits/AddUnits';
 import EditUnit from './EditUnit/EditUnit';
 import {getUnits, updateUnit} from '../../../../redux/ducks/unitReducer';
@@ -16,22 +14,28 @@ class Units extends Component {
     };
     this.onAddNewUnits = this.onAddNewUnits.bind(this);
     this.addingStateToFalse = this.addingStateToFalse.bind(this);
-    this.updateUnit = this.updateUnit.bind(this);
+    this.toResidentsByUnit = this.toResidentsByUnit.bind(this);
+    this.reload = this.reload.bind(this);
   }
+
   componentDidMount() {
-    this.props.getUnits(this.props.match.params.id);
+    this.reload();
   }
 
   onAddNewUnits() {
     this.setState(prevState => ({addingUnits: !prevState.addingUnits}));
   }
 
+  reload() {
+    this.props.getUnits(this.props.match.params.id);
+  }
+
   addingStateToFalse() {
     this.setState({addingUnits: false});
   }
 
-  updateUnit(obj) {
-    this.props.updateUnit(obj);
+  toResidentsByUnit(unitid) {
+    this.props.history.push(`/owner/dashboard/property/${this.props.match.params.id}/units/${unitid}/residents`);
   }
 
   render() {
@@ -43,19 +47,25 @@ class Units extends Component {
       unitsDisplay = (
         <table>
           <thead>
-            <tr>
+            <tr className="Units__table-header">
               <th>Bath</th>
               <th>Bed</th>
               <th>Occupied</th>
               <th>Rent</th>
-              <th>Room #</th>
+              <th>Apt #</th>
               <th>Size</th>
+              <th>Edit / Delete</th>
             </tr>
           </thead>
           <tbody>
             {units &&
               units.map(unit => (
-                <EditUnit key={unit.unitid} unit={{...unit}} update={this.updateUnit} />
+                <EditUnit
+                  reload={this.reload}
+                  key={unit.unitid}
+                  toUnit={this.toResidentsByUnit}
+                  unit={{...unit}}
+                />
               ))}
           </tbody>
         </table>
@@ -68,7 +78,9 @@ class Units extends Component {
       <div className="Units">
         <h1 className="Units__title">Units</h1>
         {unitsDisplay}
-        <button onClick={this.onAddNewUnits}>Add New Units</button>
+        <button className="Units__add-btn" onClick={this.onAddNewUnits}>
+          {addingUnits ? 'Cancel' : 'Add New Units'}
+        </button>
         {addingUnits && <AddUnits hide={this.addingStateToFalse} />}
       </div>
     );

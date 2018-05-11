@@ -1,5 +1,8 @@
 import React, {Component, Fragment} from 'react';
+import FontAwesome from 'react-fontawesome';
 import axios from 'axios';
+
+import './EditUnit.css';
 
 class EditUnit extends Component {
   constructor(props) {
@@ -17,6 +20,7 @@ class EditUnit extends Component {
     };
     this.onEditHandler = this.onEditHandler.bind(this);
     this.onChangeHandler = this.onChangeHandler.bind(this);
+    this.onDeleteHandler = this.onDeleteHandler.bind(this);
   }
 
   onEditHandler() {
@@ -41,6 +45,12 @@ class EditUnit extends Component {
     }
   }
 
+  onDeleteHandler() {
+    if (!this.state.editing) {
+      axios.delete(`/unit/delete/${this.props.unit.unitid}`).then(() => this.props.reload());
+    }
+  }
+
   onChangeHandler(event) {
     const {target} = event;
     const value = target.type === 'checkbox' ? target.checked : target.value;
@@ -50,17 +60,16 @@ class EditUnit extends Component {
       [name]: value,
     });
   }
-
+  /* eslint-disable */
   render() {
     const {editing} = this.state;
-    const {
-      bath, bed, occupied, rent, roomnum, size, unitid,
-    } = this.props.unit;
-
+    const {bath, bed, occupied, rent, roomnum, size, unitid} = this.props.unit;
+    let classes = ['Unit__table-row'];
     const editDisplay = editing ? (
       <Fragment>
-        <td>
+        <td className="EditUnit__td">
           <input
+            className="EditUnit__input"
             value={this.state.bath || ''}
             onChange={this.onChangeHandler}
             placeholder="bath"
@@ -68,8 +77,9 @@ class EditUnit extends Component {
             type="number"
           />
         </td>
-        <td>
+        <td className="EditUnit__td">
           <input
+            className="EditUnit__input"
             value={this.state.bed || ''}
             onChange={this.onChangeHandler}
             placeholder="bed"
@@ -77,16 +87,23 @@ class EditUnit extends Component {
             type="number"
           />
         </td>
-        <td>
+        <td className="EditUnit__td">
           <input
             checked={this.state.occupied || false}
             onChange={this.onChangeHandler}
             name="occupied"
             type="checkbox"
+            id={`cbx${unitid}`}
+            className="EditUnit__toggle"
+            style={{display: 'none'}}
           />
+          <label htmlFor={`cbx${unitid}`} className="toggle">
+            <span />
+          </label>
         </td>
-        <td>
+        <td className="EditUnit__td">
           <input
+            className="EditUnit__input"
             value={this.state.rent || ''}
             onChange={this.onChangeHandler}
             placeholder="rent"
@@ -94,8 +111,9 @@ class EditUnit extends Component {
             type="number"
           />
         </td>
-        <td>
+        <td className="EditUnit__td">
           <input
+            className="EditUnit__input"
             value={this.state.roomnum || ''}
             onChange={this.onChangeHandler}
             placeholder="roomnum"
@@ -103,8 +121,9 @@ class EditUnit extends Component {
             type="number"
           />
         </td>
-        <td>
+        <td className="EditUnit__td">
           <input
+            className="EditUnit__input"
             value={this.state.size || ''}
             onChange={this.onChangeHandler}
             placeholder="size"
@@ -115,20 +134,54 @@ class EditUnit extends Component {
       </Fragment>
     ) : (
       <Fragment>
-        <td>{this.state.bath || bath}</td>
-        <td>{this.state.bed || bed}</td>
-        <td>{this.state.occupied || occupied ? 'Yes' : 'No'}</td>
-        <td>{this.state.rent || rent}</td>
-        <td>{this.state.roomnum || roomnum}</td>
-        <td>{this.state.size || size}</td>
+        <td className="EditUnit__link" onClick={() => this.props.toUnit(unitid)}>
+          {this.state.bath || bath}
+        </td>
+        <td className="EditUnit__link" onClick={() => this.props.toUnit(unitid)}>
+          {this.state.bed || bed}
+        </td>
+        <td className="EditUnit__link" onClick={() => this.props.toUnit(unitid)}>
+          {this.state.occupied || occupied ? 'Yes' : 'No'}
+        </td>
+        <td className="EditUnit__link" onClick={() => this.props.toUnit(unitid)}>
+          {this.state.rent || rent}
+        </td>
+        <td className="EditUnit__link" onClick={() => this.props.toUnit(unitid)}>
+          {this.state.roomnum || roomnum}
+        </td>
+        <td className="EditUnit__link" onClick={() => this.props.toUnit(unitid)}>
+          {this.state.size || size}
+        </td>
       </Fragment>
     );
 
+    /* eslint-enable */
+    if (editing) {
+      classes.push('EditUnit__table-row--editing');
+    }
     return (
-      <tr>
+      <tr className={classes.join(' ')}>
         {editDisplay}
-        <td>
-          <button onClick={this.onEditHandler}>{editing ? 'Save' : 'Edit'}</button>
+        <td className="EditUnit__td">
+          <div className="EditUnit__buttons">
+            <button
+              style={{display: editing ? 'block' : 'none'}}
+              className="EditUnit__button"
+              onClick={this.onEditHandler}
+            >
+              <i className="fas fa-save" />
+            </button>
+            <button
+              style={{display: editing ? 'none' : 'block'}}
+              className="EditUnit__button"
+              onClick={this.onEditHandler}
+            >
+              <i className="fas fa-edit" />
+            </button>
+            <button onClick={this.onDeleteHandler} className="EditUnit__button">
+              <i className="fas fa-trash" />
+            </button>
+          </div>
         </td>
       </tr>
     );

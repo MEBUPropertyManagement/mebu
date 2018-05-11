@@ -1,42 +1,105 @@
-import React, { Component } from "react";
-import { getResidentWorkOrder } from "../../../../../redux/ducks/workorderReducer";
-import { connect } from "react-redux";
+import React, {Component} from 'react';
+import {connect} from 'react-redux';
+import {getResidentWorkOrder} from '../../../../../redux/ducks/workorderReducer';
 
 import "./WorkorderHistory.css";
 import './WorkorderItems'
 import WorkorderItems from "./WorkorderItems";
 
+
+import Workorder from './Workorder';
+
 class WorkorderHistory extends Component {
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      filter: 'all',
+    };
+  }
+
   componentDidMount() {
     this.props.getResidentWorkOrder();
   }
 
   render() {
-    const workorders =
-      this.props.workorders &&
-      this.props.workorders[0] &&
-      this.props.workorders.map(workorder => (
-        <WorkorderItems
-          workorderid={workorder.workorderid}
-          datestart={workorder.datestart}
-          content={workorder.content}
-          dateend={workorder.dateend}
+    const {workorders} = this.props;
+
+    const open = workorders.filter(workorder => !workorder.dateend).map((order) => {
+      const {
+        workorderid, datestart, dateend, firstname, lastname, unitid, content,
+      } = order;
+      return (
+        <Workorder
+          workorderid={workorderid}
+          datestart={datestart}
+          dateend={dateend}
+          firstname={firstname}
+          lastname={lastname}
+          unitid={unitid}
+          content={content}
         />
-      ));
+      );
+    });
+
+    const closed = workorders.filter(workorder => workorder.dateend).map((order) => {
+      const {
+        workorderid, datestart, dateend, firstname, lastname, unitid, content,
+      } = order;
+      return (
+        <Workorder
+          workorderid={workorderid}
+          datestart={datestart}
+          dateend={dateend}
+          firstname={firstname}
+          lastname={lastname}
+          unitid={unitid}
+          content={content}
+        />
+      );
+    });
+
+    const all = workorders.map((order) => {
+      const {
+        workorderid, datestart, dateend, firstname, lastname, unitid, content,
+      } = order;
+      return (
+        <Workorder
+          workorderid={workorderid}
+          datestart={datestart}
+          dateend={dateend}
+          firstname={firstname}
+          lastname={lastname}
+          unitid={unitid}
+          content={content}
+        />
+      );
+    });
+
     return (
-      <div className="WorkorderHistory">
-        <div className="WorkorderHistory-title">Service History</div>
-        <table className="WorkorderHistory-table">
-          <thead>
-            <tr className="Residents__table-header">
-              <th>Work Order ID</th>
-              <th>Date Start</th>
-              <th>Description</th>
-              <th>Date Completed</th>
-            </tr>
-          </thead>
-          <tbody>{workorders}</tbody>
-        </table>
+      <div>
+        <div onChange={e => this.setState({filter: e.target.value})}>
+          <input
+            type="radio"
+            value="all"
+            name="filter"
+            required
+            checked={this.state.filter === 'all'}
+          />
+          All
+          <input type="radio" value="open" name="filter" checked={this.state.filter === 'open'} />
+          Open
+          <input
+            type="radio"
+            value="closed"
+            name="filter"
+            checked={this.state.filter === 'closed'}
+          />
+          Closed
+        </div>
+        <div>
+          {this.state.filter === 'all' ? all : this.state.filter === 'closed' ? closed : open}
+        </div>
       </div>
     );
   }

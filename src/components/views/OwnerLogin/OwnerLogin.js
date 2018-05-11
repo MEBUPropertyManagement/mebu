@@ -33,8 +33,16 @@ class OwnerLogin extends Component {
   }
 
   render() {
-    if (this.props.authenticated) {
+    const {authenticated, loginSubmitted} = this.props;
+
+    if (authenticated) {
       this.props.history.push('/owner/properties');
+    }
+
+    let bc = 'var(--gray)';
+
+    if (!authenticated && loginSubmitted) {
+      bc = 'var(--red)';
     }
 
     return (
@@ -50,6 +58,7 @@ class OwnerLogin extends Component {
               <p className="ownerlogin-subheader">Enter your details below.</p>
               <input
                 className="OwnerLogin__input OwnerLogin__input--email"
+                style={{borderColor: bc}}
                 value={this.state.email}
                 placeholder="email"
                 type="email"
@@ -61,6 +70,7 @@ class OwnerLogin extends Component {
             <div>
               <input
                 className="OwnerLogin__input OwnerLogin__input--password"
+                style={{borderColor: bc}}
                 value={this.state.password}
                 placeholder="password"
                 type="password"

@@ -1,5 +1,5 @@
-import React, {Component, Fragment} from 'react';
-import {Switch, Route, withRouter, Redirect} from 'react-router-dom';
+import React from 'react';
+import {Switch, Route, withRouter} from 'react-router-dom';
 import {connect} from 'react-redux';
 
 // Authentication Routes
@@ -30,75 +30,69 @@ import ResidentCreateWorkorder from './components/views/Dashboard/ResidentDashbo
 import ResidentWorkorderHistory from './components/views/Dashboard/ResidentDashboard/Maintenance/WorkorderHistory';
 import ResidentSettings from './components/views/Dashboard/ResidentDashboard/Settings/Settings';
 
-
 // Not Found Route
 import NotFound from './components/views/NotFound/NotFound';
 import './Routes.css';
 
-const Routes = (props) => {
-  return (
-    <Switch>
-      <Route path="/" exact render={() => <Landing />} />
-      <Route path="/login/owner/returning" component={OwnerLogin} />
-      <Route path="/login/owner/new" component={OwnerRegistration} />
-      <Route path="/login/resident/returning" component={ResidentLogin} />
-      {/*  */}
-      <Route exact path="/owner/properties" component={Properties} />
-      <Route path="/owner/properties/new" component={AddProperty} />
-      <Route path="/owner/forgotpassword" component={ForgotPassword} />
-      <Route
-        path="/owner/dashboard/property/:id"
-        render={() => (
-          <Dashboard>
-            <Switch>
-              <Route exact path="/owner/dashboard/property/:id" component={Property} />
-              <Route exact path="/owner/dashboard/property/:id/units" component={Units} />
-              <Route
-                exact
-                path="/owner/dashboard/property/:id/units/:unitid/residents"
-                component={ResidentsByUnit}
-              />
-              <Route
-                path="/owner/dashboard/property/:id/units/:unitid/residents/new"
-                component={AddResident}
-              />
-              <Route path="/owner/dashboard/property/:id/metrics" component={Metrics} />
-              <Route path="/owner/dashboard/property/:id/residents" component={Residents} />
-              <Route path="/owner/dashboard/property/:id/maintenance" component={Maintenance} />
-              <Route path="/owner/dashboard/property/:id/settings" component={Settings} />
-            </Switch>
-          </Dashboard>
-        )}
-      />
-      {/*  */}
-      <Route
-        path="/resident/dashboard/"
-        render={() => (
-          <Dashboard>
-            <Switch>
-              <Route exact path="/resident/dashboard/" component={ResidentContacts} />
-              <Route path="/resident/dashboard/billing/pay" component={ResidentPayBills} />
-              <Route
-                path="/resident/dashboard/billing/history"
-                component={ResidentBillingHistory}
-              />
-              <Route
-                path="/resident/dashboard/maintenance/create"
-                component={ResidentCreateWorkorder}
-              />
-              <Route
-                path="/resident/dashboard/maintenance/history"
-                component={ResidentWorkorderHistory}
-              />
-              <Route path="/resident/dashboard/settings" component={ResidentSettings} />
-            </Switch>
-          </Dashboard>
-        )}
-      />
-      <Route path="*" component={NotFound}></Route>
-    </Switch>
-  );
-};
+const Routes = () => (
+  <Switch>
+    <Route path="/" exact render={() => <Landing />} />
+    <Route path="/login/owner/returning" component={OwnerLogin} />
+    <Route path="/login/owner/new" component={OwnerRegistration} />
+    <Route path="/login/resident/returning" component={ResidentLogin} />
+    {/*  */}
+    <Route exact path="/owner/properties" component={Properties} />
+    <Route path="/owner/properties/new" component={AddProperty} />
+    <Route path="/owner/forgotpassword" component={ForgotPassword} />
+    <Route
+      path="/owner/dashboard/property/:id"
+      render={() => (
+        <Dashboard>
+          <Switch>
+            <Route exact path="/owner/dashboard/property/:id" component={Property} />
+            <Route exact path="/owner/dashboard/property/:id/units" component={Units} />
+            <Route
+              exact
+              path="/owner/dashboard/property/:id/units/:unitid/residents"
+              component={ResidentsByUnit}
+            />
+            <Route
+              path="/owner/dashboard/property/:id/units/:unitid/residents/new"
+              component={AddResident}
+            />
+            <Route path="/owner/dashboard/property/:id/metrics" component={Metrics} />
+            <Route path="/owner/dashboard/property/:id/residents" component={Residents} />
+            <Route path="/owner/dashboard/property/:id/maintenance" component={Maintenance} />
+            <Route path="/owner/dashboard/property/:id/settings" component={Settings} />
+          </Switch>
+        </Dashboard>
+      )}
+    />
+    {/*  */}
+    <Route
+      path="/resident/dashboard/"
+      render={() => (
+        <Dashboard>
+          <Switch>
+            <Route exact path="/resident/dashboard/" component={ResidentContacts} />
+            <Route path="/resident/dashboard/billing/pay" component={ResidentPayBills} />
+            <Route path="/resident/dashboard/billing/history" component={ResidentBillingHistory} />
+            <Route
+              path="/resident/dashboard/maintenance/create"
+              component={ResidentCreateWorkorder}
+            />
+            <Route
+              path="/resident/dashboard/maintenance/history"
+              component={ResidentWorkorderHistory}
+            />
+            <Route path="/resident/dashboard/settings" component={ResidentSettings} />
+          </Switch>
+        </Dashboard>
+      )}
+    />
+    <Route path="*" component={NotFound} />
+  </Switch>
+);
 
 const mapStateToProps = state => ({...state.userReducer});
 

@@ -1,0 +1,24 @@
+.NewUnit__td {
+  padding: 0;
+  position: relative;
+}
+.NewUnit__input {
+  text-align: center;
+  width: 100%;
+  padding: 15px;
+  border: 1px solid var(--white);
+  background: var(--white);
+  outline: none;
+}
+
+.NewUnit__td .NewUnit__input {
+  color: var(--black);
+
+  font-size: 1rem;
+}
+
+.NewUnit__td {
+  color: var(--black);
+  box-shadow: none;
+  font-size: 1rem;
+}

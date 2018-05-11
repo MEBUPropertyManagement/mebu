@@ -7,8 +7,9 @@
   --white: #f3f3f3;
   --blue: #2796d6;
   --light-blue: #47a6dd;
-  --gray: #b1b6c7;
+  --gray: #ddd;
   --dark-gray: #8e92a0;
+  --red: #ff6b6b;
   --box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.16), 0 0 0 1px rgba(0, 0, 0, 0.08);
   --font: Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue',
     sans-serif;
@@ -22,6 +23,9 @@ body {
     sans-serif;
 }
 
+::selection {
+  background: var(--light-blue);
+}
 h1,
 h2,
 h3,
@@ -33,12 +37,51 @@ pre {
   margin: 0;
 }
 
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+pre,
+div {
+  color: var(--black);
+}
+
 *,
 *::before,
 *::after {
   box-sizing: border-box;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
+}
+
+table {
+  box-shadow: 0 4px 25px rgba(0, 0, 0, 0.1);
+  /* border-collapse: separate; */
+  width: 100%;
+  table-layout: fixed;
+}
+
+table,
+td,
+th {
+  border: 1px solid var(--gray);
+  text-align: center;
+}
+
+th {
+  text-transform: uppercase;
+}
+
+th,
+td {
+  padding: 15px;
+}
+
+td {
+  color: var(--light-black);
 }
 
 @media screen and (min-width: 320px) {

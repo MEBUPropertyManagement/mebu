@@ -15,7 +15,6 @@ const Workorder = (props) => {
       <div>Unit ID: {unitid}</div>
       <div>Workorder ID: {workorderid}</div>
       <div>Content: {content}</div>
-      {!dateend ? <button onClick={() => props.close(workorderid)}>Close Order</button> : null}
     </div>
   );
 };

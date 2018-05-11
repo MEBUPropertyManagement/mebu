@@ -18,9 +18,7 @@ class Settings extends Component {
     this.onEditHandler = this.onEditHandler.bind(this);
   }
 
-  componentDidMount() {
-    console.log(this.props.current_user);
-  }
+  componentDidMount() {}
 
   onSubmitHandler(e) {
     e.preventDefault();
