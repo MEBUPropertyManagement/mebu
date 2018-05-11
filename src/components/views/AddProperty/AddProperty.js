@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
 import axios from 'axios';
-import {Link, withRouter} from 'react-router-dom';
+import {Link} from 'react-router-dom';
 import {createProperty} from '../../../redux/ducks/propertyReducer';
 import {logoutUser} from '../../../redux/ducks/userReducer';
 import logo from '../../../images/logo_final_blue.svg';

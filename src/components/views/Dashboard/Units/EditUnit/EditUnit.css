@@ -1,0 +1,120 @@
+.EditUnit__link {
+  cursor: pointer;
+}
+
+.EditUnit__td {
+  padding: 0;
+  position: relative;
+}
+
+.EditUnit__table-row--editing .EditUnit__td .EditUnit__input {
+  background: var(--dark-gray);
+  border: 1px solid var(--dark-gray);
+  color: var(--white);
+
+  font-size: 1rem;
+}
+
+.EditUnit__table-row--editing .EditUnit__td {
+  background: var(--dark-gray);
+  color: var(--white);
+  box-shadow: none;
+  font-size: 1rem;
+}
+
+.EditUnit__table-row--editing:hover {
+  background: var(--gray);
+}
+
+.EditUnit__buttons {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+}
+
+.EditUnit__button {
+  flex: 1;
+  background: var(--white);
+  border: none;
+  color: var(--light-black);
+  transition: all 50ms linear;
+}
+.EditUnit__button:hover {
+  background: var(--light-black);
+  color: var(--white);
+}
+
+.EditUnit__input {
+  text-align: center;
+  width: 100%;
+  padding: 15px;
+  border: 1px solid var(--white);
+  background: var(--white);
+  outline: none;
+}
+
+.toggle {
+  margin: 0 auto;
+  position: relative;
+  display: block;
+  width: 40px;
+  height: 20px;
+  cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
+  transform: translate3d(0, 0, 0);
+}
+.toggle:before {
+  content: '';
+  position: relative;
+  top: 3px;
+  left: 3px;
+  width: 34px;
+  height: 14px;
+  display: block;
+  background: var(--gray);
+  border-radius: 8px;
+  transition: background 0.2s ease;
+}
+.toggle span {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 20px;
+  height: 20px;
+  display: block;
+  background: var(--white);
+  border-radius: 10px;
+  box-shadow: 0 3px 8px rgba(154, 153, 153, 0.5);
+  transition: all 0.2s ease;
+}
+.toggle span:before {
+  content: '';
+  position: absolute;
+  display: block;
+  margin: -18px;
+  width: 56px;
+  height: 56px;
+  background: var(--blue);
+  border-radius: 50%;
+  transform: scale(0);
+  opacity: 1;
+  pointer-events: none;
+}
+
+.EditUnit__toggle:checked + .toggle:before {
+  background: #95d8ff;
+}
+.EditUnit__toggle:checked + .toggle span {
+  background: #4cbdff;
+  transform: translateX(20px);
+  transition: all 0.2s cubic-bezier(0.8, 0.4, 0.3, 1.25), background 0.2s ease;
+  box-shadow: 0 3px 8px rgba(26, 96, 201, 0.2);
+}
+.EditUnit__toggle:checked + .toggle span:before {
+  transform: scale(1);
+  opacity: 0;
+  transition: all 0.4s ease;
+}

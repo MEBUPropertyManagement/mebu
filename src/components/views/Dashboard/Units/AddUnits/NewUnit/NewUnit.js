@@ -1,4 +1,5 @@
 import React, {Component} from 'react';
+import './NewUnit.css';
 
 class NewUnit extends Component {
   constructor(props) {
@@ -29,8 +30,9 @@ class NewUnit extends Component {
   render() {
     return (
       <tr>
-        <td>
+        <td className="NewUnit__td">
           <input
+            className="NewUnit__input"
             value={this.state.bath}
             onChange={this.onChangeHandler}
             placeholder="bath"
@@ -38,8 +40,9 @@ class NewUnit extends Component {
             type="text"
           />
         </td>
-        <td>
+        <td className="NewUnit__td">
           <input
+            className="NewUnit__input"
             value={this.state.bed}
             onChange={this.onChangeHandler}
             placeholder="bed"
@@ -47,16 +50,18 @@ class NewUnit extends Component {
             type="text"
           />
         </td>
-        <td>
+        <td className="NewUnit__td">
           <input
+            className="NewUnit__input"
             checked={this.state.occupied}
             onChange={this.onChangeHandler}
             name="occupied"
             type="checkbox"
           />
         </td>
-        <td>
+        <td className="NewUnit__td">
           <input
+            className="NewUnit__input"
             value={this.state.rent}
             onChange={this.onChangeHandler}
             placeholder="rent"
@@ -64,8 +69,9 @@ class NewUnit extends Component {
             type="text"
           />
         </td>
-        <td>
+        <td className="NewUnit__td">
           <input
+            className="NewUnit__input"
             value={this.state.roomnum}
             onChange={this.onChangeHandler}
             placeholder="roomnum"
@@ -73,8 +79,9 @@ class NewUnit extends Component {
             type="text"
           />
         </td>
-        <td>
+        <td className="NewUnit__td">
           <input
+            className="NewUnit__input"
             value={this.state.size}
             onChange={this.onChangeHandler}
             placeholder="size"

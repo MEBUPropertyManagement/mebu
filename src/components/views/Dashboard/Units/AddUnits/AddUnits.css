@@ -1,0 +1,21 @@
+.AddUnits {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.AddUnits__input {
+  background: var(--white);
+  border: 1px solid var(--light-black);
+  border-radius: 9999px;
+  padding: 10px 30px;
+  margin: 15px 0;
+  font-size: 25px;
+  font-family: var(--font);
+  outline: none;
+  font-weight: bold;
+  color: var;
+}
+.AddProperty__input:focus {
+  border: 1px solid var(--blue);
+}

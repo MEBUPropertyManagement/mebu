@@ -18,9 +18,7 @@ class Settings extends Component {
     this.onEditHandler = this.onEditHandler.bind(this);
   }
 
-  componentDidMount() {
-    console.log(this.props.current_user);
-  }
+  componentDidMount() {}
 
   onSubmitHandler(e) {
     e.preventDefault();
@@ -29,9 +27,6 @@ class Settings extends Component {
     } = this.state;
 
     if (email && firstname && lastname && editing) {
-      console.log('lastname: ', lastname);
-      console.log('firstname: ', firstname);
-      console.log('email: ', email);
       this.props.updateResident(email, firstname, lastname);
     }
     this.onEditHandler();
