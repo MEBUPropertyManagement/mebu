@@ -1,5 +1,4 @@
 import React, {Component} from 'react';
-import {Link} from 'react-router-dom';
 import {connect} from 'react-redux';
 
 import {getResidents} from '../../../../redux/ducks/residentReducer';
@@ -12,7 +11,7 @@ class Residents extends Component {
 
   render() {
     const {residents, loading} = this.props;
-    let residentDisplay = <p>Loading...</p>;
+    let residentDisplay = null;
     if (residents && residents[0] && !loading) {
       residentDisplay = residents.map(resident => (
         <tr key={resident.residentid} className="Residents__table-data">
@@ -28,13 +27,15 @@ class Residents extends Component {
       <div className="Residents">
         <div className="Residents__title">Residents</div>
         <table>
-          <tr className="Residents__table-header">
-            <th>First Name</th>
-            <th>Last Name</th>
-            <th>Apt No.</th>
-            <th>Email</th>
-          </tr>
-          {residentDisplay}
+          <thead>
+            <tr className="Residents__table-header">
+              <th>First Name</th>
+              <th>Last Name</th>
+              <th>Room No.</th>
+              <th>Email</th>
+            </tr>
+          </thead>
+          <tbody>{residentDisplay}</tbody>
         </table>
       </div>
     );

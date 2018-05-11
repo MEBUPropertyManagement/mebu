@@ -62,9 +62,10 @@
   border-radius: 9999px;
   text-align: center;
   letter-spacing: 2px;
-  width: 100%;
+  width: 30%;
   outline: none;
-  margin-top: 10px;
+  margin-top: 15px;
+  transition: all 100ms linear;
 }
 
 .Settings__button:hover {
@@ -72,23 +73,28 @@
   background: var(--white);
 }
 
+.Settings__archive-container {
+  padding: 0 25px;
+  text-align: left;
+}
+
 .Settings__archive {
   padding: 10px 15px;
-  background: var(--dark-gray);
+  background: var(--red);
   color: var(--white);
-  border: var(--dark-gray) solid 2px;
+  border: var(--red) solid 2px;
   font-size: 0.75rem;
   font-weight: bold;
   text-transform: uppercase;
   border-radius: 9999px;
   text-align: center;
   letter-spacing: 2px;
-  width: 90%;
+  width: 30%;
   outline: none;
-  margin-top: 10px;
+  transition: all 100ms linear;
 }
 
 .Settings__archive:hover {
-  color: var(--dark-gray);
+  color: var(--red);
   background: var(--white);
 }

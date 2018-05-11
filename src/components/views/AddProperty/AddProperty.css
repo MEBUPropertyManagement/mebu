@@ -81,6 +81,7 @@
 .AddProperty__input:focus {
   border: 1px solid var(--blue);
 }
+
 .AddProperty__button {
   padding: 10px 15px;
   background: var(--blue);

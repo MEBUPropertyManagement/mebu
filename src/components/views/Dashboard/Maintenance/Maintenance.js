@@ -161,6 +161,5 @@ const mapStateToProps = state => ({
 
 export default connect(mapStateToProps, {
   getWorkorderById,
-  closeWorkorderById,
-  changeFilteredWorkorder
+  closeWorkorderById
 })(Maintenance);
