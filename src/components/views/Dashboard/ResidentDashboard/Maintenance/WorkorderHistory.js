@@ -1,6 +1,10 @@
-import React, {Component} from 'react';
-import {getResidentWorkOrder} from '../../../../../redux/ducks/workorderReducer';
-import {connect} from 'react-redux';
+import React, { Component } from "react";
+import { getResidentWorkOrder } from "../../../../../redux/ducks/workorderReducer";
+import { connect } from "react-redux";
+
+import "./WorkorderHistory.css";
+import './WorkorderItems'
+import WorkorderItems from "./WorkorderItems";
 
 class WorkorderHistory extends Component {
   componentDidMount() {
@@ -12,19 +16,36 @@ class WorkorderHistory extends Component {
       this.props.workorders &&
       this.props.workorders[0] &&
       this.props.workorders.map(workorder => (
-        <div>
-          <div>Work order ID: {workorder.workorderid}</div>
-          <div>Date Start: {workorder.datestart}</div>
-          <div>Content: {workorder.content}</div>
-          <div>Date End: {workorder.dateend}</div>
-        </div>
+        <WorkorderItems
+          workorderid={workorder.workorderid}
+          datestart={workorder.datestart}
+          content={workorder.content}
+          dateend={workorder.dateend}
+        />
       ));
-    return <div>{workorders}</div>;
+    return (
+      <div className="WorkorderHistory">
+        <div className="WorkorderHistory-title">Service History</div>
+        <table className="WorkorderHistory-table">
+          <thead>
+            <tr className="Residents__table-header">
+              <th>Work Order ID</th>
+              <th>Date Start</th>
+              <th>Description</th>
+              <th>Date Completed</th>
+            </tr>
+          </thead>
+          <tbody>{workorders}</tbody>
+        </table>
+      </div>
+    );
   }
 }
 
 const mapStateToProps = state => ({
-  ...state.workorderReducer,
+  ...state.workorderReducer
 });
 
-export default connect(mapStateToProps, {getResidentWorkOrder})(WorkorderHistory);
+export default connect(mapStateToProps, { getResidentWorkOrder })(
+  WorkorderHistory
+);
