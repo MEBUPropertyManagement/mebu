@@ -43,7 +43,7 @@ class Residents extends Component {
 }
 
 const mapStateToProps = state => ({
-  ...state.residentReducer,
+  ...state.residentReducer
 });
 
 export default connect(mapStateToProps, {getResidents})(Residents);

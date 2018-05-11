@@ -1,15 +1,20 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
-import {getWorkorderById, closeWorkorderById} from '../../../../redux/ducks/workorderReducer';
+import {
+  getWorkorderById,
+  closeWorkorderById,
+  changeFilteredWorkorder
+} from '../../../../redux/ducks/workorderReducer';
 
 import Workorder from './Workorder';
+import './Maintenance.css';
 
 class Maintenance extends Component {
   constructor(props) {
     super(props);
 
     this.state = {
-      filter: 'all',
+      filter: 'all'
     };
   }
 
@@ -23,42 +28,68 @@ class Maintenance extends Component {
   };
 
   render() {
-    const {workorders} = this.props;
+    const open = this.props.workorders
+      .filter(workorder => !workorder.dateend)
+      .map(order => {
+        const {
+          workorderid,
+          datestart,
+          dateend,
+          firstname,
+          lastname,
+          unitid,
+          content
+        } = order;
+        return (
+          <Workorder
+            workorderid={workorderid}
+            datestart={datestart}
+            dateend={dateend}
+            firstname={firstname}
+            lastname={lastname}
+            unitid={unitid}
+            content={content}
+            close={this.closeWorkorder}
+          />
+        );
+      });
 
-    const open = workorders.filter(workorder => !workorder.dateend).map(order => {
-      const {workorderid, datestart, dateend, firstname, lastname, unitid, content} = order;
-      return (
-        <Workorder
-          workorderid={workorderid}
-          datestart={datestart}
-          dateend={dateend}
-          firstname={firstname}
-          lastname={lastname}
-          unitid={unitid}
-          content={content}
-          close={this.closeWorkorder}
-        />
-      );
-    });
+    const closed = this.props.workorders
+      .filter(workorder => workorder.dateend)
+      .map(order => {
+        const {
+          workorderid,
+          datestart,
+          dateend,
+          firstname,
+          lastname,
+          unitid,
+          content
+        } = order;
+        return (
+          <Workorder
+            workorderid={workorderid}
+            datestart={datestart}
+            dateend={dateend}
+            firstname={firstname}
+            lastname={lastname}
+            unitid={unitid}
+            content={content}
+            close={this.closeWorkorder}
+          />
+        );
+      });
 
-    const closed = workorders.filter(workorder => workorder.dateend).map(order => {
-      const {workorderid, datestart, dateend, firstname, lastname, unitid, content} = order;
-      return (
-        <Workorder
-          workorderid={workorderid}
-          datestart={datestart}
-          dateend={dateend}
-          firstname={firstname}
-          lastname={lastname}
-          unitid={unitid}
-          content={content}
-          close={this.closeWorkorder}
-        />
-      );
-    });
-
-    const all = workorders.map(order => {
-      const {workorderid, datestart, dateend, firstname, lastname, unitid, content} = order;
+    const all = this.props.workorders.map(order => {
+      const {
+        workorderid,
+        datestart,
+        dateend,
+        firstname,
+        lastname,
+        unitid,
+        content
+      } = order;
       return (
         <Workorder
           workorderid={workorderid}
@@ -74,7 +105,8 @@ class Maintenance extends Component {
     });
 
     return (
-      <div>
+      <div className="Tb">
+        <div className="Maintenance__title">Maintenance</div>
         <div onChange={e => this.setState({filter: e.target.value})}>
           <input
             type="radio"
@@ -84,7 +116,12 @@ class Maintenance extends Component {
             checked={this.state.filter === 'all'}
           />
           All
-          <input type="radio" value="open" name="filter" checked={this.state.filter === 'open'} />
+          <input
+            type="radio"
+            value="open"
+            name="filter"
+            checked={this.state.filter === 'open'}
+          />
           Open
           <input
             type="radio"
@@ -94,19 +131,38 @@ class Maintenance extends Component {
           />
           Closed
         </div>
-        <div>
-          {this.state.filter === 'all' ? all : this.state.filter === 'closed' ? closed : open}
-        </div>
+        <table className="Maintenance__table">
+          <thead>
+            <tr className="Maintenance__table-header">
+              <th>Workorder ID</th>
+              <th>Date Start</th>
+              <th>Date End</th>
+              <th>First Name</th>
+              <th>Last Name</th>
+              <th>Unit ID</th>
+              <th>Content</th>
+              <th>Closed</th>
+            </tr>
+          </thead>
+
+          <tbody>
+            {this.state.filter === 'all'
+              ? all
+              : this.state.filter === 'closed'
+                ? closed
+                : open}
+          </tbody>
+        </table>
       </div>
     );
   }
 }
 
 const mapStateToProps = state => ({
-  ...state.workorderReducer,
+  ...state.workorderReducer
 });
 
 export default connect(mapStateToProps, {
   getWorkorderById,
-  closeWorkorderById,
+  closeWorkorderById
 })(Maintenance);
