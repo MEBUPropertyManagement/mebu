@@ -1,0 +1,39 @@
+.WorkorderHistory-title {
+  text-align: left;
+  margin-bottom: 15px;
+  font-size: 1.5rem;
+  font-weight: 400;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  border-left: 5px solid var(--light-blue);
+  padding-left: 5px;
+}
+
+table {
+  box-shadow: 0 4px 25px rgba(0, 0, 0, 0.1);
+}
+
+th {
+  text-transform: uppercase;
+}
+
+table,
+td,
+th {
+  border: 1px solid #ddd;
+  text-align: left;
+}
+
+table {
+  border-collapse: collapse;
+  width: 100%;
+}
+
+th,
+td {
+  padding: 15px;
+}
+
+td {
+  color: var(--light-black);
+}

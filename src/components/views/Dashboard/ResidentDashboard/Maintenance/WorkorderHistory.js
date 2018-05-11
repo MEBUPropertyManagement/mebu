@@ -2,6 +2,11 @@ import React, {Component} from 'react';
 import {connect} from 'react-redux';
 import {getResidentWorkOrder} from '../../../../../redux/ducks/workorderReducer';
 
+import "./WorkorderHistory.css";
+import './WorkorderItems'
+import WorkorderItems from "./WorkorderItems";
+
+
 import Workorder from './Workorder';
 
 class WorkorderHistory extends Component {
@@ -101,7 +106,9 @@ class WorkorderHistory extends Component {
 }
 
 const mapStateToProps = state => ({
-  ...state.workorderReducer,
+  ...state.workorderReducer
 });
 
-export default connect(mapStateToProps, {getResidentWorkOrder})(WorkorderHistory);
+export default connect(mapStateToProps, { getResidentWorkOrder })(
+  WorkorderHistory
+);
