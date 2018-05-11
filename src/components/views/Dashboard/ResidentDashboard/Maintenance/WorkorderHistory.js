@@ -2,10 +2,9 @@ import React, {Component} from 'react';
 import {connect} from 'react-redux';
 import {getResidentWorkOrder} from '../../../../../redux/ducks/workorderReducer';
 
-import "./WorkorderHistory.css";
-import './WorkorderItems'
-import WorkorderItems from "./WorkorderItems";
-
+import './WorkorderHistory.css';
+import './WorkorderItems';
+import WorkorderItems from './WorkorderItems';
 
 import Workorder from './Workorder';
 
@@ -34,9 +33,6 @@ class WorkorderHistory extends Component {
           workorderid={workorderid}
           datestart={datestart}
           dateend={dateend}
-          firstname={firstname}
-          lastname={lastname}
-          unitid={unitid}
           content={content}
         />
       );
@@ -51,9 +47,6 @@ class WorkorderHistory extends Component {
           workorderid={workorderid}
           datestart={datestart}
           dateend={dateend}
-          firstname={firstname}
-          lastname={lastname}
-          unitid={unitid}
           content={content}
         />
       );
@@ -68,9 +61,6 @@ class WorkorderHistory extends Component {
           workorderid={workorderid}
           datestart={datestart}
           dateend={dateend}
-          firstname={firstname}
-          lastname={lastname}
-          unitid={unitid}
           content={content}
         />
       );
@@ -97,8 +87,22 @@ class WorkorderHistory extends Component {
           />
           Closed
         </div>
-        <div>
-          {this.state.filter === 'all' ? all : this.state.filter === 'closed' ? closed : open}
+
+        <div className="WorkorderHistory">
+          <div className="WorkorderHistory-title">Service History</div>
+          <table className="WorkorderHistory-table">
+            <thead>
+              <tr className="Residents__table-header">
+                <th>Work Order ID</th>
+                <th>Date Start</th>
+                <th>Date Completed</th>
+                <th>Description</th>
+              </tr>
+            </thead>
+            <tbody>
+              {this.state.filter === 'all' ? all : this.state.filter === 'closed' ? closed : open}
+            </tbody>
+          </table>
         </div>
       </div>
     );
@@ -106,9 +110,7 @@ class WorkorderHistory extends Component {
 }
 
 const mapStateToProps = state => ({
-  ...state.workorderReducer
+  ...state.workorderReducer,
 });
 
-export default connect(mapStateToProps, { getResidentWorkOrder })(
-  WorkorderHistory
-);
+export default connect(mapStateToProps, {getResidentWorkOrder})(WorkorderHistory);
