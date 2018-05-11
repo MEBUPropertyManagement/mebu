@@ -129,6 +129,20 @@ class Maintenance extends Component {
           />
           Closed
         </div>
+        <table>
+          <tr>
+            <th>Workorder ID</th>
+            <th>Date Start</th>
+            <th>Date End</th>
+            <th>Resident First Name</th>
+            <th>Resident Last Name</th>
+            <th>Unit ID</th>
+            <th>Workorder ID</th>
+            <th>Content</th>
+            <th>Closer order</th>
+          </tr>
+          <tr />
+        </table>
         <div>
           {this.state.filter === 'all'
             ? all

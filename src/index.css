@@ -56,3 +56,7 @@ pre {
 .Link__none {
   text-decoration: none;
 }
+
+table {
+  table-layout: fixed;
+}
