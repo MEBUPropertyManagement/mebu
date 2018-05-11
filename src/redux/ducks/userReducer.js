@@ -63,7 +63,7 @@ export default function userReducer(state = initialState, action) {
         authenticated: action.payload.authenticated,
       };
 
-    case `${UPDATE_RESIDENT}_FULFILLED`:
+    case `${UPDATE_RESIDENT}`:
       return {
         ...state,
         current_user: {...state.current_user, ...action.payload},
@@ -170,10 +170,7 @@ export function createResident(email, password, firstName, lastName) {
 export function updateResident(email, firstName, lastName) {
   return {
     type: UPDATE_RESIDENT,
-    payload: axios
-      .put('/residents/updateResident', {email, firstName, lastName})
-      .then(response => response.data)
-      .catch(err => err),
+    payload: {email, firstName, lastName},
   };
 }
 
