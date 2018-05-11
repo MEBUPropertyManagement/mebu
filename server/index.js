@@ -36,6 +36,7 @@ const {
 const {
   getResidents,
   updateResident,
+  updateStatus,
   getResidentsByUnit,
   getResidentDetails,
 } = require('./controllers/residentsControllers');
@@ -111,6 +112,7 @@ app.get('/properties/getProperties', getProperties);
 // Resident Endpoints
 app.get('/residents/getResidents/:id', getResidents);
 app.put('/residents/updateResident', updateResident);
+app.patch('/residents/updateStatus', updateStatus);
 app.get('/residents/getResidentsByUnit/:id', getResidentsByUnit);
 app.get('/residents/getResidentDetails', getResidentDetails);
 

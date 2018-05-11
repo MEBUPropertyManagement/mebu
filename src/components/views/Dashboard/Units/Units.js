@@ -10,7 +10,7 @@ class Units extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      addingUnits: false,
+      addingUnits: false
     };
     this.onAddNewUnits = this.onAddNewUnits.bind(this);
     this.addingStateToFalse = this.addingStateToFalse.bind(this);
@@ -35,7 +35,11 @@ class Units extends Component {
   }
 
   toResidentsByUnit(unitid) {
-    this.props.history.push(`/owner/dashboard/property/${this.props.match.params.id}/units/${unitid}/residents`);
+    this.props.history.push(
+      `/owner/dashboard/property/${
+        this.props.match.params.id
+      }/units/${unitid}/residents`
+    );
   }
 
   render() {
@@ -93,7 +97,7 @@ class Units extends Component {
 }
 
 const mapStateToProps = state => ({
-  ...state.unitReducer,
+  ...state.unitReducer
 });
 
 export default connect(mapStateToProps, {getUnits, updateUnit})(Units);

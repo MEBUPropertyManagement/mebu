@@ -1,0 +1,19 @@
+.Metrics {
+  display: flex;
+}
+
+.Metrics__info-title {
+  text-align: left;
+  font-size: 0.5rem;
+  font-weight: 700;
+  color: var(--light-blue);
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.Metrics__info-numbers {
+  text-align: left;
+  font-weight: 400;
+  font-size: 1.5rem;
+  letter-spacing: 1.5px;
+}
