@@ -1,7 +1,7 @@
-import React, { Component, Fragment } from "react";
-import { connect } from "react-redux";
-import { updateResident } from "../../../../../redux/ducks/userReducer";
-import "./Settings.css";
+import React, {Component, Fragment} from 'react';
+import {connect} from 'react-redux';
+import {updateResident} from '../../../../../redux/ducks/userReducer';
+import './Settings.css';
 
 class Settings extends Component {
   constructor(props) {
@@ -10,7 +10,7 @@ class Settings extends Component {
       email: this.props.current_user.email,
       firstname: this.props.current_user.firstName,
       lastname: this.props.current_user.lastName,
-      editing: false
+      editing: false,
     };
 
     this.onSubmitHandler = this.onSubmitHandler.bind(this);
@@ -22,7 +22,9 @@ class Settings extends Component {
 
   onSubmitHandler(e) {
     e.preventDefault();
-    const { email, firstname, lastname, editing } = this.state;
+    const {
+      email, firstname, lastname, editing,
+    } = this.state;
 
     if (email && firstname && lastname && editing) {
       this.props.updateResident(email, firstname, lastname);
@@ -31,24 +33,64 @@ class Settings extends Component {
   }
 
   onChangeHandler(e) {
-    this.setState({ [e.target.name]: e.target.value });
+    this.setState({[e.target.name]: e.target.value});
   }
 
   onEditHandler() {
-    this.setState(prevState => ({ editing: !prevState.editing }));
+    this.setState(prevState => ({editing: !prevState.editing}));
   }
 
   render() {
-    const { email, firstname, lastname, editing } = this.state;
-    let settingsDisplay = (
-      <Fragment>
-        <p>email: {this.state.email}</p>
-        <p>firstname: {this.state.firstname}</p>
-        <p>lastname: {this.state.lastname}</p>
-      </Fragment>
-    );
-    if (editing) {
-      settingsDisplay = (
+    const {
+      email, firstname, lastname, editing,
+    } = this.state;
+    // let settingsDisplay = (
+    //   <Fragment>
+    //     <p>email: {this.state.email}</p>
+    //     <p>firstname: {this.state.firstname}</p>
+    //     <p>lastname: {this.state.lastname}</p>
+    //   </Fragment>
+    // );
+    // if (editing) {
+    //   settingsDisplay = (
+    //     <form className="ResSettings__form" onSubmit={this.onSubmitHandler}>
+    //       <label className="ResSettings-label" htmlFor="email">
+    //         <span className="Settings__label-text">Email</span>
+    //         <input
+    //           onChange={this.onChangeHandler}
+    //           className="ResSettings__input Settings__input--email"
+    //           value={email}
+    //           name="email"
+    //           type="email"
+    //         />
+    //       </label>
+    //       <label className="ResSettings-label" htmlFor="firstname">
+    //         <span className="Settings__label-text">First Name</span>
+    //         <input
+    //           onChange={this.onChangeHandler}
+    //           className="ResSettings__input Settings__input--firstname"
+    //           value={firstname}
+    //           name="firstname"
+    //           type="text"
+    //         />
+    //       </label>
+    //       <label className="ResSettings-label" htmlFor="lastname">
+    //         <span className="Settings__label-text">Last Name</span>
+    //         <input
+    //           onChange={this.onChangeHandler}
+    //           className="ResSettings__input Settings__input--lastname"
+    //           value={lastname}
+    //           name="lastname"
+    //           type="text"
+    //         />
+    //       </label>
+    //       <button style={{ display: "none" }} />
+    //     </form>
+    //   );
+    // }
+    return (
+      <div className="Resident-Settings">
+        <div className="ResSettings-title">Update My Info</div>
         <form className="ResSettings__form" onSubmit={this.onSubmitHandler}>
           <label className="ResSettings-label" htmlFor="email">
             <span className="Settings__label-text">Email</span>
@@ -68,6 +110,7 @@ class Settings extends Component {
               value={firstname}
               name="firstname"
               type="text"
+              disabled
             />
           </label>
           <label className="ResSettings-label" htmlFor="lastname">
@@ -80,22 +123,16 @@ class Settings extends Component {
               type="text"
             />
           </label>
-          <button style={{ display: "none" }} />
+          <button style={{display: 'none'}} />
         </form>
-      );
-    }
-    return (
-      <div className="Resident-Settings">
-        <div className="ResSettings-title">Update My Info</div>
-        {settingsDisplay}
         <button className="ResSettings-button" onClick={this.onEditHandler}>
-          {editing ? "Save Profile" : "Edit Profile"}
+          {editing ? 'Save Profile' : 'Edit Profile'}
         </button>
       </div>
     );
   }
 }
 
-const mapStateToProps = state => ({ ...state.userReducer });
+const mapStateToProps = state => ({...state.userReducer});
 
-export default connect(mapStateToProps, { updateResident })(Settings);
+export default connect(mapStateToProps, {updateResident})(Settings);
