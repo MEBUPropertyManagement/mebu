@@ -5,12 +5,13 @@ import {connect} from 'react-redux';
 
 import {getUnits} from '../../../../../redux/ducks/unitReducer';
 import NewUnit from './NewUnit/NewUnit';
+import './AddUnits.css';
 
 class AddUnits extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      count: 0,
+      count: '',
       newUnits: [],
     };
     this.onChangeHandler = this.onChangeHandler.bind(this);
@@ -71,19 +72,27 @@ class AddUnits extends Component {
     }
 
     return (
-      <div>
-        <input onChange={this.onChangeHandler} value={count} type="number" />
+      <div className="AddUnits">
+        <input
+          className="AddUnits__input"
+          onChange={this.onChangeHandler}
+          value={count}
+          type="number"
+          placeholder="# of Units to Add"
+        />
         <table>
-          <thead>
-            <tr className="Units__table-header">
-              <th>Bath</th>
-              <th>Bed</th>
-              <th>Occupied</th>
-              <th>Rent</th>
-              <th>Apt #</th>
-              <th>Size</th>
-            </tr>
-          </thead>
+          {count > 0 && (
+            <thead>
+              <tr className="Units__table-header">
+                <th>Bath</th>
+                <th>Bed</th>
+                <th>Occupied</th>
+                <th>Rent</th>
+                <th>Apt #</th>
+                <th>Size</th>
+              </tr>
+            </thead>
+          )}
           <tbody>{newUnitsDisplay}</tbody>
         </table>
         <button onClick={this.addAllHandler}>Add All</button>

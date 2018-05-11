@@ -23,6 +23,9 @@ body {
     sans-serif;
 }
 
+::selection {
+  background: var(--light-blue);
+}
 h1,
 h2,
 h3,
@@ -32,6 +35,18 @@ h6,
 p,
 pre {
   margin: 0;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+pre,
+div {
+  color: var(--black);
 }
 
 *,

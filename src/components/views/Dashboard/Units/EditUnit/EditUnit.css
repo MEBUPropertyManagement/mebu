@@ -105,10 +105,10 @@
 }
 
 .EditUnit__toggle:checked + .toggle:before {
-  background: var(--light-blue);
+  background: #95d8ff;
 }
 .EditUnit__toggle:checked + .toggle span {
-  background: var(--blue);
+  background: #4cbdff;
   transform: translateX(20px);
   transition: all 0.2s cubic-bezier(0.8, 0.4, 0.3, 1.25), background 0.2s ease;
   box-shadow: 0 3px 8px rgba(26, 96, 201, 0.2);

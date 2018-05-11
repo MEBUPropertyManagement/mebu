@@ -78,7 +78,9 @@ class Units extends Component {
       <div className="Units">
         <h1 className="Units__title">Units</h1>
         {unitsDisplay}
-        <button onClick={this.onAddNewUnits}>Add New Units</button>
+        <button className="Units__add-btn" onClick={this.onAddNewUnits}>
+          {addingUnits ? 'Cancel' : 'Add New Units'}
+        </button>
         {addingUnits && <AddUnits hide={this.addingStateToFalse} />}
       </div>
     );
