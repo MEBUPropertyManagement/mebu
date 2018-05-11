@@ -110,7 +110,7 @@ class Dashboard extends Component {
               className="Dashboard__link Link__none"
               to="/resident/dashboard/"
             >
-              Contacts
+              Home
             </NavLink>
             <NavLink
               activeClassName="Dashboard__link--active"
