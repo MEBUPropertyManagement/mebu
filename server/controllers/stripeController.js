@@ -5,24 +5,21 @@ const stripe = require('stripe')(secretKey);
 
 const stripeCharge = (req, res) => {
   const db = req.app.get('db');
+  const {amount, billid} = req.body;
+  console.log(amount, billid);
+
   stripe.charges.create(
     {
-      amount: req.body.amount,
+      amount: parseInt(amount, 10),
       currency: 'usd',
       source: req.body.stripeToken,
     },
-    (error, charge) => {
-      if (error) {
-        return res.status(200).json({charged: false, charge: '', error: `${error}`});
-      }
-      return (
-        db
-          .bills_update([req.body.billid])
-          // eslint-disable-next-line
-          .then(response => res.status(200).json({charged: true, charge}))
-          .catch(err => res.status(200).json({err: `${err}`}))
-      );
-    },
+    // eslint-disable-next-line
+    (error, charge) =>
+      db
+        .bills_update([billid])
+        .then(response => res.status(200).json({charged: true, response}))
+        .catch(err => res.status(200).json({err: `${err}`})),
   );
 };
 
