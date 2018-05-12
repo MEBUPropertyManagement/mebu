@@ -47,15 +47,15 @@ class OwnerLogin extends Component {
 
     return (
       <div className="OwnerLogin">
-        <div className="logo-container">
+        <div className="OwnerLogin__logo-container">
           <img className="OwnerLogin__logo" src={logo} alt="logo" />
-          <h3 className="ownerlogin-logo-header">Owner Login Portal</h3>
+          <h3 className="OwnerLogin__logo-header">Owner Login Portal</h3>
         </div>
         <div>
           <form onSubmit={this.onSubmitHandler} className="login-container">
             <div>
-              <h3 className="ownerlogin-header">Please sign into MEBU.</h3>
-              <p className="ownerlogin-subheader">Enter your details below.</p>
+              <h3 className="OwnerLogin__header">Please sign into MEBU.</h3>
+              <p className="OwnerLogin__subheader">Enter your details below.</p>
               <input
                 className="OwnerLogin__input OwnerLogin__input--email"
                 style={{borderColor: bc}}

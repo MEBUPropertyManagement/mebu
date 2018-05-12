@@ -41,9 +41,9 @@ class ResidentLogin extends Component {
 
     return (
       <div className="ResidentLogin">
-        <div className="login-container">
-          <h3 className="residentlogin-header">Please sign into MEBU.</h3>
-          <p className="residentlogin-subheader">Enter your details below.</p>
+        <div className="ResidentLogin__container">
+          <h3 className="ResidentLogin__header">Please sign into MEBU.</h3>
+          <p className="ResidentLogin__subheader">Enter your details below.</p>
           <form className="ResidentLogin__form" onSubmit={this.onSubmitHandler}>
             <input
               className="ResidentLogin__input ResidentLogin__input--email"
@@ -74,9 +74,9 @@ class ResidentLogin extends Component {
             </Link>
           </div>
         </div>
-        <div className="logo-container-registration-log">
+        <div className="ResidentLogin__logo-container">
           <img className="ResidentLogin__logo" src={logo} alt="logo" />
-          <h3 className="Residentlogin-logo-header">Resident Portal</h3>
+          <h3 className="ResidentLogin__logo-header">Resident Portal</h3>
         </div>
       </div>
     );
