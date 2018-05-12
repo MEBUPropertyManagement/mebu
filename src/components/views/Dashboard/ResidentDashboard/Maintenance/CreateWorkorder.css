@@ -47,7 +47,10 @@ textarea#exampleFormControlTextarea1 {
 }
 
 .CreateWorkorder__label-2 {
+  color: var(--light-black);
   font-size: 0.7rem;
+  font-weight: 700;
+  text-transform: uppercase;
 }
 
 .CreateWorkorder__text {
