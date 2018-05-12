@@ -1,4 +1,4 @@
-import React, {Component} from 'react';
+import React, {Component, Fragment} from 'react';
 import {connect} from 'react-redux';
 import AddUnits from './AddUnits/AddUnits';
 import EditUnit from './EditUnit/EditUnit';
@@ -46,34 +46,41 @@ class Units extends Component {
     const {addingUnits} = this.state;
     const {loading, units} = this.props;
 
-    let unitsDisplay = <Loading />;
+    let unitsDisplay = null;
     if (units.length > 0 && !loading) {
       unitsDisplay = (
-        <table>
-          <thead>
-            <tr className="Units__table-header">
-              <th>Bath</th>
-              <th>Bed</th>
-              <th>Occupied</th>
-              <th>Rent</th>
-              <th>Apt #</th>
-              <th>Size</th>
-              <th>Edit / Delete</th>
-            </tr>
-          </thead>
-          <tbody>
-            {units &&
-              units.map(unit => (
-                <EditUnit
-                  reload={this.reload}
-                  key={unit.unitid}
-                  toUnit={this.toResidentsByUnit}
-                  unit={{...unit}}
-                />
-              ))}
-          </tbody>
-        </table>
+        <Fragment>
+          <table>
+            <thead>
+              <tr className="Units__table-header">
+                <th>Bath</th>
+                <th>Bed</th>
+                <th>Occupied</th>
+                <th>Rent</th>
+                <th>Apt #</th>
+                <th>Size</th>
+                <th>Edit / Delete</th>
+              </tr>
+            </thead>
+            <tbody>
+              {units &&
+                units.map(unit => (
+                  <EditUnit
+                    reload={this.reload}
+                    key={unit.unitid}
+                    toUnit={this.toResidentsByUnit}
+                    unit={{...unit}}
+                  />
+                ))}
+            </tbody>
+          </table>
+          <button className="Units__add-btn" onClick={this.onAddNewUnits}>
+            {addingUnits ? 'Cancel' : 'Add New Units'}
+          </button>
+        </Fragment>
       );
+    } else if (loading) {
+      unitsDisplay = <Loading />;
     } else {
       unitsDisplay = <p>No Units To Display</p>;
     }
@@ -82,9 +89,7 @@ class Units extends Component {
       <div className="Units">
         <h1 className="Units__title">Units</h1>
         {unitsDisplay}
-        <button className="Units__add-btn" onClick={this.onAddNewUnits}>
-          {addingUnits ? 'Cancel' : 'Add New Units'}
-        </button>
+
         {addingUnits && <AddUnits hide={this.addingStateToFalse} />}
       </div>
     );

@@ -1,7 +1,8 @@
-import React, { Component, Fragment } from "react";
-import { connect } from "react-redux";
-import { updateResident } from "../../../../../redux/ducks/userReducer";
-import "./Settings.css";
+import React, {Component, Fragment} from 'react';
+import axios from 'axios';
+import {connect} from 'react-redux';
+import {updateResident} from '../../../../../redux/ducks/userReducer';
+import './Settings.css';
 
 class Settings extends Component {
   constructor(props) {
@@ -10,46 +11,47 @@ class Settings extends Component {
       email: this.props.current_user.email,
       firstname: this.props.current_user.firstName,
       lastname: this.props.current_user.lastName,
-      editing: false
+      disabled: true,
     };
 
-    this.onSubmitHandler = this.onSubmitHandler.bind(this);
     this.onChangeHandler = this.onChangeHandler.bind(this);
     this.onEditHandler = this.onEditHandler.bind(this);
   }
 
-  componentDidMount() {}
-
-  onSubmitHandler(e) {
-    e.preventDefault();
-    const { email, firstname, lastname, editing } = this.state;
-
-    if (email && firstname && lastname && editing) {
-      this.props.updateResident(email, firstname, lastname);
-    }
-    this.onEditHandler();
-  }
-
   onChangeHandler(e) {
-    this.setState({ [e.target.name]: e.target.value });
+    this.setState({[e.target.name]: e.target.value});
   }
 
   onEditHandler() {
-    this.setState(prevState => ({ editing: !prevState.editing }));
+    const {
+      email, firstname, lastname, disabled,
+    } = this.state;
+
+    if (!disabled && email && firstname && lastname) {
+      return axios
+        .put('/residents/updateResident', {email, firstName: firstname, lastName: lastname})
+        .then((response) => {
+          console.log(response.data.response);
+          const {email, firstname, lastname} = response.data.response;
+          this.props.updateResident(email, firstname, lastname);
+          this.setState({disabled: !this.state.disabled});
+        })
+        .catch(err => err);
+    }
+
+    this.setState({
+      disabled: !this.state.disabled,
+    });
   }
 
   render() {
-    const { email, firstname, lastname, editing } = this.state;
-    let settingsDisplay = (
-      <Fragment>
-        <p>email: {this.state.email}</p>
-        <p>firstname: {this.state.firstname}</p>
-        <p>lastname: {this.state.lastname}</p>
-      </Fragment>
-    );
-    if (editing) {
-      settingsDisplay = (
-        <form className="ResSettings__form" onSubmit={this.onSubmitHandler}>
+    const {
+      email, firstname, lastname, disabled,
+    } = this.state;
+    return (
+      <div className="Resident-Settings">
+        <div className="ResSettings-title">Update My Info</div>
+        <div className="ResSettings__form">
           <label className="ResSettings-label" htmlFor="email">
             <span className="Settings__label-text">Email</span>
             <input
@@ -58,6 +60,7 @@ class Settings extends Component {
               value={email}
               name="email"
               type="email"
+              disabled={disabled ? 'disabled' : ''}
             />
           </label>
           <label className="ResSettings-label" htmlFor="firstname">
@@ -68,6 +71,7 @@ class Settings extends Component {
               value={firstname}
               name="firstname"
               type="text"
+              disabled={disabled ? 'disabled' : ''}
             />
           </label>
           <label className="ResSettings-label" htmlFor="lastname">
@@ -78,24 +82,19 @@ class Settings extends Component {
               value={lastname}
               name="lastname"
               type="text"
+              disabled={disabled ? 'disabled' : ''}
             />
           </label>
-          <button style={{ display: "none" }} />
-        </form>
-      );
-    }
-    return (
-      <div className="Resident-Settings">
-        <div className="ResSettings-title">Update My Info</div>
-        {settingsDisplay}
+          <button style={{display: 'none'}} />
+        </div>
         <button className="ResSettings-button" onClick={this.onEditHandler}>
-          {editing ? "Save Profile" : "Edit Profile"}
+          {disabled ? 'Edit' : 'Save'} Profile
         </button>
       </div>
     );
   }
 }
 
-const mapStateToProps = state => ({ ...state.userReducer });
+const mapStateToProps = state => ({...state.userReducer});
 
-export default connect(mapStateToProps, { updateResident })(Settings);
+export default connect(mapStateToProps, {updateResident})(Settings);

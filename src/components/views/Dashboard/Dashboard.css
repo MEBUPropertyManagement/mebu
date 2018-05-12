@@ -12,6 +12,7 @@
   width: 200px;
   height: 100%;
   position: fixed;
+  z-index: 9999;
   background: var(--black);
   display: flex;
   flex-direction: column;
