@@ -3,7 +3,7 @@ import {Link} from 'react-router-dom';
 import PropTypes from 'prop-types';
 import {connect} from 'react-redux';
 import {createOwner} from '../../../redux/ducks/userReducer';
-import logo from '../../../images/logo2-nobg.png';
+import logo from '../../../images/logo_final_white.svg';
 import './OwnerRegistration.css';
 
 class OwnerRegistration extends Component {
@@ -44,16 +44,18 @@ class OwnerRegistration extends Component {
 
     return (
       <div className="OwnerRegistration">
-        <div className="logo-container-owner-reg">
+        <div className="OwnerRegistration__logo-container">
           <img className="OwnerRegistration__logo" src={logo} alt="logo" />
-          <h3 className="ownerlogin-logo-header">Owner Registration Portal</h3>
-        </div>
-        <div className="login-container">
-          <h3 className="ownerRegistration-header">
-            To register for an account, <br /> complete the form below.
+          <h3 className="OwnerRegistration__logo-header">
+            Owner<br />Registration
           </h3>
-          <div className="OwnerRegistration__form">
-            <form onSubmit={this.onSubmitHandler}>
+        </div>
+        <div className="OwnerRegistration__login-container">
+          <form onSubmit={this.onSubmitHandler}>
+            <div>
+              <h3 className="OwnerRegistration__header">
+                To register for an account, <br /> complete the form below.
+              </h3>
               <input
                 className="OwnerRegistration__input OwnerRegistration__input--firstname"
                 onChange={this.onChangeHandler}
@@ -64,6 +66,8 @@ class OwnerRegistration extends Component {
                 value={firstName}
                 type="text"
               />
+            </div>
+            <div>
               <input
                 className="OwnerRegistration__input OwnerRegistration__input--lastname"
                 onChange={this.onChangeHandler}
@@ -74,6 +78,8 @@ class OwnerRegistration extends Component {
                 value={lastName}
                 type="text"
               />
+            </div>
+            <div>
               <input
                 className="OwnerRegistration__input OwnerRegistration__input--companyname"
                 onChange={this.onChangeHandler}
@@ -82,6 +88,8 @@ class OwnerRegistration extends Component {
                 value={companyName}
                 type="text"
               />
+            </div>
+            <div>
               <input
                 className="OwnerRegistration__input OwnerRegistration__input--email"
                 onChange={this.onChangeHandler}
@@ -91,6 +99,8 @@ class OwnerRegistration extends Component {
                 value={email}
                 type="email"
               />
+            </div>
+            <div>
               <input
                 className="OwnerRegistration__input OwnerRegistration__input--password"
                 onChange={this.onChangeHandler}
@@ -100,6 +110,8 @@ class OwnerRegistration extends Component {
                 value={password}
                 type="password"
               />
+            </div>
+            <div>
               <input
                 className="OwnerRegistration__input OwnerRegistration__input--confirmpassword"
                 onChange={this.onChangeHandler}
@@ -109,28 +121,28 @@ class OwnerRegistration extends Component {
                 value={confirmPassword}
                 type="password"
               />
-              <button
-                className="OwnerRegistration-button"
-                onClick={() =>
-                  this.props.createOwner(
-                    this.state.email,
-                    this.state.password,
-                    this.state.firstName,
-                    this.state.lastName,
-                    this.state.companyName,
-                  )
-                }
-              >
-                Continue
-              </button>
-            </form>
-          </div>
-          <p className="registration-submit-policy">
+            </div>
+            <button
+              className="OwnerRegistration__submit"
+              onClick={() =>
+                this.props.createOwner(
+                  this.state.email,
+                  this.state.password,
+                  this.state.firstName,
+                  this.state.lastName,
+                  this.state.companyName,
+                )
+              }
+            >
+              Continue
+            </button>
+          </form>
+          <p className="OwnerRegistration__disclaimer">
             By clicking "Continue" I agree to Mebu's Terms of Service and Privacy Policy.
           </p>
-          <div className="OwnerRegistration__sign-in">
+          <div className="OwnerRegistration__footer">
             Already have an account with Mebu?{' '}
-            <Link className="Link__none" to="/login/owner/returning">
+            <Link className="OwnerRegistration__link Link__none" to="/login/owner/returning">
               Sign In
             </Link>
           </div>

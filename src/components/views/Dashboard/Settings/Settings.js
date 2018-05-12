@@ -154,7 +154,7 @@ class Settings extends Component {
         </form>
         <div className="Settings__archive-container">
           <button className="Settings__archive" onClick={this.onArchiveClickHandler}>
-            Archive this property
+            Delete
           </button>
         </div>
       </div>
