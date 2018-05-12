@@ -11,19 +11,19 @@ class CreateWorkorder extends Component {
 
     this.state = {
       content: '',
-      urgency: '',
+      urgency: ''
     };
   }
 
   handleContent = e => {
     this.setState({
-      content: e.target.value,
+      content: e.target.value
     });
   };
 
   handleUrgency = e => {
     this.setState({
-      urgency: e.target.value,
+      urgency: e.target.value
     });
   };
 
@@ -31,7 +31,7 @@ class CreateWorkorder extends Component {
     axios
       .post('/workorder/addWorkorder', {
         content: this.state.content,
-        urgency: this.state.urgency,
+        urgency: this.state.urgency
       })
       .then();
   };
@@ -39,19 +39,49 @@ class CreateWorkorder extends Component {
   render() {
     return (
       <div>
-        <div className="CreateWorkorder-title">Submit A Maintenance Request</div>
+        <div className="CreateWorkorder-title">Maintenance Request</div>
         <form onSubmit={() => this.submit()}>
           <div className="radio">
-            <label className="CreateWorkorder-label">Priority</label>
+            <label className="CreateWorkorder__label-1">Priority</label>
             <br />
-            <div onChange={e => this.handleUrgency(e)} value={this.state.urgency}>
-              <input type="radio" value="Low Priority" name="Priority" required /> Low Priority
-              <input type="radio" value="Routine" name="Priority" /> Routine
-              <input type="radio" value="Urgent" name="Priority" /> Urgent
+            <div
+              onChange={e => this.handleUrgency(e)}
+              value={this.state.urgency}
+            >
+              <label className="CreateWorkorder__text">
+                <input
+                  className="CreateWorkorder__radio"
+                  type="radio"
+                  value="Low Priority"
+                  name="Priority"
+                  required
+                />{' '}
+                Low
+              </label>
+              <label className="CreateWorkorder__text">
+                <input
+                  className="CreateWorkorder__radio"
+                  type="radio"
+                  value="Routine"
+                  name="Priority"
+                />{' '}
+                Routine
+              </label>
+              <label className="CreateWorkorder__text">
+                <input
+                  className="CreateWorkorder__radio"
+                  type="radio"
+                  value="Urgent"
+                  name="Priority"
+                />{' '}
+                Urgent
+              </label>
             </div>
             <br />
             <div>
-              <label>Maintenance Request</label>
+              <label className="CreateWorkorder__label-2">
+                Looking to request for maintenance? Send your request here.
+              </label>
               <br />
               <textarea
                 name="content"

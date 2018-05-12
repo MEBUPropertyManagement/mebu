@@ -23,13 +23,38 @@ button.CreateWorkorder-button {
   width: 250px;
   outline: none;
   margin-top: 10px;
+  margin-left: 16rem;
 }
 
 textarea#exampleFormControlTextarea1 {
   width: 600px;
-  height: 120px;
-  border: 3px solid #cccccc;
-  padding: 5px;
+  height: 240px;
+  font-size: 0.8rem;
+  border: none;
+  padding: 15px;
   font-family: var(--font);
-  box-shadow: var(--box-shadow);
+  border-radius: 15px;
+  resize: none;
+  margin-top: 5px;
+}
+
+.CreateWorkorder__label-1 {
+  display: block;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 1.2px;
+  margin-bottom: -15px;
+}
+
+.CreateWorkorder__label-2 {
+  color: var(--light-black);
+  font-size: 0.7rem;
+  font-weight: 700;
+  text-transform: uppercase;
+}
+
+.CreateWorkorder__text {
+  font-size: 12px;
+  text-transform: uppercase;
+  margin-right: 15px;
 }
