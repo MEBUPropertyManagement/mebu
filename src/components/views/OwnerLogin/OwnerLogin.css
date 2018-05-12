@@ -1,6 +1,8 @@
 .OwnerLogin {
-  display: flex;
-  flex-direction: row;
+  display: grid;
+  grid-template-areas: 'sidebar content';
+  grid-template-rows: 1fr;
+  grid-template-columns: 200px 1fr;
   height: 100vh;
   align-items: center;
   justify-content: center;
@@ -8,8 +10,8 @@
   background-color: var(--white);
 }
 
-.logo-container {
-  width: 45vw;
+.OwnerLogin__logo-container {
+  grid-area: sidebar;
   height: 100%;
   background-color: var(--blue);
   display: flex;
@@ -23,7 +25,7 @@
   object-fit: cover;
 }
 
-.ownerlogin-logo-header {
+.OwnerLogin__logo-header {
   font-weight: normal;
   color: var(--white);
   text-transform: uppercase;
@@ -33,20 +35,14 @@
   bottom: 50px;
 }
 
-.login-container {
-  width: 65vw;
-  height: 75%;
-  align-self: center;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-direction: column;
+.OwnerLogin__login-container {
+  grid-area: content;
 }
 
-.ownerlogin-header {
+.OwnerLogin__header {
   margin-bottom: 5px;
 }
-.ownerlogin-subheader {
+.OwnerLogin__subheader {
   margin-bottom: 30px;
 }
 

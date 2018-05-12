@@ -1,28 +1,17 @@
 .ResidentLogin {
-  display: flex;
-  flex-direction: row;
+  display: grid;
+  grid-template-areas: 'content sidebar';
+  grid-template-rows: 1fr;
+  grid-template-columns: 1fr 200px;
   height: 100vh;
   align-items: center;
   justify-content: center;
+  align-content: stretch;
   background-color: var(--white);
 }
 
-.ResidentLogin__form {
-  display: flex;
-  flex-direction: column;
-}
-
-.logo-container-registration-log {
-  width: 35vw;
-  height: 100%;
-  background-color: var(--blue);
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
-.logo-container {
-  width: 35vw;
+.ResidentLogin__logo-container {
+  grid-area: sidebar;
   height: 100%;
   background-color: var(--blue);
   display: flex;
@@ -31,12 +20,41 @@
   align-items: center;
 }
 
-.residentlogin-header {
+.ResidentLogin__logo {
+  width: 70%;
+  object-fit: cover;
+}
+
+.ResidentLogin__logo-header {
+  font-weight: normal;
+  color: var(--white);
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  font-size: 0.75rem;
+  position: absolute;
+  bottom: 50px;
+}
+
+.ResidentLogin__login-container {
+  grid-area: content;
+}
+
+.ResidentLogin__header {
   margin-bottom: 5px;
 }
-
-.residentlogin-subheader {
+.ResidentLogin__subheader {
   margin-bottom: 30px;
+}
+
+.ResidentLogin__input {
+  background: var(--white);
+  border: 1px solid var(--gray);
+  width: 300px;
+  border-radius: 9999px;
+  padding: 8px 15px;
+  font-size: 14px;
+  margin: 5px 0;
+  outline: none;
 }
 
 .ResidentLogin__input.ResidentLogin__input--email:focus,
@@ -61,40 +79,8 @@
   outline: none;
 }
 
-.ResidentLogin__logo {
-  width: 70%;
-  object-fit: cover;
-}
-
-.Residentlogin-logo-header {
-  font-weight: normal;
-  color: var(--white);
-  text-transform: uppercase;
-  letter-spacing: 2px;
+.ResidentLogin__footer {
   font-size: 0.75rem;
-  position: absolute;
-  bottom: 50px;
-}
-
-.login-container {
-  width: 65vw;
-  height: 75%;
-  align-self: center;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-direction: column;
-}
-
-.ResidentLogin__input {
-  background: var(--white);
-  border: 1px solid var(--gray);
-  width: 300px;
-  border-radius: 9999px;
-  padding: 8px 15px;
-  font-size: 14px;
-  margin: 5px 0;
-  outline: none;
 }
 
 .ResidentLogin__link {
