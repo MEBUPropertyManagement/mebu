@@ -83,6 +83,7 @@ export default function propertyReducer(state = initialState, action) {
     case `${UPDATE_PROPERTY_BY_ID}_FULFILLED`:
       return {
         ...state,
+        selectedProperty: action.payload,
         loading: false,
         error: false,
       };

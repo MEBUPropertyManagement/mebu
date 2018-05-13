@@ -14,19 +14,18 @@ class Settings extends Component {
     super(props);
 
     this.state = {
-      name: '',
-      photourl: '',
-      address: '',
-      units: 0,
-      value: 0,
-      expenses: 0,
+      name: this.props.selectedProperty.name || '',
+      photourl: this.props.selectedProperty.photourl || '',
+      address: this.props.selectedProperty.address || '',
+      units: this.props.selectedProperty.units || '',
+      value: this.props.selectedProperty.value || '',
+      expenses: this.props.selectedProperty.expenses || '',
+      editing: false,
+      deleting: false,
     };
-    this.onSubmitHandler = this.onSubmitHandler.bind(this);
-    this.handleChangeName = this.handleChangeName.bind(this);
-    this.handleChangeAddress = this.handleChangeAddress.bind(this);
-    this.handleChangeUnits = this.handleChangeUnits.bind(this);
-    this.handleChangeValue = this.handleChangeValue.bind(this);
-    this.handleChangeExpenses = this.handleChangeExpenses.bind(this);
+
+    this.onEditHandler = this.onEditHandler.bind(this);
+    this.onChangeHandler = this.onChangeHandler.bind(this);
     this.onArchiveClickHandler = this.onArchiveClickHandler.bind(this);
   }
 
@@ -34,128 +33,143 @@ class Settings extends Component {
     this.props.getPropertyById(this.props.match.params.id);
   }
 
-  onSubmitHandler(e) {
-    e.preventDefault();
-    this.props.updatePropertyById(this.props.match.params.id, {
-      name: this.state.name,
-      photourl: this.state.photourl,
-      address: this.state.address,
-      units: this.state.units,
-      value: this.state.value,
-      expenses: this.state.expenses,
+  onEditHandler() {
+    const {
+      name, photourl, address, units, value, expenses, editing,
+    } = this.state;
+
+    if (editing && name && photourl && address && units && value && expenses) {
+      this.props.updatePropertyById(this.props.match.params.id, {
+        name,
+        photourl,
+        address,
+        units,
+        value,
+        expenses,
+      });
+    }
+
+    this.setState({
+      editing: !this.state.editing,
     });
   }
 
   onArchiveClickHandler() {
-    this.props.archivePropertyById(this.props.match.params.id);
-    this.props.history.push('/owner/properties');
+    const {deleting} = this.state;
+    if (!deleting) {
+      this.setState({deleting: true});
+    } else {
+      this.props.archivePropertyById(this.props.match.params.id);
+      this.props.history.push('/owner/properties');
+    }
   }
 
-  handleChangeName(value) {
-    this.setState({name: value});
-  }
-
-  handleChangePhotoUrl(value) {
-    this.setState({photourl: value});
-  }
-
-  handleChangeAddress(value) {
-    this.setState({address: value});
-  }
-
-  handleChangeUnits(value) {
-    this.setState({units: value});
-  }
-
-  handleChangeValue(value) {
-    this.setState({value});
-  }
-
-  handleChangeExpenses(value) {
-    this.setState({expenses: value});
+  onChangeHandler(e) {
+    this.setState({[e.target.name]: e.target.value});
   }
 
   render() {
+    const {selectedProperty, loading} = this.props;
+    const doneLoading = selectedProperty && Object.keys(selectedProperty) > 0 && !loading;
     const {
-      name, photourl, address, units, value, expenses,
+      name, photourl, address, units, value, expenses, editing, deleting,
     } = this.state;
+
+    const inputClasses = ['Settings__input', 'Settings__input--disabled'];
+    if (editing) {
+      inputClasses.splice(1, 1);
+    }
 
     return (
       <div className="Settings">
         <div className="Settings__title">Settings</div>
-        <form className="Settings-form" onSubmit={this.onSubmitHandler}>
+        <div className="Settings-form">
           <label className="Settings__label">
             <span className="Settings__label-text">Property Name:</span>
             <input
-              className="Settings__input Settings__input--name"
-              required
+              className={`${inputClasses.join(' ')} Settings__input--name`}
+              disabled={!editing}
+              name="name"
               type="text"
-              value={name}
+              value={(doneLoading && selectedProperty.name) || name}
               placeholder="Property Name"
-              onChange={e => this.handleChangeName(e.target.value)}
+              onChange={this.onChangeHandler}
             />
           </label>
           <label className="Settings__label">
             <span className="Settings__label-text">Photo URL: </span>
             <input
-              className="Settings__input Settings__input--url"
-              required
+              className={`${inputClasses.join(' ')} Settings__input--url`}
+              disabled={!editing}
+              name="photourl"
               type="text"
-              value={photourl}
+              value={(doneLoading && selectedProperty.photourl) || photourl}
               placeholder="Photo URL"
-              onChange={e => this.handleChangePhotoUrl(e.target.value)}
+              onChange={this.onChangeHandler}
             />
           </label>
           <label className="Settings__label">
             <span className="Settings__label-text">Address: </span>
             <input
-              className="Settings__input Settings__input--address"
-              required
+              className={`${inputClasses.join(' ')} Settings__input--address`}
+              disabled={!editing}
+              name="address"
               type="text"
-              value={address}
+              value={(doneLoading && selectedProperty.address) || address}
               placeholder="Address"
-              onChange={e => this.handleChangeAddress(e.target.value)}
+              onChange={this.onChangeHandler}
             />
           </label>
           <label className="Settings__label">
             <span className="Settings__label-text">Number of Units: </span>
             <input
-              className="Settings__input Settings__input--units"
-              required
+              className={`${inputClasses.join(' ')} Settings__input--units`}
+              disabled={!editing}
+              name="units"
               type="number"
-              value={units}
+              value={(doneLoading && selectedProperty.units) || units}
               placeholder="Number of Units"
-              onChange={e => this.handleChangeUnits(e.target.value)}
+              onChange={this.onChangeHandler}
             />
           </label>
           <label className="Settings__label">
             <span className="Settings__label-text">Value: </span>
             <input
-              className="Settings__input Settings__input--value"
-              required
+              className={`${inputClasses.join(' ')} Settings__input--value`}
+              disabled={!editing}
+              name="value"
               type="number"
-              value={value}
+              value={(doneLoading && selectedProperty.value) || value}
               placeholder="Value"
-              onChange={e => this.handleChangeValue(e.target.value)}
+              onChange={this.onChangeHandler}
             />
           </label>
           <label className="Settings__label">
             <span className="Settings__label-text">Expenses:</span>
             <input
-              className="Settings__input Settings__input--expenses"
-              required
+              className={`${inputClasses.join(' ')} Settings__input--expenses`}
+              disabled={!editing}
+              name="expenses"
               type="number"
-              value={expenses}
+              value={(doneLoading && selectedProperty.expenses) || expenses}
               placeholder="Expenses"
-              onChange={e => this.handleChangeExpenses(e.target.value)}
+              onChange={this.onChangeHandler}
             />
           </label>
-          <button className="Settings__button">Update</button>
-        </form>
-        <div className="Settings__archive-container">
-          <button className="Settings__archive" onClick={this.onArchiveClickHandler}>
-            Delete
-          </button>
+          <div className="Settings__btn-container">
+            <button
+              onClick={this.onEditHandler}
+              className="Settings__button Settings__button--edit"
+            >
+              {editing ? 'Save' : 'Edit'}
+            </button>
+            <button
+              className="Settings__button Settings__button--archive"
+              onClick={this.onArchiveClickHandler}
+            >
+              {!deleting ? 'Delete' : 'Click Again'}
+            </button>
+          </div>
         </div>
       </div>
     );
