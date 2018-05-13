@@ -12,9 +12,9 @@ class Landing extends Component {
   }
   expand(side, otherside) {
     if (this.state[side] === side) {
-      return {width: '75vw', zIndex: '3'};
+      return {width: '85vw', zIndex: '3'};
     } else if (this.state[side] === otherside) {
-      return {width: '25vw', opacity: '0.3', zIndex: '2'};
+      return {width: '15vw', opacity: '0.3', zIndex: '2'};
     }
     return {width: '50vw'};
   }
@@ -33,12 +33,12 @@ class Landing extends Component {
           onMouseLeave={() => this.leave()}
           className="Landing_left-owner split"
         >
-          <h1 className="heading-owners">Owners</h1>
+          <h1 className="Landing__header">Owners</h1>
           <Link
             className="landing-button Link__none Landing_link Landing_link--owner"
             to="/login/owner/returning"
           >
-            Login
+            Sign In
           </Link>
         </div>
         <div
@@ -47,12 +47,12 @@ class Landing extends Component {
           onMouseLeave={() => this.leave()}
           className="Landing_right-resident split"
         >
-          <h1 className="heading-residents">Residents</h1>
+          <h1 className="Landing__header">Residents</h1>
           <Link
             className="landing-button Link__none Landing_link Landing_link--resident"
             to="/login/resident/returning"
           >
-            Login
+            Sign In
           </Link>
         </div>
       </div>

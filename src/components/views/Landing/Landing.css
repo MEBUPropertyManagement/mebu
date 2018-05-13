@@ -16,25 +16,18 @@
   background: var(--landing-bg-color);
 }
 
-.heading-owners,
-.heading-residents {
+.Landing__header {
   font-size: 4rem;
+  font-family: var(--font-second);
+  text-transform: uppercase;
+  letter-spacing: 5px;
   color: #f3f3f3;
-  position: absolute;
-  left: 50%;
-  top: 20%;
-  transform: translateX(-50%);
-  white-space: nowrap;
+  text-shadow: 0 0 16px rgba(0, 0, 0, 0.5);
 }
 
 .landing-button {
-  display: block;
-  position: absolute;
-  top: 40%;
-  left: 50%;
-
   height: 2.5rem;
-  width: 10rem;
+  width: 200px;
   text-align: center;
   background: var(--blue);
   color: var(--white);
@@ -43,7 +36,6 @@
   font-weight: bold;
   text-transform: uppercase;
   text-decoration: none;
-  transform: translateX(-50%);
   transition: all 100ms linear;
   border-radius: 9999px;
   outline: none;
@@ -64,9 +56,15 @@
 
 .Landing_left-owner {
   left: 0;
-  background: url('../../../images/architecture-2461454_640.jpg') center center
-    no-repeat;
+  background: url('https://images.unsplash.com/photo-1448630360428-65456885c650?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=844d3a349e587ef4188df4ddc79c2a70&auto=format&fit=crop&w=1947&q=80')
+    center center no-repeat;
   background-size: cover;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-end;
+  padding-right: 50px;
+
   transition: var(--speed) all ease-in-out;
 }
 
@@ -79,8 +77,14 @@
 }
 
 .Landing_right-resident {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  padding-left: 50px;
+
   right: 0;
-  background: url('../../../images/modern-minimalist-lounge-3100785_640.jpg')
+  background: url('https://images.unsplash.com/photo-1460317442991-0ec209397118?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=b95599cb95166892018645cd2a22923a&auto=format&fit=crop&w=1950&q=80')
     center center no-repeat;
   background-size: cover;
   transition: var(--speed) all ease-in-out;
