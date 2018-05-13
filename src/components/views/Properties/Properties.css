@@ -98,6 +98,7 @@
 
 .Properties__name {
   padding: 20px;
+  text-transform: capitalize;
 }
 
 .Properties__photo {
