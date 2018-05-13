@@ -35,7 +35,7 @@ class Dashboard extends Component {
         <div className="Dashboard">
           <nav className="Dashboard__nav">
             <h1 className="Dashboard__resident-greeting">
-              Welcome,{' '}
+              Welcome,
               <p className="Dashboard__resident-greeting-name">
                 {current_user.firstName} {current_user.lastName}
               </p>
@@ -104,7 +104,7 @@ class Dashboard extends Component {
         <div className="Dashboard">
           <nav className="Dashboard__nav">
             <h1 className="Dashboard__resident-greeting">
-              Welcome,{' '}
+              Welcome,
               <p className="Dashboard__resident-greeting-name">
                 {current_user.firstName} {current_user.lastName}
               </p>
