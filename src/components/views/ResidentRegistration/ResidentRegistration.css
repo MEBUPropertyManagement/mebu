@@ -19,7 +19,7 @@
 }
 
 .login-container {
-  width: 65vw;
+  width: calc(100vw - 200px);
   height: 75%;
   align-self: center;
   margin: 2em;

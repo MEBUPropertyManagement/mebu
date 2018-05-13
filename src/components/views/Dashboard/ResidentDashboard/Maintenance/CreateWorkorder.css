@@ -24,18 +24,30 @@ button.CreateWorkorder-button {
   outline: none;
   margin-top: 10px;
   margin-left: 16rem;
+  transition: all 100ms linear;
+}
+
+button.CreateWorkorder-button:hover {
+  color: var(--blue);
+  background: var(--white);
 }
 
 textarea#exampleFormControlTextarea1 {
   width: 600px;
   height: 240px;
   font-size: 0.8rem;
-  border: none;
+  border: 1px soild #fff;
   padding: 15px;
   font-family: var(--font);
   border-radius: 15px;
   resize: none;
   margin-top: 5px;
+}
+
+textarea#exampleFormControlTextarea1:focus,
+textarea#exampleFormControlTextarea1:active {
+  outline: none;
+  border: 1px solid var(--black);
 }
 
 .CreateWorkorder__label-1 {

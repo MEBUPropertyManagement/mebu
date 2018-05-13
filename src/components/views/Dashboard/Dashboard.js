@@ -1,7 +1,7 @@
 import React, {Component, Fragment} from 'react';
 import FontAwesome from 'react-fontawesome';
 import axios from 'axios';
-import {NavLink, withRouter, Redirect} from 'react-router-dom';
+import {NavLink, withRouter} from 'react-router-dom';
 import {connect} from 'react-redux';
 
 import Loading from '../../Loading/Loading';
@@ -13,19 +13,13 @@ import {getResidentInfo} from '../../../redux/ducks/residentReducer';
 
 class Dashboard extends Component {
   onLogout() {
-    console.log('logging out!');
     axios
       .get('/users/logout')
-      .then((response) => {
+      .then(() => {
         this.props.logoutUser();
         return this.props.history.push('/');
       })
       .catch(err => console.log(err));
-  }
-  getCurrentUser() {
-    axios.get('/users/current').then((response) => {
-      this.currentUser = this.props.current_user;
-    });
   }
 
   render() {
@@ -40,6 +34,12 @@ class Dashboard extends Component {
       dashboard = (
         <div className="Dashboard">
           <nav className="Dashboard__nav">
+            <h1 className="Dashboard__resident-greeting">
+              Welcome,
+              <p className="Dashboard__resident-greeting-name">
+                {current_user.firstName} {current_user.lastName}
+              </p>
+            </h1>
             <NavLink
               activeClassName="Dashboard__link--active"
               className="Dashboard__link Dashboard__link--back Link__none"
@@ -100,10 +100,15 @@ class Dashboard extends Component {
         </div>
       );
     } else if (path.includes('/resident/') && !loading) {
-      // if they're a resident
       dashboard = (
         <div className="Dashboard">
           <nav className="Dashboard__nav">
+            <h1 className="Dashboard__resident-greeting">
+              Welcome,
+              <p className="Dashboard__resident-greeting-name">
+                {current_user.firstName} {current_user.lastName}
+              </p>
+            </h1>
             <NavLink
               exact
               activeClassName="Dashboard__link--active"

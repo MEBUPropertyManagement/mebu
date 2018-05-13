@@ -41,42 +41,46 @@ class ResidentLogin extends Component {
 
     return (
       <div className="ResidentLogin">
-        <div className="login-container">
-          <h3 className="residentlogin-header">Please sign into MEBU.</h3>
-          <p className="residentlogin-subheader">Enter your details below.</p>
-          <form className="ResidentLogin__form" onSubmit={this.onSubmitHandler}>
-            <input
-              className="ResidentLogin__input ResidentLogin__input--email"
-              style={{borderColor: bc}}
-              value={this.state.email}
-              placeholder="email"
-              name="email"
-              type="email"
-              required
-              autoFocus
-              onChange={this.handleChange}
-            />
-            <input
-              className="ResidentLogin__input ResidentLogin__input--password"
-              style={{borderColor: bc}}
-              value={this.state.password}
-              placeholder="password"
-              name="password"
-              type="password"
-              required
-              onChange={this.handleChange}
-            />
-            <input type="submit" className="ResidentLogin__submit" value="Login" />
+        <div className="ResidentLogin__logo-container">
+          <img className="ResidentLogin__logo" src={logo} alt="logo" />
+          <h3 className="ResidentLogin__logo-header">Resident</h3>
+        </div>
+        <div className="ResidentLogin__login-container">
+          <form onSubmit={this.onSubmitHandler}>
+            <div>
+              <h3 className="ResidentLogin__header">Please sign into MEBU.</h3>
+              <p className="ResidentLogin__subheader">Enter your details below.</p>
+              <input
+                className="ResidentLogin__input ResidentLogin__input--email"
+                style={{borderColor: bc}}
+                value={this.state.email}
+                placeholder="email"
+                name="email"
+                type="email"
+                required
+                autoFocus
+                onChange={this.handleChange}
+              />
+            </div>
+            <div>
+              <input
+                className="ResidentLogin__input ResidentLogin__input--password"
+                style={{borderColor: bc}}
+                value={this.state.password}
+                placeholder="password"
+                name="password"
+                type="password"
+                required
+                onChange={this.handleChange}
+              />
+            </div>
+            <input type="submit" className="ResidentLogin__submit" value="Sign In" />
           </form>
-          <div>
+          <div className="ResidentLogin__footer">
             <Link className="ResidentLogin__link Link__none" to="/forgotpassword">
               Forgot Password?
             </Link>
           </div>
-        </div>
-        <div className="logo-container-registration-log">
-          <img className="ResidentLogin__logo" src={logo} alt="logo" />
-          <h3 className="Residentlogin-logo-header">Resident Portal</h3>
         </div>
       </div>
     );

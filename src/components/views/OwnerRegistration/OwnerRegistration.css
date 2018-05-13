@@ -1,6 +1,8 @@
 .OwnerRegistration {
-  display: flex;
-  flex-direction: row;
+  display: grid;
+  grid-template-areas: 'sidebar content';
+  grid-template-rows: 1fr;
+  grid-template-columns: 200px 1fr;
   height: 100vh;
   align-items: center;
   justify-content: center;
@@ -8,31 +10,40 @@
   background-color: var(--white);
 }
 
-.logo-container-owner-reg {
-  width: 35vw;
+.OwnerRegistration__logo-container {
+  grid-area: sidebar;
   height: 100%;
   background-color: var(--blue);
   display: flex;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
-  flex-direction: column;
 }
+
 .OwnerRegistration__logo {
-  width: 100%;
+  width: 70%;
   object-fit: cover;
 }
 
-.login-container {
-  width: 65vw;
-  height: 75%;
-  align-self: center;
-  margin: 2em;
-  padding: 135px;
+.OwnerRegistration__logo-header {
+  font-weight: normal;
+  color: var(--white);
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  font-size: 0.75rem;
+  position: absolute;
+  bottom: 50px;
 }
 
-.ownerRegistration-header {
-  padding: 20px;
-  margin-top: -80px;
+.OwnerRegistration__login-container {
+  grid-area: content;
+}
+
+.OwnerRegistration__header {
+  margin-bottom: 5px;
+}
+.OwnerRegistration__subheader {
+  margin-bottom: 30px;
 }
 
 .OwnerRegistration__input {
@@ -46,21 +57,42 @@
   outline: none;
 }
 
-.OwnerRegistration-button {
+.OwnerRegistration__input.OwnerRegistration__input--email:focus,
+.OwnerRegistration__input.OwnerRegistration__input--password:focus {
+  border: 1px solid var(--blue);
+}
+
+.OwnerRegistration__submit {
   background: var(--blue);
   color: var(--white);
   border: var(--blue) solid 3px;
-  font-size: 12px;
+  font-size: 0.75rem;
   font-weight: bold;
   text-transform: uppercase;
   border-radius: 100px;
   text-align: center;
-  letter-spacing: 1px;
-  line-height: 40px;
+  letter-spacing: 2px;
+  width: 300px;
+  height: 35px;
   padding: 0 60px;
-  margin: 5px;
+  margin: 5px 0 20px;
+  outline: none;
 }
-.registration-submit-policy {
-  font-size: 10px;
-  padding: 10px;
+
+.OwnerRegistration__footer {
+  font-size: 0.75rem;
+}
+
+.OwnerRegistration__disclaimer {
+  font-size: 0.5rem;
+  margin-bottom: 10px;
+}
+
+.OwnerRegistration__link {
+  font-size: 0.75rem;
+  color: var(--blue);
+}
+
+.OwnerRegistration__link:hover {
+  color: var(--dark-gray);
 }

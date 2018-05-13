@@ -111,10 +111,7 @@ export function getResidents(propertyId) {
     type: GET_RESIDENTS,
     payload: axios
       .get(`/residents/getResidents/${propertyId}`)
-      .then((response) => {
-        console.log(response.data);
-        return response.data.residents;
-      })
+      .then(response => response.data.residents)
       .catch(err => err),
   };
 }
@@ -124,10 +121,7 @@ export function getResidentsByUnitId(unitid) {
     type: GET_RESIDENTS_BY_UNIT_ID,
     payload: axios
       .get(`/residents/getResidentsByUnit/${unitid}`)
-      .then((response) => {
-        console.log(response.data);
-        return response.data.residents;
-      })
+      .then(response => response.data.residents)
       .catch(err => err),
   };
 }
@@ -137,10 +131,7 @@ export function addResident(obj) {
     type: CREATE_RESIDENT,
     payload: axios
       .post('/users/add', obj)
-      .then((response) => {
-        console.log(response.data);
-        return response.data;
-      })
+      .then(response => response.data)
       .catch(err => err),
   };
 }

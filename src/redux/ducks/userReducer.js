@@ -76,8 +76,6 @@ export default function userReducer(state = initialState, action) {
       };
 
     case `${GET_USER}_FULFILLED`:
-      console.log('action.payload: ', action.payload);
-      console.log('state.current_user: ', state.current_user);
       return {
         ...state,
         current_user: {...state.current_user, ...action.payload},
@@ -108,10 +106,7 @@ export function forgotPassword(email) {
     type: FORGOT_PASSWORD,
     payload: axios
       .post('/users/owner-forgot-password', {email})
-      .then((response) => {
-        console.log(response.data);
-        return response.data;
-      })
+      .then(response => response.data)
       .catch(err => console.log(err)),
   };
 }

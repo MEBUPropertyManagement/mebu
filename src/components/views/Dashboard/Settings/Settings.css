@@ -37,7 +37,7 @@
 }
 
 .Settings__input {
-  background: var(--white);
+  background: #fff;
   border: 1px solid var(--gray);
   border-radius: 9999px;
   padding: 10px 15px;
@@ -47,54 +47,54 @@
   width: 100%;
 }
 
+.Settings__input.Settings__input--disabled {
+  background: var(--white);
+  color: var(--dark-gray);
+}
+
 .Settings__input:focus {
   border: 1px solid var(--blue);
 }
 
+.Settings__btn-container {
+  text-align: left;
+  display: flex;
+  flex-direction: column;
+}
+
 .Settings__button {
   padding: 10px 15px;
-  background: var(--blue);
   color: var(--white);
-  border: var(--blue) solid 2px;
   font-size: 0.75rem;
   font-weight: bold;
   text-transform: uppercase;
   border-radius: 9999px;
   text-align: center;
   letter-spacing: 2px;
-  width: 30%;
+  width: 50%;
   outline: none;
   margin-top: 15px;
   transition: all 100ms linear;
 }
 
-.Settings__button:hover {
-  color: var(--blue);
-  background: var(--white);
+.Settings__button.Settings__button--edit {
+  border: var(--blue) solid 2px;
+  background: var(--blue);
 }
 
-.Settings__archive-container {
-  padding: 0 25px;
-  text-align: left;
-}
-
-.Settings__archive {
-  padding: 10px 15px;
-  background: var(--red);
-  color: var(--white);
+.Settings__button.Settings__button--archive {
   border: var(--red) solid 2px;
-  font-size: 0.75rem;
-  font-weight: bold;
-  text-transform: uppercase;
-  border-radius: 9999px;
-  text-align: center;
-  letter-spacing: 2px;
-  width: 30%;
-  outline: none;
-  transition: all 100ms linear;
+  background: var(--red);
 }
 
-.Settings__archive:hover {
+.Settings__button.Settings__button--edit:hover {
+  color: var(--blue);
+}
+
+.Settings__button.Settings__button--archive:hover {
   color: var(--red);
+}
+
+.Settings__button:hover {
   background: var(--white);
 }

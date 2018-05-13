@@ -13,7 +13,6 @@ class Properties extends Component {
   }
 
   onLogout() {
-    console.log('logging out!');
     axios
       .get('/users/logout')
       .then((response) => {
