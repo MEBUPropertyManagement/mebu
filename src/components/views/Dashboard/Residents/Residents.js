@@ -2,6 +2,7 @@ import React, {Component} from 'react';
 import {connect} from 'react-redux';
 
 import {getResidents} from '../../../../redux/ducks/residentReducer';
+import Loading from '../../../Loading/Loading';
 import './Residents.css';
 
 class Residents extends Component {
@@ -37,13 +38,14 @@ class Residents extends Component {
           </thead>
           <tbody>{residentDisplay}</tbody>
         </table>
+        {loading && <Loading />}
       </div>
     );
   }
 }
 
 const mapStateToProps = state => ({
-  ...state.residentReducer
+  ...state.residentReducer,
 });
 
 export default connect(mapStateToProps, {getResidents})(Residents);

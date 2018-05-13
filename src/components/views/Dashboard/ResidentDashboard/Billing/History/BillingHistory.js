@@ -1,11 +1,12 @@
-import React, { Component } from "react";
-import { connect } from "react-redux";
-import { getBillingHistory } from "../../../../../../redux/ducks/residentReducer";
+import React, {Component} from 'react';
+import {connect} from 'react-redux';
+import {getBillingHistory} from '../../../../../../redux/ducks/residentReducer';
 
-import "./BillingHistory.css";
+import './BillingHistory.css';
 
-import BillingItems from "./BillingItems";
-import "./spreadsheet.css";
+import BillingItems from './BillingItems';
+import './spreadsheet.css';
+import Loading from '../../../../../Loading/Loading';
 
 class BillingHistory extends Component {
   componentDidMount() {
@@ -16,7 +17,7 @@ class BillingHistory extends Component {
     let mappedItems = [];
 
     const re = /\b(\d+)(\d{2})\b/;
-    const subst = "$1.$2";
+    const subst = '$1.$2';
 
     if (this.props.billingHistory && this.props.billingHistory.length > 0) {
       mappedItems = this.props.billingHistory.map(item => (
@@ -45,6 +46,7 @@ class BillingHistory extends Component {
           </thead>
           <tbody>{mappedItems}</tbody>
         </table>
+        {this.props.loading && <Loading />}
       </div>
     );
   }
@@ -54,4 +56,4 @@ const mapStateToProps = state => ({
   ...state.residentReducer,
 });
 
-export default connect(mapStateToProps, { getBillingHistory })(BillingHistory);
+export default connect(mapStateToProps, {getBillingHistory})(BillingHistory);

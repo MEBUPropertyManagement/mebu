@@ -1,7 +1,9 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
-import {loginResident} from '../../../../../redux/ducks/userReducer';
 import axios from 'axios';
+
+import {loginResident} from '../../../../../redux/ducks/userReducer';
+import Loading from '../../../../Loading/Loading';
 
 import './CreateWorkorder.css';
 
@@ -12,6 +14,7 @@ class CreateWorkorder extends Component {
     this.state = {
       content: '',
       urgency: '',
+      loading: false,
     };
   }
 
@@ -27,20 +30,26 @@ class CreateWorkorder extends Component {
     });
   };
 
-  submit = () => {
+  submit = e => {
+    e.preventDefault();
+    this.setState({loading: true});
     axios
       .post('/workorder/addWorkorder', {
         content: this.state.content,
         urgency: this.state.urgency,
       })
-      .then();
+      .then(() => {
+        this.setState({loading: false});
+        this.props.history.replace('/resident/dashboard/maintenance/history');
+      });
   };
 
   render() {
+    const {loading} = this.state;
     return (
       <div>
         <div className="CreateWorkorder-title">Maintenance Request</div>
-        <form onSubmit={() => this.submit()}>
+        <form onSubmit={this.submit}>
           <div className="radio">
             <label className="CreateWorkorder__label-1">Priority</label>
             <br />
@@ -96,6 +105,7 @@ class CreateWorkorder extends Component {
             Submit
           </button>
         </form>
+        {loading && <Loading />}
       </div>
     );
   }

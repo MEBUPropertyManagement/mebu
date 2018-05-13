@@ -3,8 +3,7 @@ import {connect} from 'react-redux';
 import {getResidentWorkOrder} from '../../../../../redux/ducks/workorderReducer';
 
 import './WorkorderHistory.css';
-import './WorkorderItems';
-import WorkorderItems from './WorkorderItems';
+import Loading from '../../../../Loading/Loading';
 
 import Workorder from './Workorder';
 
@@ -104,6 +103,7 @@ class WorkorderHistory extends Component {
             </tbody>
           </table>
         </div>
+        {this.props.loading && <Loading />}
       </div>
     );
   }

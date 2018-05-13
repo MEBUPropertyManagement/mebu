@@ -6,6 +6,7 @@ import {
   updatePropertyById,
   archivePropertyById,
 } from '../../../../redux/ducks/propertyReducer';
+import Loading from '../../../Loading/Loading';
 
 import './Settings.css';
 
@@ -171,6 +172,7 @@ class Settings extends Component {
             </button>
           </div>
         </div>
+        {loading && <Loading />}
       </div>
     );
   }
