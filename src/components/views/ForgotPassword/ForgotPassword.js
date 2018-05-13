@@ -1,7 +1,9 @@
 import React, {Component} from 'react';
-import {Link} from 'react-router-dom';
+import {withRouter} from 'react-router-dom';
 import {connect} from 'react-redux';
+
 import {forgotPassword} from '../../../redux/ducks/userReducer';
+import logo from '../../../images/logo_final_white.svg';
 import './ForgotPassword.css';
 
 class ForgotPassword extends Component {
@@ -18,24 +20,34 @@ class ForgotPassword extends Component {
   onSubmitHandler(e) {
     e.preventDefault();
     this.props.forgotPassword(this.state.email);
+    this.props.history.push('/login/owner/returning');
   }
 
   render() {
     return (
       <div className="ForgotPassword">
-        <h1 className="ForgotPassword__header">Reset Password </h1>
-        <div className="ForgotPassword__email">
-          Enter your email address:
+        <div className="ForgotPassword__logo-container">
+          <img className="ForgotPassword__logo" src={logo} alt="logo" />
+          <h3 className="ForgotPassword__logo-header">
+            Owner<br />Password<br />Reset
+          </h3>
+        </div>
+        <div className="ForgotPassword__login-container">
           <form onSubmit={this.onSubmitHandler} className="">
-            <input
-              type="text"
-              value={this.state.email}
-              onChange={e => this.setState({email: e.target.value})}
-              placeholder="Email Address"
-            />
-            <Link to="/login/owner/returning">
-              <input type="submit" value="Submit" className="" />
-            </Link>
+            <div>
+              <h3 className="ForgotPassword__header">Reset Password </h3>
+              <div className="ForgotPassword__subheader">Enter your email address:</div>
+              <input
+                className="ForgotPassword__input ForgotPassword__input--email"
+                type="email"
+                value={this.state.email}
+                required
+                autoFocus
+                onChange={e => this.setState({email: e.target.value})}
+                placeholder="Email Address"
+              />
+            </div>
+            <input className="ForgotPassword__submit" type="submit" value="Submit" />
           </form>
         </div>
       </div>
