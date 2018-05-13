@@ -1,8 +1,9 @@
-import React, {Component, Fragment} from 'react';
+import React, {Component} from 'react';
 import axios from 'axios';
 import {connect} from 'react-redux';
 import {updateResident} from '../../../../../redux/ducks/userReducer';
 import './Settings.css';
+import Loading from '../../../../Loading/Loading';
 
 class Settings extends Component {
   constructor(props) {
@@ -12,6 +13,7 @@ class Settings extends Component {
       firstname: this.props.current_user.firstName,
       lastname: this.props.current_user.lastName,
       disabled: true,
+      loading: false,
     };
 
     this.onChangeHandler = this.onChangeHandler.bind(this);
@@ -28,13 +30,14 @@ class Settings extends Component {
     } = this.state;
 
     if (!disabled && email && firstname && lastname) {
+      this.setState({loading: true});
       return axios
         .put('/residents/updateResident', {email, firstName: firstname, lastName: lastname})
         .then((response) => {
           console.log(response.data.response);
           const {email, firstname, lastname} = response.data.response;
           this.props.updateResident(email, firstname, lastname);
-          this.setState({disabled: !this.state.disabled});
+          this.setState({disabled: !this.state.disabled, loading: false});
         })
         .catch(err => err);
     }
@@ -46,7 +49,7 @@ class Settings extends Component {
 
   render() {
     const {
-      email, firstname, lastname, disabled,
+      email, firstname, lastname, disabled, loading,
     } = this.state;
     return (
       <div className="Resident-Settings">
@@ -90,6 +93,7 @@ class Settings extends Component {
         <button className="ResSettings-button" onClick={this.onEditHandler}>
           {disabled ? 'Edit' : 'Save'} Profile
         </button>
+        {loading && <Loading />}
       </div>
     );
   }

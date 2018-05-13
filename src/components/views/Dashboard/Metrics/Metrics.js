@@ -4,6 +4,7 @@ import {connect} from 'react-redux';
 import {Doughnut} from 'react-chartjs';
 
 import {getPropertyById} from '../../../../redux/ducks/propertyReducer';
+import Loading from '../../../Loading/Loading';
 import './Metrics.css';
 
 class Metrics extends Component {
@@ -12,9 +13,8 @@ class Metrics extends Component {
   }
 
   render() {
-    let property = <p>...loading</p>;
+    let property = <Loading />;
     if (this.props.selectedProperty && !this.props.loading) {
-      console.log(this.props.selectedProperty);
       const prop = this.props.selectedProperty;
       const expenses = +prop.expenses;
       const value = +prop.value;
@@ -26,27 +26,21 @@ class Metrics extends Component {
           <div>
             <div className="Metrics__info-expenses">
               <h5 className="Metrics__info-title">Expenses</h5>
-              <p className="Metrics__info-numbers">
-                ${expenses.toLocaleString('en')}
-              </p>
+              <p className="Metrics__info-numbers">${expenses.toLocaleString('en')}</p>
             </div>
           </div>
 
           <div>
             <div className="Metrics__info-value">
               <h5 className="Metrics__info-title">Value</h5>
-              <p className="Metrics__info-numbers">
-                ${value.toLocaleString('en')}
-              </p>
+              <p className="Metrics__info-numbers">${value.toLocaleString('en')}</p>
             </div>
           </div>
 
           <div>
             <div className="Metrics__info-income">
               <h5 className="Metrics__info-title">Income</h5>
-              <p className="Metrics__info-numbers">
-                ${income.toLocaleString('en')}
-              </p>
+              <p className="Metrics__info-numbers">${income.toLocaleString('en')}</p>
             </div>
           </div>
         </div>
@@ -58,14 +52,14 @@ class Metrics extends Component {
         value: this.props.selectedProperty.expenses,
         color: '#2796d6',
         highlight: '#29a0e5',
-        label: 'Expenses'
+        label: 'Expenses',
       },
       {
         value: this.props.selectedProperty.income,
         color: '#292929',
         highlight: '#383737',
-        label: 'Income'
-      }
+        label: 'Income',
+      },
     ];
 
     return (
@@ -74,7 +68,7 @@ class Metrics extends Component {
         <Doughnut
           data={data}
           options={{
-            animationEasing: 'easeOutCubic'
+            animationEasing: 'easeOutCubic',
           }}
           width="1200"
           height="400"
@@ -85,7 +79,7 @@ class Metrics extends Component {
 }
 
 const mapStateToProps = state => ({
-  ...state.propertyReducer
+  ...state.propertyReducer,
 });
 
 export default connect(mapStateToProps, {getPropertyById})(Metrics);

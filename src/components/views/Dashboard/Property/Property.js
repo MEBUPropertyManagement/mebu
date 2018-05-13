@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
 import {getPropertyById} from '../../../../redux/ducks/propertyReducer';
+import Loading from '../../../Loading/Loading';
 
 import './Property.css';
 
@@ -10,7 +11,7 @@ class Property extends Component {
   }
 
   render() {
-    let property = <p>...loading</p>;
+    let property = <Loading />;
     if (this.props.selectedProperty && !this.props.loading) {
       const prop = this.props.selectedProperty;
       const expenses = +prop.expenses;
