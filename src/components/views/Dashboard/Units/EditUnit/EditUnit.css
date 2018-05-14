@@ -8,16 +8,16 @@
 }
 
 .EditUnit__table-row--editing .EditUnit__td .EditUnit__input {
-  background: var(--dark-gray);
-  border: 1px solid var(--dark-gray);
-  color: var(--white);
+  background: #fff;
+  border: 1px solid #fff;
+  color: var(--black);
 
   font-size: 1rem;
 }
 
 .EditUnit__table-row--editing .EditUnit__td {
-  background: var(--dark-gray);
-  color: var(--white);
+  background: #fff;
+  color: var(--black);
   box-shadow: none;
   font-size: 1rem;
 }
