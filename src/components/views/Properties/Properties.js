@@ -24,7 +24,7 @@ class Properties extends Component {
 
   render() {
     const {
-      properties, loading, error, current_user,
+      properties, loading, current_user,
     } = this.props;
     const propertiesDisplay =
       properties &&
