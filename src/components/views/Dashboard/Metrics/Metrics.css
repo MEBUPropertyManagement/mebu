@@ -2,9 +2,18 @@
   display: flex;
 }
 
+.Metrics__title {
+  margin-top: 50px;
+}
+
+.Metrics__info-value,
+.Metrics__title {
+  margin-bottom: 17px;
+}
+
 .Metrics__info-title {
   text-align: left;
-  font-size: 0.5rem;
+  font-size: 1rem;
   font-weight: 700;
   color: var(--light-blue);
   text-transform: uppercase;
@@ -14,6 +23,20 @@
 .Metrics__info-numbers {
   text-align: left;
   font-weight: 400;
-  font-size: 1.5rem;
+  font-size: 2.5rem;
   letter-spacing: 1.5px;
+}
+
+.Metrics__info-expense {
+  height: 10px;
+  width: 50px;
+  background: var(--light-blue);
+  margin-bottom: 10px;
+}
+
+.Metrics__info-values {
+  height: 10px;
+  width: 50px;
+  background: var(--light-black);
+  margin-bottom: 10px;
 }
