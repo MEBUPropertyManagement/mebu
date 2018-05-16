@@ -21,9 +21,6 @@ class PayBills extends Component {
   }
 
   onToken = token => {
-    console.log(token);
-    console.log(this.state.amount);
-
     axios
       .post('/bills/pay', {
         amount: this.state.amount,
@@ -31,7 +28,7 @@ class PayBills extends Component {
         billid: this.state.billid,
       })
       .then(res => this.props.getBills())
-      .catch(err => console.log(err));
+      .catch(err => err);
   };
 
   selectBill(value) {

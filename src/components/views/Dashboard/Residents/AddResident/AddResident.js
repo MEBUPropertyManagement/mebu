@@ -30,9 +30,7 @@ class AddResident extends Component {
   }
 
   render() {
-    const {
-      email, unitID, firstName, lastName,
-    } = this.state;
+    const {email, firstName, lastName} = this.state;
     return (
       <div className="AddResident">
         <h1 className="AddResident__header">Add Resident</h1>

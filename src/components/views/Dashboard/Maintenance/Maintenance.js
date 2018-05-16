@@ -1,10 +1,6 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
-import {
-  getWorkorderById,
-  closeWorkorderById,
-  changeFilteredWorkorder,
-} from '../../../../redux/ducks/workorderReducer';
+import {getWorkorderById, closeWorkorderById} from '../../../../redux/ducks/workorderReducer';
 
 import Workorder from './Workorder';
 import './Maintenance.css';

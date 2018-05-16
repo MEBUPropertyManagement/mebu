@@ -161,5 +161,4 @@ const mapStateToProps = state => ({
   ...state.userReducer,
 });
 
-// export default connect(null, {createOwner})(OwnerRegistration);
 export default connect(mapStateToProps, {createOwner})(OwnerRegistration);

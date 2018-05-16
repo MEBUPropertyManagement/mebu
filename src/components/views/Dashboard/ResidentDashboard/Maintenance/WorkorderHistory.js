@@ -2,10 +2,9 @@ import React, {Component} from 'react';
 import {connect} from 'react-redux';
 import {getResidentWorkOrder} from '../../../../../redux/ducks/workorderReducer';
 
+import Workorder from './Workorder';
 import './WorkorderHistory.css';
 import Loading from '../../../../Loading/Loading';
-
-import Workorder from './Workorder';
 
 class WorkorderHistory extends Component {
   constructor(props) {
@@ -25,7 +24,7 @@ class WorkorderHistory extends Component {
 
     const open = workorders.filter(workorder => !workorder.dateend).map((order) => {
       const {
-        workorderid, datestart, dateend, firstname, lastname, unitid, content,
+        workorderid, datestart, dateend, content,
       } = order;
       return (
         <Workorder
@@ -39,7 +38,7 @@ class WorkorderHistory extends Component {
 
     const closed = workorders.filter(workorder => workorder.dateend).map((order) => {
       const {
-        workorderid, datestart, dateend, firstname, lastname, unitid, content,
+        workorderid, datestart, dateend, content,
       } = order;
       return (
         <Workorder
@@ -53,7 +52,7 @@ class WorkorderHistory extends Component {
 
     const all = workorders.map((order) => {
       const {
-        workorderid, datestart, dateend, firstname, lastname, unitid, content,
+        workorderid, datestart, dateend, content,
       } = order;
       return (
         <Workorder

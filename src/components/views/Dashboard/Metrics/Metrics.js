@@ -1,5 +1,4 @@
 import React, {Component} from 'react';
-import FontAwesome from 'react-fontawesome';
 import {connect} from 'react-redux';
 import {Doughnut} from 'react-chartjs';
 
@@ -28,9 +27,7 @@ class Metrics extends Component {
               <div className="Metrics__info-expenses">
                 <div className="Metrics__info-expense" />
                 <h5 className="Metrics__info-title">Expenses</h5>
-                <p className="Metrics__info-numbers">
-                  ${expenses.toLocaleString('en')}
-                </p>
+                <p className="Metrics__info-numbers">${expenses.toLocaleString('en')}</p>
               </div>
             </div>
 
@@ -38,18 +35,14 @@ class Metrics extends Component {
               <div className="Metrics__info-value">
                 <div className="Metrics__info-values" />
                 <h5 className="Metrics__info-title">Value</h5>
-                <p className="Metrics__info-numbers">
-                  ${value.toLocaleString('en')}
-                </p>
+                <p className="Metrics__info-numbers">${value.toLocaleString('en')}</p>
               </div>
             </div>
 
             <div>
               <div className="Metrics__info-income">
                 <h5 className="Metrics__info-title">Income</h5>
-                <p className="Metrics__info-numbers">
-                  ${income.toLocaleString('en')}
-                </p>
+                <p className="Metrics__info-numbers">${income.toLocaleString('en')}</p>
               </div>
             </div>
           </div>
@@ -62,14 +55,14 @@ class Metrics extends Component {
         value: this.props.selectedProperty.expenses,
         color: '#2796d6',
         highlight: '#29a0e5',
-        label: 'Expenses'
+        label: 'Expenses',
       },
       {
         value: this.props.selectedProperty.income,
         color: '#292929',
         highlight: '#383737',
-        label: 'Income'
-      }
+        label: 'Income',
+      },
     ];
 
     return (
@@ -78,7 +71,7 @@ class Metrics extends Component {
         <Doughnut
           data={data}
           options={{
-            animationEasing: 'easeOutCubic'
+            animationEasing: 'easeOutCubic',
           }}
           width="650"
           height="500"
@@ -89,7 +82,7 @@ class Metrics extends Component {
 }
 
 const mapStateToProps = state => ({
-  ...state.propertyReducer
+  ...state.propertyReducer,
 });
 
 export default connect(mapStateToProps, {getPropertyById})(Metrics);

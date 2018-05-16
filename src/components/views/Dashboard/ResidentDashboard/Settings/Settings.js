@@ -34,7 +34,6 @@ class Settings extends Component {
       return axios
         .put('/residents/updateResident', {email, firstName: firstname, lastName: lastname})
         .then((response) => {
-          console.log(response.data.response);
           const {email, firstname, lastname} = response.data.response;
           this.props.updateResident(email, firstname, lastname);
           this.setState({disabled: !this.state.disabled, loading: false});
