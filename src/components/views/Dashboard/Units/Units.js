@@ -10,7 +10,7 @@ class Units extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      addingUnits: false
+      addingUnits: false,
     };
     this.onAddNewUnits = this.onAddNewUnits.bind(this);
     this.addingStateToFalse = this.addingStateToFalse.bind(this);
@@ -35,11 +35,7 @@ class Units extends Component {
   }
 
   toResidentsByUnit(unitid) {
-    this.props.history.push(
-      `/owner/dashboard/property/${
-        this.props.match.params.id
-      }/units/${unitid}/residents`
-    );
+    this.props.history.push(`/owner/dashboard/property/${this.props.match.params.id}/units/${unitid}/residents`);
   }
 
   render() {
@@ -50,6 +46,7 @@ class Units extends Component {
     if (units.length > 0 && !loading) {
       unitsDisplay = (
         <Fragment>
+          <p>Click on a row to view residents or add a resident.</p>
           <table>
             <thead>
               <tr className="Units__table-header">
@@ -74,15 +71,12 @@ class Units extends Component {
                 ))}
             </tbody>
           </table>
-          <button className="Units__add-btn" onClick={this.onAddNewUnits}>
-            {addingUnits ? 'Cancel' : 'Add New Units'}
-          </button>
         </Fragment>
       );
     } else if (loading) {
       unitsDisplay = <Loading />;
     } else {
-      unitsDisplay = <p>No Units To Display</p>;
+      unitsDisplay = <p>No Units To Display. Add a unit to start adding residents.</p>;
     }
 
     return (
@@ -90,6 +84,9 @@ class Units extends Component {
         <h1 className="Units__title">Units</h1>
         {unitsDisplay}
 
+        <button className="Units__add-btn" onClick={this.onAddNewUnits}>
+          {addingUnits ? 'Cancel' : 'Add New Units'}
+        </button>
         {addingUnits && <AddUnits hide={this.addingStateToFalse} />}
       </div>
     );
@@ -97,7 +94,7 @@ class Units extends Component {
 }
 
 const mapStateToProps = state => ({
-  ...state.unitReducer
+  ...state.unitReducer,
 });
 
 export default connect(mapStateToProps, {getUnits, updateUnit})(Units);

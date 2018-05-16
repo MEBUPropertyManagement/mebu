@@ -1,14 +1,10 @@
 import React from 'react';
 
-const Workorder = props => {
+import './Workorder.css';
+
+const Workorder = (props) => {
   const {
-    workorderid,
-    datestart,
-    dateend,
-    firstname,
-    lastname,
-    unitid,
-    content
+    workorderid, datestart, dateend, firstname, lastname, unitid, content,
   } = props;
 
   return (
@@ -20,15 +16,14 @@ const Workorder = props => {
       <td>{lastname}</td>
       <td>{unitid}</td>
       <td>{content}</td>
-      <td>
+      <td className="Maintenance__button-container">
         {!dateend ? (
-          <button
-            className="Maintenance__close-order"
-            onClick={() => props.close(workorderid)}
-          >
+          <button className="Maintenance__close-order" onClick={() => props.close(workorderid)}>
             Close Order
           </button>
-        ) : null}
+        ) : (
+          'Closed'
+        )}
       </td>
     </tr>
   );
