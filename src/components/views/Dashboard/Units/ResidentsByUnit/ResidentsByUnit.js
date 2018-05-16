@@ -13,9 +13,9 @@ class ResidentsByUnit extends Component {
 
   render() {
     const {residents, loading} = this.props;
-    let residentsDisplay = null;
+    let residentsDisplay = <p>This unit is currently unoccupied.</p>;
     if (residents && residents.length > 0 && !loading) {
-      residentsDisplay = residents.map(({
+      const allResidents = residents.map(({
         email, firstname, lastname, isresident,
       }) => (
         <tr>
@@ -25,10 +25,7 @@ class ResidentsByUnit extends Component {
           <td>{isresident ? 'Yes' : 'No'}</td>
         </tr>
       ));
-    }
-    return (
-      <div className="ResidentsByUnit">
-        {loading && <Loading />}
+      residentsDisplay = (
         <table className="ResidentsByUnit__table">
           <thead>
             <tr className="ResidentsByUnit__th">
@@ -38,8 +35,14 @@ class ResidentsByUnit extends Component {
               <th>Current</th>
             </tr>
           </thead>
-          <tbody>{residentsDisplay}</tbody>
+          <tbody>{allResidents}</tbody>
         </table>
+      );
+    }
+    return (
+      <div className="ResidentsByUnit">
+        {loading && <Loading />}
+        {residentsDisplay}
         <Link
           className="ResidentsByUnit__btn Link__none"
           to={`/owner/dashboard/property/${this.props.match.params.id}/units/${
@@ -56,4 +59,3 @@ class ResidentsByUnit extends Component {
 const mapStateToProps = state => ({...state.residentReducer});
 
 export default connect(mapStateToProps, {getResidentsByUnitId})(ResidentsByUnit);
-// export default connect(mapStateToProps, {getResidentsByUnitId})(ResidentsByUnit);
