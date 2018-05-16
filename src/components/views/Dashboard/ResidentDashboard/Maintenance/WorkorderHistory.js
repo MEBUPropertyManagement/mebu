@@ -66,41 +66,55 @@ class WorkorderHistory extends Component {
 
     return (
       <div>
-        <div onChange={e => this.setState({filter: e.target.value})}>
-          <input
-            type="radio"
-            value="all"
-            name="filter"
-            required
-            checked={this.state.filter === 'all'}
-          />
-          All
-          <input type="radio" value="open" name="filter" checked={this.state.filter === 'open'} />
-          Open
-          <input
-            type="radio"
-            value="closed"
-            name="filter"
-            checked={this.state.filter === 'closed'}
-          />
-          Closed
-        </div>
-
         <div className="WorkorderHistory">
           <div className="WorkorderHistory-title">Service History</div>
-          <table className="WorkorderHistory-table">
-            <thead>
-              <tr className="Residents__table-header">
-                <th>Work Order ID</th>
-                <th>Date Start</th>
-                <th>Date Completed</th>
-                <th>Description</th>
-              </tr>
-            </thead>
-            <tbody>
-              {this.state.filter === 'all' ? all : this.state.filter === 'closed' ? closed : open}
-            </tbody>
-          </table>
+          {this.props.workorders && this.props.workorders.length > 0 ? (
+            <div>
+              <div onChange={e => this.setState({filter: e.target.value})}>
+                <input
+                  type="radio"
+                  value="all"
+                  name="filter"
+                  required
+                  checked={this.state.filter === 'all'}
+                />
+                All
+                <input
+                  type="radio"
+                  value="open"
+                  name="filter"
+                  checked={this.state.filter === 'open'}
+                />
+                Open
+                <input
+                  type="radio"
+                  value="closed"
+                  name="filter"
+                  checked={this.state.filter === 'closed'}
+                />
+                Closed
+              </div>
+              <table className="WorkorderHistory-table">
+                <thead>
+                  <tr className="Residents__table-header">
+                    <th>Work Order ID</th>
+                    <th>Date Start</th>
+                    <th>Date Completed</th>
+                    <th>Description</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {this.state.filter === 'all'
+                    ? all
+                    : this.state.filter === 'closed'
+                      ? closed
+                      : open}
+                </tbody>
+              </table>
+            </div>
+          ) : (
+            "You haven't submitted any workorders."
+          )}
         </div>
         {this.props.loading && <Loading />}
       </div>

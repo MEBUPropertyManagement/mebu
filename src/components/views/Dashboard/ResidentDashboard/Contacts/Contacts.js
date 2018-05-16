@@ -11,13 +11,14 @@ class Contacts extends Component {
 
   render() {
     const {residentInfo, loading, error} = this.props;
+    const {rent} = residentInfo;
+
     let residentInfoDisplay = <Loading />;
     if (Object.keys(residentInfo).length > 0 && !loading && !error) {
       residentInfoDisplay = (
         <div className="Contacts">
           <div className="Contacts-resident-info">
             <div>
-              {/* <h3 className="Contacts-header">Property</h3> */}
               <h5 className="Contacts-property-name">
                 {residentInfo.name}
                 <div className="Contacts__border__bottom" />
@@ -32,7 +33,7 @@ class Contacts extends Component {
             </div>
             <div>
               <h6 className="Contacts-header">Details about you: </h6>
-              <p className="Contacts-text">Your monthly rent is ${residentInfo.rent}</p>
+              <p className="Contacts-text">Your monthly rent is ${rent.toLocaleString('en')}</p>
               <p className="Contacts-text">Your apartment number is {residentInfo.roomnum}</p>
             </div>
           </div>

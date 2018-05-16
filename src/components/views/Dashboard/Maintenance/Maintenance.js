@@ -75,51 +75,57 @@ class Maintenance extends Component {
     return (
       <div className="Tb">
         <div className="Maintenance__title">Maintenance</div>
-        <div>
-          <input
-            type="radio"
-            value="all"
-            name="filter"
-            required
-            onChange={e => this.setState({filter: e.target.value})}
-            checked={this.state.filter === 'all'}
-          />
-          All
-          <input
-            type="radio"
-            value="open"
-            name="filter"
-            checked={this.state.filter === 'open'}
-            onChange={e => this.setState({filter: e.target.value})}
-          />
-          Open
-          <input
-            type="radio"
-            value="closed"
-            name="filter"
-            checked={this.state.filter === 'closed'}
-            onChange={e => this.setState({filter: e.target.value})}
-          />
-          Closed
-        </div>
-        <table className="Maintenance__table">
-          <thead>
-            <tr className="Maintenance__table-header">
-              <th>Workorder ID</th>
-              <th>Date Start</th>
-              <th>Date End</th>
-              <th>First Name</th>
-              <th>Last Name</th>
-              <th>Unit ID</th>
-              <th>Content</th>
-              <th>Closed</th>
-            </tr>
-          </thead>
+        {this.props.workorders && this.props.workorders.length > 0 ? (
+          <div>
+            <div>
+              <input
+                type="radio"
+                value="all"
+                name="filter"
+                required
+                onChange={e => this.setState({filter: e.target.value})}
+                checked={this.state.filter === 'all'}
+              />
+              All
+              <input
+                type="radio"
+                value="open"
+                name="filter"
+                checked={this.state.filter === 'open'}
+                onChange={e => this.setState({filter: e.target.value})}
+              />
+              Open
+              <input
+                type="radio"
+                value="closed"
+                name="filter"
+                checked={this.state.filter === 'closed'}
+                onChange={e => this.setState({filter: e.target.value})}
+              />
+              Closed
+            </div>
+            <table className="Maintenance__table">
+              <thead>
+                <tr className="Maintenance__table-header">
+                  <th>Workorder ID</th>
+                  <th>Date Start</th>
+                  <th>Date End</th>
+                  <th>First Name</th>
+                  <th>Last Name</th>
+                  <th>Unit ID</th>
+                  <th>Content</th>
+                  <th>Closed</th>
+                </tr>
+              </thead>
 
-          <tbody>
-            {this.state.filter === 'all' ? all : this.state.filter === 'closed' ? closed : open}
-          </tbody>
-        </table>
+              <tbody>
+                {this.state.filter === 'all' ? all : this.state.filter === 'closed' ? closed : open}
+              </tbody>
+            </table>
+          </div>
+        ) : (
+          'No workorders have been submitted for this property.'
+        )}
       </div>
     );
   }
