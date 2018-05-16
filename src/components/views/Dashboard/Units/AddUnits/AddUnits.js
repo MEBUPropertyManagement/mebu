@@ -66,7 +66,7 @@ class AddUnits extends Component {
   }
 
   render() {
-    const {count, newUnits} = this.state;
+    const {count} = this.state;
     const newUnitsDisplay = [];
     for (let i = 0; i < count; i += 1) {
       newUnitsDisplay.push(<NewUnit index={i} updateModel={this.newUnitUpdate} />);

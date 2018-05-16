@@ -34,16 +34,11 @@ class NewUnit extends Component {
   }
 
   onEditHandler() {
-    const {index} = this.state;
     if (this.state.editing && this.state.creating) {
       axios
         .post('/unit/add', {...this.state, propertyid: this.props.match.params.id})
         .then((response) => {
           this.props.getPropertyById(response.data[0].propertyid);
-          // if (index >= 0) {
-          //   console.log('deleted index: ', index);
-          //   this.props.remove(index);
-          // }
         });
     } else if (this.state.editing) {
       const propertyid = this.props.unit.propertyid
@@ -57,23 +52,7 @@ class NewUnit extends Component {
           unitid,
         })
         .then((response) => {
-          console.log('response: ', response);
-          // const {
-          //   bath, bed, occupied, rent, roomnum, size,
-          // } = response.data[0];
           this.props.getPropertyById(response.data.response[0].propertyid);
-          // this.setState({
-          //   bath,
-          //   bed,
-          //   rent,
-          //   roomnum,
-          //   size,
-          //   occupied,
-          // });
-          // if (index >= 0) {
-          //   console.log('deleted index: ', index);
-          //   this.props.remove(index);
-          // }
         });
     }
     this.setState(prevState => ({editing: this.state.creating ? true : !prevState.editing}));

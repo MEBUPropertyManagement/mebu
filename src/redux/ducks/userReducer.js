@@ -107,7 +107,7 @@ export function forgotPassword(email) {
     payload: axios
       .post('/users/owner-forgot-password', {email})
       .then(response => response.data)
-      .catch(err => console.log(err)),
+      .catch(err => err),
   };
 }
 

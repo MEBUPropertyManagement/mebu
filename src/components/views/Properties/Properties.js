@@ -19,7 +19,7 @@ class Properties extends Component {
         this.props.logoutUser();
         return this.props.history.push('/');
       })
-      .catch(err => console.log(err));
+      .catch(err => err);
   }
 
   render() {

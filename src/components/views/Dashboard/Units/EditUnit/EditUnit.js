@@ -1,5 +1,4 @@
 import React, {Component, Fragment} from 'react';
-import FontAwesome from 'react-fontawesome';
 import axios from 'axios';
 
 import './EditUnit.css';

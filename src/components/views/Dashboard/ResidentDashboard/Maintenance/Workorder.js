@@ -2,7 +2,7 @@ import React from 'react';
 
 const Workorder = (props) => {
   const {
-    workorderid, datestart, dateend, firstname, lastname, unitid, content,
+    workorderid, datestart, dateend, content,
   } = props;
 
   return (
