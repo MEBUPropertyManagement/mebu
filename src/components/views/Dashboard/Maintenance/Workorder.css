@@ -1,20 +1,25 @@
-/* .Workorder__close-order {
-  padding: 10px 15px;
-  background: var(--blue);
-  color: var(--white);
-  border: var(--blue) solid 2px;
-  font-size: 0.75rem;
-  font-weight: bold;
-  text-transform: uppercase;
-  border-radius: 9999px;
+.Maintenance__button-container {
+  padding: 0;
   text-align: center;
-  letter-spacing: 2px;
-  width: 25%;
-  outline: none;
-  margin-top: 10px;
+  position: relative;
 }
 
-.Workorder__close-order:hover {
+.Maintenance__close-order {
+  position: absolute;
+  left: 0;
+  top: 0;
   color: var(--blue);
-  background: var(--white);
-} */
+  font-weight: bold;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+
+  width: 100%;
+  height: 100%;
+  transition: all 200ms linear;
+  outline: none;
+}
+
+.Maintenance__button-container:hover .Maintenance__close-order {
+  background: var(--red);
+  color: var(--white);
+}

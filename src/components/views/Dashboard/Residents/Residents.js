@@ -12,9 +12,10 @@ class Residents extends Component {
 
   render() {
     const {residents, loading} = this.props;
-    let residentDisplay = null;
+    let residentDisplay =
+      'There are currently no residents. Click the "Units" tab to start adding residents to a specified room number.';
     if (residents && residents[0] && !loading) {
-      residentDisplay = residents.map(resident => (
+      const residentsMap = residents.map(resident => (
         <tr key={resident.residentid} className="Residents__table-data">
           <td>{resident.firstname}</td>
           <td>{resident.lastname}</td>
@@ -22,11 +23,7 @@ class Residents extends Component {
           <td>{resident.email}</td>
         </tr>
       ));
-    }
-
-    return (
-      <div className="Residents">
-        <div className="Residents__title">Residents</div>
+      residentDisplay = (
         <table>
           <thead>
             <tr className="Residents__table-header">
@@ -36,8 +33,15 @@ class Residents extends Component {
               <th>Email</th>
             </tr>
           </thead>
-          <tbody>{residentDisplay}</tbody>
+          <tbody>{residentsMap}</tbody>
         </table>
+      );
+    }
+
+    return (
+      <div className="Residents">
+        <div className="Residents__title">Residents</div>
+        {residentDisplay}
         {loading && <Loading />}
       </div>
     );
