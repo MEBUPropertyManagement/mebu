@@ -19,12 +19,12 @@ class Properties extends Component {
         this.props.logoutUser();
         return this.props.history.push('/');
       })
-      .catch(err => console.log(err));
+      .catch(err => err);
   }
 
   render() {
     const {
-      properties, loading, error, current_user,
+      properties, loading, current_user,
     } = this.props;
     const propertiesDisplay =
       properties &&

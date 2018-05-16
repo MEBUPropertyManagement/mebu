@@ -15,8 +15,6 @@ const registrationEmail = (email, password) =>
       html: `<html><p>Please login with the following credentials: </p><p>Username: ${email} <br/><br/>Password: ${password}</p></html>`,
     },
     (err, info) => {
-      console.log(info.envelope);
-      console.log(info.messageId);
       info.message.pipe(process.stdout);
     },
   );
@@ -31,8 +29,6 @@ const maintenanceEmail = (email, propertyname) =>
       html: `<html><p>A new workorder has been submitted for ${propertyname}.<br/><br/>Please access your dashboard for details.</p></html>`,
     },
     (err, info) => {
-      console.log(info.envelope);
-      console.log(info.messageId);
       info.message.pipe(process.stdout);
     },
   );

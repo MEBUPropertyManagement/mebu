@@ -6,7 +6,6 @@ const stripe = require('stripe')(secretKey);
 const stripeCharge = (req, res) => {
   const db = req.app.get('db');
   const {amount, billid} = req.body;
-  console.log(amount, billid);
 
   stripe.charges.create(
     {

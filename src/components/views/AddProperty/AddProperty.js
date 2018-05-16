@@ -43,14 +43,13 @@ class AddProperty extends Component {
   }
 
   onLogout() {
-    console.log('logging out!');
     axios
       .get('/users/logout')
       .then((response) => {
         this.props.logoutUser();
         return this.props.history.push('/');
       })
-      .catch(err => console.log(err));
+      .catch(err => err);
   }
 
   render() {
@@ -80,9 +79,7 @@ class AddProperty extends Component {
         </div>
         <form className="AddProperty-form" onSubmit={this.onSubmitHandler}>
           <label className="Property__label" htmlFor="name">
-            <span className="Property__label-text">
-            Property Name
-            </span>
+            <span className="Property__label-text">Property Name</span>
             <input
               className="AddProperty__input AddProperty__input--name"
               onChange={this.onChangeHandler}
@@ -95,9 +92,7 @@ class AddProperty extends Component {
             />
           </label>
           <label className="Property__label" htmlFor="Property address">
-            <span className="Property__label-text">
-            Property Address
-            </span>
+            <span className="Property__label-text">Property Address</span>
             <input
               className="AddProperty__input AddProperty__input--address"
               onChange={this.onChangeHandler}
@@ -109,9 +104,7 @@ class AddProperty extends Component {
             />
           </label>
           <label className="Property__label" htmlFor="value">
-            <span className="Property__label-text">
-            Property Value
-            </span>
+            <span className="Property__label-text">Property Value</span>
             <input
               className="AddProperty__input AddProperty__input--value"
               onChange={this.onChangeHandler}
@@ -123,9 +116,7 @@ class AddProperty extends Component {
             />
           </label>
           <label className="Property__label" htmlFor="photourl">
-            <span className="Property__label-text">
-            Property Photo
-            </span>
+            <span className="Property__label-text">Property Photo</span>
             <input
               className="AddProperty__input AddProperty__input--photourl"
               onChange={this.onChangeHandler}
@@ -138,9 +129,7 @@ class AddProperty extends Component {
             />
           </label>
           <label className="Property__label" htmlFor="units">
-            <span className="Property__label-text">
-            Total Number of Property Units
-            </span>
+            <span className="Property__label-text">Total Number of Property Units</span>
             <input
               className="AddProperty__input AddProperty__input--units"
               onChange={this.onChangeHandler}
@@ -152,9 +141,7 @@ class AddProperty extends Component {
             />
           </label>
           <label className="Property__label" htmlFor="expenses">
-            <span className="Property__label-text">
-            Total Property Expenses
-            </span>
+            <span className="Property__label-text">Total Property Expenses</span>
             <input
               className="AddProperty__input AddProperty__input--expenses"
               onChange={this.onChangeHandler}
