@@ -5,6 +5,7 @@ const cors = require('cors');
 const session = require('express-session');
 const massive = require('massive');
 const bCrypt = require('bcrypt');
+const path = require('path');
 
 // Authentication Controllers
 const {
@@ -129,6 +130,10 @@ app.post('/bills/add', addBill);
 app.post('/bills/pay', stripeCharge);
 app.get('/bills/getBillingHistory', getBillingHistory);
 app.get('/bills/getUnpaid', getUnpaidBills);
+
+app.get('*', (req, res, next) => {
+  res.sendFile(path.join(`${__dirname}/../build/index.html`));
+};
 
 app.listen(process.env.PORT || port, () => {
   console.log(`Dr. Crane is listening on ${port}`);
