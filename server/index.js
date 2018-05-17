@@ -133,7 +133,7 @@ app.get('/bills/getUnpaid', getUnpaidBills);
 
 app.get('*', (req, res, next) => {
   res.sendFile(path.join(`${__dirname}/../build/index.html`));
-};
+});
 
 app.listen(process.env.PORT || port, () => {
   console.log(`Dr. Crane is listening on ${port}`);
