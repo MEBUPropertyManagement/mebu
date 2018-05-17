@@ -1,3 +1,4 @@
+require('dotenv').config();
 const express = require('express');
 const {json} = require('body-parser');
 const cors = require('cors');
@@ -56,8 +57,6 @@ const {addBill, getBillingHistory, getUnpaidBills} = require('./controllers/bill
 // Stripe Controllers
 const {stripeCharge} = require('./controllers/stripeController');
 
-require('dotenv').config();
-
 const app = express();
 const port = 3001;
 
@@ -80,6 +79,8 @@ app.use(session({
     maxAge: 10000000,
   },
 }));
+
+app.use(express.static(`${__dirname}/../build`));
 
 // Resident Authentication Endpoints
 app.post('/users/resident-forgot-password', residentForgotPassword);
@@ -129,6 +130,6 @@ app.post('/bills/pay', stripeCharge);
 app.get('/bills/getBillingHistory', getBillingHistory);
 app.get('/bills/getUnpaid', getUnpaidBills);
 
-app.listen(port, () => {
+app.listen(process.env.PORT || port, () => {
   console.log(`Dr. Crane is listening on ${port}`);
 });
