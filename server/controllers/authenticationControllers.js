@@ -66,6 +66,8 @@ const ownerRegistration = (req, res) => {
               role: 'owner',
               email,
               userid: response[0].ownerid || 0,
+              firstName: response[0].firstname,
+              lastName: response[0].lastname,
             });
           }
           return res

@@ -27,14 +27,15 @@ class Contacts extends Component {
             </div>
             <div>
               <h6 className="Contacts-header">Owner</h6>
-              <p className="Contacts-text">{residentInfo.firstname}</p>
-              <p className="Contacts-text">{residentInfo.lastname}</p>
+              <p className="Contacts-text">
+                {residentInfo.firstname} {residentInfo.lastname}
+              </p>
               <p className="Contacts-text">{residentInfo.email}</p>
             </div>
             <div>
               <h6 className="Contacts-header">Details about you: </h6>
-              <p className="Contacts-text">Your monthly rent is ${rent.toLocaleString('en')}</p>
-              <p className="Contacts-text">Your apartment number is {residentInfo.roomnum}</p>
+              <p className="Contacts-text">Monthly Rent: ${rent.toLocaleString('en')}</p>
+              <p className="Contacts-text">Apartment Number: {residentInfo.roomnum}</p>
             </div>
           </div>
           <div className="Property__photo-container">

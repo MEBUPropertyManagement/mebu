@@ -28,8 +28,11 @@ class OwnerRegistration extends Component {
 
   onSubmitHandler(e) {
     e.preventDefault();
-    if (this.state.password === this.state.confirmPassword) {
-      // this.props.register({...this.state});
+    const {
+      firstName, lastName, companyName, email, password, confirmPassword,
+    } = this.state;
+    if (password === confirmPassword) {
+      this.props.createOwner(email, password, firstName, lastName, companyName);
     }
   }
 
