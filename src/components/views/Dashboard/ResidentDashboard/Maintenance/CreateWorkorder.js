@@ -85,9 +85,7 @@ class CreateWorkorder extends Component {
             </div>
             <br />
             <div>
-              <label className="CreateWorkorder__label-2">
-                Send any of your maintenance requests here.
-              </label>
+              <label className="CreateWorkorder__label-2">Submit a maintenance request here.</label>
               <br />
               <textarea
                 name="content"

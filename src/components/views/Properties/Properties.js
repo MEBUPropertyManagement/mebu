@@ -1,4 +1,5 @@
 import React, {Component} from 'react';
+import Loading from '../../Loading/Loading';
 import {connect} from 'react-redux';
 import axios from 'axios';
 import {Link, withRouter} from 'react-router-dom';
@@ -23,14 +24,10 @@ class Properties extends Component {
   }
 
   render() {
-    const {
-      properties, loading, current_user,
-    } = this.props;
-    const propertiesDisplay =
-      properties &&
-      properties[0] &&
-      !loading &&
-      properties.map(property => (
+    const {properties, loading, current_user} = this.props;
+    let propertiesDisplay = null;
+    if (properties && properties[0] && !loading) {
+      propertiesDisplay = properties.map(property => (
         <Link
           className="Property-card"
           key={property.propertyid}
@@ -44,6 +41,13 @@ class Properties extends Component {
           </div>
         </Link>
       ));
+    } else if (properties && properties.length === 0 && !loading) {
+      propertiesDisplay = (
+        <p style={{textAlign: 'left'}}>Start by clicking "Add Property" on the left side.</p>
+      );
+    } else {
+      propertiesDisplay = <Loading />;
+    }
 
     let user = <p>...loading</p>;
     if (current_user) {

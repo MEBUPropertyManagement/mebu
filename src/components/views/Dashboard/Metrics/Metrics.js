@@ -33,14 +33,14 @@ class Metrics extends Component {
 
             <div>
               <div className="Metrics__info-value">
-                <div className="Metrics__info-values" />
                 <h5 className="Metrics__info-title">Value</h5>
                 <p className="Metrics__info-numbers">${value.toLocaleString('en')}</p>
               </div>
             </div>
 
             <div>
-              <div className="Metrics__info-income">
+              <div className="Metrics__info-value">
+                <div className="Metrics__info-values" />
                 <h5 className="Metrics__info-title">Income</h5>
                 <p className="Metrics__info-numbers">${income.toLocaleString('en')}</p>
               </div>
